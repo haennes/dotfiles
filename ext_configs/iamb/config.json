@@ -1,0 +1,41 @@
+{
+	"default_profile": "default",
+	"profiles": {
+		"default": {
+			"user_id":  "@haennes:matrix.binary-kitchen.de",
+			"url":      "https://matrix.binary-kitchen.de",
+			"settings": {},
+			"dirs":     {}
+		}
+	},
+	"settings": {
+		"log_level":                  "warn",
+		"reaction_display":           true,
+		"reaction_shortcode_display": false,
+		"read_receipt_send":          true,
+		"read_receipt_display":       true,
+		"request_timeout":            10000,
+		"typing_notice_send":         true,
+		"typing_notice_display":      true,
+		"users": {
+			"@haennes:matrix.binary-kitchen.de": {
+				"name":  "haennes",
+				"color": "magenta"
+			}
+		},
+		"image_preview": {
+			"protocol": {
+				"type": "sixel"
+			},
+			"size": {
+				"width": 66,
+				"height": 10
+			}
+		}
+	},
+	"dirs": {
+		"cache":     "/home/hannses/.cache/iamb/",
+		"logs":      "/home/hannses/.local/share/iamb/logs/",
+		"downloads": "/home/hannses/Downloads/"
+	}
+}
