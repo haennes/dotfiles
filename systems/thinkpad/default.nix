@@ -9,6 +9,7 @@
       enable = true;
       dataDir = "/home/hannses";
     };
+    virtualisation.docker.enable = true;
     networking.hostName = "thinkpad";
     services.wireguard-wrapper.enable = true;
 }
