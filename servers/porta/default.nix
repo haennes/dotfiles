@@ -4,7 +4,6 @@
 
   imports = [
       ../proxmox.nix
-      #./wireguard.nix
   ];
 
  networking.hostName = "porta"; # Define your hostname.
