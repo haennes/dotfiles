@@ -2,7 +2,6 @@
 {
 
   imports = [
-    #./wireguard.nix
     ./hardware-configuration.nix
     ./nginx.nix
     ./dns.nix
