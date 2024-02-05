@@ -1,6 +1,8 @@
 {pkgs, permit_pkgs, ...}: {
 environment.systemPackages = with pkgs; [
   firefox
+  brave
+  tor-browser
   gimp
   freecad
   prusa-slicer
@@ -22,7 +24,6 @@ environment.systemPackages = with pkgs; [
   ruff
   helix
   loc
-  tor-browser
   permit_pkgs.obsidian
   ];
 }
