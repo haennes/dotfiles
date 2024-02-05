@@ -1,11 +1,11 @@
-{lib, ...}:{
+{lib, ips, ...}:{
   services.nginx = {
     enable = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
     virtualHosts = {
       # TODO subdomains
-      "192.168.1.5" = {
+      "${ips.synschlawiner.wg0}" = {
         enableACME = true;
 	forceSSL = true;
 	locations."/" = {
