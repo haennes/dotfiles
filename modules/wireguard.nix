@@ -17,14 +17,17 @@ let
     tabula.ips = [(ip_cidr tabula.wg0)];
     thinkpad.ips = [(ip_cidr thinkpad.wg0)];
     handy_hannses.ips = [(ip_cidr handy_hannses.wg0)];
+    mainpc.ips = [(ip_cidr mainpc.wg0)];
   };
   connections = [
     # connect to specific interface like this: ["porat%wg0" "welt%wg1"]
     ["tabula" "welt"]
     ["porta" "welt"]
     ["syncschlawiner" "welt"]
+    ["syncschlawiner_mkhh" "welt"]
     ["handy_hannses" "welt"]
     ["thinkpad" "welt"]
+    ["mainpc" "welt"]
   ];
   secrets = import ../lib/wireguard;
   priv_key = secrets.age_obtain_wireguard_priv{inherit hostname;};
