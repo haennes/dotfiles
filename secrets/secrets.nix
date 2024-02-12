@@ -3,6 +3,7 @@
 let 
   sshkeys = import ./sshkeys.nix ;
   users = with sshkeys; [ hannses restic ];
+  syncthing_users = with sshkeys; [hannses root_thinkpad syncschlawiner root_syncschlawiner root_tabula tabula];
 
 
   systems = with sshkeys; [ thinkpad ];
@@ -11,8 +12,8 @@ let
     #"${base_folder}/${hostname}/${interface}/pub.age".publicKeys = publicKeys;
     #	wireguard.${hostname}.${interface}.pub = import "${base_folder}/${hostname}/${interface}/pub.nix".key;
   };
- age_generate_syncthing_keypair = {hostname, publicKeys, id_publicKeys}:{
-   "syncthing/${hostname}/id.age".publicKeys = id_publicKeys;
+ age_generate_syncthing_keypair = {hostname, publicKeys}:{
+   "syncthing/${hostname}/id.age".publicKeys = syncthing_users;
    "syncthing/${hostname}/key.age".publicKeys = publicKeys;
    "syncthing/${hostname}/cert.age".publicKeys = publicKeys;
    "syncthing/${hostname}/https-cert.age".publicKeys = publicKeys;
@@ -33,7 +34,7 @@ with sshkeys;
 
   "kehl_login.age".publicKeys = [hannses welt root_welt root_tabula tabula];
 }
-// age_generate_wireguard_keypair{hostname = "main_pc"; publicKeys = [hannses main_pc];} 
+// age_generate_wireguard_keypair{hostname = "mainpc"; publicKeys = [hannses mainpc];} 
 // age_generate_wireguard_keypair{hostname = "thinkpad"; publicKeys = [hannses thinkpad root_thinkpad ];} 
 // age_generate_wireguard_keypair{hostname = "porta"; publicKeys = [hannses porta root_porta];} 
 // age_generate_wireguard_keypair{hostname = "welt"; publicKeys = [hannses welt root_welt];} 
@@ -41,9 +42,11 @@ with sshkeys;
 // age_generate_wireguard_keypair{hostname = "syncschlawiner_mkhh"; publicKeys = [hannses syncschlawiner_mkhh root_syncschlawiner_mkhh];} 
 // age_generate_wireguard_keypair{hostname = "tabula"; publicKeys = [hannses tabula root_tabula];} 
 
-// age_generate_syncthing_keypair{hostname = "thinkpad"; publicKeys = [hannses thinkpad root_thinkpad]; id_publicKeys = [hannses thinkpad root_thinkpad];}
-// age_generate_syncthing_keypair{hostname = "syncschlawiner"; publicKeys = [hannses root_thinkpad syncschlawiner root_syncschlawiner]; id_publicKeys = [hannses thinkpad root_thinkpad];}
-// age_generate_syncthing_keypair{hostname = "tabula"; publicKeys = [hannses root_tabula tabula]; id_publicKeys = [hannses root_thinkpad syncschlawiner root_syncschlawiner root_tabula tabula];}
+// age_generate_syncthing_keypair{hostname = "thinkpad"; publicKeys = [hannses thinkpad root_thinkpad];}
+// age_generate_syncthing_keypair{hostname = "syncschlawiner"; publicKeys = [hannses root_thinkpad syncschlawiner root_syncschlawiner];}
+// age_generate_syncthing_keypair{hostname = "tabula"; publicKeys = [hannses root_tabula tabula];}
+// age_generate_syncthing_keypair{hostname = "mainpc"; publicKeys = [hannses root_mainpc mainpc];}
+
 // age_generate_user_password{username = "hannses"; publicKeys = [hannses thinkpad mainpc];}
 // age_generate_user_password{username = "mum_dad"; publicKeys = [hannses thinkpad mainpc];}
 // age_generate_user_password{username = "mum"; publicKeys = [hannses thinkpad mainpc];}
