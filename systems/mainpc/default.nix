@@ -7,25 +7,19 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./services/backup.nix
+	../../modules/syncthing.nix
+      #./services/backup.nix
       #../common/headfull.nix
     ];
-    
-
-  fileSystems."/home/hannses" =
-    { device = "/dev/HOME/home";
-      fsType = "ext4";
+     services.syncthing_wrap = {
+      enable = true;
+      dataDir = "/home/hannses";
     };
-
-  fileSystems."/mnt/backup" = 
-    {
-      device = "/dev/BACKUP/backup";
-      fsType = "ext4";
-      noCheck = true;
-    };
+   
+    services.wireguard-wrapper.enable = true;
 
     hardware.openrazer.enable = true;
     hardware.openrazer. users = ["hannses"];
-    networking.hostName = "nixos"; # Define your hostname.
+    networking.hostName = "mainpc"; # Define your hostname.
 
 }

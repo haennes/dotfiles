@@ -10,30 +10,22 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-amd" "dm-mirror" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  #boot.loader.efi.canTouchEfiVariables = true;
-  #boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/12501945-92d5-4088-9f75-48bd1c242897";
+    { device = "/dev/disk/by-uuid/098b8a6e-9817-4ca1-a4b3-4a9aecd95f19";
       fsType = "ext4";
     };
 
-   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/93FB-FC94";
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/D332-4245";
       fsType = "vfat";
     };
 
-  fileSystems."/boot/efi" =
-    { device = "/boot";
-      fsType = "none";
-      options = [ "bind" ];
-    };
-
- swapDevices = [ {
-    device = "/var/lib/swapfile";
-    size = 16*1024;
-  } ];
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/f356684a-4ee6-412e-82fb-ad3b31d7991b"; }
+    ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
