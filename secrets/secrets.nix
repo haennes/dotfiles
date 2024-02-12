@@ -48,6 +48,5 @@ with sshkeys;
 // age_generate_syncthing_keypair{hostname = "mainpc"; publicKeys = [hannses root_mainpc mainpc];}
 
 // age_generate_user_password{username = "hannses"; publicKeys = [hannses thinkpad mainpc];}
-// age_generate_user_password{username = "mum_dad"; publicKeys = [hannses thinkpad mainpc];}
 // age_generate_user_password{username = "mum"; publicKeys = [hannses thinkpad mainpc];}
 // age_generate_user_password{username = "dad"; publicKeys = [hannses thinkpad mainpc];}
