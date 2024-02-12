@@ -26,7 +26,7 @@ in
   programs.firefox.enable = true;
   programs.firefox.profiles.default = {
     isDefault = true;
-    extensions = with addons; [tridactyl ublock-origin];
+    extensions = with addons; [tridactyl ublock-origin floccus];
     search = {
       force = true;
       default = "ecosia";
@@ -170,6 +170,13 @@ in
 	  iconUpdateURL = "https://cdn-1.webcatalog.io/catalog/alternativeto/alternativeto-icon-filled.png";
 	  inherit updateInterval;
           definedAliases = [ "<alto" ];
+	};
+
+        "thingiverse" = {
+	  urls = [{template = "https://www.thingiverse.com/search?q={searchTerms}&page=1";}];
+	  iconUpdateURL = "https://www.thingiverse.com/favicon.ico";
+	  inherit updateInterval;
+          definedAliases = [ "<thing" ];
 	};
 
         "ecosia" = {
