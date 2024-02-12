@@ -73,6 +73,11 @@ programs.ssh = {
 	];
      }
    // local_global{
+     name = "syncschlawiner_mkhh";
+     local_ip = syncschlawiner_mkhh.ens0;
+     wg_ip =  syncschlawiner_mkhh.wg0;
+   }
+   // local_global{
      name = "tabula";
      local_ip = tabula.ens0;
      wg_ip =  tabula.wg0; 
