@@ -13,6 +13,7 @@ let
       }; 
     porta.ips = [(ip_cidr porta.wg0)]; 
     syncschlawiner.ips = [(ip_cidr syncschlawiner.wg0)];
+    syncschlawiner_mkhh.ips = [(ip_cidr syncschlawiner_mkhh.wg0)];
     tabula.ips = [(ip_cidr tabula.wg0)];
     thinkpad.ips = [(ip_cidr thinkpad.wg0)];
     handy_hannses.ips = [(ip_cidr handy_hannses.wg0)];

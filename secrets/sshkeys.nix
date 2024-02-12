@@ -25,6 +25,8 @@
 
   root_syncschlawiner = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8yX5RsTpo0MNtwUl0mYdqP0fWN4fjTXNTvF9SdG9fo root@syncschlawiner";
 
+  syncschlawiner_mkhh = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG6U9BB3ytq3T6Bqj4j7dN4MyybpsZKysooZ3PSjnLU9 root@syncschlawinermkhh";
+  root_syncschlawiner_mkhh = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDWsLUl+0JdYDW3+AlyAwTpvgo86gW+5tZMvHRu5NDDp root@syncschlawinermkhh";
   tabula = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBe1ix2FQl+x2Cy3L9e0WcD99Aq33EAaEBIcWNybdKWi root@tabula";
   root_tabula = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC5azJp5sS2+wYjLAq85K5yOuoGgF4byX1Oaq4D6Zquq root@tabula";
 

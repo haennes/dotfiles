@@ -152,6 +152,7 @@
           (build_headless{hostname = "welt"; vps = true; modules = [nixos-dns.nixosModules.dns];})
 	  (build_headless{hostname = "porta"; proxmox = true;})
 	  (build_headless{hostname = "syncschlawiner"; proxmox = true;})
+	  (build_headless{hostname = "syncschlawiner_mkhh"; proxmox = true;})
 	  (build_headless{hostname = "tabula"; proxmox = true;})
 	  (build_headless{hostname = "grapheum"; proxmox = true;})
 

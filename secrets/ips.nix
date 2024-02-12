@@ -21,6 +21,10 @@ in
     wg0 = "192.168.1.5";
     ens0 = "192.168.0.23";
   };
+  syncschlawiner_mkhh = {
+    wg0 = "192.168.1.9";
+    ens0 = "192.168.0.27";
+  };
   thinkpad.wg0 = "192.168.1.6";
   handy_hannses.wg0 = "192.168.1.7";
   tabula = {

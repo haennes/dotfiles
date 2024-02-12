@@ -29,6 +29,7 @@ with sshkeys;
   "restic_passwords".publicKeys = [ hannses restic ];
 
   "nextcloud/adminpass.age".publicKeys = [hannses syncschlawiner root_syncschlawiner];
+  "nextcloud_mkhh/adminpass.age".publicKeys = [hannses syncschlawiner_mkhh root_syncschlawiner_mkhh];
 
   "kehl_login.age".publicKeys = [hannses welt root_welt root_tabula tabula];
 }
@@ -37,6 +38,7 @@ with sshkeys;
 // age_generate_wireguard_keypair{hostname = "porta"; publicKeys = [hannses porta root_porta];} 
 // age_generate_wireguard_keypair{hostname = "welt"; publicKeys = [hannses welt root_welt];} 
 // age_generate_wireguard_keypair{hostname = "syncschlawiner"; publicKeys = [hannses syncschlawiner root_syncschlawiner];} 
+// age_generate_wireguard_keypair{hostname = "syncschlawiner_mkhh"; publicKeys = [hannses syncschlawiner_mkhh root_syncschlawiner_mkhh];} 
 // age_generate_wireguard_keypair{hostname = "tabula"; publicKeys = [hannses tabula root_tabula];} 
 
 // age_generate_syncthing_keypair{hostname = "thinkpad"; publicKeys = [hannses thinkpad root_thinkpad]; id_publicKeys = [hannses thinkpad root_thinkpad];}
