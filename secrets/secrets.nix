@@ -42,6 +42,7 @@ with sshkeys;
 // age_generate_syncthing_keypair{hostname = "thinkpad"; publicKeys = [hannses thinkpad root_thinkpad]; id_publicKeys = [hannses thinkpad root_thinkpad];}
 // age_generate_syncthing_keypair{hostname = "syncschlawiner"; publicKeys = [hannses root_thinkpad syncschlawiner root_syncschlawiner]; id_publicKeys = [hannses thinkpad root_thinkpad];}
 // age_generate_syncthing_keypair{hostname = "tabula"; publicKeys = [hannses root_tabula tabula]; id_publicKeys = [hannses root_thinkpad syncschlawiner root_syncschlawiner root_tabula tabula];}
-
-// age_generate_user_password{username = "hannses"; publicKeys = [hannses thinkpad main_pc];}
-// age_generate_user_password{username = "mum_dad"; publicKeys = [hannses thinkpad main_pc];}
+// age_generate_user_password{username = "hannses"; publicKeys = [hannses thinkpad mainpc];}
+// age_generate_user_password{username = "mum_dad"; publicKeys = [hannses thinkpad mainpc];}
+// age_generate_user_password{username = "mum"; publicKeys = [hannses thinkpad mainpc];}
+// age_generate_user_password{username = "dad"; publicKeys = [hannses thinkpad mainpc];}

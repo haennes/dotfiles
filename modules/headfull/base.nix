@@ -1,19 +1,24 @@
 {config, pkgs, ...}:
 let
   secrets = import ../../lib{};
+  gen_user = name: {
+    "${name}" = { isNormalUser = true; description = name;};
+  };
 in
 {
-  users.users = {
-    mum_dad = {
-      isNormalUser = true;
-      description = "Eltern";
-    };
-    hannses = {
-      isNormalUser = true;
-      description = "hannses";
-      extraGroups = [ "networkmanager" "wheel" ];
-      
-    };
+  users.users = 
+    {
+      "hannses" = {
+        isNormalUser = true;
+	description = "hannses";
+	extraGroups = [ "networkmanager" "wheel" "family"];
+      };
+    }
+    //(gen_user "mum")
+    //(gen_user "dad");
+
+  users.groups = {
+    "family".members = ["mum" "dad" "hannses"];
   };
   hardware.bluetooth.enable = true;
 
@@ -29,4 +34,5 @@ in
   #};
 
 } // (secrets.age_obtain_user_password "hannses")
-// (secrets.age_obtain_user_password "mum_dad")
+// (secrets.age_obtain_user_password "mum")
+// (secrets.age_obtain_user_password "dad")
