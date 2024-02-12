@@ -6,9 +6,10 @@ let
         type = "simple";
         params.keep = "10";
     };
+    default_versioning = versioning;
     all_pcs = {
        thinkpad = { id = ids.thinkpad;};
-       #hauptpc = { id = ids.hauptpc;};
+       mainpc = { id = ids.mainpc;};
     };
     all_handys = {
        handyHannes = {id = ids.handyHannes;};
@@ -27,7 +28,15 @@ let
    // create_folder "Documents" (all_pcs // servers)
    // create_folder "Notes" (all_pcs // servers)
    // create_folder "Downloads" (all_pcs // servers)
-   // create_folder "Family" (all_pcs // servers)
+   // create_folder_adv {
+        name = "Family";
+	devices = (all_pcs // servers);
+	paths = {
+	  "mainpc" = "/home/Family";
+	  "thinkpad" = "/home/Family";
+	};
+
+   }
    // create_folder "Music" (all_pcs //  servers)
    // create_folder_adv{
         name = "Passwords";
@@ -53,13 +62,14 @@ let
    // create_folder "ThomasGalerie" (servers)
    // create_folder "website" (all_pcs // {inherit tabula;})
    );
-   create_folder_adv = {name, devices, versioning}:{
+   create_folder_adv = {name, devices, versioning ? default_versioning, paths ? {}, default_path ? config.services.syncthing_wrap.dataDir + "/" + name}:
+   {
      "${name}" = {  
        inherit versioning;
-       path = config.services.syncthing_wrap.dataDir + "/" + name;
+       path = (if paths ? "${dev_name}" then paths."${dev_name}" else default_path);
        devices = (builtins.attrNames devices);
-       };
-};
+     };
+   };
    create_folder = name: devices: create_folder_adv{inherit name devices versioning;};
    devices = all_pcs // all_handys // servers // all_servers;
    devices_but_me = removeAttrs devices [dev_name];
