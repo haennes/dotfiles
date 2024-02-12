@@ -5,6 +5,7 @@ environment.systemPackages = with pkgs; [
   tor-browser
   gimp
   freecad
+  openscad
   prusa-slicer
   libreoffice
   hunspell
@@ -25,5 +26,6 @@ environment.systemPackages = with pkgs; [
   helix
   loc
   permit_pkgs.obsidian
+  wl-clipboard
   ];
 }

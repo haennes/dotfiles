@@ -28,6 +28,10 @@
         enable = true;
         autoStart = true; # TODO figure out command
       };
+      openscad = {
+        enable = true;
+        autoOpen = true;
+      };
 
       treesitter.enable = true;
       lsp = {
