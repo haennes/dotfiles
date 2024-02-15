@@ -144,7 +144,7 @@
         #build_headfull{hostname = "thinkpad"; modules = [./modules/syncthing.nix]; specialArgs = {base_path = "/home/hannses/syncthing_test";}}
         (recursiveMerge[
 	  (build_headfull{hostname = "thinkpad";})
-          (build_headfull{hostname = "main_pc";})
+          (build_headfull{hostname = "mainpc";})
           #(build_headfull{hostname = "live"; live_iso = true;}) #TAKES AGES TO MAKE THE FS
 
 	
