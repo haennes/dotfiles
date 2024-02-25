@@ -1,0 +1,6 @@
+#!/bin/sh
+pushd ~/.dotfiles
+git add .
+nixos-rebuild build --flake .# --show-trace
+#sudo nixos-rebuild switch --flake .# 
+popd
