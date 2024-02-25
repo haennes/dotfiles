@@ -1,52 +1,60 @@
 # IMPORTANT
 # always add ROOT SSH-keys to the secrets. wireguard cant decrypt it otherwise
-let 
-  sshkeys = import ./sshkeys.nix ;
+let
+  sshkeys = import ./sshkeys.nix;
   users = with sshkeys; [ hannses restic ];
-  syncthing_users = with sshkeys; [hannses root_thinkpad syncschlawiner root_syncschlawiner root_tabula tabula];
-
+  syncthing_users = with sshkeys; [
+    hannses
+    root_thinkpad
+    syncschlawiner
+    root_syncschlawiner
+    root_tabula
+    tabula
+  ];
 
   systems = with sshkeys; [ thinkpad ];
- age_generate_wireguard_keypair = {hostname, publicKeys, interface ? "wg0", base_folder ? "wireguard", ...}:{
-    "${base_folder}/${hostname}/${interface}/priv.age".publicKeys = publicKeys;
-    #"${base_folder}/${hostname}/${interface}/pub.age".publicKeys = publicKeys;
-    #	wireguard.${hostname}.${interface}.pub = import "${base_folder}/${hostname}/${interface}/pub.nix".key;
+  wg_simple = hostname: publicKeys: wireguard_keypair { inherit hostname publicKeys; };
+  wireguard_keypair =
+    { hostname, publicKeys, interface ? "wg0", base_folder ? "wireguard", ... }: {
+      "${base_folder}/${hostname}/${interface}/priv.age".publicKeys = publicKeys;
+      #"${base_folder}/${hostname}/${interface}/pub.age".publicKeys = publicKeys;
+      #	wireguard.${hostname}.${interface}.pub = import "${base_folder}/${hostname}/${interface}/pub.nix".key;
+    };
+  syncthing_keypair = hostname: publicKeys: {
+    "syncthing/${hostname}/id.age".publicKeys = syncthing_users;
+    "syncthing/${hostname}/key.age".publicKeys = publicKeys;
+    "syncthing/${hostname}/cert.age".publicKeys = publicKeys;
+    "syncthing/${hostname}/https-cert.age".publicKeys = publicKeys;
+    "syncthing/${hostname}/https-key.age".publicKeys = publicKeys;
   };
- age_generate_syncthing_keypair = {hostname, publicKeys}:{
-   "syncthing/${hostname}/id.age".publicKeys = syncthing_users;
-   "syncthing/${hostname}/key.age".publicKeys = publicKeys;
-   "syncthing/${hostname}/cert.age".publicKeys = publicKeys;
-   "syncthing/${hostname}/https-cert.age".publicKeys = publicKeys;
-   "syncthing/${hostname}/https-key.age".publicKeys = publicKeys;
- };
- age_generate_user_password = {username, publicKeys}:{
-   "user_passwords/${username}.age".publicKeys = publicKeys;
- };
-in
-with sshkeys; 
+  user_password = username: publicKeys: {
+    "user_passwords/${username}.age".publicKeys = publicKeys;
+  };
+in with sshkeys;
 {
   #publicKeys is an OR-List -> either key is enough to decrypt it
 
   "restic_passwords".publicKeys = [ hannses restic ];
 
-  "nextcloud/adminpass.age".publicKeys = [hannses syncschlawiner root_syncschlawiner];
-  "nextcloud_mkhh/adminpass.age".publicKeys = [hannses syncschlawiner_mkhh root_syncschlawiner_mkhh];
+  "nextcloud/adminpass.age".publicKeys = [ hannses syncschlawiner root_syncschlawiner ];
+  "nextcloud_mkhh/adminpass.age".publicKeys =
+    [ hannses syncschlawiner_mkhh root_syncschlawiner_mkhh ];
 
-  "kehl_login.age".publicKeys = [hannses welt root_welt root_tabula tabula];
-}
-// age_generate_wireguard_keypair{hostname = "mainpc"; publicKeys = [hannses mainpc];} 
-// age_generate_wireguard_keypair{hostname = "thinkpad"; publicKeys = [hannses thinkpad root_thinkpad ];} 
-// age_generate_wireguard_keypair{hostname = "porta"; publicKeys = [hannses porta root_porta];} 
-// age_generate_wireguard_keypair{hostname = "welt"; publicKeys = [hannses welt root_welt];} 
-// age_generate_wireguard_keypair{hostname = "syncschlawiner"; publicKeys = [hannses syncschlawiner root_syncschlawiner];} 
-// age_generate_wireguard_keypair{hostname = "syncschlawiner_mkhh"; publicKeys = [hannses syncschlawiner_mkhh root_syncschlawiner_mkhh];} 
-// age_generate_wireguard_keypair{hostname = "tabula"; publicKeys = [hannses tabula root_tabula];} 
+  "kehl_login.age".publicKeys = [ hannses welt root_welt root_tabula tabula ];
+} // wg_simple "mainpc" [ hannses mainpc ]
+// wg_simple "thinkpad" [ hannses thinkpad root_thinkpad ]
+// wg_simple "porta" [ hannses porta root_porta ]
+// wg_simple "welt" [ hannses welt root_welt ]
+// wg_simple "syncschlawiner" [ hannses syncschlawiner root_syncschlawiner ]
+// wg_simple "syncschlawiner_mkhh" [ hannses syncschlawiner_mkhh root_syncschlawiner_mkhh ]
+// wg_simple "tabula" [ hannses tabula root_tabula ]
 
-// age_generate_syncthing_keypair{hostname = "thinkpad"; publicKeys = [hannses thinkpad root_thinkpad];}
-// age_generate_syncthing_keypair{hostname = "syncschlawiner"; publicKeys = [hannses root_thinkpad syncschlawiner root_syncschlawiner];}
-// age_generate_syncthing_keypair{hostname = "tabula"; publicKeys = [hannses root_tabula tabula];}
-// age_generate_syncthing_keypair{hostname = "mainpc"; publicKeys = [hannses root_mainpc mainpc];}
+// syncthing_keypair "thinkpad" [ hannses thinkpad root_thinkpad ]
+// syncthing_keypair "syncschlawiner" [ hannses syncschlawiner root_syncschlawiner ]
+// syncthing_keypair "tabula" [ hannses root_tabula tabula ]
+// syncthing_keypair "mainpc" [ hannses root_mainpc mainpc ]
 
-// age_generate_user_password{username = "hannses"; publicKeys = [hannses thinkpad mainpc];}
-// age_generate_user_password{username = "mum"; publicKeys = [hannses thinkpad mainpc];}
-// age_generate_user_password{username = "dad"; publicKeys = [hannses thinkpad mainpc];}
+// user_password "hannses" [ hannses thinkpad mainpc ]
+// user_password "mum" [ hannses thinkpad mainpc ]
+// user_password "dad" [ hannses thinkpad mainpc ]
+

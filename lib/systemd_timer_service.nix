@@ -1,6 +1,6 @@
-{name, script, user, interval, ...}:{
+{ name, script, user, interval, ... }: {
   systemd.timers."${name}" = {
-    wantedBy = ["timers.target"];
+    wantedBy = [ "timers.target" ];
     timerConfig = {
       OnBootSec = "${interval}";
       OnUnitActiveSec = "${interval}";

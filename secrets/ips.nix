@@ -1,14 +1,12 @@
-let 
-  __subnet = lib: ip: (builtins.concatStringsSep "." (lib.lists.take 3 (lib.strings.splitString "." ip)));
-in
-{
+let
+  __subnet = lib: ip:
+    (builtins.concatStringsSep "."
+      (lib.lists.take 3 (lib.strings.splitString "." ip)));
+in {
   ip_cidr = ip: "${ip}/32";
-  subnet_cidr = lib: ip: let subnet = (__subnet lib ip); in "${subnet}.0/24"; 
+  subnet_cidr = lib: ip: let subnet = (__subnet lib ip); in "${subnet}.0/24";
 
-  
-  pve = {
-    vmbr0 = "192.168.0.13";
-  };
+  pve = { vmbr0 = "192.168.0.13"; };
   welt = {
     ens3 = "57.129.6.13";
     wg0 = "192.168.1.3";
@@ -32,7 +30,5 @@ in
     wg0 = "192.168.1.8";
     ens0 = "192.168.0.25";
   };
-  grapheum =  {
-    ens0 = "192.168.0.26";
-  };
+  grapheum = { ens0 = "192.168.0.26"; };
 }
