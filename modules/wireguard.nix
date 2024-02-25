@@ -1,24 +1,21 @@
-{config, ips, lib, ...}:
+{ config, ips, lib, ... }:
 with ips;
-let 
+let
   hostname = config.networking.hostName;
   cfg = config.services.wireguard-wrapper;
   secrets = import ../lib/wireguard;
-  our_connections = builtins.filter ( l: (builtins.elem hostname l)) cfg.connections;
-in
-with lib; with lib.types;{
+  our_connections =
+    builtins.filter (l: (builtins.elem hostname l)) cfg.connections;
+in with lib;
+with lib.types; {
   options.services.wireguard-wrapper = {
     enable = mkEnableOption "wireguard-wrapper";
-    mtu = mkOption{
+    mtu = mkOption {
       type = int;
       default = 1300;
     };
-    privateKeyFile = mkOption{
-      type = path;
-    };
-    publicKey = mkOption{
-      type = anything;
-    };
+    privateKeyFile = mkOption { type = path; };
+    publicKey = mkOption { type = anything; };
 
     port = mkOption {
       type = types.port;
@@ -30,8 +27,7 @@ with lib; with lib.types;{
     };
     connections = mkOption { type = listOf (listOf str); };
     nodes = mkOption {
-      type = attrsOf (submodule (
-      {
+      type = attrsOf (submodule ({
         options = {
           #devname = mkOption {
           #  type = str;
@@ -62,23 +58,21 @@ with lib; with lib.types;{
 
     networking.wireguard.interfaces = {
       "wg0" = {
-        ips = [(builtins.head cfg.nodes."${hostname}".ips)];
-	mtu = cfg.mtu;
-	privateKeyFile = cfg.privateKeyFile;
-	listenPort = cfg.port;
-	peers = (builtins.map (l:
-          let 
-	    other = (lib.head (lib.remove hostname l));
-	    other_node = cfg.nodes."${other}";
-          in 
-	  ({	 
-	    name = other; 
-	    publicKey = ((cfg.publicKey) other);
-	    allowedIPs = (other_node.ips);
-	    persistentKeepalive = 25;
-	    endpoint = other_node.endpoint;
-	  })
-	) our_connections);
+        ips = [ (builtins.head cfg.nodes."${hostname}".ips) ];
+        mtu = cfg.mtu;
+        privateKeyFile = cfg.privateKeyFile;
+        listenPort = cfg.port;
+        peers = (builtins.map (l:
+          let
+            other = (lib.head (lib.remove hostname l));
+            other_node = cfg.nodes."${other}";
+          in ({
+            name = other;
+            publicKey = ((cfg.publicKey) other);
+            allowedIPs = (other_node.ips);
+            persistentKeepalive = 25;
+            endpoint = other_node.endpoint;
+          })) our_connections);
       };
     };
 
