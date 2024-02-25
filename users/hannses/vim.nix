@@ -18,6 +18,7 @@
       autoindent = true;
       autoread = true;
       clipboard = "unnamedplus";
+      expandtab = true;
       #icon  = true;
       title = true;
     };
