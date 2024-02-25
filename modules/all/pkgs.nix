@@ -1,12 +1,14 @@
 {pkgs, ...}:{
   environment.systemPackages = with pkgs; [
     nix-output-monitor
+    nixfmt
     nil
     neofetch
     home-manager
     restic
     ripgrep-all
     eza
+    lf
     nmap
     #TODO remove this after using syncthingd
     syncthing
