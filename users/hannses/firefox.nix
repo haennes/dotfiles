@@ -51,6 +51,10 @@ in {
                 name = "query";
                 value = "{searchTerms}";
               }
+              { 
+		name = "channel";
+		value = "unstable";
+	      }
             ];
           }];
           icon =
@@ -70,6 +74,10 @@ in {
                 name = "query";
                 value = "{searchTerms}";
               }
+              { 
+		name = "channel";
+		value = "unstable";
+	      }
             ];
           }];
           icon =
