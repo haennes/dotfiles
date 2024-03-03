@@ -4,13 +4,14 @@
   imports = [
  ../proxmox.nix
  ./nextcloud.nix
- ../../modules/syncthing.nix
 ];
   boot.kernel.sysctl = { "fs.inotify.max_user_watches" = 204800;};
-  services.syncthing_wrap = {
-    enable = true;
+  services.syncthing = {
     dataDir = "/data/syncthing";
-    usr = "nextcloud";
+    user = "nextcloud";
+  };
+  services.syncthing_wrapper = {
+    enable = true;
   };
   
   users.users."nextcloud".uid = 237; #because of how folder was created

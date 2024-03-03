@@ -1,13 +1,14 @@
 { config, pkgs,  ... }:
-
 {
     imports = [ 
         ./hardware-configuration.nix
-	../../modules/syncthing.nix
-        ];
-    services.syncthing_wrap = {
+    ];
+    services.syncthing_wrapper = {
       enable = true;
+    };
+    services.syncthing = {
       dataDir = "/home/hannses";
+      user = "hannses";
     };
     virtualisation.docker.enable = true;
     networking.hostName = "thinkpad";

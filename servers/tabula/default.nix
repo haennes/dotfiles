@@ -3,15 +3,15 @@
 
   imports = [
     ../proxmox.nix
-    #./wireguard.nix
     ./nginx.nix
-    ../../modules/syncthing.nix
   ];
 
-  services.syncthing_wrap = {
+  services.syncthing_wrapper = {
     enable = true;
+  };
+  services.syncthing = {
     dataDir = "/var/www";
-    usr = "nginx";
+    user = "nginx";
   };
   networking.hostName = "tabula";
   networking.firewall = {

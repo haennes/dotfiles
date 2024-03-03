@@ -17,6 +17,7 @@
       url = "github:Janik-Haag/nixos-dns";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
     deploy-rs.url = "github:serokell/deploy-rs";
     rust-overlay.url = "github:oxalica/rust-overlay";
     disko = {
@@ -36,11 +37,15 @@
       #optional:
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    wireguard-wrapper = {
+      url = "github:haennes/wireguard-wrapper.nix";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nixos-generators, deploy-rs, nixos-dns, rust-overlay, disko, nur, nixvim, agenix, flake-utils-plus, ... }: 
+  outputs = inputs@{ self, nixpkgs, home-manager, nixos-generators, deploy-rs, nixos-dns, rust-overlay, disko, nur, nixvim, agenix, flake-utils-plus, simple-nixos-mailserver, wireguard-wrapper, ... }: 
   let 
     system = "x86_64-linux";
+    forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
     lib = nixpkgs.lib;
     pkgs = import nixpkgs {
       inherit system;
@@ -69,6 +74,8 @@
       modules = modules ++ [
         ./modules/all
         ./modules/age.nix
+	#wireguard-wrapper.nixosModules.wireguard-wrapper
+	./modules/syncthing.nix
 	./modules/wireguard.nix
         nur.nixosModules.nur
       ];
