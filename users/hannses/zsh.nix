@@ -2,10 +2,10 @@
     home.packages = with pkgs; [nom];
     programs.zsh = {
        enable = true;
-       shellAliases = {
+       shellAliases = rec {
            dticket = "feh -F /home/hannses/Documents/DeutschlandTicket.jpg";
-           ticket = "dticket";
-	   db = "dticket";
+           ticket = dticket;
+	   db = dticket;
 	   
 	   #nix = "nom";
 	   nix-build = "nom-build";
@@ -17,14 +17,18 @@
 	   #exa is installed systemwide
            ls = "exa -lh";
            la = "exa -Alh"; #replace this with eza at some point (i want columns)
+
+           # path cds
+           dotfiles = "cd ~/.dotfiles";
+           dotf = dotfiles;
 	   "..." = "cd  ../../"; # dont want to enable prezto
 	   "...." = "cd  ../../../"; # dont want to enable prezto
 	   "....." = "cd  ../../../../"; # dont want to enable prezto
 	   "......" = "cd  ../../../../../"; # dont want to enable prezto
-
-           ":q" = "exit";
-	   #TODO add a mkcdir or similar
 	   # ...... seems more than enough
+
+           # vim keybindings
+           ":q" = "exit";
        };
        initExtra = ''
        mkcdir ()
