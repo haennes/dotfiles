@@ -1,0 +1,2 @@
+#!/bin/sh
+nix repl --inputs-from .
