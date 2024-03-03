@@ -7,15 +7,21 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-	../../modules/syncthing.nix
       #./services/backup.nix
-      #../common/headfull.nix
     ];
-     services.syncthing_wrap = {
+    services.syncthing-wrapper = {
       enable = true;
-      dataDir = "/home/hannses";
     };
-   
+    services.syncthing = 
+    let
+      dev_name = config.services.syncthing-wrapper.dev_name;
+    in
+    {
+      dataDir = "/home/hannses";
+      key = config.age.secrets."syncthing_key_${dev_name}".path;
+      cert = config.age.secrets."syncthing_cert_${dev_name}".path;
+    };
+
     services.wireguard-wrapper.enable = true;
 
     hardware.openrazer.enable = true;
