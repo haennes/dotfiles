@@ -6,6 +6,11 @@
     ./nginx.nix
     ./dns.nix
   ];
+  boot.loader =  {
+    grub.enable = true;
+    grub.device = "/dev/sda15";
+    grub.forceInstall = true;
+  };
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
 

@@ -4,11 +4,17 @@
 
 { config, pkgs, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      #./services/backup.nix
-    ];
+    imports =
+      [ # Include the results of the hardware scan.
+        ./hardware-configuration.nix
+        #./services/backup.nix
+      ];
+
+    boot.loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+
     services.syncthing-wrapper = {
       enable = true;
     };
