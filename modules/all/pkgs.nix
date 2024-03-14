@@ -15,6 +15,10 @@
     syncthing
     wget
     zellij
+
+    arduino
+    arduinoOTA
+
     git
     sshfs
     deploy-rs
