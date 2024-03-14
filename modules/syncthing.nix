@@ -229,7 +229,7 @@ in with lib; {
       openDefaultPorts = true;
       settings = {
         devices = all_devices;
-        folders = mapAttrs (name: value: 
+        folders = filterAttrs( n: v: elem dev_name v.devices) (mapAttrs (name: value: 
             let val = if isList value then { 
 	      devices = value;
               versioning = cfg.default_versioning;
@@ -254,7 +254,7 @@ in with lib; {
 	      path = if (val ? paths) then ( if (val.paths ? "${dev_name}") then val.paths."${dev_name}" else def_path) else def_path;
 	      #path = def_path;
             }) [ "paths" ]
-        ) cfg.folders;
+        ) cfg.folders);
         ##devices = lib.mapAttrs (name: value: {id = value;}) devices;
         ##folders =
         ##lib.filterAttrs (n: v: builtins.elem dev_name v.devices) folders_list;
