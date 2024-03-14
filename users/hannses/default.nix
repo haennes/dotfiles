@@ -129,23 +129,7 @@
      terminal = false;
   };
   home.file.".face".source = ./.face;
-  home.file = {
-    ".config/autostart/com.nextcloud.desktopclient.nextcloud.desktop" = {text = ''
-      [Desktop Entry]
-      Name=Nextcloud
-      GenericName=File Synchronizer
-      Exec=nextcloud --background
-      Terminal=false
-      Icon=Nextcloud
-      Categories=Network
-      Type=Application
-      StartupNotify=false
-      X-GNOME-Autostart-enabled=true
-      X-GNOME-Autostart-Delay=10
-    '';
-    force = true;
-    };
-  };
+  
 
   #programs.gpg = {
     #enable = true;
