@@ -1,14 +1,5 @@
 let
 
-  default_bootl = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
-  ovh_custom_bootl = {
-    grub.enable = true;
-    grub.device = "/dev/sda15";
-    grub.forceInstall = true;
-  };
   secrets = import ../../lib/wireguard;
   ids = import ../../modules/syncthing.key.nix;
   priv_key = hostname: secrets.age_obtain_wireguard_priv { inherit hostname; };
@@ -23,8 +14,6 @@ imports = [
 ];
 config = 
 {
-    boot.loader =
-      mkIf (!proxmox) (if vps then ovh_custom_bootl else default_bootl);
     system.stateVersion = "23.11"; # Did you read the comment?
 
     # Make ready for nix flakes
@@ -75,6 +64,7 @@ config =
         [ "syncschlawiner_mkhh" "welt" ]
         [ "handy_hannses" "welt" ]
         [ "thinkpad" "welt" ]
+        [ "thinknew" "welt" ]
         [ "mainpc" "welt" ]
       ];
       nodes = {
@@ -89,6 +79,7 @@ config =
       // simple_ip "syncschlawiner_mkhh"
       // simple_ip "tabula"
       // simple_ip "thinkpad"
+      // simple_ip "thinknew"
       // simple_ip "mainpc"
       // simple_ip "handy_hannses";
       publicKey = name:
@@ -106,6 +97,7 @@ config =
       devices = rec {
         all_pcs = {
           thinkpad = ids.thinkpad;
+          thinknew = ids.thinknew;
           mainpc = ids.mainpc;
         };
         all_handys = {
@@ -123,6 +115,7 @@ config =
       paths = {
         "mainpc" = "/home/Family";
         "thinkpad" = "/home/Family";
+        "thinknew" = "/home/Family";
       };
     };
      "Passwords" = {
@@ -137,7 +130,7 @@ config =
   "Notes" = [(all_pcs // servers)];
   "Downloads" = [(all_pcs // servers)];
   "Music" = [(all_pcs // servers)];
-  "Pictures" = [(all_pcs // servers)];
+  "Pictures" = [(servers) "thinkpad" "mainpc"];
   "Templates" = [(all_pcs // servers)];
   "Videos" = [(all_pcs // servers)];
   "game_servers" = [(all_pcs // servers)];
