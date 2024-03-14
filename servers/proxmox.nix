@@ -1,9 +1,16 @@
 { pkgs, config, modulesPath, ... }: {
+
   imports = [ (modulesPath + "/virtualisation/proxmox-image.nix") ];
+
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
+
   options.proxmox = {
     cores = 2;
     memory = 2048;
-    name = "${config.hostname}";
+    name = "${config.networking.hostName}";
 
   };
 }
