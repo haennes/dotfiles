@@ -18,7 +18,7 @@
       config = {
         adminpassFile = config.age.secrets.nextcloud_adminpass.path;
       };
-      extraOptions = {
+      settings = {
         default_phone_region = "DE";
         trusted_domains = ["*"];
         enabledPreviewProviders = [

@@ -2,8 +2,10 @@
 {
     services.xserver = {
        enable = true;
-       layout = "de";
-       xkbVariant = "nodeadkeys";
+       xkb = {
+        layout = "de";
+        variant = "nodeadkeys";
+       };
        displayManager.gdm.enable = true;
        desktopManager.gnome.enable = true;
     };
