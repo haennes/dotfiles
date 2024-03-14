@@ -18,7 +18,7 @@
       config = {
         adminpassFile = config.age.secrets.nextcloud_adminpass.path;
       };
-      extraOptions = {
+      settings = {
         default_phone_region = "DE";
 	trusted_domains = ["*"];
 	enabledPreviewProviders = [
@@ -50,10 +50,15 @@
            url = "https://github.com/pulsejet/memories/releases/download/v6.2.2/memories.tar.gz";
            license = "agpl3";
          };
+         familytree = pkgs.fetchNextcloudApp {
+           sha256 = "sha256-Lj20mNni8XxWSij1p7IvjC6PdhkEtWcglc1BwZuPHlc=";
+           url = "https://github.com/derbenx/nextcloud-familytree/releases/download/1.3.5/familytree.tar.gz";
+           license = "agpl3";
+         };
 	 #news = pkgs.fetchNextcloudApp {
-	   #sha256 = "sha256-Xr1SRSmXo2r8yOGuoMyoXhD0oPVm/0/ISHlmNZpJYsg=";
-	   #url = "https://github.com/nextcloud/news/releases/download/24.0.0/news.tar.gz";
-           #license = "agpl3";
+	 #  sha256 = "sha256-cfJkKRNSz15L4E3w1tnEb+t4MrVwVzb8lb6vCOA4cK4=";
+	 #  url = "https://github.com/nextcloud/news/releases/download/24.0.0/news.tar.gz";
+         #  license = "agpl3";
 	 #};
 	 #integration_google = pkgs.fetchNextcloudApp {
 	   #sha256 = "sha256-ZOeuJ8DQr36mUt9svHmc+wJ46qof7kxKyZP9WcEtgTs=";

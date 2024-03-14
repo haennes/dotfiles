@@ -114,6 +114,7 @@
         modules = modules ++ [
           ./servers/${hostname}
           ./modules/headless
+	  simple-nixos-mailserver.nixosModule
         ]; 
       } // (if local_and_global then (recursiveMerge [
           (build_deploy{hostname = "${hostname}"; conf_hostname = hostname;})
@@ -141,39 +142,25 @@
 	]; 
 	specialArgs = specialArgs // { nur = pkgs.nur;  inherit ips; };
       };
-  recursiveMerge= listOfAttrsets: lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) {} listOfAttrsets;
+  recursiveMerge = listOfAttrsets: lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) {} listOfAttrsets;
   in { 
+  formatter = forAllSystems (system: pkgs.nixfmt );
   } // 
-  #{
-      
-
-	# With GUI
-        #build_headfull{hostname = "thinkpad"; modules = [./modules/syncthing.nix]; specialArgs = {base_path = "/home/hannses/syncthing_test";}}
         (recursiveMerge[
+	  # With GUI
 	  (build_headfull{hostname = "thinkpad";})
+	  (build_headfull{hostname = "thinknew";})
           (build_headfull{hostname = "mainpc";})
           #(build_headfull{hostname = "live"; live_iso = true;}) #TAKES AGES TO MAKE THE FS
 
-	
 	  # Servers
           (build_headless{hostname = "welt"; vps = true; modules = [nixos-dns.nixosModules.dns];})
 	  (build_headless{hostname = "porta"; proxmox = true;})
 	  (build_headless{hostname = "syncschlawiner"; proxmox = true;})
 	  (build_headless{hostname = "syncschlawiner_mkhh"; proxmox = true;})
 	  (build_headless{hostname = "tabula"; proxmox = true;})
+	  (build_headless{hostname = "hermes"; proxmox = true;})
 	  (build_headless{hostname = "grapheum"; proxmox = true;})
-
-
 	]);
-	
-  #  };
-
-        # rust = {pkgs, ...}:
-        # {
-        #   nixpkgs.overlays = [rust-overlay.overlays.default];
-        #   #environment.systemPackages = [pkgs.rust-bin.nightly.latest.default];
-        #   environment.systemPackages = [
-        #     pkgs.rust-bin.selectLatestNightlyWith(toolchain: toolchain.default){}
-        #   ];
-        # };
+   
 }

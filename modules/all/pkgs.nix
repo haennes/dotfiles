@@ -7,6 +7,7 @@
     home-manager
     restic
     ripgrep-all
+    fd
     eza
     lf
     nmap
