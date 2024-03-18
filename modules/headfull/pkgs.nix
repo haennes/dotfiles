@@ -1,4 +1,4 @@
-{pkgs, permit_pkgs, ...}: {
+{pkgs, permit_pkgs, rust-bin, ...}: {
 environment.systemPackages = with pkgs; [
   firefox
   brave
@@ -22,10 +22,12 @@ environment.systemPackages = with pkgs; [
   blackbox-terminal
   pdfarranger
   python3
+  rust-bin.nightly.latest.default
   ruff
   helix
   loc
   permit_pkgs.obsidian
   wl-clipboard
+  zoom-us
   ];
 }
