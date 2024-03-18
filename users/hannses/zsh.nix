@@ -1,5 +1,9 @@
-{config, pkgs, ...}:{
-    home.packages = with pkgs; [nom];
+{config, pkgs, ...}:
+let 
+dotfiles_path = "/home/hannses/.dotfiles";
+in
+{
+    home.packages = with pkgs; [nom eza];
     programs.zsh = {
        enable = true;
        shellAliases = rec {
@@ -14,18 +18,22 @@
            vim = "nvim";
            vi = "nvim";
 
-	   #exa is installed systemwide
-           ls = "exa -lh";
-           la = "exa -Alh"; #replace this with eza at some point (i want columns)
-
+           ls = "eza -lh";
+           la = "eza -Alh"; 
            # path cds
-           dotfiles = "cd ~/.dotfiles";
+           dotfiles = "cd ${dotfiles_path}";
            dotf = dotfiles;
+
 	   "..." = "cd  ../../"; # dont want to enable prezto
 	   "...." = "cd  ../../../"; # dont want to enable prezto
 	   "....." = "cd  ../../../../"; # dont want to enable prezto
 	   "......" = "cd  ../../../../../"; # dont want to enable prezto
 	   # ...... seems more than enough
+
+           # config apply & build
+           cfg_apply = "${dotfiles_path}/apply";
+           cfg_build = "${dotfiles_path}/build";
+           cfg_repl = "${dotfiles_path}/repl";
 
            # vim keybindings
            ":q" = "exit";
@@ -47,5 +55,12 @@
            share = true;
 	   size = 10000;
        };
+    };
+    programs.direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv = {
+        enable = true;
+      };
     };
 }

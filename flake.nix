@@ -51,6 +51,7 @@
       inherit system;
       overlays = [
           nur.overlay
+          rust-overlay.overlays.default
       ];
       config = { 
         allowUnfree = true;
@@ -140,7 +141,7 @@
 	  home-manager.nixosModules.home-manager (import ./modules/home_manager )
           ./modules/gnome
 	]; 
-	specialArgs = specialArgs // { nur = pkgs.nur;  inherit ips; };
+	specialArgs = specialArgs // { nur = pkgs.nur; rust-bin = pkgs.rust-bin;  inherit ips; };
       };
   recursiveMerge = listOfAttrsets: lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) {} listOfAttrsets;
   in { 
