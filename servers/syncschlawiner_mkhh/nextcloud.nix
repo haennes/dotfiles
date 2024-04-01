@@ -44,7 +44,7 @@
       #extraOptions.trusted_domains = [ "*.local" ];
       extraApps = with config.services.nextcloud.package.packages.apps; {
 
-         inherit contacts calendar deck groupfolders maps bookmarks cookbook cospend forms mail notes onlyoffice polls tasks;
+         inherit contacts calendar deck groupfolders maps bookmarks cospend forms mail notes onlyoffice polls tasks;
          #news = pkgs.fetchNextcloudApp {
            #sha256 = "sha256-Xr1SRSmXo2r8yOGuoMyoXhD0oPVm/0/ISHlmNZpJYsg=";
            #url = "https://github.com/nextcloud/news/releases/download/24.0.0/news.tar.gz";

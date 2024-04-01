@@ -7,11 +7,11 @@ let create_simple_proxy_with_domain = {fqdn, target_ip, custom_settings ? {}, cu
         locations."/" = {
           proxyPass = "http://${target_ip}";
           proxyWebsockets = true; # needed if you need to use WebSocket
-	  extraConfig =
-          # required when the target is also TLS server with multiple hosts
-          "proxy_ssl_server_name on;" + # required when the server wants to use HTTP Authentication
-          "proxy_pass_header Authorization;"
-          ;
+	  #extraConfig =
+          ## required when the target is also TLS server with multiple hosts
+          #"proxy_ssl_server_name on;" + # required when the server wants to use HTTP Authentication
+          #"proxy_pass_header Authorization;"
+          #;
         } // custom_locations;
    } // custom_settings;
 };
@@ -35,7 +35,7 @@ in
 }
 (create_simple_proxy_with_domain{fqdn = "hannses.de"; target_ip = ips.tabula.wg0;})
 (create_simple_proxy_with_domain{fqdn = "cloud.hannses.de"; target_ip = ips.syncschlawiner.wg0;})
-(create_simple_proxy_with_domain{fqdn = "mail.hannses.de"; target_ip = ips.tabula.wg0;})
+#(create_simple_proxy_with_domain{fqdn = "mail.hannses.de"; target_ip = ips.tabula.wg0;})
 (create_simple_proxy_with_domain{fqdn = "mkhh.hannses.de"; target_ip = ips.tabula.wg0;})
 (create_simple_proxy_with_domain{fqdn = "cloud.mkhh.hannses.de"; target_ip = ips.syncschlawiner_mkhh.wg0;})
 #(create_simple_proxy_with_domain{fqdn = "cloud.mkhh.hannses.de"; target_ip = ips.tabula.wg0;})

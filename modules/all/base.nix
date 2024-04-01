@@ -6,14 +6,13 @@ let
 in { config, pkgs, lib, ips, vps ? false, proxmox ? false, ... }:
 with lib;
 with ips;
-let simple_ip = name: { "${name}".ips = [ (ip_cidr ips."${name}".wg0) ]; };
-  recursiveMerge = listOfAttrsets: lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) {} listOfAttrsets;
-in { 
-imports = [
- ./syncthing_wrapper_secrets.nix
-];
-config = 
-{
+let
+  simple_ip = name: { "${name}".ips = [ (ip_cidr ips."${name}".wg0) ]; };
+  recursiveMerge = listOfAttrsets:
+    lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) { } listOfAttrsets;
+in {
+  imports = [ ./syncthing_wrapper_secrets.nix ];
+  config = {
     system.stateVersion = "23.11"; # Did you read the comment?
 
     # Make ready for nix flakes
@@ -65,6 +64,7 @@ config =
         [ "handy_hannses" "welt" ]
         [ "thinkpad" "welt" ]
         [ "thinknew" "welt" ]
+        [ "yoga" "welt" ]
         [ "mainpc" "welt" ]
       ];
       nodes = {
@@ -72,16 +72,10 @@ config =
           ips = [ (ip_cidr welt.wg0) (subnet_cidr lib welt.wg0) ];
           endpoint = "hannses.de:51821";
         };
-      } 
-      // simple_ip "porta"
-      // simple_ip "hermes"
-      // simple_ip "syncschlawiner"
-      // simple_ip "syncschlawiner_mkhh"
-      // simple_ip "tabula"
-      // simple_ip "thinkpad"
-      // simple_ip "thinknew"
-      // simple_ip "mainpc"
-      // simple_ip "handy_hannses";
+      } // simple_ip "porta" // simple_ip "hermes" // simple_ip "syncschlawiner"
+        // simple_ip "syncschlawiner_mkhh" // simple_ip "tabula"
+        // simple_ip "thinkpad" // simple_ip "thinknew" // simple_ip "mainpc"
+        // simple_ip "handy_hannses";
       publicKey = name:
         ((secrets.obtain_wireguard_pub { hostname = name; }).key);
       privateKeyFile = lib.mkIf (config.services.wireguard-wrapper.enable)
@@ -91,14 +85,15 @@ config =
 
     services.syncthing_wrapper = rec {
       default_versioning = {
-	type = "simple";
-	params.keep = "10";
+        type = "simple";
+        params.keep = "10";
       };
       devices = rec {
         all_pcs = {
           thinkpad = ids.thinkpad;
           thinknew = ids.thinknew;
           mainpc = ids.mainpc;
+          yoga = ids.yoga;
         };
         all_handys = {
           handyHannes = ids.handyHannes;
@@ -109,51 +104,59 @@ config =
         servers = { syncschlawiner = ids.syncschlawiner; };
         all_servers = servers // { tabula = ids.tabula; };
       };
-    folders = with devices; with devices.all_handys; with devices.all_servers; {
-      "Family" = {
-      devices = (all_pcs // servers);
-      paths = {
-        "mainpc" = "/home/Family";
-        "thinkpad" = "/home/Family";
-        "thinknew" = "/home/Family";
-      };
+      folders = with devices;
+        with devices.all_handys;
+        with devices.all_servers; {
+          "Family" = {
+            devices = (all_pcs // servers);
+            paths = {
+              "mainpc" = "/home/Family";
+              "thinkpad" = "/home/Family";
+              "thinknew" = "/home/Family";
+              "yoga" = "/home/Family";
+            };
+          };
+          "Passwords" = {
+            devices = (all_pcs // all_handys // servers);
+            versioning = {
+              type = "simple";
+              params.keep = "100";
+            };
+          };
+          "3d_printing" = [ (all_pcs // servers) ];
+          "Documents" = [ (all_pcs // servers) ];
+          "Notes" = [ (all_pcs // servers) ];
+          "Downloads" = [ (all_pcs // servers) ];
+          "Music" = [ (all_pcs // servers) ];
+          "Pictures" = [ (servers // all_pcs) ];
+          "Templates" = [ (all_pcs // servers) ];
+          "Videos" = [ (all_pcs // servers) ];
+          "game_servers" = [ (all_pcs // servers) ];
+          "programming" = [ (all_pcs // servers) ];
+          "AegisBak" = [ (all_pcs // servers) "handyHannes" ];
+          "SignalBackup" = [ (all_pcs // servers) "handyHannes" ];
+          "DownloadHandyH" = [ (all_pcs // servers) "handyHannes" ];
+          "HannesKamera" = [ (all_pcs // servers) "handyHannes" ];
+          "HannesGalerie" = [ (all_pcs // servers) "handyHannes" ];
+          "AlexandraKamera" = [ (servers) "handyAlexandra" ];
+          "AlexandraGalerie" = [ (servers) "handyAlexandra" ];
+          "ThomasKamera" = [ (servers) ];
+          "ThomasGalerie" = [ (servers) ];
+          "website" = [ (all_pcs) "tabula" ];
+          #"website_mkhh" = [(all_pcs)  "website_mkhh" ];
+        };
     };
-     "Passwords" = {
-      devices = (all_pcs // all_handys // servers);
-      versioning = {
-        type = "simple";
-        params.keep = "100";
-      };
-     };
-  "3d_printing" = [(all_pcs // servers)];
-  "Documents" = [(all_pcs // servers)];
-  "Notes" = [(all_pcs // servers)];
-  "Downloads" = [(all_pcs // servers)];
-  "Music" = [(all_pcs // servers)];
-  "Pictures" = [(servers) "thinkpad" "mainpc"];
-  "Templates" = [(all_pcs // servers)];
-  "Videos" = [(all_pcs // servers)];
-  "game_servers" = [(all_pcs // servers)];
-  "programming" = [(all_pcs // servers)];
-  "AegisBak" = [(all_pcs // servers ) "handyHannes"];
-  "SignalBackup" = [(all_pcs // servers) "handyHannes"];
-  "DownloadHandyH" = [(all_pcs // servers) "handyHannes"];
-  "HannesKamera" = [(all_pcs // servers) "handyHannes"];
-  "HannesGalerie" = [(all_pcs // servers) "handyHannes"];
-  "AlexandraKamera" = [(servers) "handyAlexandra"];
-  "AlexandraGalerie" = [(servers) "handyAlexandra"];
-  "ThomasKamera" = [(servers)];
-  "ThomasGalerie" = [(servers)];
-  "website" = [(all_pcs)  "tabula" ];
-    };
-#folders_list = with all_handys all_pcs servers;
-    
-    };
-    services.syncthing.settings = {
+    #folders_list = with all_handys all_pcs servers;
+
+    services.syncthing = {
+      settings = {
         options = {
           urAccepted = -1; # do not send reports
           relaysEnabled = true;
         };
+      };
+      key = lib.mkIf(config.services.syncthing.enable) config.age.secrets."syncthing_key_${config.networking.hostName}".path;
+      cert = lib.mkIf(config.services.syncthing.enable) config.age.secrets."syncthing_cert_${config.networking.hostName}".path;
     };
-  }  // (priv_key (config.networking.hostName));
-  }
+  } // (priv_key (config.networking.hostName));
+}

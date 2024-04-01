@@ -15,6 +15,7 @@ environment.systemPackages = with pkgs; [
   texlive.combined.scheme-full
   typst
   typst-live
+  xournalpp
   hugo
   cargo-generate
   vlc
@@ -23,11 +24,14 @@ environment.systemPackages = with pkgs; [
   pdfarranger
   python3
   rust-bin.nightly.latest.default
+  gcc
   ruff
   helix
   loc
   permit_pkgs.obsidian
   wl-clipboard
   zoom-us
+  cifs-utils
+  yubikey-manager-qt
   ];
 }

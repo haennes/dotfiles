@@ -2,5 +2,6 @@
 pushd ~/.dotfiles
 git add .
 nixos-rebuild build --flake .# --show-trace
+git restore --staged .
 #sudo nixos-rebuild switch --flake .# 
 popd

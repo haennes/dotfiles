@@ -9,11 +9,11 @@ in
        shellAliases = rec {
            dticket = "feh -F /home/hannses/Documents/DeutschlandTicket.jpg";
            ticket = dticket;
-	   db = dticket;
-	   
-	   #nix = "nom";
-	   nix-build = "nom-build";
-	   nix-shell = "nom-shell";
+           db = dticket;
+           
+           #nix = "nom";
+           nix-build = "nom-build";
+           nix-shell = "nom-shell";
 
            vim = "nvim";
            vi = "nvim";
@@ -24,11 +24,13 @@ in
            dotfiles = "cd ${dotfiles_path}";
            dotf = dotfiles;
 
-	   "..." = "cd  ../../"; # dont want to enable prezto
-	   "...." = "cd  ../../../"; # dont want to enable prezto
-	   "....." = "cd  ../../../../"; # dont want to enable prezto
-	   "......" = "cd  ../../../../../"; # dont want to enable prezto
-	   # ...... seems more than enough
+           oth = "cd /home/hannses/Documents/Studium/Semster1";
+
+           "..." = "cd  ../../"; # dont want to enable prezto
+           "...." = "cd  ../../../"; # dont want to enable prezto
+           "....." = "cd  ../../../../"; # dont want to enable prezto
+           "......" = "cd  ../../../../../"; # dont want to enable prezto
+           # ...... seems more than enough
 
            # config apply & build
            cfg_apply = "${dotfiles_path}/apply";
@@ -47,7 +49,7 @@ in
        '';
 
        autocd = true;
-       enableAutosuggestions = true;
+       autosuggestion.enable = true;
        defaultKeymap = "vicmd";
        history = {
            expireDuplicatesFirst = true;
