@@ -3,11 +3,13 @@
     imports = [ 
         ./hardware-configuration.nix
     ];
-    boot.loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-    services.syncthing_wrapper = {
+
+  # Bootloader.
+    boot.loader.grub.enable = true;
+    boot.loader.grub.device = "/dev/sda";
+    boot.loader.grub.useOSProber = true;
+
+      services.syncthing_wrapper = {
       enable = true;
     };
     services.syncthing = {

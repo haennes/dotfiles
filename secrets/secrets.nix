@@ -45,6 +45,7 @@ in with sshkeys;
 } // wg_simple "mainpc" [ hannses mainpc ]
 // wg_simple "thinkpad" [ hannses thinkpad root_thinkpad ]
 // wg_simple "thinknew" [ hannses thinknew root_thinknew ]
+// wg_simple "yoga" [ hannses yoga root_yoga ]
 // wg_simple "porta" [ hannses porta root_porta ]
 // wg_simple "welt" [ hannses welt root_welt ]
 // wg_simple "syncschlawiner" [ hannses syncschlawiner root_syncschlawiner ]
@@ -54,11 +55,12 @@ in with sshkeys;
 
 // syncthing_keypair "thinkpad" [ hannses thinkpad root_thinkpad ]
 // syncthing_keypair "thinknew" [ hannses thinknew root_thinknew ]
+// syncthing_keypair "yoga" [ hannses yoga root_yoga ]
 // syncthing_keypair "syncschlawiner" [ hannses syncschlawiner root_syncschlawiner ]
 // syncthing_keypair "tabula" [ hannses root_tabula tabula ]
 // syncthing_keypair "mainpc" [ hannses root_mainpc mainpc ]
 
-// user_password "hannses" [ hannses thinkpad thinknew mainpc ]
-// user_password "mum" [ hannses thinkpad thinknew mainpc ]
-// user_password "dad" [ hannses thinkpad thinknew mainpc ]
+// user_password "hannses" [ hannses thinkpad thinknew yoga mainpc ]
+// user_password "mum" [ hannses thinkpad thinknew yoga mainpc ]
+// user_password "dad" [ hannses thinkpad thinknew yoga mainpc ]
 

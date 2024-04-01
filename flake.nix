@@ -151,6 +151,7 @@
 	  # With GUI
 	  (build_headfull{hostname = "thinkpad";})
 	  (build_headfull{hostname = "thinknew";})
+	  (build_headfull{hostname = "yoga";})
           (build_headfull{hostname = "mainpc";})
           #(build_headfull{hostname = "live"; live_iso = true;}) #TAKES AGES TO MAKE THE FS
 
@@ -160,6 +161,7 @@
 	  (build_headless{hostname = "syncschlawiner"; proxmox = true;})
 	  (build_headless{hostname = "syncschlawiner_mkhh"; proxmox = true;})
 	  (build_headless{hostname = "tabula"; proxmox = true;})
+	  (build_headless{hostname = "tabula_mkhh"; proxmox = true;})
 	  (build_headless{hostname = "hermes"; proxmox = true;})
 	  (build_headless{hostname = "grapheum"; proxmox = true;})
 	]);

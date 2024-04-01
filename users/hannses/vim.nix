@@ -27,11 +27,13 @@
 
       markdown-preview = {
         enable = true;
-        autoStart = true; # TODO figure out command
+        settings.auto_start = true; # TODO figure out command
       };
       openscad = {
         enable = true;
-        autoOpen = true;
+        #autoOpen = true;
+        keymaps.enable = true;
+        keymaps.execOpenSCADTrigger = "<A-o>";
       };
 
       treesitter.enable = true;

@@ -285,7 +285,7 @@ in {
       } // gh_search ({
         type = "repositories";
         alias = "r";
-        addAlias = "gh";
+        addAliases = ["gh"];
       }) # <ghr or <gh
         // gh_search ({
           type = "users";
@@ -296,7 +296,7 @@ in {
           type = "repositories";
           alias = "r";
           personal = true;
-          addAlias = "ghp";
+          addAlias = ["ghp"];
         }) # <ghpr or <ghp
         // gh_search ({
           type = "users";

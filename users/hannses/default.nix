@@ -114,8 +114,8 @@
   };
   programs.git = {
     enable = true;
-    userName = "hannses";
-    userEmail = "example.com";
+    userName = "haennes";
+    userEmail = "hannes.hofmuth@gmail.com";
   };
   #programs.gitui.enable = true; #conflicts with following line
   home.file.".config/gitui/key_bindings.ron".text = builtins.readFile ../../ext_configs/gitui_keybindings.ron;
