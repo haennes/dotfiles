@@ -1,13 +1,14 @@
 {config, pkgs, ...}:
 let 
-dotfiles_path = "/home/hannses/.dotfiles";
+home = config.home.homeDirectory;
+dotfiles_path = "${home}/.dotfiles";
 in
 {
     home.packages = with pkgs; [nom eza];
     programs.zsh = {
        enable = true;
        shellAliases = rec {
-           dticket = "feh -F /home/hannses/Documents/DeutschlandTicket.jpg";
+           dticket = "feh -F ${home}/Documents/DeutschlandTicket.jpg";
            ticket = dticket;
            db = dticket;
            
@@ -24,13 +25,21 @@ in
            dotfiles = "cd ${dotfiles_path}";
            dotf = dotfiles;
 
-           oth = "cd /home/hannses/Documents/Studium/Semster1";
+           oth = "cd ${home}/Documents/Studium/Semster1";
+           down = "cd ${home}/Downloads";
+
+           pg = "${oth}/PG1";
+           ma = "${oth}/MA1";
+           ph = "${oth}/PH1";
+           ti = "${oth}/TI1";
+           uws= "${oth}/Umweltschutz_Einfuehrung";
 
            "..." = "cd  ../../"; # dont want to enable prezto
            "...." = "cd  ../../../"; # dont want to enable prezto
            "....." = "cd  ../../../../"; # dont want to enable prezto
            "......" = "cd  ../../../../../"; # dont want to enable prezto
            # ...... seems more than enough
+
 
            # config apply & build
            cfg_apply = "${dotfiles_path}/apply";
@@ -45,6 +54,11 @@ in
          {
            mkdir -p -- "$1" &&
            cd -P -- "$1"
+         }
+       runc ()
+         {
+           gcc "$1" &&
+           ./a.out
          }
        '';
 
