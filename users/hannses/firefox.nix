@@ -140,7 +140,7 @@ in {
         "Home Manager Option Search" = {
           urls = [{
             template =
-              "https://mipmip.github.io/home-manager-option-search/?query={searchTerms}";
+              "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
           }];
           iconUpdateURL = "https://nixos.wiki/favicon.png";
           inherit updateInterval;
