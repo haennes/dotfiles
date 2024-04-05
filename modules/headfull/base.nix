@@ -27,6 +27,7 @@ in
   sound.enable = true;
   hardware.pulseaudio.enable = true;
   security.rtkit.enable = true;
+  services.logind.powerKey = "suspend";
   #services.pipewire = {
   #  enable = true;
   #  pulse.enable = true;
@@ -34,6 +35,8 @@ in
   #  alsa.enable = true;
   #  alsa.support32Bit = true;
   #};
+
+  programs.hyprland.enable = true;
 
 } // (secrets.age_obtain_user_password "hannses")
 // (secrets.age_obtain_user_password "mum")

@@ -10,12 +10,16 @@
     fd
     eza
     lf
+    ncdu
     nmap
     #TODO remove this after using syncthingd
     syncthing
     wget
     zellij
 
+    tldr
+    bc
+    usbutils
     arduino
     arduinoOTA
 
