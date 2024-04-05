@@ -145,7 +145,7 @@
       };
   recursiveMerge = listOfAttrsets: lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) {} listOfAttrsets;
   in { 
-  formatter = forAllSystems (system: pkgs.nixfmt );
+  formatter = forAllSystems (system: pkgs.nixfmt-classic );
   } // 
         (recursiveMerge[
 	  # With GUI
