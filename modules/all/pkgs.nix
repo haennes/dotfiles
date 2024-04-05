@@ -1,7 +1,7 @@
 {pkgs, ...}:{
   environment.systemPackages = with pkgs; [
     nix-output-monitor
-    nixfmt
+    nixfmt-classic
     nil
     neofetch
     home-manager

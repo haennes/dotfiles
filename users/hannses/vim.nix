@@ -7,9 +7,10 @@
   #    viAlias = true;
   #    vimAlias = true;
   #};
+  
   programs.nixvim = {
     enable = true;
-    options = {
+    opts = {
       number = true;
       relativenumber = true;
       #absolutenumber = true;
