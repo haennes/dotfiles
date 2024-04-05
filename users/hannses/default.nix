@@ -1,8 +1,17 @@
 { config, pkgs, addons, nixvim, nixpkgs-unstable, ... }:
 {
   imports = [
-    ./gnome_config.nix
+    ./fonts.nix
+    #./gnome_config.nix
+    ./hyprland.nix
+    ./gtk.nix # (hopefully) just dark mode
+    ./mime.nix # setup default programs
+    ./waybar.nix
+    ./cliphist.nix
     ./zsh.nix
+    ./dunst.nix
+    ./rofi.nix
+    ./pqiv.nix # images
     ./vim.nix
     ./firefox.nix
     ./ssh.nix
@@ -53,6 +62,24 @@
 
     # doesnt work atm
     #sweet
+
+    xdg-desktop-portal-hyprland # maybe replace with home manager (not hyprland)
+    wl-clipboard
+    playerctl
+    libnotify
+    pavucontrol
+
+    # DESKTOP ENV PROGRAMS
+    grim
+    grimblast
+    slurp
+    swww
+    wlr-randr
+    wdisplays # gui display positioning
+    swaylock-effects
+    #swaynotificationcenter
+    lemurs # TODO fix
+    ripdrag
 
 
     gnomeExtensions.dash-to-dock

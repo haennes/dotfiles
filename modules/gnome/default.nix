@@ -1,4 +1,6 @@
-{pkgs, lib, ...}: with lib; 
+{pkgs, lib, config, ...}: with lib; 
+{
+config = mkIf config.services.xserver.desktopManager.gnome.enable
 {
     services.xserver = {
        enable = true;
@@ -7,7 +9,6 @@
         variant = "nodeadkeys";
        };
        displayManager.gdm.enable = true;
-       desktopManager.gnome.enable = true;
     };
     environment.gnome.excludePackages = (with pkgs; [
       gnome-photos
@@ -30,4 +31,5 @@
     environment.systemPackages = with pkgs; [
       gnome.gnome-tweaks
     ];
+};
 }
