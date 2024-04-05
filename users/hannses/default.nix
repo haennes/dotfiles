@@ -153,6 +153,7 @@
      name = "ZelliJ";
      genericName = "Terminal";
      exec = "alacritty -e zellij";
+     icon = ../../ext_configs/icons/zellij.ico;
      terminal = false;
   };
   home.file.".face".source = ./.face;
