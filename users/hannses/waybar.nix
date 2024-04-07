@@ -28,6 +28,7 @@ mainWaybarConfig = {
     "pulseaudio#microphone"
     "cpu"
     #"custom/notification"
+    "memory"
     "battery"
     #"tray"
   ];
@@ -98,7 +99,7 @@ mainWaybarConfig = {
       critical = 15;
     };
 
-    format = "{icon} {capacity}";
+    format = "{icon} {capacity}%";
     format-icons = {
       charging = "󱐋";
       default = [ " " " " " " " " " " ];
@@ -155,8 +156,8 @@ mainWaybarConfig = {
     };
 
     memory = {
-      format = "󰾆 {percentage}%";
-      format-alt = "󰾅 {used}GB";
+      format = " {percentage}%";
+      format-alt = " {used}GB";
       interval = 30;
       max-length = 10;
       tooltip = true;
@@ -292,6 +293,7 @@ mainWaybarConfig = {
     }
 
     #memory {
+      color: #${theme.foreground};
       border-radius: 0px 10px 10px 0px;
       border-left-width: 0px;
       padding-left: 4px;
@@ -341,8 +343,8 @@ mainWaybarConfig = {
 
     #bluetooth {
       color: #${theme.foreground};
-      padding-left: 4px;
-      padding-right: 0px;
+      padding-left: 0px;
+      padding-right: 4px;
     }
 
     #pulseaudio {
