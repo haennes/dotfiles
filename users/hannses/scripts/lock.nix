@@ -1,7 +1,7 @@
 { pkgs, theme, ... }:
 {
   lock = pkgs.pkgs.writeShellScript "lock" ''
-      ${pkgs.swaylock}/bin/swaylock \
+      swaylock \
     --screenshots \
     --clock \
     --indicator \
