@@ -29,6 +29,7 @@ in
 // importNixScript "bluetooth"
 // importNixScript "brightness"
 // importNixScript "screenshot"
+// importNixScript "screenshot-fast"
 // importNixScript "keyboard_layout"
 // importNixScript "clipboard"
 // importNixScript "rem-from-clipboard"

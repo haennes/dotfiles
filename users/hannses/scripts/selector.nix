@@ -33,6 +33,7 @@
     remove from clipboard
     clear-clipboard
     screenshot
+    sccpa
     brightness
     volume
     volume gui
@@ -134,6 +135,9 @@
         ;;
     "screenshot")
         ${scripts.screenshot}
+        ;;
+    "sccpa")
+        ${scripts.screenshot-fast}
         ;;
     "brightness")
         ${scripts.brightness}
