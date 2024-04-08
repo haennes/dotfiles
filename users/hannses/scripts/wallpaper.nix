@@ -20,9 +20,6 @@
     else
         shFile="$(pwd)/$0"
     fi
-    # remove this scripts name
-    shFileDir=$(echo "$shFile" | sed 's/\/[^\/]*$//')
-
     # build call structure to make it reproduceable
     callStr="$shFile"
 
@@ -133,7 +130,7 @@
     }
 
     function ranFromDir {
-        file="$(ls $1 -1 -p | grep -v / | shuf -n 1)"
+        file="$(fd . $1 | grep -v -E '/$' | shuf -n 1)"
     }
 
     # kill old script if any are running
@@ -203,12 +200,12 @@
                 for i in ''${monitors[@]};
                 do
                     # Random in directory
-                    switchWallpaper "$path/$file" "$i" 
+                    switchWallpaper "$file" "$i" 
                     ranFromDir $path
                 done
             else
                 # both monitors
-                switchWallpaper "$path/$file"
+                switchWallpaper "$file"
             fi
             sleep $selectedTime
         done
