@@ -29,6 +29,7 @@
     wifi
     wifi gui
     bluetooth
+    bluetooth gui
     clipboard
     remove from clipboard
     clear-clipboard
@@ -118,11 +119,14 @@
         ${scripts.wifi}
         ;;
     "wifi gui")
-        ${pkgs.alacritty}/bin/alacritty -e nmtui
+        ${pkgs.alacritty}/bin/alacritty -e ${pkgs.networkmanager}/bin/nmtui
         # TODO
         ;;
     "bluetooth")
         ${scripts.bluetooth}
+        ;;
+    "bluetooth gui")
+        ${pkgs.alacritty}/bin/alacritty -e ${pkgs.bluetuith}/bin/bluetuith
         ;;
     "clipboard")
         ${scripts.clipboard}

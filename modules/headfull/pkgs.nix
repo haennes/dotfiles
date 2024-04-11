@@ -33,5 +33,6 @@ environment.systemPackages = with pkgs; [
   zoom-us
   cifs-utils
   yubikey-manager-qt
+  bluetuith
   ];
 }
