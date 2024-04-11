@@ -46,6 +46,7 @@
     sleep
     shutdown
     restart
+    reboot
     kill
     killall
     fix
@@ -174,7 +175,7 @@
     "shutdown")
         if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then poweroff; fi
         ;;
-    "restart")
+    "restart"|"reboot")
         if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then reboot; fi
         ;;
     "kill")
