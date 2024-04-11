@@ -22,6 +22,8 @@ in
   };
   hardware.bluetooth.enable = true;
 
+  security.pam.services.swaylock = {};  
+
 
   # Enable sound with pipewire.
   sound.enable = true;
