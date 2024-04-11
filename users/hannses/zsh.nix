@@ -20,6 +20,7 @@ in
            vi = "nvim";
 
            ls = "eza -lh";
+           sl = "ls";
            la = "eza -Alh"; 
            # path cds
            dotfiles = "cd ${dotfiles_path}";
