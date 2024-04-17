@@ -1,4 +1,18 @@
-{ pkgs, scripts, globals, ... }:
+{ pkgs, scripts, globals, config, lib, ... }:
+let 
+firefox_profiles = config.home-manager.users.hannses.programs.firefox.profiles;
+firefox_profiles_attr_names = with lib; (attrNames firefox_profiles);
+selector_str = with lib; concatStrings ( map(x: ''
+firefox ${x}
+'') firefox_profiles_attr_names);
+executor_str = with lib; concatStrings( map(x: ''
+    "firefox ${x}")
+        ${pkgs.firefox}/bin/firefox -p "${x}"
+        ;;
+    ''
+) firefox_profiles_attr_names);
+
+in
 {
   #TOOD change to use globals
   selector = pkgs.pkgs.writeShellScript "selector" ''
@@ -9,11 +23,7 @@
     menu="\
     apps
     emacs
-    firefox research
-    firefox uni
-    firefox shopping
-    firefox github
-    tor browser
+    ${selector_str}tor browser
     alacritty
     kitty
     wallpaper
@@ -65,18 +75,7 @@
     "emacs")
         ${pkgs.emacs}/bin/emacsclient -c -a 'emacs'
         ;;
-    "firefox research")
-        ${pkgs.firefox}/bin/firefox -p "research"
-        ;;
-    "firefox uni")
-        ${pkgs.firefox}/bin/firefox -p "uni"
-        ;;
-    "firefox shopping")
-        ${pkgs.firefox}/bin/firefox -p "shopping"
-        ;;
-    "firefox github")
-        ${pkgs.firefox}/bin/firefox -p "github"
-        ;;
+    ${executor_str}
     "tor browser")
         ${pkgs.tor-browser-bundle-bin}/bin/tor-browser
         ;;
