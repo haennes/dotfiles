@@ -30,7 +30,9 @@ simple_forward = port: {
   host.address = "127.0.0.1";
 };
 in with ips; {
+services.ssh-agent.enable = true;
 programs.ssh = {
+  addKeysToAgent = "1h";
   enable = true;
   matchBlocks = {
     "welt" = {
