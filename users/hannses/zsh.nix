@@ -26,7 +26,7 @@ in
            dotfiles = "cd ${dotfiles_path}";
            dotf = dotfiles;
 
-           oth = "cd ${home}/Documents/Studium/Semster1";
+           oth = "cd ${home}/Documents/Studium/Semester1";
            down = "cd ${home}/Downloads";
 
            pg = "${oth}/PG1";
