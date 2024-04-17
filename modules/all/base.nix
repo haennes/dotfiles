@@ -100,9 +100,16 @@ in {
           handyAlexandra = ids.handyMum;
           handyThomas = ids.handyThomas;
           tablet = ids.tablet;
+
         };
         servers = { syncschlawiner = ids.syncschlawiner; };
         all_servers = servers // { tabula = ids.tabula; };
+
+        uni = {
+          stefan_handy = ids.stefan_handy;
+          sebastian_s_mac = ids.sebastian_s_mac;
+          sebastian_r_laptop  = ids.sebastian_r_laptop;
+        };
       };
       folders = with devices;
         with devices.all_handys;
@@ -143,6 +150,15 @@ in {
           "ThomasKamera" = [ (servers) ];
           "ThomasGalerie" = [ (servers) ];
           "website" = [ (all_pcs) "tabula" ];
+          "Studium" = {
+          devices = [ (all_pcs // uni)  ]; 
+          paths = rec {
+            "mainpc" = "/home/hannses/Documents/Studium/Semester1";
+            "thinkpad" = mainpc;
+            "thinknew" = mainpc;
+            "yoga" = mainpc;
+          };
+          };
           #"website_mkhh" = [(all_pcs)  "website_mkhh" ];
         };
     };
