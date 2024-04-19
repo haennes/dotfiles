@@ -11,7 +11,7 @@ in
       "hannses" = {
         isNormalUser = true;
 	description = "hannses";
-	extraGroups = [ "networkmanager" "wheel" "family"];
+	extraGroups = [ "networkmanager" "wheel" "family" "video"];
       };
     }
     //(gen_user "mum")
