@@ -110,7 +110,7 @@ in
         ${pkgs.zathura}/bin/zathura
         ;;
     "camera")
-        # TODO
+        ${pkgs.webcamoid}/bin/webcamoid
         ;;
     "file manager")
         # TODO
