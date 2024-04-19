@@ -98,6 +98,7 @@
     gruntfuggly.todo-tree
   ];
   };
+  programs.zathura.enable = true;
   programs.helix = {
      enable = true;
      #defaultEditor = true; # leave nvim for now
