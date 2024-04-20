@@ -24,11 +24,11 @@
     getopts "ids:" flag
     case "''${flag}" in
         i) 
-            value = "+5"
+            value="+5"
             end
             ;;
         d)
-            value = "5-"
+            value="5-"
             end
             ;;
         s)
