@@ -75,9 +75,8 @@
       modules = modules ++ [
         ./modules/all
         ./modules/age.nix
-	#wireguard-wrapper.nixosModules.wireguard-wrapper
+	wireguard-wrapper.nixosModules.wireguard-wrapper
 	./modules/syncthing.nix
-	./modules/wireguard.nix
         nur.nixosModules.nur
       ];
       specialArgs = specialArgs // {inherit sshkeys inputs system proxmox vps ips; permit_pkgs = pkgs;};
