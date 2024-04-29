@@ -34,7 +34,7 @@ in {
   programs.firefox.enable = true;
   programs.firefox.profiles.default = {
     isDefault = true;
-    extensions = with addons; [ tridactyl ublock-origin floccus ];
+    extensions = with addons; [ tridactyl ublock-origin floccus keepassxc-browser];
     search = {
       force = true;
       default = "ecosia";
