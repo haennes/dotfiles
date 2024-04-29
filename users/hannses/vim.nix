@@ -44,6 +44,7 @@
           nixd.enable = true;
           typst-lsp.enable = true; 
 
+          clangd.enable = true;
           rust-analyzer = {
             installRustc = true;
             installCargo = true;
