@@ -74,7 +74,7 @@ in {
         };
       } // simple_ip "porta" // simple_ip "hermes" // simple_ip "syncschlawiner"
         // simple_ip "syncschlawiner_mkhh" // simple_ip "tabula"
-        // simple_ip "thinkpad" // simple_ip "thinknew" // simple_ip "mainpc"
+        // simple_ip "thinkpad" // simple_ip "thinknew" // simple_ip "mainpc" // simple_ip "yoga"
         // simple_ip "handy_hannses";
       publicKey = name:
         ((secrets.obtain_wireguard_pub { hostname = name; }).key);

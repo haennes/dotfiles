@@ -26,6 +26,7 @@ in {
   };
   thinkpad.wg0 = "192.168.1.6";
   thinknew.wg0 = "192.168.1.16";
+  yoga.wg0 = "192.168.1.17";
   mainpc.wg0 = "192.168.1.10";
   handy_hannses.wg0 = "192.168.1.7";
   tabula = {
