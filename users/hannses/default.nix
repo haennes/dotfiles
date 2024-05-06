@@ -51,7 +51,6 @@
 #    texmaker
     musescore
     yubikey-manager-qt
-    prismlauncher-qt5
     lorien
     platformio
     rust-analyzer
