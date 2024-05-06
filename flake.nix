@@ -40,9 +40,12 @@
     wireguard-wrapper = {
       url = "github:haennes/wireguard-wrapper.nix";
     };
+    syncthing-wrapper = {
+      url = "git+file:///home/hannses/programming/nix/syncthing-wrapper";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nixos-generators, deploy-rs, nixos-dns, rust-overlay, disko, nur, nixvim, agenix, flake-utils-plus, simple-nixos-mailserver, wireguard-wrapper, ... }: 
+  outputs = inputs@{ self, nixpkgs, home-manager, nixos-generators, deploy-rs, nixos-dns, rust-overlay, disko, nur, nixvim, agenix, flake-utils-plus, simple-nixos-mailserver, wireguard-wrapper, syncthing-wrapper, ... }: 
   let 
     system = "x86_64-linux";
     forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
@@ -76,7 +79,7 @@
         ./modules/all
         ./modules/age.nix
 	wireguard-wrapper.nixosModules.wireguard-wrapper
-	./modules/syncthing.nix
+        syncthing-wrapper.nixosModules.syncthing-wrapper
         nur.nixosModules.nur
       ];
       specialArgs = specialArgs // {inherit sshkeys inputs system proxmox vps ips; permit_pkgs = pkgs;};
