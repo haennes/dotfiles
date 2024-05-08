@@ -1,6 +1,5 @@
-{ pkgs, globals, ... }:
-{
-monitorsetup = pkgs.pkgs.writeShellScript "monitorsetup" ''
+{ pkgs, globals, ... }: {
+  monitorsetup = pkgs.pkgs.writeShellScript "monitorsetup" ''
     DMENU="${globals.dmenu}"
 
     # hyprctl dispatch dpms off (disable monitor power off temporarily)
@@ -115,5 +114,5 @@ monitorsetup = pkgs.pkgs.writeShellScript "monitorsetup" ''
                 ;;
         esac
     done
-'';
+  '';
 }

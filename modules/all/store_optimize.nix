@@ -1,9 +1,9 @@
-{config, lib, ...}: {
-    nix.settings.auto-optimise-store = true;
-    nix.gc = {
-      automatic = true;
-      persistent = true; #ensure trigger if sleeping at $dates
-      dates = "19:00";
-      options = "--delete-older-than 14d";
-    };
+{ config, lib, ... }: {
+  nix.settings.auto-optimise-store = true;
+  nix.gc = {
+    automatic = true;
+    persistent = true; # ensure trigger if sleeping at $dates
+    dates = "19:00";
+    options = "--delete-older-than 14d";
+  };
 }

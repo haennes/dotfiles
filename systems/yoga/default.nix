@@ -5,25 +5,23 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-25879778-fcba-4dab-9ad7-a929638b13ec".device = "/dev/disk/by-uuid/25879778-fcba-4dab-9ad7-a929638b13ec";
+  boot.initrd.luks.devices."luks-25879778-fcba-4dab-9ad7-a929638b13ec".device =
+    "/dev/disk/by-uuid/25879778-fcba-4dab-9ad7-a929638b13ec";
   networking.hostName = "yoga"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-    services.syncthing_wrapper = {
-      enable = true;
-    };
-    services.syncthing = {
-      dataDir = "/home/hannses";
-      user = "hannses";
-    };
+  services.syncthing_wrapper = { enable = true; };
+  services.syncthing = {
+    dataDir = "/home/hannses";
+    user = "hannses";
+  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

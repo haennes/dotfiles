@@ -1,5 +1,4 @@
-{ pkgs, globals, ... }:
-{
+{ pkgs, globals, ... }: {
   kill = pkgs.pkgs.writeShellScript "kill" ''
     # has to be a function because "'...'" doesn't work
     DMENU() {
@@ -13,5 +12,5 @@
     if [ -n "$choice" ]; then
         kill -9 $(echo -e "$choice" | awk -e '{print $1}')
     fi
-'';
+  '';
 }

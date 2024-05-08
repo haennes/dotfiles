@@ -35,7 +35,12 @@ in {
   programs.firefox.enable = true;
   programs.firefox.profiles.default = {
     isDefault = true;
-    extensions = with addons; [ tridactyl ublock-origin floccus keepassxc-browser];
+    extensions = with addons; [
+      tridactyl
+      ublock-origin
+      floccus
+      keepassxc-browser
+    ];
     search = {
       force = true;
       default = "ecosia";
@@ -52,10 +57,10 @@ in {
                 name = "query";
                 value = "{searchTerms}";
               }
-              { 
-		name = "channel";
-		value = "unstable";
-	      }
+              {
+                name = "channel";
+                value = "unstable";
+              }
             ];
           }];
           iconUpdateURL = nix_favicon;
@@ -76,10 +81,10 @@ in {
                 name = "query";
                 value = "{searchTerms}";
               }
-              { 
-		name = "channel";
-		value = "unstable";
-	      }
+              {
+                name = "channel";
+                value = "unstable";
+              }
             ];
           }];
           icon =
@@ -287,7 +292,7 @@ in {
       } // gh_search ({
         type = "repositories";
         alias = "r";
-        addAliases = ["gh"];
+        addAliases = [ "gh" ];
       }) # <ghr or <gh
         // gh_search ({
           type = "users";
@@ -298,7 +303,7 @@ in {
           type = "repositories";
           alias = "r";
           personal = true;
-          addAlias = ["ghp"];
+          addAlias = [ "ghp" ];
         }) # <ghpr or <ghp
         // gh_search ({
           type = "users";

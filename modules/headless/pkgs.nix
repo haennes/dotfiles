@@ -1,6 +1,6 @@
-{...}:{
-  programs.neovim ={
-  # enabled in "all.nix/pkgs.nix"
+{ ... }: {
+  programs.neovim = {
+    # enabled in "all.nix/pkgs.nix"
     viAlias = true;
     vimAlias = true;
   };

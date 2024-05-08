@@ -1,5 +1,4 @@
-{ pkgs, globals, ... }:
-{
+{ pkgs, globals, ... }: {
   killall = pkgs.pkgs.writeShellScript "killall" ''
     # has to be a function because "'...'" doesn't work
     DMENU() {

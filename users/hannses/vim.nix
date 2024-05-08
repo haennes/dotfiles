@@ -1,4 +1,3 @@
-{ pkgs, nixvim, ... }: {
 { pkgs, nixvim, config, scripts, ... }: {
   imports = [ nixvim.homeManagerModules.nixvim ];
   #programs.neovim = { 
@@ -8,7 +7,7 @@
   #    viAlias = true;
   #    vimAlias = true;
   #};
-  
+
   programs.nixvim = {
     enable = true;
     opts = {
@@ -24,6 +23,7 @@
       #icon  = true;
       title = true;
     };
+    clipboard.providers.wl-copy.enable = true;
     autoCmd = [
       # Termdebug
       { 
@@ -46,13 +46,19 @@
               "markdown"
           ];
           command = "setlocal spell spelllang=en,de";
+      }
     ];
     plugins = {
-      typst-vim = { enable = true; };
+      typst-vim = {
+        enable = true;
+        settings.cmd = "${scripts.typst-live-custom}";
+        #"${config.home.packages.typst-watch-to-typst-live}" ;
+        #"${config.environment.systemPackages.typst-watch-to-typst-live}" ;
+      };
 
       markdown-preview = {
         enable = true;
-        settings.auto_start = true; # TODO figure out command
+        settings.auto_start = true;
       };
       openscad = {
         enable = true;
@@ -61,12 +67,13 @@
         keymaps.execOpenSCADTrigger = "<A-o>";
       };
 
+      comment.enable = true;
       treesitter.enable = true;
       lsp = {
         enable = true;
         servers = {
           nixd.enable = true;
-          typst-lsp.enable = true; 
+          typst-lsp.enable = true;
 
           clangd.enable = true;
           rust-analyzer = {

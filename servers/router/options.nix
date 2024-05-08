@@ -1,7 +1,4 @@
-{ lib
-, notnft
-, router-lib
-, ... }:
+{ lib, notnft, router-lib, ... }:
 
 {
   options.router-settings = {
@@ -30,11 +27,13 @@
       type = router-lib.types.cidr6;
     };
     netnsNet = lib.mkOption {
-      description = "private inter-netns communication network cidr+main netns addr (ex: 192.168.2.1/24)";
+      description =
+        "private inter-netns communication network cidr+main netns addr (ex: 192.168.2.1/24)";
       type = router-lib.types.cidr4;
     };
     netnsNet6 = lib.mkOption {
-      description = "private inter-netns communication network cidr6+main netns addr6 (ex: fd01:ba09:8765:4321::1/64)";
+      description =
+        "private inter-netns communication network cidr6+main netns addr6 (ex: fd01:ba09:8765:4321::1/64)";
       type = router-lib.types.cidr6;
     };
     wanNetnsAddr = lib.mkOption {
@@ -117,32 +116,34 @@
         };
         options.target4 = lib.mkOption {
           default = null;
-          type = with lib.types; nullOr (submodule {
-            options.address = lib.mkOption {
-              type = router-lib.types.ipv4;
-              description = "ipv4 address";
-            };
-            options.port = lib.mkOption {
-              type = nullOr port;
-              description = "target port";
-              default = null;
-            };
-          });
+          type = with lib.types;
+            nullOr (submodule {
+              options.address = lib.mkOption {
+                type = router-lib.types.ipv4;
+                description = "ipv4 address";
+              };
+              options.port = lib.mkOption {
+                type = nullOr port;
+                description = "target port";
+                default = null;
+              };
+            });
           description = "port forwarding target (ipv4)";
         };
         options.target6 = lib.mkOption {
           default = null;
-          type = with lib.types; nullOr (submodule {
-            options.address = lib.mkOption {
-              type = router-lib.types.ipv6;
-              description = "ipv6 address";
-            };
-            options.port = lib.mkOption {
-              type = nullOr port;
-              description = "target port";
-              default = null;
-            };
-          });
+          type = with lib.types;
+            nullOr (submodule {
+              options.address = lib.mkOption {
+                type = router-lib.types.ipv6;
+                description = "ipv6 address";
+              };
+              options.port = lib.mkOption {
+                type = nullOr port;
+                description = "target port";
+                default = null;
+              };
+            });
           description = "port forwarding target (ipv6)";
         };
         options.tcp = lib.mkOption {

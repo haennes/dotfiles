@@ -1,14 +1,13 @@
-{ips, ...}: with ips;{
+{ ips, ... }:
+with ips; {
   networking.domains = {
     enable = true;
     baseDomains = {
       "hannses.de" = {
         a.data = welt.ens3;
-	#TODO aaaa
+        #TODO aaaa
       };
     };
-    subDomains = {
-      "cloud.hannses.de" = {};
-    };
+    subDomains = { "cloud.hannses.de" = { }; };
   };
 }

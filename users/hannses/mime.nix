@@ -1,6 +1,5 @@
-{pkgs, globals, ...}: 
-{
- xdg.mimeApps = let
+{ pkgs, globals, ... }: {
+  xdg.mimeApps = let
     associations = {
       # https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
 
@@ -25,12 +24,15 @@
       # documents
       "application/pdf" = [ "${globals.pdf}.desktop" ];
       "application/msword" = [ "${globals.docs}.desktop" ];
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "${globals.docs}.desktop" ];
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" =
+        [ "${globals.docs}.desktop" ];
       "application/vnd.ms-excel" = [ "${globals.docs}.desktop" ];
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = [ "${globals.docs}.desktop" ];
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" =
+        [ "${globals.docs}.desktop" ];
       "text/csv" = [ "${globals.docs}.desktop" ];
       "application/vnd.ms-powerpoint" = [ "${globals.docs}.desktop" ];
-      "application/vnd.openxmlformats-officedocument.presentationml.presentation" = [ "${globals.docs}.desktop" ];
+      "application/vnd.openxmlformats-officedocument.presentationml.presentation" =
+        [ "${globals.docs}.desktop" ];
       "application/vnd.oasis.opendocument.text" = [ "${globals.docs}.desktop" ];
 
       # archives

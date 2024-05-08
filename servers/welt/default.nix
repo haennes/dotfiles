@@ -1,12 +1,7 @@
-{modulesPath, config, lib, pkgs, sshkeys, ...}:
-{
+{ modulesPath, config, lib, pkgs, sshkeys, ... }: {
 
-  imports = [
-    ./hardware-configuration.nix
-    ./nginx.nix
-    ./dns.nix
-  ];
-  boot.loader =  {
+  imports = [ ./hardware-configuration.nix ./nginx.nix ./dns.nix ];
+  boot.loader = {
     grub.enable = true;
     grub.device = "/dev/sda15";
     grub.forceInstall = true;
@@ -21,8 +16,7 @@
     allowedTCPPorts = [ 22 80 443 ];
   };
 
-
   services.wireguard-wrapper.enable = true;
 
   system.stateVersion = "23.11";
-} 
+}

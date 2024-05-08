@@ -1,8 +1,7 @@
 { pkgs, lib, inputs, theme, globals, scripts, ... }:
-with inputs;
-{
+with inputs; {
   wayland.windowManager.hyprland = {
-    enable = true; 
+    enable = true;
     package = hyprland.packages.${pkgs.system}.hyprland;
     systemd.enable = true;
     xwayland.enable = true;
@@ -17,10 +16,11 @@ with inputs;
       "$runprompt" = "${scripts.selector}";
       "$volume" = "${scripts.volume}";
       "$brightness" = "${scripts.brightness}";
+      "$sccpa" = "${scripts.screenshot-fast}";
       # TODO implement screenshot dmenu script
       # TODO fix screenshot thing
 
-      exec-once = ''${scripts.startup}'';
+      exec-once = "${scripts.startup}";
 
       monitor = [
         ",preferred,auto,1"
@@ -45,7 +45,8 @@ with inputs;
         gaps_out = 10;
         border_size = 2;
         # TODO change to orange?
-        "col.active_border" = "rgba(${theme.color_first}ee) rgba(${theme.color_second}ee) 45deg";
+        "col.active_border" =
+          "rgba(${theme.color_first}ee) rgba(${theme.color_second}ee) 45deg";
         "col.inactive_border" = "rgba(${theme.background}aa)";
 
         layout = "dwindle";
@@ -53,15 +54,12 @@ with inputs;
         allow_tearing = false;
       };
 
-      layerrule = [
-        "blur"
-        "ignorezero"
-      ];
+      layerrule = [ "blur" "ignorezero" ];
 
       decoration = {
         rounding = 10;
 
-        active_opacity = 0.90;
+        active_opacity = 0.9;
         inactive_opacity = 0.75;
         fullscreen_opacity = 1.0;
 
@@ -96,9 +94,7 @@ with inputs;
         preserve_split = true;
       };
 
-      master = {
-        new_is_master = true;
-      };
+      master = { new_is_master = true; };
 
       gestures = {
         workspace_swipe = true;
@@ -108,7 +104,8 @@ with inputs;
       };
 
       misc = {
-        force_default_wallpaper = -1; # 0 or 1 to disable anime mascot wallpapers
+        force_default_wallpaper =
+          -1; # 0 or 1 to disable anime mascot wallpapers
       };
 
       "$mod" = "SUPER";
@@ -118,7 +115,7 @@ with inputs;
         "$mod, return, exec, $terminal"
         "CTRL, space, exec, $runprompt"
         "$mod SHIFT, L, exec, ${scripts.lock}"
-	"$mod, V, exec, ${scripts.clipboard}"
+        "$mod, V, exec, ${scripts.clipboard}"
         "$mod SHIFT, S, exec, grim"
 
         # kill window
@@ -168,7 +165,6 @@ with inputs;
         #" , edge:l:r, split-workspace, e-1"
         #" , edge:r:l, split-workspace, e+1"
 
-
         # window
         "$mod, M, fullscreen, 1"
         "$mod CTRL, M, fullscreen, 0"
@@ -203,7 +199,6 @@ with inputs;
         #"$mod SHIFT, period, split-changemonitorsilent, next"
         #"$mod SHIFT, comma, split-changemonitorsilent, prev"
 
-
         # Scroll through exisiting workspaces
         "$mod, mouse_down, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
@@ -222,10 +217,7 @@ with inputs;
       ];
 
       # mouse
-      bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
-      ];
+      bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
 
       # activate even when locked, hold = repeat
       bindle = [
@@ -288,8 +280,11 @@ with inputs;
           bind = , return, submap, reset
           submap = reset
 
+          # layout switching
+
           # window swapping
           bind = $mod, S, submap, swap
+
 
           submap = swap
 

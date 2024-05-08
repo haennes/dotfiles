@@ -1,19 +1,17 @@
-{lib, modulesPath, ...}:
-{
-  imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
-    ];
+{ lib, modulesPath, ... }: {
+  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" ];
   boot.kernelModules = [ "kvm-intel" ];
 
   #boot.loader.grub.enable = true;
   #boot.loader.grub.devices =  ["/efi"];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/46330877-4e0f-45b3-8a6d-9284dedf3cb1";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/46330877-4e0f-45b3-8a6d-9284dedf3cb1";
+    fsType = "ext4";
+  };
 
   #fileSystems."/efi" =
   #  { device = "systemd-1";
