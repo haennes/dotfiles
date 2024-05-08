@@ -1,5 +1,5 @@
-{config, pkgs, ...}:{
-dconf.settings = {
+{ config, pkgs, lib, gnome_enable, ... }: {
+  config = lib.mkIf gnome_enable {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       enable-hot-corners = true;
@@ -81,6 +81,7 @@ dconf.settings = {
   "org/gtk/gtk4/settings/file-chooser" = {
     show-hidden = true;
     sort-directories-first = true;
+    };
   };
 
   "org/gnome/settings-daemon/plugins/color" = {

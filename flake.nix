@@ -132,6 +132,14 @@
 	else build_deploy{inherit hostname;});
 
 
+            ./modules/gnome
+            {
+              specialisation = {
+                   gnome.configuration = {
+                     services.xserver.desktopManager.gnome.enable = true;
+                     system.nixos.tags = ["gnome"];
+                   };
+              };
 
     #homes_cfg = import ./modules/home_manager ;
     build_headfull = {hostname, specialArgs ? {}, modules ? [], live_iso ? false}:

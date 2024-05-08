@@ -11,8 +11,6 @@
     targetCMD="area"
     outputCMD="copy"
 
-    timer="1"
-    sleep $timer
     grimblast --notify $outputCMD $targetCMD "$screenshot_dir/$(get_timestamp).png"
   '';
 }

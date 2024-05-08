@@ -1,6 +1,7 @@
 { pkgs, addons, ... }:
 let
-  favicon = domain: "${domain}/favicon.ico"; # TODO use this instead
+  favicon = domain: "https://${domain}/favicon.ico"; # TODO use this instead
+  nix_favicon = favicon "search.nixos.org";
   updateInterval = 24 * 60 * 60 * 1000; # every day
   gh_search = { type, alias, personal ? false, addAliases ? [ ], ... }:
     let title = "GitHub ${type}" + (if personal then " personal" else "");
@@ -57,6 +58,7 @@ in {
 	      }
             ];
           }];
+          iconUpdateURL = nix_favicon;
           icon =
             "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "<np" ];
@@ -132,7 +134,7 @@ in {
           urls = [{
             template = "https://nixos.wiki/index.php?search={searchTerms}";
           }];
-          iconUpdateURL = "https://nixos.wiki/favicon.png";
+          iconUpdateURL = nix_favicon;
           inherit updateInterval;
           definedAliases = [ "<nw" ];
         };
@@ -142,7 +144,7 @@ in {
             template =
               "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
           }];
-          iconUpdateURL = "https://nixos.wiki/favicon.png";
+          iconUpdateURL = nix_favicon;
           inherit updateInterval;
           definedAliases = [ "<ho" ];
         };
