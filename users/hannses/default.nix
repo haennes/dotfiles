@@ -37,7 +37,6 @@
     keepassxc
     git-crypt # should be obsolete
     gnupg
-    vscodium
     signal-desktop
     gnome.dconf-editor
     poppler_utils
@@ -93,6 +92,7 @@
       tamasfe.even-better-toml
       usernamehw.errorlens
       gruntfuggly.todo-tree
+      asvetliakov.vscode-neovim
     ];
   };
   programs.zathura.enable = true;
