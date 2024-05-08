@@ -1,4 +1,5 @@
 { pkgs, nixvim, ... }: {
+{ pkgs, nixvim, config, scripts, ... }: {
   imports = [ nixvim.homeManagerModules.nixvim ];
   #programs.neovim = { 
   #managed by nixvim
@@ -23,6 +24,29 @@
       #icon  = true;
       title = true;
     };
+    autoCmd = [
+      # Termdebug
+      { 
+        event = "VimEnter";
+        command = "packadd termdebug";
+      }
+      
+      # from https://github.com/GaetanLepage/nix-config/blob/master/home/modules/tui/neovim/autocommands.nix
+      # Remove trailing whitespace on save
+      {
+          event = "BufWrite";
+          command = "%s/\\s\\+$//e";
+      }
+      # Enable spellcheck for some filetypes
+      {
+          event = "FileType";
+          pattern = [
+              "tex"
+              "latex"
+              "markdown"
+          ];
+          command = "setlocal spell spelllang=en,de";
+    ];
     plugins = {
       typst-vim = { enable = true; };
 
@@ -55,5 +79,21 @@
       lsp-format.enable = true;
     };
     colorschemes.gruvbox.enable = true;
+    keymaps = [
+      # Those are somewhat doom-emacs keybinds...
+      {
+        # Escape out of terminal
+        mode = "t";
+        key = "<Esc><Esc>";
+        action = "<C-\\><C-n>";
+      }
+      {
+	# Escape to remove highlight
+	mode = "n";
+	key = "<Esc>";
+	action = ":noh<CR>";
+	options.silent = true;
+      }
+    ];
   };
 }

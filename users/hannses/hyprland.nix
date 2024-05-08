@@ -213,10 +213,12 @@ with inputs;
       # resize window
       binde = [
         #"$mod, R, submap, resize" # TODO search for submaps in nixconf
-        "$mod SHIFT, equal, resizeactive, 10 0"
-        "$mod, minus, resizeactive, -10 0"
-        "$mod CTRL SHIFT, equal, resizeactive, 0 10"
-        "$mod CTRL, minus, resizeactive, 0 -10"
+        #"$mod SHIFT, equal, resizeactive, 10 0"
+        #"$mod minus, resizeactive, -10 0"
+        #"$mod CTRL, SHIFT, equal, resizeactive, 0 10"
+        #"$mod CTRL, minus, resizeactive, 0 -10"
+        "$mod, P, togglesplit"
+        "$mod, S, exec, $sccpa"
       ];
 
       # mouse
