@@ -1,15 +1,9 @@
-{config, pkgs, lib, ...}:
-let hostName = "code.server.fritz.box"; in
-{
+{ config, pkgs, lib, ... }:
+let hostName = "code.server.fritz.box";
+in {
   #containers.pterodactyl_panel = import ./pterodactyl.nix {config=config; pkgs=pkgs;};
   #containers.minecraft_school = import ./minecraft_school.nix {config=config; pkgs=pkgs;};
   #containers.nextcloud = import ./nextcloud.nix {config=config; pkgs=pkgs; lib=lib;};
-
-
-
-
-
-
 
   virtualisation.docker.enable = true;
 

@@ -1,19 +1,17 @@
-{ pkgs, lib, theme, ... }:
-{
+{ pkgs, lib, theme, ... }: {
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
 
-    settings = {  
+    settings = {
 
       # disable unwanted behaviour
-      add_newline = true;  
+      add_newline = true;
 
-      format = "$python$directory$fossil_branch$hg_branch$pijul_channel$git_branch$docker_context$guix_shell$meson$spack$container$jobs$cmd_duration$battery $character";
+      format =
+        "$python$directory$fossil_branch$hg_branch$pijul_channel$git_branch$docker_context$guix_shell$meson$spack$container$jobs$cmd_duration$battery $character";
 
-      python = {
-        format = "[\\($virtualenv\\)]($style) ";
-      };
+      python = { format = "[\\($virtualenv\\)]($style) "; };
 
       directory = {
         format = "[$read_only]($read_only_style)[$path]($style)";
@@ -28,7 +26,7 @@
         disabled = false;
       };
 
-      character = {    
+      character = {
         success_symbol = "[➜](green)";
         error_symbol = "[➜](red)";
         disabled = false;
@@ -85,7 +83,7 @@
       };
 
       container = {
-        format = " [$symbol \[$name\]]($style)";
+        format = " [$symbol [$name]]($style)";
         disabled = false;
       };
 

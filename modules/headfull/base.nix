@@ -1,29 +1,25 @@
-{config, pkgs, ...}:
+{ config, pkgs, ... }:
 let
-  secrets = import ../../lib{};
+  secrets = import ../../lib { };
   gen_user = name: {
-    "${name}" = { isNormalUser = true; description = name;};
+    "${name}" = {
+      isNormalUser = true;
+      description = name;
+    };
   };
-in
-{
-  users.users = 
-    {
-      "hannses" = {
-        isNormalUser = true;
-	description = "hannses";
-	extraGroups = [ "networkmanager" "wheel" "family" "video"];
-      };
-    }
-    //(gen_user "mum")
-    //(gen_user "dad");
+in {
+  users.users = {
+    "hannses" = {
+      isNormalUser = true;
+      description = "hannses";
+      extraGroups = [ "networkmanager" "wheel" "family" "video" ];
+    };
+  } // (gen_user "mum") // (gen_user "dad");
 
-  users.groups = {
-    "family".members = ["mum" "dad" "hannses"];
-  };
+  users.groups = { "family".members = [ "mum" "dad" "hannses" ]; };
   hardware.bluetooth.enable = true;
 
-  security.pam.services.swaylock = {};  
-
+  security.pam.services.swaylock = { };
 
   # Enable sound with pipewire.
   sound.enable = true;

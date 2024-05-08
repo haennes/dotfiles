@@ -1,11 +1,9 @@
-{modulesPath, config, lib, pkgs, sshkeys, ...}:
-{
+{ modulesPath, config, lib, pkgs, sshkeys, ... }: {
 
   imports = [
     ../proxmox.nix
-#    ./nginx.nix
+    #    ./nginx.nix
   ];
-
 
   networking.hostName = "hermes";
   networking.firewall = {
@@ -16,4 +14,4 @@
   services.wireguard-wrapper.enable = true;
 
   system.stateVersion = "23.11";
-} 
+}

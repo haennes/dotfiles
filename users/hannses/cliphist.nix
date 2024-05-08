@@ -1,8 +1,7 @@
-{ pkgs, ... }:
-{
-    services.cliphist = {
-	enable = true;
-	
-	systemdTarget = "hyprland-session.target";
-    };
+{ pkgs, ... }: {
+  services.cliphist = {
+    enable = true;
+
+    systemdTarget = "hyprland-session.target";
+  };
 }

@@ -1,5 +1,4 @@
-{ pkgs, globals, ... }:
-{
+{ pkgs, globals, ... }: {
   brightness = pkgs.pkgs.writeShellScript "brightness" ''
     # the user has to be inside of the "video" group to not need sudo!
 

@@ -1,7 +1,4 @@
-{ config
-, router-lib
-, lib
-, ... }:
+{ config, router-lib, lib, ... }:
 let
   cfg = config.router-settings;
   netAddresses.lan4 = (router-lib.parseCidr cfg.network).address;
@@ -58,11 +55,11 @@ in {
       loggers = lib.toList {
         name = "kea-dhcp4";
         severity = "WARN";
-        output_options = [ { output = "syslog"; } ];
+        output_options = [{ output = "syslog"; }];
       } ++ map (name: {
         name = "kea-dhcp4.${name}";
         severity = "INFO";
-        output_options = [ { output = "syslog"; } ];
+        output_options = [{ output = "syslog"; }];
       }) (keaLogs 4);
     };
     ipv6.kea.settings = {
@@ -73,11 +70,11 @@ in {
       loggers = lib.toList {
         name = "kea-dhcp6";
         severity = "WARN";
-        output_options = [ { output = "syslog"; } ];
+        output_options = [{ output = "syslog"; }];
       } ++ map (name: {
         name = "kea-dhcp6.${name}";
         severity = "INFO";
-        output_options = [ { output = "syslog"; } ];
+        output_options = [{ output = "syslog"; }];
       }) (keaLogs 6);
     };
     ipv6.corerad.settings.debug = {
@@ -85,7 +82,5 @@ in {
       prometheus = true;
     };
   };
-  services.unbound.settings.server = {
-    extended-statistics = true;
-  };
+  services.unbound.settings.server = { extended-statistics = true; };
 }

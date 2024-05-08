@@ -1,5 +1,4 @@
-{ pkgs, globals, ... }:
-{
+{ pkgs, globals, ... }: {
   wifi = pkgs.pkgs.writeShellScript "wifi" ''
     # has to be a function because "'...'" doesn't work
     DMENU() {

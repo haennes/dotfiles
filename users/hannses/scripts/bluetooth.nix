@@ -1,5 +1,4 @@
-{ pkgs, globals, ... }:
-{
+{ pkgs, globals, ... }: {
   bluetooth = pkgs.pkgs.writeShellScript "bluetooth" ''
     DMENU="${globals.dmenu}"
     #      _                                  _     _            _              _    _

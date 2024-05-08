@@ -1,3 +1,1 @@
-{
-  key = "EZMxMV75c0eUZJhcWfMtbV7SSOpKeNFiBVwHXxWpkB8=";
-}
+{ key = "EZMxMV75c0eUZJhcWfMtbV7SSOpKeNFiBVwHXxWpkB8="; }

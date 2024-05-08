@@ -1,10 +1,4 @@
-{...}:
-{
-  imports =  [
-    ./base.nix
-    ./pkgs.nix
-    ./store_optimize.nix
-  ];
-  
-    
+{ ... }: {
+  imports = [ ./base.nix ./pkgs.nix ./store_optimize.nix ];
+
 }

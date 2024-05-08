@@ -1,5 +1,4 @@
-{ pkgs, globals, ... }:
-{
+{ pkgs, globals, ... }: {
   file_selector = pkgs.pkgs.writeShellScript "file_selector" ''
     DMENU="${globals.dmenu}"
 

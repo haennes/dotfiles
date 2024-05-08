@@ -4,149 +4,146 @@ let
     cat /sys/class/power_supply/BAT0/capacity
   '';
 
-mainWaybarConfig = {
-  mod = "dock";
-  layer = "top";
-  gtk-layer-shell = true;
-  height = 32;
-  position = "top";
+  mainWaybarConfig = {
+    mod = "dock";
+    layer = "top";
+    gtk-layer-shell = true;
+    height = 32;
+    position = "top";
 
-  modules-left = [
-    "custom/logo" 
-    "hyprland/workspaces"
-  ];
+    modules-left = [ "custom/logo" "hyprland/workspaces" ];
 
-  modules-center = [
-    "clock"
-  ];
+    modules-center = [ "clock" ];
 
-  modules-right = [
-    #"hyprland/language"
-    "network"
-    "bluetooth"
-    "pulseaudio"
-    "pulseaudio#microphone"
-    "cpu"
-    #"custom/notification"
-    "memory"
-    "battery"
-    #"tray"
-  ];
+    modules-right = [
+      #"hyprland/language"
+      "network"
+      "bluetooth"
+      "pulseaudio"
+      "pulseaudio#microphone"
+      "cpu"
+      #"custom/notification"
+      "memory"
+      "battery"
+      #"tray"
+    ];
 
-  bluetooth = {
-    format = "{icon}";
-    format-icons = {
-      enabled = "";
-      disabled = "! ";
-    };
-    format-connected = "";
-    format-disabled = "!";
-    tooltip-format = " {device_alias}";
-    tooltip-format-connected = "{device_enumerate}";
-    tooltip-format-enumerate-connected = " {device_alias}";
-  };
-
-  clock = {
-    actions = {
-      on-click-backward = "tz_down";
-      on-click-forward = "tz_up";
-      on-click-right = "mode";
-      on-scroll-down = "shift_down";
-      on-scroll-up = "shift_up";
-    };
-    calendar = {
-      format = {
-        days = "<span color='#ecc6d9'><b>{}</b></span>"; #TODO theme
-        months = "<span color='#ffead3'><b>{}</b></span>"; #TODO theme
-        today = "<span color='#ff6699'><b><u>{}</u></b></span>"; #TODO theme
-        weekdays = "<span color='#ffcc66'><b>{}</b></span>"; #TODO theme
-        weeks = "<span color='#99ffdd'><b>W{}</b></span>"; #TODO theme
+    bluetooth = {
+      format = "{icon}";
+      format-icons = {
+        enabled = "";
+        disabled = "! ";
       };
-      mode = "year";
-      mode-mon-col = 3;
-      on-click-right = "mode";
-      on-scroll = 1;
-      weeks-pos = "right";
-    };
-    format = "󰥔 {:%H:%M}"; #TODO globals
-    format-alt = "󰥔 {:%A, %B %d, %Y (%H:%M:%S)} "; #TODO globals
-    interval = 1;
-  };
-
-  cpu = {
-    format = "󰍛 {usage}%";
-    format-alt = "{icon0}{icon1}{icon2}{icon3}";
-    format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
-    interval = 10;
-  };
-
-  "hyprland/workspaces" = {
-    format = "{icon}";
-    format-icons = {
-      active = "";
-      urgent = "";
-      default = "";
-    };
-    format-window-separator = "";
-    on-click = "activate";
-    #persistent_workspaces = { "*" = 10; };
-  };
-
-  battery = {
-    exec = "${batteryScript}/bin/batteryScript";
-    states = {
-      warning = 30;
-      critical = 15;
+      format-connected = "";
+      format-disabled = "!";
+      tooltip-format = " {device_alias}";
+      tooltip-format-connected = "{device_enumerate}";
+      tooltip-format-enumerate-connected = " {device_alias}";
     };
 
-    format = "{icon} {capacity}%";
-    format-icons = {
-      charging = "󱐋";
-      default = [ " " " " " " " " " " ];
+    clock = {
+      actions = {
+        on-click-backward = "tz_down";
+        on-click-forward = "tz_up";
+        on-click-right = "mode";
+        on-scroll-down = "shift_down";
+        on-scroll-up = "shift_up";
+      };
+      calendar = {
+        format = {
+          days = "<span color='#ecc6d9'><b>{}</b></span>"; # TODO theme
+          months = "<span color='#ffead3'><b>{}</b></span>"; # TODO theme
+          today = "<span color='#ff6699'><b><u>{}</u></b></span>"; # TODO theme
+          weekdays = "<span color='#ffcc66'><b>{}</b></span>"; # TODO theme
+          weeks = "<span color='#99ffdd'><b>W{}</b></span>"; # TODO theme
+        };
+        mode = "year";
+        mode-mon-col = 3;
+        on-click-right = "mode";
+        on-scroll = 1;
+        weeks-pos = "right";
+      };
+      format = "󰥔 {:%H:%M}"; # TODO globals
+      format-alt = "󰥔 {:%A, %B %d, %Y (%H:%M:%S)} "; # TODO globals
+      interval = 1;
     };
-  };
 
-  "custom/notification" = {
-    tooltip = false;
-    format = "{icon}";
-    format-icons = {
-      notification = "<span foreground='red'><sup></sup></span>";
-      none = "";
-      dnd-notification = "<span foreground='red'><sup></sup></span>";
-      dnd-none = "";
-      inhibited-notification = "<span foreground='red'><sup></sup></span>";
-      inhibited-none = "";
-      dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>";
-      dnd-inhibited-none = "";
+    cpu = {
+      format = "󰍛 {usage}%";
+      format-alt = "{icon0}{icon1}{icon2}{icon3}";
+      format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+      interval = 10;
     };
-    return-type = "json";
-    exec = "swaync-client -swb";
-    on-click = "swaync-client -t -sw";
-    on-click-right = "swaync-client -d -sw";
-    escape = true;
-  };
 
-  "custom/gpu-usage" = {
-    exec = "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits";
-    format = "{}";
-    interval = 10;
-  };
-
-  "custom/logo" = {
-    exec = "echo ' '";
-    on-click = "${pkgs.foot}/bin/foot";
-    format = "{}";
-    tooltip = false;
-  };
-
-  "hyprland/window" = {
-    format = "  {}";
-    rewrite = {
-      "(.*) — Mozilla Firefox" = "$1 󰈹";
-      "(.*)Steam" = "Steam 󰓓";
+    "hyprland/workspaces" = {
+      format = "{icon}";
+      format-icons = {
+        active = "";
+        urgent = "";
+        default = "";
+      };
+      format-window-separator = "";
+      on-click = "activate";
+      #persistent_workspaces = { "*" = 10; };
     };
-    separate-outputs = true;
-  };
+
+    battery = {
+      exec = "${batteryScript}/bin/batteryScript";
+      states = {
+        warning = 30;
+        critical = 15;
+      };
+
+      format = "{icon} {capacity}%";
+      format-icons = {
+        charging = "󱐋";
+        default = [ " " " " " " " " " " ];
+      };
+    };
+
+    "custom/notification" = {
+      tooltip = false;
+      format = "{icon}";
+      format-icons = {
+        notification = "<span foreground='red'><sup></sup></span>";
+        none = "";
+        dnd-notification = "<span foreground='red'><sup></sup></span>";
+        dnd-none = "";
+        inhibited-notification = "<span foreground='red'><sup></sup></span>";
+        inhibited-none = "";
+        dnd-inhibited-notification =
+          "<span foreground='red'><sup></sup></span>";
+        dnd-inhibited-none = "";
+      };
+      return-type = "json";
+      exec = "swaync-client -swb";
+      on-click = "swaync-client -t -sw";
+      on-click-right = "swaync-client -d -sw";
+      escape = true;
+    };
+
+    "custom/gpu-usage" = {
+      exec =
+        "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits";
+      format = "{}";
+      interval = 10;
+    };
+
+    "custom/logo" = {
+      exec = "echo ' '";
+      on-click = "${pkgs.foot}/bin/foot";
+      format = "{}";
+      tooltip = false;
+    };
+
+    "hyprland/window" = {
+      format = "  {}";
+      rewrite = {
+        "(.*) — Mozilla Firefox" = "$1 󰈹";
+        "(.*)Steam" = "Steam 󰓓";
+      };
+      separate-outputs = true;
+    };
 
     "hyprland/language" = {
       format = " {}";
@@ -172,14 +169,15 @@ mainWaybarConfig = {
       format-wifi = "󰤨 ";
       interval = 5;
       max-length = 30;
-      tooltip-format = "󱘖 {essid} {ifname} {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}";
+      tooltip-format =
+        "󱘖 {essid} {ifname} {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}";
     };
 
     pulseaudio = {
       format = "{icon} {volume}%";
       format-icons = {
         car = " ";
-        default = ["" "" ""];
+        default = [ "" "" "" ];
         hands-free = " ";
         headphone = " ";
         headset = " ";
@@ -384,9 +382,9 @@ in {
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
     });
     style = css;
-    settings = {mainBar = mainWaybarConfig;};
+    settings = { mainBar = mainWaybarConfig; };
   };
 }

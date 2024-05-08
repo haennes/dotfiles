@@ -1,5 +1,4 @@
-{pkgs, config, globals, theme, ...}:
-{
+{ pkgs, config, globals, theme, ... }: {
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
@@ -9,34 +8,31 @@
     terminal = "${globals.term}";
     # this theme is heavenly influenced by dracula: https://github.com/dracula/rofi/blob/main/theme/config1.rasi
 
-    extraConfig = {
-      scroll-method = 1;
-    };
+    extraConfig = { scroll-method = 1; };
 
-    theme = let  
-      inherit (config.lib.formats.rasi) mkLiteral;
-    in {  
+    theme = let inherit (config.lib.formats.rasi) mkLiteral;
+    in {
       "configuration" = {
         show-icons = true;
         display-drun = "";
         disable-history = false;
       };
 
-      "*" = {    
+      "*" = {
         font = "${theme.font}";
         text-color = mkLiteral "#${theme.foreground}";
-        background-color = mkLiteral "#${theme.background}ff";    
+        background-color = mkLiteral "#${theme.background}ff";
         active-background = mkLiteral "#${theme.color_first}ff";
-        urgent-background = mkLiteral "#ffcccbff"; #TODO theme
-        urgent-text-color = mkLiteral "#8b0000"; #TODO theme
+        urgent-background = mkLiteral "#ffcccbff"; # TODO theme
+        urgent-text-color = mkLiteral "#8b0000"; # TODO theme
         selected-background = mkLiteral "@active-background";
         selected-urgent-background = mkLiteral "@urgent-background";
         selected-active-background = mkLiteral "@active-background";
         separatorcolor = mkLiteral "@active-background";
 
         border-color = mkLiteral "#${theme.color_second}";
-        width = 512;  
-      };  
+        width = 512;
+      };
 
       "#window" = {
         background-color = mkLiteral "@background-color";
@@ -56,9 +52,7 @@
         padding = mkLiteral "1px";
       };
 
-      "#textbox" = {
-        text-color = mkLiteral "@text-color";
-      };
+      "#textbox" = { text-color = mkLiteral "@text-color"; };
 
       "#listview" = {
         spacing = mkLiteral "2px";
@@ -129,7 +123,12 @@
         spacing = 0;
         text-color = mkLiteral "@text-color";
         padding = mkLiteral "1px";
-        children = map mkLiteral [ "prompt" "textbox-prompt-colon" "entry" "case-indicator" ];
+        children = map mkLiteral [
+          "prompt"
+          "textbox-prompt-colon"
+          "entry"
+          "case-indicator"
+        ];
       };
 
       "#case-indicator" = {

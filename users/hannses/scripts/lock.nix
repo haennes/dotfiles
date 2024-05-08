@@ -1,5 +1,4 @@
-{ pkgs, theme, ... }:
-{
+{ pkgs, theme, ... }: {
   lock = pkgs.pkgs.writeShellScript "lock" ''
       swaylock \
     --screenshots \

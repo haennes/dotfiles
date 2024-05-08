@@ -1,19 +1,20 @@
 { pkgs, scripts, globals, config, lib, ... }:
-let 
-firefox_profiles = config.home-manager.users.hannses.programs.firefox.profiles;
-firefox_profiles_attr_names = with lib; (attrNames firefox_profiles);
-selector_str = with lib; concatStrings ( map(x: ''
-firefox ${x}
-'') firefox_profiles_attr_names);
-executor_str = with lib; concatStrings( map(x: ''
-    "firefox ${x}")
-        ${pkgs.firefox}/bin/firefox -p "${x}"
-        ;;
-    ''
-) firefox_profiles_attr_names);
+let
+  firefox_profiles =
+    config.home-manager.users.hannses.programs.firefox.profiles;
+  firefox_profiles_attr_names = with lib; (attrNames firefox_profiles);
+  selector_str = with lib;
+    concatStrings (map (x: ''
+      firefox ${x}
+    '') firefox_profiles_attr_names);
+  executor_str = with lib;
+    concatStrings (map (x: ''
+      "firefox ${x}")
+          ${pkgs.firefox}/bin/firefox -p "${x}"
+          ;;
+    '') firefox_profiles_attr_names);
 
-in
-{
+in {
   #TOOD change to use globals
   selector = pkgs.pkgs.writeShellScript "selector" ''
     DMENU="${globals.dmenu}"

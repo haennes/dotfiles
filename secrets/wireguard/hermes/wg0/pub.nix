@@ -1,3 +1,1 @@
-{
-key = "uAvzWD2CCrEMrPWjBk47MauPHyuMKmuYdAOZ1/ASliI=";
-}
+{ key = "uAvzWD2CCrEMrPWjBk47MauPHyuMKmuYdAOZ1/ASliI="; }

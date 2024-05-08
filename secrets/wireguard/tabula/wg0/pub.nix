@@ -1,3 +1,1 @@
-{
-  key = "UbefBQVmIzAb+HMXcVrr+njeuXTymnSOeXDrMmqNizQ=";
-}
+{ key = "UbefBQVmIzAb+HMXcVrr+njeuXTymnSOeXDrMmqNizQ="; }

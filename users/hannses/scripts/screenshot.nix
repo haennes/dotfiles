@@ -1,5 +1,4 @@
-{ pkgs, globals, ... }:
-{
+{ pkgs, globals, ... }: {
   screenshot = pkgs.pkgs.writeShellScript "screenshot" ''
     DMENU="${globals.dmenu}"
     screenshot_dir="$HOME/.screenshots"  #TODO globals

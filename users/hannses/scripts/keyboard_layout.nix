@@ -1,5 +1,4 @@
-{ pkgs, globals, ... }:
-{
+{ pkgs, globals, ... }: {
   keyboard_layout = pkgs.pkgs.writeShellScript "keyboard_layout" ''
     DMENU="${globals.dmenu}"
 

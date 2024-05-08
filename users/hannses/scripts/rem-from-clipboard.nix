@@ -1,10 +1,9 @@
-{ pkgs, globals, ... }:
-{
-    rem-from-clipboard = pkgs.pkgs.writeShellScript "rem-from-clipboard" ''
+{ pkgs, globals, ... }: {
+  rem-from-clipboard = pkgs.pkgs.writeShellScript "rem-from-clipboard" ''
 
-	DMENU="${globals.dmenu}"
-	cliphist="${pkgs.cliphist}/bin/cliphist"
+    DMENU="${globals.dmenu}"
+    cliphist="${pkgs.cliphist}/bin/cliphist"
 
-	$cliphist list | $DMENU | $cliphist delete 
-	'';
+    $cliphist list | $DMENU | $cliphist delete 
+  '';
 }

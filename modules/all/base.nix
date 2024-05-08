@@ -74,8 +74,8 @@ in {
         };
       } // simple_ip "porta" // simple_ip "hermes" // simple_ip "syncschlawiner"
         // simple_ip "syncschlawiner_mkhh" // simple_ip "tabula"
-        // simple_ip "thinkpad" // simple_ip "thinknew" // simple_ip "mainpc" // simple_ip "yoga"
-        // simple_ip "handy_hannses";
+        // simple_ip "thinkpad" // simple_ip "thinknew" // simple_ip "mainpc"
+        // simple_ip "yoga" // simple_ip "handy_hannses";
       publicKey = name:
         ((secrets.obtain_wireguard_pub { hostname = name; }).key);
       privateKeyFile = lib.mkIf (config.services.wireguard-wrapper.enable)
@@ -108,7 +108,7 @@ in {
         uni = {
           stefan_handy = ids.stefan_handy;
           sebastian_s_mac = ids.sebastian_s_mac;
-          sebastian_r_laptop  = ids.sebastian_r_laptop;
+          sebastian_r_laptop = ids.sebastian_r_laptop;
         };
       };
       folders = with devices;
@@ -151,13 +151,13 @@ in {
           "ThomasGalerie" = [ (servers) ];
           "website" = [ (all_pcs) "tabula" ];
           "Studium" = {
-          devices = [ (all_pcs // uni)  ]; 
-          paths = rec {
-            "mainpc" = "/home/hannses/Documents/Studium/Semester1";
-            "thinkpad" = mainpc;
-            "thinknew" = mainpc;
-            "yoga" = mainpc;
-          };
+            devices = [ (all_pcs // uni) ];
+            paths = rec {
+              "mainpc" = "/home/hannses/Documents/Studium/Semester1";
+              "thinkpad" = mainpc;
+              "thinknew" = mainpc;
+              "yoga" = mainpc;
+            };
           };
           #"website_mkhh" = [(all_pcs)  "website_mkhh" ];
         };
@@ -171,8 +171,10 @@ in {
           relaysEnabled = true;
         };
       };
-      key = lib.mkIf(config.services.syncthing.enable) config.age.secrets."syncthing_key_${config.networking.hostName}".path;
-      cert = lib.mkIf(config.services.syncthing.enable) config.age.secrets."syncthing_cert_${config.networking.hostName}".path;
+      key = lib.mkIf (config.services.syncthing.enable)
+        config.age.secrets."syncthing_key_${config.networking.hostName}".path;
+      cert = lib.mkIf (config.services.syncthing.enable)
+        config.age.secrets."syncthing_cert_${config.networking.hostName}".path;
     };
   } // (priv_key (config.networking.hostName));
 }

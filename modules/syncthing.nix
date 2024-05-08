@@ -1,4 +1,4 @@
-{ config, lib, pkgs,  ... }:
+{ config, lib, pkgs, ... }:
 with lib;
 with lib.lists;
 with lib.types;
@@ -7,11 +7,20 @@ let
   cfg = config.services.syncthing_wrapper;
   dev_name = cfg.dev_name;
   take_last_n = n: l: reverseList (take 2 (reverseList l));
-  dev_id_list_to_attr = l: { name = head l; value = { id = (last l); }; }; # [$device $id] -> $device = $id
+  dev_id_list_to_attr = l: {
+    name = head l;
+    value = { id = (last l); };
+  }; # [$device $id] -> $device = $id
 
-  ungroup = set: collect isList (mapAttrsRecursiveCond (as: !(isString as)) (vals: name: vals ++ [ name ]) set); # evals to a list of groups
-  devices_in_given_group = group_list: listToAttrs (map (l: dev_id_list_to_attr (take_last_n 2 l)) group_list);
-  devices_in_group = group_list: name: devices_in_given_group (filter (v: elem name v) group_list); # input is ungrouped returns a group list
+  ungroup = set:
+    collect isList
+    (mapAttrsRecursiveCond (as: !(isString as)) (vals: name: vals ++ [ name ])
+      set); # evals to a list of groups
+  devices_in_given_group = group_list:
+    listToAttrs (map (l: dev_id_list_to_attr (take_last_n 2 l)) group_list);
+  devices_in_group = group_list: name:
+    devices_in_given_group (filter (v: elem name v)
+      group_list); # input is ungrouped returns a group list
   all_devices = devices_in_given_group (ungroup cfg.devices);
   all_devices_but_me = removeAttrs all_devices [ dev_name ]; # {$name.id = $id}
 
@@ -229,32 +238,39 @@ in with lib; {
       openDefaultPorts = true;
       settings = {
         devices = all_devices;
-        folders = filterAttrs( n: v: elem dev_name v.devices) (mapAttrs (name: value: 
-            let val = if isList value then { 
-	      devices = value;
-              versioning = cfg.default_versioning;
-	    } else value;
-	    def_path = config.services.syncthing.dataDir + "/" + name;
-            in removeAttrs  (
-	    #{
-            #  versioning = cfg.default_versioning;
-	    # val seems to be a string
-            #}
-	    #//
-	    val
-	    // {
-              devices = flatten (map (dev:
-                if isString dev then
-                  lib.attrNames (devices_in_group (ungroup cfg.devices) dev)
-                else
-                  lib.attrNames (devices_in_given_group (ungroup dev))
-	      ) val.devices); # evals incorrectly
-              #path = mkIf (value ? paths)
+        folders = filterAttrs (n: v: elem dev_name v.devices) (mapAttrs
+          (name: value:
+            let
+              val = if isList value then {
+                devices = value;
+                versioning = cfg.default_versioning;
+              } else
+                value;
+              def_path = config.services.syncthing.dataDir + "/" + name;
+            in removeAttrs (
+              #{
+              #  versioning = cfg.default_versioning;
+              # val seems to be a string
+              #}
+              #//
+              val // {
+                devices = flatten (map (dev:
+                  if isString dev then
+                    lib.attrNames (devices_in_group (ungroup cfg.devices) dev)
+                  else
+                    lib.attrNames (devices_in_given_group (ungroup dev)))
+                  val.devices); # evals incorrectly
+                #path = mkIf (value ? paths)
                 #(mkIf (value.paths ? "${dev_name}") value.paths."${dev_name}");
-	      path = if (val ? paths) then ( if (val.paths ? "${dev_name}") then val.paths."${dev_name}" else def_path) else def_path;
-	      #path = def_path;
-            }) [ "paths" ]
-        ) cfg.folders);
+                path = if (val ? paths) then
+                  (if (val.paths ? "${dev_name}") then
+                    val.paths."${dev_name}"
+                  else
+                    def_path)
+                else
+                  def_path;
+                #path = def_path;
+              }) [ "paths" ]) cfg.folders);
         ##devices = lib.mapAttrs (name: value: {id = value;}) devices;
         ##folders =
         ##lib.filterAttrs (n: v: builtins.elem dev_name v.devices) folders_list;

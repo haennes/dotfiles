@@ -1,6 +1,5 @@
-{ pkgs, scripts, globals, ... }:
-{
-    wallpaper = pkgs.pkgs.writeShellScript "wallpaper" ''
+{ pkgs, scripts, globals, ... }: {
+  wallpaper = pkgs.pkgs.writeShellScript "wallpaper" ''
       DMENU="${globals.dmenu}"
       startingDir="$HOME/.wallpapers"
 
@@ -138,7 +137,7 @@
     id=($(ps aux | grep "/$script_name" | awk '{print $2}'))
     first_id=''${id[0]}
     # dont kill process if it is the current process
-    if [ "$first_id" != "''$$" ]; then
+    if [ "$first_id" != "$$" ]; then
         kill $first_id
     fi
 

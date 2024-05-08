@@ -2,10 +2,10 @@
 
   imports = [ (modulesPath + "/virtualisation/proxmox-image.nix") ];
 
-#  config.boot.loader = {
-#    systemd-boot.enable = true;
-#    efi.canTouchEfiVariables = true;
-#  };
+  #  config.boot.loader = {
+  #    systemd-boot.enable = true;
+  #    efi.canTouchEfiVariables = true;
+  #  };
 
   options.proxmox = {
     cores = 2;
