@@ -34,5 +34,6 @@
     cifs-utils
     yubikey-manager-qt
     bluetuith
+    btop
   ];
 }
