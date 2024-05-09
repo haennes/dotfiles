@@ -213,7 +213,7 @@ with inputs; {
         #"$mod CTRL, SHIFT, equal, resizeactive, 0 10"
         #"$mod CTRL, minus, resizeactive, 0 -10"
         "$mod, P, togglesplit"
-        "$mod, S, exec, $sccpa"
+        "$mod SHIFT, S, exec, $sccpa"
       ];
 
       # mouse
