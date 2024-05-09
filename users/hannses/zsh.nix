@@ -7,7 +7,7 @@ in {
   programs.zsh = {
     enable = true;
     shellAliases = rec {
-      dticket = "feh -F ${home}/Documents/DeutschlandTicket.jpg";
+      dticket = "${pkgs.zathura}/bin/zathura --mode=fullscreen ${home}/Documents/DeutschlandTicket.pdf";
       ticket = dticket;
       db = dticket;
 
