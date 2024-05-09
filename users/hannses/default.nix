@@ -1,5 +1,6 @@
 { config, pkgs, addons, nixvim, nixpkgs-unstable, ... }: {
   imports = [
+    ./wpaperd.nix
     ./fonts.nix
     ./gnome_config.nix
     ./hyprland.nix
