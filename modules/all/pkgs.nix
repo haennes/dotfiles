@@ -12,6 +12,7 @@
     lf
     ncdu
     nmap
+    lsof
     #TODO remove this after using syncthingd
     syncthing
     wget
