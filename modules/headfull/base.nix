@@ -12,7 +12,7 @@ in {
     "hannses" = {
       isNormalUser = true;
       description = "hannses";
-      extraGroups = [ "networkmanager" "wheel" "family" "video" ];
+      extraGroups = [ "networkmanager" "wheel" "family" "video" "libvirtd"];
     };
   } // (gen_user "mum") // (gen_user "dad");
 
@@ -33,6 +33,9 @@ in {
   #  alsa.enable = true;
   #  alsa.support32Bit = true;
   #};
+
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true; #};
 
   programs.hyprland.enable = true;
 
