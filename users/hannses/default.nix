@@ -58,6 +58,7 @@
     feh # for dticket cmd
     iamb
     element-desktop
+    openai-whisper-cpp
 
     # doesnt work atm
     #sweet
