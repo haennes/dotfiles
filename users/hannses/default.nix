@@ -143,8 +143,14 @@
   };
   programs.git = {
     enable = true;
+    lfs.enable = true;
     userName = "haennes";
     userEmail = "hannes.hofmuth@gmail.com";
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
+      };
+    };
   };
   #programs.gitui.enable = true; #conflicts with following line
   home.file.".config/gitui/key_bindings.ron".text =
