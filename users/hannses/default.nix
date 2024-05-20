@@ -15,6 +15,7 @@
     ./vim.nix
     ./firefox.nix
     ./ssh.nix
+    ./virtualization.nix
     #(import ./firefox.nix{pkgs=pkgs; config=config; addons=addons;})
   ];
   # Home Manager needs a bit of information about you and the

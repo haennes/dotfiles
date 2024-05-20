@@ -13,9 +13,9 @@ in {
       globals = import ../../users/hannses/globals.nix { inherit pkgs; };
       scripts = import ../../users/hannses/scripts { inherit pkgs lib config; };
       gnome_enable = config.services.xserver.desktopManager.gnome.enable;
+      virt-manager_enable = config.programs.virt-manager.enable;
     };
     users = build_user "hannses";
     #// build_user "mum_dad";
   };
 }
-
