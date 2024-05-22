@@ -1,4 +1,4 @@
 { config, lib, ... }: {
-  imports = [ ./base.nix ./pkgs.nix ];
+  imports = [ ./base.nix ./pkgs.nix ./tasks.nix ];
 
 }

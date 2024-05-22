@@ -133,6 +133,12 @@ in {
           "3d_printing" = [ (all_pcs // servers) ];
           "Documents" = [ (all_pcs // servers) ];
           "Notes" = [ (all_pcs // servers) ];
+          "tasks" = {
+            devices = [ (all_pcs // servers) ];
+            paths = {
+              syncschlawiner = "/data/syncthing/hannses/tasks";
+            };
+          };
           "Downloads" = [ (all_pcs // servers) ];
           "Music" = [ (all_pcs // servers) ];
           "Pictures" = [ (servers // all_pcs) ];
