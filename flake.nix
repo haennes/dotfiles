@@ -48,6 +48,9 @@
     syncthing-wrapper = {
       url = "git+file:///home/hannses/programming/nix/syncthing-wrapper";
     };
+    tasks_md = {
+      url = "git+file:///home/hannses/programming/nix/tasks";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, nixos-generators, deploy-rs
@@ -194,6 +197,7 @@
             ./systems/${hostname}
             ./modules/headfull
             home-manager.nixosModules.home-manager
+            tasks_md.nixosModules.default
             (import ./modules/home_manager)
             ./modules/gnome
             {
