@@ -146,7 +146,10 @@
     lfs.enable = true;
     userName = "haennes";
     userEmail = "hannes.hofmuth@gmail.com";
-    signing.signByDefault = true;
+    signing = {
+      key = null;
+      signByDefault = true;
+    };
     extraConfig = {
       init = {
         defaultBranch = "main";
@@ -173,7 +176,7 @@
   enable = true;
   };
   services.gpg-agent = {
-  pinentryPackage = pkgs.pinentry-tty;
+  pinentryPackage = pkgs.pinentry-curses;
   enable = true;
   };
 }
