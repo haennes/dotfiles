@@ -55,7 +55,7 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, nixos-generators, deploy-rs
     , nixos-dns, rust-overlay, disko, nur, nixvim, agenix, flake-utils-plus
-    , simple-nixos-mailserver, wireguard-wrapper, syncthing-wrapper, ... }:
+    , simple-nixos-mailserver, wireguard-wrapper, syncthing-wrapper, tasks_md, ... }:
     let
       system = "x86_64-linux";
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
