@@ -12,10 +12,11 @@ in {
     "hannses" = {
       isNormalUser = true;
       description = "hannses";
-      extraGroups = [ "networkmanager" "wheel" "family" "video" "libvirtd"];
+      extraGroups = [ "networkmanager" "wheel" "family" "video" "libvirtd" "docker"];
     };
   } // (gen_user "mum") // (gen_user "dad");
 
+  users.extraGroups.vboxusers.members = [ "hannses" ];
   users.groups = { "family".members = [ "mum" "dad" "hannses" ]; };
   hardware.bluetooth.enable = true;
 
@@ -35,6 +36,12 @@ in {
   #};
 
   virtualisation.libvirtd.enable = true;
+
+  virtualisation.docker.enable = true;
+
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+
   programs.virt-manager.enable = true; #};
 
   programs.hyprland.enable = true;

@@ -35,5 +35,7 @@
     yubikey-manager-qt
     bluetuith
     btop
+    docker
+    unzip
   ];
 }
