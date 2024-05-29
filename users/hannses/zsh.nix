@@ -76,4 +76,5 @@ in {
     enableZshIntegration = true;
     nix-direnv = { enable = true; };
   };
+  programs.thefuck.enable = true;
 }
