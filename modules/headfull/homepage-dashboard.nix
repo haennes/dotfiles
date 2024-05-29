@@ -25,6 +25,14 @@ in
           style = "row";
           columns = auto_columns "Homepage";
         };
+        Uni = {
+          style = "row";
+          columns = auto_columns "Uni";
+        };
+        FSIM = {
+          style = "row";
+          columns = auto_columns "FSIM";
+        };
       };
     };
     services = [
@@ -48,6 +56,61 @@ in
 
           }
           { "nextcloud" = { href = "http://cloud.hannses.de/"; }; }
+          { "proton" = { href = "https://mail.proton.me/u/2/inbox"; }; }
+          { "bahn expert" = { href = "https://bahn.expert/routing"; }; }
+        ];
+      }
+      {
+        "Uni" = [
+          {
+            "homepage" = {
+              href = "https://oth-regensburg.de/";
+            };
+          }
+          {
+            "units" = {
+              href = "https://kephiso.webuntis.com/WebUntis/index.do#/basic/login";
+            };
+          }
+          {
+            "mensa" = {
+              href = "https://www.imensa.de/regensburg/mensa-oth-regensburg/index.html";
+            };
+          }
+          {
+            "elearning" = {
+              href = "https://elearning.oth-regensburg.de/";
+            };
+          }
+          {
+            "hisione" = {
+              href = "https://hisinone-studium.oth-regensburg.de/qisserver/pages/cs/sys/portal/hisinoneStartPage.faces";
+            };
+          }
+        ];
+      }
+      {
+        "FSIM" = [
+          {
+            "fsim" = {
+              href = "https://www.fsim-ev.de/";
+            };
+          }
+          {
+            "cloud fsim" = {
+              href = "https://cloud.fsim-ev.de/";
+            };
+          }
+        ];
+      }
+      {
+        "bahn.expert" = [
+        {
+          "buchloe-regensburg" = { href = "https://bahn.expert/routing/8000057/8000309";};
+        }
+        {
+          "regensburg-bluchoe" = { href = "https://bahn.expert/routing/8000309/8000057";};
+        }
         ];
       }
       #{
