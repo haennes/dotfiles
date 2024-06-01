@@ -3,7 +3,7 @@ services.tasks_md = {
   enable = true;
   conf =
   map(item: item // {
-    domain = "localhost";
+    domain = "tasks.localhost";
     config_dir = "/home/hannses/tasks/${item.title}/config";
     tasks_dir = "/home/hannses/tasks/${item.title}/tasks";
     base_path = "/${item.title}";
