@@ -2,6 +2,7 @@
 let
   proxmox_password = import ../../secrets/proxmox_password.nix;
   nc_password = import ../../secrets/nc_password.nix;
+  link = import ../../secrets/tt_link.nix;
   cfg = config.services.homepage-dashboard;
   auto_columns = name:
     lib.length (lib.elemAt (lib.attrValues
@@ -62,6 +63,10 @@ in {
           style = "row";
           columns = auto_columns "Server";
         };
+        "TT" = {
+          style = "row";
+          columns = auto_columns "TT";
+        };
       };
     };
     services = let tasks_md = config.services.tasks_md;
@@ -80,14 +85,14 @@ in {
           {
             "syncschlawiner" = rec {
               icon = "si-syncthing-#0891D1";
-              href = "http://localhost:8385";
+              href = "http://s.sync.localhost";
               siteMonitor = href;
             };
           }
           {
             "local" = rec {
               icon = "si-syncthing-#0891D1";
-              href = "http://localhost:8384";
+              href = "http://sync.localhost";
               siteMonitor = href;
             };
           }
@@ -120,8 +125,30 @@ in {
         ];
       }
       {
+        "TT" = [
+        {
+          "Trainingskalender" = {
+            icon = "mdi-calendar-month-#FFFFFF";
+            href = link.cal;
+          };
+
+        }
+        {
+          "click-TT" = {
+            icon = "https://www.mytischtennis.de/favicon.ico";
+            href = link.click_tt;
+          };
+        }
+        ];
+      }
+      {
         "Uni" = [
-          { "homepage" = { href = "https://oth-regensburg.de/"; }; }
+          {
+            "homepage" = {
+              icon = "http://cdn.localhost/OTH-logo.jpg";
+              href = "https://oth-regensburg.de/";
+            };
+          }
           {
             "units" = {
               icon = "https://kephiso.webuntis.com/favicon.ico";
@@ -215,6 +242,7 @@ in {
       {
         "Server" = [{
           "PVE" = {
+            icon = "si-proxmox-#E57000";
             href = "http://localhost:8006";
             siteMonitor = "https://127.0.0.1:8006/";
             statusStyle = "dot";
