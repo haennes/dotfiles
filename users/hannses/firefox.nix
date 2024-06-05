@@ -40,6 +40,7 @@ in {
       ublock-origin
       floccus
       keepassxc-browser
+      darkreader
     ];
     search = {
       force = true;
