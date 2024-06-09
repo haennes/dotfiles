@@ -47,6 +47,7 @@
     fritzing
     fontforge-gtk
     lapce
+    jetbrains.clion #fix debugging c in vim at some point
     #    anki
     #    texmaker
     musescore
@@ -59,6 +60,7 @@
     iamb
     element-desktop
     openai-whisper-cpp
+    ffmpeg
 
     # doesnt work atm
     #sweet
