@@ -28,6 +28,8 @@ in {
       oth = "cd ${home}/Documents/Studium/Semester1";
       down = "cd ${home}/Downloads";
 
+      pro = "cd ${home}/programming";
+
       pg = "${oth}/PG1";
       ma = "${oth}/MA1";
       ph = "${oth}/PH1";
