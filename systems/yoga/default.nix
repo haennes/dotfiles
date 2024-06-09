@@ -22,6 +22,7 @@
     dataDir = "/home/hannses";
     user = "hannses";
   };
+  services.wireguard-wrapper.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
