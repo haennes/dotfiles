@@ -21,9 +21,6 @@
     tldr
     bc
     usbutils
-    arduino
-    arduinoOTA
-
     git
     sshfs
     deploy-rs

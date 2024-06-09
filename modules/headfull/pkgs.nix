@@ -37,5 +37,7 @@
     btop
     docker
     unzip
+    arduino
+    arduinoOTA
   ];
 }
