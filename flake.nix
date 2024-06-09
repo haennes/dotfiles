@@ -9,7 +9,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland/47b087950dcfaf6fdda63c4d5f13efda3508a6fb?submodules=1"; #works
+    };
     #split-monitor-workspaces = {
     #  url = "github:bivsk/split-monitor-workspaces/bivsk";
     #  inputs.hyprland.follows = "hyprland";
