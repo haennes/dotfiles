@@ -178,7 +178,7 @@
   enable = true;
   };
   services.gpg-agent = {
-  pinentryPackage = pkgs.pinentry-curses;
+  pinentryPackage = pkgs.pinentry-tty;
   enable = true;
   };
 }
