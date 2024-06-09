@@ -134,7 +134,7 @@ in {
           }];
           icon =
             "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "<npkgs" ];
+          definedAliases = [ "<npkgs" "<ghnpgks" "<ghnp" ];
         };
         "NixOS Wiki" = {
           urls = [{
