@@ -20,7 +20,7 @@ with inputs; {
       # TODO implement screenshot dmenu script
       # TODO fix screenshot thing
 
-      exec-once = "${scripts.startup}";
+      exec-once =  scripts.startup;
 
       monitor = [
         ",preferred,auto,1"
