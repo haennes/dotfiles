@@ -27,7 +27,7 @@
     gcc
     ruff
     helix
-    loc
+    tokei
     permit_pkgs.obsidian
     wl-clipboard
     zoom-us
