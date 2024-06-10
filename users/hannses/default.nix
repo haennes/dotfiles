@@ -93,6 +93,7 @@
     extensions = with pkgs.vscode-extensions; [
       mkhl.direnv
       matklad.rust-analyzer
+      #rust-lang.rust-analyzer
       serayuzgur.crates
       tamasfe.even-better-toml
       usernamehw.errorlens
