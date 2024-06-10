@@ -1,7 +1,7 @@
 let
 
   secrets = import ../../lib/wireguard;
-  ids = import ../../modules/syncthing.key.nix;
+  ids = import ../../secrets/not_so_secret/syncthing.key.nix;
   priv_key = hostname: secrets.age_obtain_wireguard_priv { inherit hostname; };
 in { config, pkgs, lib, ips, vps ? false, proxmox ? false, ... }:
 with lib;
