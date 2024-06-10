@@ -13,15 +13,11 @@
     efi.canTouchEfiVariables = true;
   };
 
-  services.syncthing-wrapper = { enable = true; };
-  services.syncthing =
-    let dev_name = config.services.syncthing-wrapper.dev_name;
-    in {
-      dataDir = "/home/hannses";
-      key = config.age.secrets."syncthing_key_${dev_name}".path;
-      cert = config.age.secrets."syncthing_cert_${dev_name}".path;
-    };
-
+  services.syncthing_wrapper = { enable = true; };
+  services.syncthing = {
+    dataDir = "/home/hannses";
+    user = "hannses";
+  };
   services.wireguard-wrapper.enable = true;
 
   hardware.openrazer.enable = true;
