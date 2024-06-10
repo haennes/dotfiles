@@ -3,7 +3,7 @@ let
   home = config.home.homeDirectory;
   dotfiles_path = "${home}/.dotfiles";
 in {
-  home.packages = with pkgs; [ nom eza ];
+  home.packages = with pkgs; [ nom eza tokei ];
   programs.zsh = {
     enable = true;
     shellAliases = rec {
@@ -11,6 +11,7 @@ in {
       ticket = dticket;
       db = dticket;
 
+      loc = "${pkgs.tokei}/bin/tokei";
       #nix = "nom";
       nix-build = "nom-build";
       nix-shell = "nom-shell";
