@@ -157,6 +157,7 @@
       init = {
         defaultBranch = "main";
       };
+      push.autoSetupRemote = true;
     };
   };
   #programs.gitui.enable = true; #conflicts with following line
@@ -173,7 +174,6 @@
     icon = ../../ext_configs/icons/zellij.ico;
     terminal = false;
   };
-  home.file.".face".source = ./.face;
 
   programs.gpg = {
   enable = true;
