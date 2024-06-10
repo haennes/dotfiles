@@ -1,8 +1,8 @@
 { lib, config, ... }:
 let
-  proxmox_password = import ../../secrets/proxmox_password.nix;
-  nc_password = import ../../secrets/nc_password.nix;
-  link = import ../../secrets/tt_link.nix;
+  proxmox_password = import ../../secrets/not_so_secret/proxmox_password.nix;
+  nc_password = import ../../secrets/not_so_secret/nc_password.nix;
+  link = import ../../secrets/not_so_secret/tt_link.nix;
   cfg = config.services.homepage-dashboard;
   auto_columns = name:
     lib.length (lib.elemAt (lib.attrValues
