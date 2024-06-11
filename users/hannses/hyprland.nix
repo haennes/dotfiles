@@ -16,16 +16,12 @@ with inputs; {
       "$runprompt" = "${scripts.selector}";
       "$volume" = "${scripts.volume}";
       "$brightness" = "${scripts.brightness}";
-      "$sccpa" = "${scripts.screenshot-fast}";
       # TODO implement screenshot dmenu script
-      # TODO fix screenshot thing
 
       exec-once =  scripts.startup;
 
       monitor = [
         ",preferred,auto,1"
-        # rotate my verticle monitor
-        "desc:Samsung Electric Company S24F350 H4ZJ203739,preferred,auto,1,transform,1"
       ];
 
       input = {
@@ -44,7 +40,6 @@ with inputs; {
         gaps_in = 5;
         gaps_out = 10;
         border_size = 2;
-        # TODO change to orange?
         "col.active_border" =
           "rgba(${theme.color_first}ee) rgba(${theme.color_second}ee) 45deg";
         "col.inactive_border" = "rgba(${theme.background}aa)";
@@ -213,7 +208,7 @@ with inputs; {
         #"$mod CTRL, SHIFT, equal, resizeactive, 0 10"
         #"$mod CTRL, minus, resizeactive, 0 -10"
         "$mod, P, togglesplit"
-        "$mod SHIFT, S, exec, $sccpa"
+        "$mod SHIFT, S, exec, grimblast copy area"
       ];
 
       # mouse
