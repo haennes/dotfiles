@@ -1,4 +1,4 @@
-{ pkgs, config, modulesPath, ... }: {
+{ pkgs, config, modulesPath, lib, ... }: {
 
   imports = [ (modulesPath + "/virtualisation/proxmox-image.nix") ];
 
@@ -7,10 +7,15 @@
   #    efi.canTouchEfiVariables = true;
   #  };
 
-  options.proxmox = {
-    cores = 2;
-    memory = 2048;
-    name = "${config.networking.hostName}";
+  config.proxmox = {
+
+    qemuConf = {
+      #cores = 2;
+      #memory = 2048;
+      name = "${config.networking.hostName}";
+    };
+
+    cloudInit.enable = false;
 
   };
 }
