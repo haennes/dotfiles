@@ -16,6 +16,7 @@ with inputs; {
       "$runprompt" = "${scripts.selector}";
       "$volume" = "${scripts.volume}";
       "$brightness" = "${scripts.brightness}";
+      "$sccpa" = "${scripts.screenshot-fast}";
       # TODO implement screenshot dmenu script
 
       exec-once =  scripts.startup;
@@ -208,7 +209,7 @@ with inputs; {
         #"$mod CTRL, SHIFT, equal, resizeactive, 0 10"
         #"$mod CTRL, minus, resizeactive, 0 -10"
         "$mod, P, togglesplit"
-        "$mod SHIFT, S, exec, grimblast copy area"
+        "$mod SHIFT, S, exec, $sccpa"
       ];
 
       # mouse
