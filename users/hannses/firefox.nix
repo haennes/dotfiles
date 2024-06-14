@@ -64,7 +64,6 @@ in {
               }
             ];
           }];
-          iconUpdateURL = nix_favicon;
           icon =
             "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "<np" ];
@@ -140,8 +139,11 @@ in {
           urls = [{
             template = "https://nixos.wiki/index.php?search={searchTerms}";
           }];
-          iconUpdateURL = nix_favicon;
-          inherit updateInterval;
+          #iconUpdateURL = nix_favicon;
+          #inherit updateInterval;
+          icon =
+            "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
           definedAliases = [ "<nw" ];
         };
 
@@ -150,8 +152,11 @@ in {
             template =
               "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
           }];
-          iconUpdateURL = nix_favicon;
-          inherit updateInterval;
+          #iconUpdateURL = nix_favicon;
+          #inherit updateInterval;
+          icon =
+            "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
           definedAliases = [ "<ho" ];
         };
 
@@ -231,7 +236,7 @@ in {
             template = "https://simpleicons.org/?q={searchTerms}";
           }];
           definedAliases = [ "<si" "<i2" ];
-          iconUpdateURL = favicon "simpleicons.org";
+          iconUpdateURL = favicon "simpleicons.org/images";
           inherit updateInterval;
         };
         "fdroid" = {
@@ -303,7 +308,7 @@ in {
             template =
               "https://www.thingiverse.com/search?q={searchTerms}&page=1";
           }];
-          iconUpdateURL = "https://www.thingiverse.com/favicon.ico";
+          iconUpdateURL = favicon "www.thingiverse.com";
           inherit updateInterval;
           definedAliases = [ "<thing" ];
         };
@@ -313,7 +318,13 @@ in {
             template =
               "https://www.ecosia.org/search?method=index&q={searchTerms}";
           }];
-          iconUpdateURL = "https://www.ecosia.org/favicon.ico";
+          iconUpdateURL = favicon "www.ecosia.org";
+          inherit updateInterval;
+        };
+        "bahnhof.de" = {
+          urls = [{template = "https://www.bahnhof.de/suche?term={searchTerms}";}];
+          iconUpdateURL = favicon "www.bahnhof.de";
+          definedAliases = ["<bahnhof" "<hbf"];
           inherit updateInterval;
         };
 
