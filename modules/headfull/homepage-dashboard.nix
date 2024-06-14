@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, sshkeys, ... }:
 let
   proxmox_password = import ../../secrets/not_so_secret/proxmox_password.nix;
   nc_password = import ../../secrets/not_so_secret/nc_password.nix;
@@ -11,8 +11,20 @@ let
   icon_is_favicon = old: {
   };
 in {
-  #services.autossh.sessions = {
-  #};
+  services.autossh.sessions = [
+  {
+    user = "hannses";
+    name = "pve";
+    monitoringPort = 20000;
+    extraArguments = "-v -A -N -o \"IdentitiesOnly=yes\" -i ${sshkeys.forward_path} forward_g_pve";
+  }
+  {
+    user = "hannses";
+    name = "syncschlawiner";
+    monitoringPort = 20002;
+    extraArguments = "-v -A -N -o \"IdentitiesOnly=yes\" -i ${sshkeys.forward_path} forward_g_syncschlawiner";
+  }
+  ];
   services.nginx.virtualHosts."cdn.localhost".locations."/" = {
   root = "/local_cdn";
   };
