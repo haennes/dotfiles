@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, config, nur, ips, ... }:
+{ inputs, lib, pkgs,  config, nur, ips, sshkeys, ... }:
 let build_user = name: { ${name} = import ../../users/${name}; };
 in {
   home-manager = {
@@ -9,6 +9,7 @@ in {
       inherit (inputs) nixvim;
       inherit inputs;
       inherit ips;
+      inherit sshkeys;
       theme = import ../../users/hannses/theme.nix;
       globals = import ../../users/hannses/globals.nix { inherit pkgs; };
       scripts = import ../../users/hannses/scripts { inherit pkgs lib config; };
