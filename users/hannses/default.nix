@@ -40,6 +40,7 @@
     git-crypt # should be obsolete
     gnupg
     signal-desktop
+    scli #signal cli
     gnome.dconf-editor
     poppler_utils
     shortwave
