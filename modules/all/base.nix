@@ -90,10 +90,12 @@ in {
       };
       devices = rec {
         all_pcs = {
-          thinkpad = ids.thinkpad;
           thinknew = ids.thinknew;
           mainpc = ids.mainpc;
           yoga = ids.yoga;
+        };
+        thinkpad = {
+          thinkpad = ids.thinkpad;
         };
         all_handys = {
           handyHannes = ids.handyHannes;
@@ -115,7 +117,7 @@ in {
         with devices.all_handys;
         with devices.all_servers; {
           "Family" = {
-            devices = (all_pcs // servers);
+            devices = [(all_pcs // servers) "thinkpad"];
             paths = {
               "mainpc" = "/home/Family";
               "thinkpad" = "/home/Family";
@@ -124,7 +126,7 @@ in {
             };
           };
           "Passwords" = {
-            devices = (all_pcs // all_handys // servers);
+            devices = [(all_pcs // all_handys // servers) "thinkpad"];
             versioning = {
               type = "simple";
               params.keep = "100";
