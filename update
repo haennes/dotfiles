@@ -1,3 +1,1 @@
-#!/bin/sh
-nix flake update --commit-lock-file
-./apply
+nix run github:haennes/nix-update-input/safe#
