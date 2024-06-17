@@ -12,6 +12,7 @@
     ./dunst.nix
     ./rofi.nix
     ./pqiv.nix # images
+    ./vimiv.nix # images
     ./vim.nix
     ./firefox.nix
     ./ssh.nix
