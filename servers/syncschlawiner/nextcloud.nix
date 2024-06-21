@@ -44,7 +44,7 @@ with lib; {
     extraApps = with config.services.nextcloud.package.packages.apps; {
 
       inherit contacts calendar deck groupfolders maps bookmarks cookbook
-        cospend forms mail notes polls;
+        cospend forms notes polls;
     };
     # extraAppsEnable = true;
     #notify_push.enable = true;
