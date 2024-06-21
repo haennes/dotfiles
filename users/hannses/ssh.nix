@@ -136,6 +136,11 @@ in with ips; {
           host.port = 443;
           host.address = "127.0.0.1";
         }
+        {
+          bind.port = 9090;
+          host.port = 8081;
+          host.address = "127.0.0.1";
+        }
       ];
     } // local_global {
       name = "syncschlawiner_mkhh";

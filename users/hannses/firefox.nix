@@ -41,6 +41,7 @@ in {
       floccus
       keepassxc-browser
       darkreader
+      ipfs-companion
     ];
     search = {
       force = true;
