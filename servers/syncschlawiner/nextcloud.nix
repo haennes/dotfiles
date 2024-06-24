@@ -35,7 +35,7 @@ with lib; {
       ];
     };
 
-    maxUploadSize = "4G";
+    maxUploadSize = config.nextcloud_max_size ;
     #notify_push.enable = true;
     #configureRedis = true;
     #caching.redis = true;

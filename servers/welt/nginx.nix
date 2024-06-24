@@ -42,6 +42,9 @@ in {
   (create_simple_proxy_with_domain {
     fqdn = "cloud.hannses.de";
     target_ip = ips.syncschlawiner.wg0;
+    custom_settings = {
+    extraConfig = "client_max_body_size ${config.nextcloud_max_size };";
+    };
   })
   #(create_simple_proxy_with_domain{fqdn = "mail.hannses.de"; target_ip = ips.tabula.wg0;})
   (create_simple_proxy_with_domain {
