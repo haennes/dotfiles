@@ -86,6 +86,7 @@
     lemurs # TODO fix
     ripdrag
 
+    fend
     gnomeExtensions.dash-to-dock
     gnomeExtensions.user-themes
   ];
