@@ -44,6 +44,7 @@
     scli #signal cli
     gnome.dconf-editor
     poppler_utils
+    pdftk
     shortwave
     anki
     fritzing

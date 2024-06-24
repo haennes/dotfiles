@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   home = config.home.homeDirectory;
   dotfiles_path = "${home}/.dotfiles";
@@ -6,12 +6,39 @@ in {
   home.packages = with pkgs; [ nom eza tokei ];
   programs.zsh = {
     enable = true;
-    shellAliases = rec {
-      dticket = "${pkgs.zathura}/bin/zathura --mode=fullscreen ${home}/Documents/DeutschlandTicket.pdf";
-      ticket = dticket;
-      db = dticket;
+    shellAliases =
+    let
+      deutschland_ticket_pdf = pkgs.writeShellScriptBin "deutschland_ticket_pdf"
+        "${pkgs.zathura}/bin/zathura --mode=fullscreen ${home}/Documents/DeutschlandTicket.pdf";
+      deutschland_ticket_firefox = pkgs.writeShellScriptBin "deutschland_ticket_firefox"
+        "${pkgs.firefox}/bin/firefox --new-window https://dticket-fuer-studenten.rvv.de/account/tickets";
+      deutschland_ticket_screenshot = pkgs.writeShellScriptBin "deutschland_ticket_screenshot"
+        "${pkgs.feh}/bin/feh -FZ ${home}/Documents/DeutschlandTicket.png";
+      dbui_script = pkgs.writeShellScriptBin "dbui" ''
+        input=$( \
+          echo "${lib.concatLines ["browser" "pdf" "screenshot" ]}" \
+          | ${pkgs.fzf}/bin/fzf)
+        case $input in
+          browser)
+            ${deutschland_ticket_firefox}/bin/deutschland_ticket_firefox
+          ;;
+          pdf)
+            ${deutschland_ticket_pdf}/bin/deutschland_ticket_pdf
+          ;;
+          screenshot)
+            ${deutschland_ticket_screenshot}/bin/deutschland_ticket_screenshot
+          ;;
+        esac
+      '';
+
+      aliases = ["dticket" "ticket" "db" ];
+    in
+    rec
+    {
+      dbui = "${dbui_script}/bin/dbui";
 
       loc = "${pkgs.tokei}/bin/tokei";
+      bc = "${pkgs.fend}/bin/fend";
       #nix = "nom";
       nix-build = "nom-build";
       nix-shell = "nom-shell";
@@ -50,7 +77,24 @@ in {
 
       # vim keybindings
       ":q" = "exit";
-    };
+    }
+    // lib.listToAttrs (lib.flatten( lib.lists.map(name:
+    [
+    {
+      name = "${name}_bak";
+      value = "${deutschland_ticket_pdf}/bin/deutschland_ticket_pdf";
+    }
+    {
+      name = "${name}_bak_bak" ;
+      value = "${deutschland_ticket_screenshot}/bin/deutschland_ticket_screenshot";
+    }
+    {
+      name = name;
+      value = "${deutschland_ticket_firefox}/bin/deutschland_ticket_firefox";
+    }
+    ]
+    ) aliases))
+    ;
     initExtra = ''
       mkcdir ()
         {
