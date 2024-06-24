@@ -1,2 +1,4 @@
 #!/bin/sh
+pushd ~/.dotfiles
 nix repl --inputs-from .
+popd
