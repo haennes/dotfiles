@@ -1,1 +1,1 @@
-nix run github:haennes/nix-update-input/safe#
+nix run github:haennes/nix-update-input/cycle\#update-apply-cycle
