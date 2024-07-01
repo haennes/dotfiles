@@ -72,8 +72,7 @@ in {
 
       # config apply & build
       cfg_apply = "${dotfiles_path}/apply";
-      cfg_build = "${dotfiles_path}/build";
-      cfg_repl = "${dotfiles_path}/repl";
+      cfg_update = "pushd ${dotfiles_path} && ${dotfiles_path}/update && popd";
 
       # vim keybindings
       ":q" = "exit";
