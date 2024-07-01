@@ -82,6 +82,12 @@ in with ips; {
     addKeysToAgent = "1h";
     enable = true;
     matchBlocks = {
+      "pve_tabula" = {
+        user = "root";
+        hostname = pve.vmbr0;
+        proxyJump = "m_tabula";
+        localForwards = [ (simple_forward 8006) ];
+      };
       "welt" = {
         user = "root";
         hostname = "hannses.de";
