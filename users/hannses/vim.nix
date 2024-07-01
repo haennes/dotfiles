@@ -49,6 +49,9 @@
       }
     ];
     plugins = {
+      neogit = {
+        enable = true;
+      };
       typst-vim = {
         enable = true;
         settings.cmd = "${scripts.typst-live-custom}";
