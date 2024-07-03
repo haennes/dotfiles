@@ -40,7 +40,6 @@ in {
   (create_simple_proxy_with_domain {
     fqdn = "cloud.hannses.de";
     target_ip = ips.syncschlawiner.wg0;
-    https = true;
     custom_settings = {
     extraConfig = "client_max_body_size ${config.nextcloud_max_size };";
     };
