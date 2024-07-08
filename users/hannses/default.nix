@@ -14,6 +14,7 @@
     ./pqiv.nix # images
     ./vimiv.nix # images
     ./vim.nix
+    ./yazi
     ./firefox.nix
     ./ssh.nix
     ./virtualization.nix

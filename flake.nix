@@ -41,6 +41,13 @@
       url = "github:nix-community/nixvim";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-yazi-plugins = {
+      #url = "github:lordkekz/nix-yazi-plugins";
+      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins/";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     agenix = {
       url = "github:ryantm/agenix";
       #optional:
@@ -56,10 +63,10 @@
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, nixos-generators, deploy-rs
-    , nixos-dns, rust-overlay, disko, nur, nixvim, agenix, flake-utils-plus
+    , nixos-dns, rust-overlay, disko, nur, nixvim, nix-yazi-plugins, agenix, flake-utils-plus
     , simple-nixos-mailserver, wireguard-wrapper, syncthing-wrapper, tasks_md, ... }:
     let
-      overlays = [ nur.overlay rust-overlay.overlays.default ];
+      overlays = [ nur.overlay rust-overlay.overlays.default nix-yazi-plugins.overlays.default];
       system = "x86_64-linux";
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
       lib = nixpkgs.lib;
