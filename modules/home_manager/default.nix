@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs,  config, nur, ips, sshkeys, ... }:
+{ inputs, lib, pkgs,  config, nur, ips, sshkeys, overlays, permit_pkgs, ... }:
 let build_user = name: { ${name} = import ../../users/${name}; };
 in {
   home-manager = {
@@ -10,6 +10,8 @@ in {
       inherit inputs;
       inherit ips;
       inherit sshkeys;
+      inherit overlays;
+      inherit permit_pkgs;
       theme = import ../../users/hannses/theme.nix;
       globals = import ../../users/hannses/globals.nix { inherit pkgs; };
       scripts = import ../../users/hannses/scripts { inherit pkgs lib config; };

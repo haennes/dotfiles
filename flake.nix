@@ -59,12 +59,12 @@
     , nixos-dns, rust-overlay, disko, nur, nixvim, agenix, flake-utils-plus
     , simple-nixos-mailserver, wireguard-wrapper, syncthing-wrapper, tasks_md, ... }:
     let
+      overlays = [ nur.overlay rust-overlay.overlays.default ];
       system = "x86_64-linux";
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
       lib = nixpkgs.lib;
       pkgs = import nixpkgs {
-        inherit system;
-        overlays = [ nur.overlay rust-overlay.overlays.default ];
+        inherit system overlays;
         config = {
           allowUnfree = true;
           permittedInsecurePackages = [ "electron-25.9.0" ];
@@ -95,7 +95,7 @@
           nur.nixosModules.nur
         ];
         specialArgs = specialArgs // {
-          inherit sshkeys inputs system proxmox vps ips;
+          inherit sshkeys inputs system proxmox vps ips overlays;
           permit_pkgs = pkgs;
         };
       };

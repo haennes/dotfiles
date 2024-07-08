@@ -1,4 +1,4 @@
-{ config, pkgs, addons, nixvim, nixpkgs-unstable, ... }: {
+{ config, pkgs, permit_pkgs, addons, nixvim, nixpkgs-unstable, overlays, ... }: {
   imports = [
     ./wpaperd.nix
     ./fonts.nix
@@ -33,6 +33,9 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "23.11";
+
+
+  nixpkgs.overlays = overlays;
 
   home.packages = with pkgs; [
     vim
