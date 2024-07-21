@@ -45,6 +45,8 @@
       "application/x-bzip" = [ "${globals.archive}.desktop" ];
       "application/x-bzip2" = [ "${globals.archive}.desktop" ];
       "application/gzip" = [ "${globals.archive}.desktop" ];
+      #"application/x-xopp" = [ "${pkgs.xournalpp}/share/applications/com.github.xournalpp.xournalpp.desktop"];
+      "application/x-xopp" = [ "com.github.xournalpp.xournalpp.desktop"];
 
       #TODO
       #"inode/directory" = [ "thunar.desktop" ];
