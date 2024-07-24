@@ -253,7 +253,7 @@ in {
           urls = [{
             template = "https://typst.app/docs/reference/symbols/sym?query={searchTerms}";
           }];
-          definedAliases = ["<typs" "<typsym" "<tys" "<ty" ];
+          definedAliases = ["<typs" "<typsym" "<tys" "<ty" "<typ" ];
           iconUpdateURL = favicon "typst.app";
           inherit updateInterval;
         };
