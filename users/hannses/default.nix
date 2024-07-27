@@ -1,4 +1,4 @@
-{ config, pkgs, permit_pkgs, addons, nixvim, nixpkgs-unstable, overlays, ... }: {
+{ config, lib, pkgs, permit_pkgs, addons, nixvim, nixpkgs-unstable, overlays, ... }: {
   imports = [
     ./wpaperd.nix
     ./fonts.nix
@@ -15,7 +15,7 @@
     ./vimiv.nix # images
     ./vim.nix
     ./yazi
-    ./firefox.nix
+    ./firefox
     ./ssh.nix
     ./virtualization.nix
     #(import ./firefox.nix{pkgs=pkgs; config=config; addons=addons;})
