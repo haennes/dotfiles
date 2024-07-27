@@ -32,6 +32,14 @@ in {
       '';
 
       aliases = ["dticket" "ticket" "db" ];
+      bins = with pkgs;{
+      manix = "${manix}/bin/manix";
+      sed = "${gnused}/bin/sed";
+      grep = "${gnugrep}/bin/grep";
+      fzf = "${fzf}/bin/fzf";
+      xargs = "${findutils}/bin/xargs";
+      };
+
     in
     rec
     {
@@ -39,9 +47,13 @@ in {
 
       loc = "${pkgs.tokei}/bin/tokei";
       bc = "${pkgs.fend}/bin/fend";
+
       #nix = "nom";
       nix-build = "nom-build";
       nix-shell = "nom-shell";
+      nix-opt = with bins; ''
+      ${manix} "" | ${grep} '^# ' | ${sed} 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | ${fzf} --preview="${manix} '{}'" | ${xargs} ${manix}
+      '';
 
       vim = "nvim";
       vi = "nvim";
