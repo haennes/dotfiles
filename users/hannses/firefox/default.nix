@@ -1,8 +1,8 @@
-{pkgs, addons, ... }:
+{lib, pkgs, addons, ... }@inputs:
 let
   favicon = domain: "https://${domain}/favicon.ico"; # TODO use this instead
   updateInterval = 24 * 60 * 60 * 1000; # every day
-  engines_inputs = { inherit favicon updateInterval pkgs;};
+  engines_inputs = inputs // { inherit favicon updateInterval;};
 in {
   programs.firefox = {
     enable = true;
