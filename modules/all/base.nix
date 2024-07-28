@@ -54,7 +54,6 @@ in {
     services.openssh.enable = true; # TODO: extract into module
 
     services.wireguard-wrapper = {
-      #port = 51821;
       connections = [
         [ "tabula" "welt" ]
         [ "porta" "welt" ]
