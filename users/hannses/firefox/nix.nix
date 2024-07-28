@@ -1,6 +1,8 @@
-{ favicon, pkgs, ... }:let
-  nix_favicon = favicon "search.nixos.org";
-in{
+{ lib, favicon, pkgs, ... }:let
+  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg" ;
+in
+lib.mapAttrs (_name: value: if value ? icon then value else value // {inherit icon;})
+{
   "Nix Packages" = {
     urls = [{
       template = "https://search.nixos.org/packages";
@@ -19,8 +21,6 @@ in{
         }
       ];
     }];
-    icon =
-      "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
     definedAliases = [ "<np" ];
   };
 
@@ -42,8 +42,6 @@ in{
         }
       ];
     }];
-    icon =
-      "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
     definedAliases = [ "<no" ];
   };
 
@@ -55,8 +53,7 @@ in{
         value = "{searchTerms}";
       }];
     }];
-    icon =
-      "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
     definedAliases = [ "<nop" ];
   };
 
@@ -68,8 +65,7 @@ in{
         value = "{searchTerms}";
       }];
     }];
-    icon =
-      "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
     definedAliases = [ "<nh" ];
   };
   "nixvim" = {
@@ -77,8 +73,7 @@ in{
       template =
         "https://nix-community.github.io/nixvim/plugins/nix.html?search={searchTerms}";
     }];
-    icon =
-      "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
     definedAliases = [ "<nixvim" ];
   };
   "github nixpkgs" = {
@@ -86,17 +81,12 @@ in{
       template =
         "https://github.com/search?q=repo%3ANixOS%2Fnixpkgs+{searchTerms}&type=code";
     }];
-    icon =
-      "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
     definedAliases = [ "<npkgs" "<ghnpgks" "<ghnp" ];
   };
   "NixOS Wiki" = {
     urls =
       [{ template = "https://nixos.wiki/index.php?search={searchTerms}"; }];
-    #iconUpdateURL = nix_favicon;
-    #inherit updateInterval;
-    icon =
-      "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
 
     definedAliases = [ "<nw" ];
   };
@@ -106,10 +96,6 @@ in{
       template =
         "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
     }];
-    #iconUpdateURL = nix_favicon;
-    #inherit updateInterval;
-    icon =
-      "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
 
     definedAliases = [ "<ho" ];
   };
