@@ -12,7 +12,7 @@
     ./dunst.nix
     ./rofi.nix
     ./pqiv.nix # images
-    ./vimiv.nix # images
+    #update broke ./vimiv.nix # images
     ./vim.nix
     ./yazi
     ./firefox
@@ -46,7 +46,7 @@
     gnupg
     signal-desktop
     scli #signal cli
-    gnome.dconf-editor
+    dconf-editor
     poppler_utils
     pdftk
     shortwave
