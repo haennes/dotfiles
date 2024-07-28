@@ -3,10 +3,11 @@ let
   secrets = import ../../lib/wireguard;
   ids = import ../../secrets/not_so_secret/syncthing.key.nix;
   priv_key = hostname: secrets.age_obtain_wireguard_priv { inherit hostname; };
-in { config, pkgs, lib, ips, vps ? false, proxmox ? false, ... }:
+in { config, pkgs, lib, ips, ports, vps ? false, proxmox ? false, ... }:
 with lib;
 with ips;
 let
+  hostname = config.networking.hostName;
   simple_ip = name: { "${name}".ips = [ (ip_cidr ips."${name}".wg0) ]; };
   recursiveMerge = listOfAttrsets:
     lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) { } listOfAttrsets;
@@ -68,8 +69,8 @@ in {
       ];
       nodes = {
         welt = {
-          ips = [ (ip_cidr welt.wg0) (subnet_cidr lib welt.wg0) ];
-          endpoint = "hannses.de:51821";
+          ips = [ (ip_cidr ips.welt.wg0) (subnet_cidr lib ips.welt.wg0) ];
+          endpoint = "hannses.de:${builtins.toString ports.welt.wg0}";
         };
       } // simple_ip "porta" // simple_ip "hermes" // simple_ip "syncschlawiner"
         // simple_ip "syncschlawiner_mkhh" // simple_ip "tabula"
@@ -79,7 +80,7 @@ in {
         ((secrets.obtain_wireguard_pub { hostname = name; }).key);
       privateKeyFile = lib.mkIf (config.services.wireguard-wrapper.enable)
         config.age.secrets."wireguard_${config.networking.hostName}_wg0_private".path;
-      port = 51821;
+      port = ports."${hostname}".wg0;
     };
 
     services.syncthing_wrapper = rec {

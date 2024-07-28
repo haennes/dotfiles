@@ -90,7 +90,8 @@
         ];
       };
       sshkeys = import ./secrets/sshkeys.nix;
-      ips = import ./secrets/ips.nix;
+      ips = import ./secrets/ips.nix{inherit (nixpkgs) lib;};
+      ports = import ./secrets/ports.nix{inherit (nixpkgs) lib;};
 
       build_common_attrs = { hostname, modules, specialArgs, proxmox, vps }: {
         inherit system;
@@ -102,7 +103,7 @@
           nur.nixosModules.nur
         ];
         specialArgs = specialArgs // {
-          inherit sshkeys inputs system proxmox vps ips overlays;
+          inherit sshkeys inputs system proxmox vps ips ports overlays;
           permit_pkgs = pkgs;
         };
       };
