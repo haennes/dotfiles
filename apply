@@ -2,7 +2,5 @@
 pushd ~/.dotfiles
 git add .
 sudo nixos-rebuild switch --flake .# --show-trace
-#sudo nixos-rebuild switch --flake .# 
-git restore --staged .
 hyprctl reload
 popd
