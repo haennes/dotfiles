@@ -36,6 +36,7 @@
     bluetuith
     btop
     docker
+    lutris
     unzip
     arduino
     arduinoOTA
