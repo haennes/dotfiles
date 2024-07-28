@@ -1,4 +1,4 @@
-{ lib, config, ips, ... }:
+{ lib, config, ips, ports, ... }:
 let
   create_simple_proxy_with_domain =
     { fqdn, target_ip, custom_settings ? { }, custom_locations ? { }, target_port ? null, https ? false }:
@@ -48,7 +48,7 @@ in {
     fqdn = "kasmweb.hannses.de";
     https = true;
     target_ip = ips.syncschlawiner.wg0;
-    target_port = 8001;
+    target_port = ports.syncschlawiner.kasmweb.gui;
   })
   #(create_simple_proxy_with_domain{fqdn = "mail.hannses.de"; target_ip = ips.tabula.wg0;})
   (create_simple_proxy_with_domain {

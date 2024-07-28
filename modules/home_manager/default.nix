@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs,  config, nur, ips, sshkeys, overlays, permit_pkgs, ... }:
+{ inputs, lib, pkgs,  config, nur, ips, sshkeys, overlays, permit_pkgs, ports, ... }:
 let build_user = name: { ${name} = import ../../users/${name}; };
 in {
   home-manager = {
@@ -6,9 +6,11 @@ in {
     useUserPackages = true;
     extraSpecialArgs = {
       addons = nur.repos.rycee.firefox-addons;
+      outer_config = config;
       inherit (inputs) nixvim;
       inherit inputs;
       inherit ips;
+      inherit ports;
       inherit sshkeys;
       inherit overlays;
       inherit permit_pkgs;

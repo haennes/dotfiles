@@ -1,4 +1,4 @@
-{config, ...}:{
+{config, ports, ...}:{
  services.kubo = {
     enable = true;
     dataDir = "/data/ipfs/data";
@@ -6,7 +6,7 @@
     group = "nextcloud";
     enableGC = true;
     settings.Addresses.API = [
-      "/ip4/127.0.0.1/tcp/8081"
+      "/ip4/127.0.0.1/tcp/${ports.syncschlawiner.ipfs.api}"
     ];
 
     # the following might be a VFS, but still need to confirm
