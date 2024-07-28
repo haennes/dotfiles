@@ -39,6 +39,7 @@
   nixpkgs.overlays = overlays;
 
   home.packages = with pkgs; [
+    permit_pkgs.update-apply-cycle
     vim
     gdb
     keepassxc
