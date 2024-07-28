@@ -16,6 +16,9 @@ in {
         darkreader
         ipfs-companion
       ];
+      settings = {
+        "browser.link.open_newwindow.restriction" = 0;
+      };
       search = {
         force = true;
         default = "ecosia";
