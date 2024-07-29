@@ -13,6 +13,9 @@
       url = "github:hyprwm/Hyprland/47b087950dcfaf6fdda63c4d5f13efda3508a6fb?submodules=1"; #works
     };
     nix-update-inputs.url = "git+file:///home/hannses/programming/nix/nix-update-input";
+
+    haumea.url = "github:nix-community/haumea/v0.2.2";
+    haumea.inputs.nixpkgs.follows = "nixpkgs";
     #split-monitor-workspaces = {
     #  url = "github:bivsk/split-monitor-workspaces/bivsk";
     #  inputs.hyprland.follows = "hyprland";
@@ -65,7 +68,7 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, nixos-generators, deploy-rs
     , nixos-dns, rust-overlay, disko, nur, nixvim, nix-yazi-plugins, agenix, flake-utils-plus
-    , simple-nixos-mailserver, wireguard-wrapper, syncthing-wrapper, tasks_md, nix-update-inputs, ... }:
+    , simple-nixos-mailserver, wireguard-wrapper, syncthing-wrapper, tasks_md, nix-update-inputs, haumea, ... }:
     let
       overlays = [ nur.overlay rust-overlay.overlays.default nix-yazi-plugins.overlays.default nix-update-inputs.overlays.default ];
       system = "x86_64-linux";

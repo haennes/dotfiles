@@ -357,6 +357,27 @@
     "haumea": {
       "inputs": {
         "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1685133229,
+        "narHash": "sha256-FePm/Gi9PBSNwiDFq3N+DWdfxFq0UKsVVTJS3cQPn94=",
+        "owner": "nix-community",
+        "repo": "haumea",
+        "rev": "34dd58385092a23018748b50f9b23de6266dffc2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "v0.2.2",
+        "repo": "haumea",
+        "type": "github"
+      }
+    },
+    "haumea_2": {
+      "inputs": {
+        "nixpkgs": [
           "nix-yazi-plugins",
           "nixpkgs"
         ]
@@ -610,7 +631,7 @@
       "inputs": {
         "flake-utils": "flake-utils_2",
         "flake-utils-plus": "flake-utils-plus_2",
-        "haumea": "haumea",
+        "haumea": "haumea_2",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -946,6 +967,7 @@
         "deploy-rs": "deploy-rs",
         "disko": "disko",
         "flake-utils-plus": "flake-utils-plus",
+        "haumea": "haumea",
         "home-manager": "home-manager_2",
         "hyprland": "hyprland",
         "nix-update-inputs": "nix-update-inputs",
