@@ -1,8 +1,7 @@
-{ pkgs, globals, ... }: {
-  killall = pkgs.pkgs.writeShellScript "killall" ''
+{ pkgs, globals, ... }: ''
     # has to be a function because "'...'" doesn't work
     DMENU() {
-      ${globals.dmenu} -theme-str 'window { width: 75%; }' 
+      ${globals.dmenu} -theme-str 'window { width: 75%; }'
     }
 
     processes=$(ps axo user,comm | sed -n -e "s/$USER\s*//p" | sort | uniq)
@@ -13,5 +12,5 @@
     if [ -n "$choice" ]; then
         killall $choice
     fi
-  '';
-}
+  ''
+

@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs,  config, nur, ips, sshkeys, overlays, permit_pkgs, ports, ... }:
+{ inputs, lib, pkgs,  config, nur, ips, sshkeys, overlays, permit_pkgs, ports, ... }@all_inputs:
 let build_user = name: { ${name} = import ../../users/${name}; };
 in {
   home-manager = {
@@ -16,7 +16,7 @@ in {
       inherit permit_pkgs;
       theme = import ../../users/hannses/theme.nix;
       globals = import ../../users/hannses/globals.nix { inherit pkgs; };
-      scripts = import ../../users/hannses/scripts { inherit pkgs lib config; };
+      scripts = import ../../users/hannses/scripts all_inputs;
       gnome_enable = config.services.xserver.desktopManager.gnome.enable;
       virt-manager_enable = config.programs.virt-manager.enable;
     };

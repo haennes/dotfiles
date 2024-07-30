@@ -1,5 +1,4 @@
-{ pkgs, globals, ... }: {
-  file_selector = pkgs.pkgs.writeShellScript "file_selector" ''
+{ pkgs, globals, ... }: ''
     DMENU="${globals.dmenu}"
 
     getdir=false
@@ -58,5 +57,5 @@
         fi
       fi
     done
-  '';
-}
+  ''
+

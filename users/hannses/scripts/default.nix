@@ -1,31 +1,19 @@
-{ pkgs, lib, config, ... }:
+{ inputs, pkgs, lib, config, ... }@all_inputs:
 let
   theme = config.home-manager.extraSpecialArgs.theme;
   globals = config.home-manager.extraSpecialArgs.globals;
   scripts = config.home-manager.extraSpecialArgs.scripts;
-  importNixScript = name: {
-    "${name}" = (import ./${name}.nix {
-      inherit pkgs config theme globals scripts lib;
-    })."${name}";
-  };
+  scripts_input = all_inputs // {inherit globals theme scripts;};
+  importNixScript = name: value: pkgs.pkgs.writeShellScript name value;
   importShellScript = name: {
     "${name}" =
-      pkgs.pkgs.writeShellScript "${name}" "${lib.readFile ./${name}.sh}";
+      pkgs.pkgs.writeShellScript "${name}" "${lib.readFile ./src/${name}.sh}";
   };
-in {
-  # import file
-  # https://noogle.dev/f/lib/readFile
-  # replace smt from imported file
-  # https://discourse.nixos.org/t/how-to-create-a-script-with-dependencies/7970/8
-} // importNixScript "startup" // importShellScript "switchmonitor"
-// importNixScript "monitorsetup" // importNixScript "kill"
-// importNixScript "killall" // importNixScript "lock"
-// importNixScript "file_selector" // importNixScript "wallpaper"
-// importNixScript "volume" // importNixScript "wifi"
-// importNixScript "bluetooth" // importNixScript "brightness"
-// importNixScript "screenshot" // importNixScript "screenshot-fast"
-// importNixScript "keyboard_layout" // importNixScript "clipboard"
-// importNixScript "rem-from-clipboard" // importNixScript "clear-clipboard"
-// importNixScript "selector"
-
-// importNixScript "typst-live-custom"
+  hlib = inputs.haumea.lib;
+in lib.mapAttrs (name: value: importNixScript name value) (hlib.load{
+  src  = ./src;
+  loader = hlib.loaders.default;
+  inputs = scripts_input;
+})
+// importShellScript "switchmonitor"
+// {startup = import ./startup.nix scripts_input;} #isnt actually a shell-script
