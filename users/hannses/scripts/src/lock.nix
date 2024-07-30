@@ -1,5 +1,4 @@
-{ pkgs, theme, ... }: {
-  lock = pkgs.pkgs.writeShellScript "lock" ''
+{ pkgs, theme, ... }: ''
       swaylock \
     --screenshots \
     --clock \
@@ -17,5 +16,5 @@
     --text-ver "..." \
     --fade-in 0.3
     # key-hl-color = indicator-color on clicked
-  '';
-}
+  ''
+

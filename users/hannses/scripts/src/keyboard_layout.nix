@@ -1,5 +1,4 @@
-{ pkgs, globals, ... }: {
-  keyboard_layout = pkgs.pkgs.writeShellScript "keyboard_layout" ''
+{ pkgs, globals, ... }: ''
     DMENU="${globals.dmenu}"
 
     devices=($(hyprctl devices | grep -Pzo '(?s)Keyboards.*rules' | awk '{print $1}' | tail -n +3 | awk 'NR == 1 || (NR -1) % 5 == 0'))
@@ -19,5 +18,5 @@
     for device in "''${devices[@]}"; do
         hyprctl switchxkblayout "$device" $layout_index
     done
-  '';
-}
+  ''
+

@@ -1,5 +1,4 @@
-{ pkgs, globals, ... }: {
-  wifi = pkgs.pkgs.writeShellScript "wifi" ''
+{ pkgs, globals, ... }: ''
     # has to be a function because "'...'" doesn't work
     DMENU() {
       ${globals.dmenu} -theme-str 'window { width: 75%; }' -window-title "$1"
@@ -37,5 +36,5 @@
             echo "idk what happend. terminating..." && exit 0
             ;;
     esac
-  '';
-}
+  ''
+

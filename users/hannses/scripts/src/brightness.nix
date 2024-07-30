@@ -1,5 +1,4 @@
-{ pkgs, globals, ... }: {
-  brightness = pkgs.pkgs.writeShellScript "brightness" ''
+{ pkgs, globals, ... }:''
     # the user has to be inside of the "video" group to not need sudo!
 
     DMENU="${globals.dmenu}"
@@ -22,7 +21,7 @@
 
     getopts "ids:" flag
     case "''${flag}" in
-        i) 
+        i)
             value="+5"
             end
             ;;
@@ -31,7 +30,7 @@
             end
             ;;
         s)
-            if [ -n "$OPTARG" ]; then 
+            if [ -n "$OPTARG" ]; then
                 value=$OPTARG
                 end
             fi
@@ -45,5 +44,5 @@
 
     value=$(echo "$levels" | $DMENU " $current ")
     end
-  '';
-}
+  ''
+

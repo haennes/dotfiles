@@ -14,9 +14,9 @@ let
           ;;
     '') firefox_profiles_attr_names);
 
-in {
+in
   #TOOD change to use globals
-  selector = pkgs.pkgs.writeShellScript "selector" ''
+  ''
     DMENU="${globals.dmenu}"
     CMD="/usr/bin/env bash -c $1"
     APPS="${globals.app_runner}"
@@ -96,11 +96,11 @@ in {
         # TODO
         ;;
     "bitwarden")
-       ${pkgs.bitwarden}/bin/bitwarden --enable-features=UseOzonePlatform --ozone-platform=wayland 
+       ${pkgs.bitwarden}/bin/bitwarden --enable-features=UseOzonePlatform --ozone-platform=wayland
        ;;
     "keepassxc")
         ${pkgs.keepassxc}/bin/keepassxc
-        ;; 
+        ;;
     "office")
         ${pkgs.libreoffice}/bin/libreoffice
         ;;
@@ -196,5 +196,4 @@ in {
         ;;
     esac
 
-  '';
-}
+  ''

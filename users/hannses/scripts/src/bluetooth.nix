@@ -1,5 +1,4 @@
-{ pkgs, globals, ... }: {
-  bluetooth = pkgs.pkgs.writeShellScript "bluetooth" ''
+{ pkgs, globals, ... }:  ''
     DMENU="${globals.dmenu}"
     #      _                                  _     _            _              _    _
     #   __| |_ __ ___   ___ _ __  _   _      | |__ | |_   _  ___| |_ ___   ___ | |_ | |__
@@ -316,5 +315,5 @@
           show_menu
           ;;
       esac
-  '';
-}
+  ''
+

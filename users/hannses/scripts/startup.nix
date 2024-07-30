@@ -1,5 +1,5 @@
-{ pkgs, lib, ... }: {
-  startup = lib.filter (a: a != "") (lib.splitString "\n"
+{ pkgs, lib, ... }:
+  lib.filter (a: a != "") (lib.splitString "\n"
   #pkgs.pkgs.writeShellScript "startup"
   ''
     ${pkgs.waybar}/bin/waybar
@@ -8,5 +8,5 @@
     [workspace 8 silent] ${pkgs.keepassxc}/bin/keepassxc
     [workspace 9 silent] ${pkgs.signal-desktop}/bin/signal-desktop
     [workspace 9 silent] ${pkgs.element-desktop}/bin/element-desktop
-  '');
-}
+  '')
+

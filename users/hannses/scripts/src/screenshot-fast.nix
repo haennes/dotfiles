@@ -1,5 +1,4 @@
-{ pkgs, globals, ... }: {
-  screenshot-fast = pkgs.pkgs.writeShellScript "screenshot" ''
+{ pkgs, globals, ... }: ''
     DMENU="${globals.dmenu}"
     screenshot_dir="$HOME/.screenshots"  #TODO globals
     mkdir "$screenshot_dir"
@@ -11,5 +10,4 @@
     outputCMD="copy"
 
     grimblast --notify $outputCMD $targetCMD "$screenshot_dir/$(get_timestamp).png"
-  '';
-}
+  ''

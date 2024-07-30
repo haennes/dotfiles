@@ -1,5 +1,4 @@
-{ pkgs, globals, ... }: {
-  volume = pkgs.pkgs.writeShellScript "volume" ''
+{ pkgs, globals, ... }: ''
           DMENU="${globals.dmenu}"
 
           outputs=$(pactl list sinks | grep -E "device.profile.description|State" | sed 'N;s/\n/ /g' | sed 's/\s*State: \(\S*\)\s*device.* = "\(.*\)"/\2 (\1)/')
@@ -92,8 +91,8 @@
       get_output () {
           index=$(echo -e "DEFAULT\n$outputs" | $DMENU -format 'i')
 
-    	  if [ -z "$index" ]; then 
-    	      output="" 
+    	  if [ -z "$index" ]; then
+    	      output=""
     		  elif (( "$index" < 0 )); then
     		  output=""
     		  elif [ "$index" = 0 ]; then
@@ -107,8 +106,8 @@
       get_app () {
           index=$(echo "$applications" | $DMENU -format 'i')
 
-    	  if [ -z "$index" ]; then 
-    	      app="" 
+    	  if [ -z "$index" ]; then
+    	      app=""
     		  elif (( "$index" < 0 )); then
     		  app=""
     	  else
@@ -120,8 +119,8 @@
       get_mic () {
           index=$(echo -e "default\n$inputs" | $DMENU -format 'i')
 
-    	  if [ -z "$index" ]; then 
-    	      mic="" 
+    	  if [ -z "$index" ]; then
+    	      mic=""
     		  elif (( "$index" < 0 )); then
     		  mic=""
     		  elif [ "$index" = 0 ]; then
@@ -210,12 +209,12 @@
     		  esac
 
     		      if [ "$flag" = "?" ]; then
-        case $(echo -e "output volume\napp volume\napp output\nmic volume\nset default output" | $DMENU) in 
+        case $(echo -e "output volume\napp volume\napp output\nmic volume\nset default output" | $DMENU) in
     			  "output volume")
     			      output=$(get_output)
     			      if [ -z "$output" ]; then exit; fi
     				  vol=$(get_sel_vol $(get_output_vol "$output"))
-    				      if [ -z "$vol" ]; then 
+    				      if [ -z "$vol" ]; then
     					  exit
     					      elif [ "$vol" = "toggle" ]; then
     					      toggle_output "$output"
@@ -227,7 +226,7 @@
     			      app=$(get_app)
     			      if [ -z "$app" ]; then exit; fi
     				  vol=$(get_sel_vol $(get_app_vol "$app"))
-    				      if [ -z "$vol" ]; then 
+    				      if [ -z "$vol" ]; then
     					  exit
     					      elif [ "$vol" = "toggle" ]; then
     					      toggle_app "$output"
@@ -246,7 +245,7 @@
     			      mic=$(get_mic)
     			      if [ -z "$mic" ]; then exit; fi
     				  vol=$(get_sel_vol $(get_mic_vol "$mic"))
-    				      if [ -z "$vol" ]; then 
+    				      if [ -z "$vol" ]; then
     					  exit
     					      elif [ "$vol" = "toggle" ]; then
     					      toggle_mic "$mic"
@@ -273,5 +272,4 @@
     			      ;;
     			  esac
     			      fi
-    			      '';
-}
+    			      ''
