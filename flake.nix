@@ -12,7 +12,8 @@
     hyprland = {
       url = "github:hyprwm/Hyprland/47b087950dcfaf6fdda63c4d5f13efda3508a6fb?submodules=1"; #works
     };
-    nix-update-inputs.url = "git+file:///home/hannses/programming/nix/nix-update-input";
+
+    nix-update-inputs.url = "github:haennes/nix-update-input/cycle";
 
     haumea.url = "github:nix-community/haumea/v0.2.2";
     haumea.inputs.nixpkgs.follows = "nixpkgs";
