@@ -48,6 +48,8 @@ in {
       loc = "${pkgs.tokei}/bin/tokei";
       bc = "${pkgs.fend}/bin/fend";
 
+      dpdf ="${pkgs.diff-pdf}/bin/diff-pdf --view";
+
       #nix = "nom";
       nix-build = "nom-build";
       nix-shell = "nom-shell";

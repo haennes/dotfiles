@@ -50,6 +50,7 @@
     dconf-editor
     poppler_utils
     pdftk
+    diff-pdf
     shortwave
     anki
     fritzing
