@@ -22,6 +22,7 @@
     alacritty
     blackbox-terminal
     pdfarranger
+    diff-pdf
     python3
     rust-bin.nightly.latest.default
     gcc
