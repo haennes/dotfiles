@@ -9,6 +9,7 @@
     ./waybar.nix
     ./cliphist.nix
     ./zsh.nix
+    ./atuin.nix
     ./dunst.nix
     ./rofi.nix
     ./pqiv.nix # images
