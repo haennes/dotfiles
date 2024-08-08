@@ -150,7 +150,7 @@ in {
           "game_servers" = [ (all_pcs // servers) ];
           "programming" = [ (all_pcs // servers) ];
           "AegisBak" = [ (all_pcs // servers) "handyHannes" ];
-          "SignalBackup" = [ (all_pcs // servers) "handyHannes" ];
+          "SignalBackup" = [ (servers) "handyHannes" ];
           "DownloadHandyH" = [ (all_pcs // servers) "handyHannes" ];
           "HannesKamera" = [ (all_pcs // servers) "handyHannes" ];
           "HannesGalerie" = [ (all_pcs // servers) "handyHannes" ];
