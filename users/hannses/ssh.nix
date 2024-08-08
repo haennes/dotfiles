@@ -85,6 +85,10 @@ in with ips; {
     addKeysToAgent = "1h";
     enable = true;
     matchBlocks = {
+      "fs_main" = {
+        user = "hoh47200";
+        hostname = "cloud.fsim-ev.de";
+      };
       "pve_tabula" = {
         user = "root";
         hostname = ips.pve.vmbr0;
