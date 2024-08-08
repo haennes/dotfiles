@@ -13,7 +13,7 @@ let
     tabula
   ];
 
-  systems = with sshkeys; [ thinkpad ];
+  systems_headfull = with sshkeys; [ thinkpad thinknew yoga ];
   wg_simple = hostname: publicKeys:
     wireguard_keypair { inherit hostname publicKeys; };
   wireguard_keypair = { hostname, publicKeys, interface ? "wg0"
@@ -43,6 +43,7 @@ in with sshkeys;
     [ hannses syncschlawiner root_syncschlawiner ];
   "nextcloud_mkhh/adminpass.age".publicKeys =
     [ hannses syncschlawiner_mkhh root_syncschlawiner_mkhh ];
+  "openfortivpn.age".publicKeys = systems_headfull;
 
   "kehl_login.age".publicKeys = [ hannses welt root_welt root_tabula tabula ];
 } // wg_simple "mainpc" [ hannses mainpc ]
