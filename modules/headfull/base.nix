@@ -34,15 +34,6 @@ in {
   #  alsa.support32Bit = true;
   #};
 
-  virtualisation.libvirtd.enable = true;
-
-  virtualisation.docker.enable = true;
-
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
-
-  programs.virt-manager.enable = true; #};
-
   programs.hyprland.enable = true;
 
 } // (secrets.age_obtain_user_password "hannses")
