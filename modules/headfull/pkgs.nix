@@ -31,7 +31,6 @@
     tokei
     permit_pkgs.obsidian
     wl-clipboard
-    zoom-us
     cifs-utils
     yubikey-manager-qt
     bluetuith
