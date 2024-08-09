@@ -1,44 +1,67 @@
 { pkgs, permit_pkgs, rust-bin, ... }: {
   environment.systemPackages = with pkgs; [
+
+    #browser
     firefox
     brave
     tor-browser
-    gimp
+
+    #media
+    gimp #edit
+    vlc #view
+
+    #modelling
     freecad
     openscad
     prusa-slicer
+
+    #office & texteditors
     libreoffice
+    xournalpp             #note taking
+    permit_pkgs.obsidian  #knowledge management
+    helix
+
+    #dicts
     hunspell
     hunspellDicts.de_DE
     hunspellDicts.en_US
-    tectonic
-    texlive.combined.scheme-full
-    typst
-    typst-live
-    xournalpp
-    hugo
-    cargo-generate
-    vlc
+
+    #formatting language
+    tectonic                     #tex compiler
+    texlive.combined.scheme-full #tex
+    typst                        #typst
+    typst-live                   #typst live preview browser
+
+    #terminals
     alacritty
     blackbox-terminal
-    pdfarranger
-    diff-pdf
-    python3
-    rust-bin.nightly.latest.default
-    gcc
-    ruff
-    helix
-    tokei
-    permit_pkgs.obsidian
-    wl-clipboard
+
+    #tools
+    diff-pdf    #pdf
+    pdfarranger #pdf
+    btop        #process and system monitor
+    unzip
     cifs-utils
     yubikey-manager-qt
+    wl-clipboard  #clipboard
+
+    #tui
     bluetuith
-    btop
     docker
-    lutris
-    unzip
+
+    #programming
+    tokei                               #count loc
     arduino
     arduinoOTA
+    hugo                                #website
+    cargo-generate
+    rust-bin.nightly.latest.default
+    python3
+    ruff                                #python linter
+    gcc                                 #c compiler
+
+    #Gameing
+    lutris                              #game launcher compatible with steam, wine, ...
+
   ];
 }
