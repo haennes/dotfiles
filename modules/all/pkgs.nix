@@ -1,25 +1,20 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    nix-output-monitor
-    nixfmt-classic
-    nil
-    neofetch
-    home-manager
+    nix-output-monitor #better visualization of nix-shell and nix-build
+    nixfmt-classic #formatting nix files
+    neofetch #display system information
     restic
-    ripgrep-all
-    fd
+    ripgrep-all #ripgrep but for more formats
+    fd #better version of find
     eza
-    lf
-    ncdu
+    lf #tui file manager
+    ncdu #disk usage
     nmap
-    lsof
-    #TODO remove this after using syncthingd
-    syncthing
+    lsof #list open files (I use it for local port monitoring)
     wget
-    zellij
+    zellij #terminal multiplexer
 
-    tldr
-    bc
+    tldr #man alternative
     usbutils
     git
     sshfs
