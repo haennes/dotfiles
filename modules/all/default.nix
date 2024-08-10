@@ -1,5 +1,5 @@
 {lib,  ... }: {
-  imports = [ ./base.nix ./pkgs.nix ./store_optimize.nix ./nm-fix.nix ./acme.nix];
+  imports = [ ./base.nix ./pkgs.nix ./store_optimize.nix ./nm-fix.nix ./acme.nix ./syncthing-wrapper.nix ./wireguard-wrapper.nix];
 
   options = {
     nextcloud_max_size = lib.mkOption{
