@@ -43,8 +43,17 @@ with lib; {
     #extraOptions.trusted_domains = [ "*.local" ];
     extraApps = with config.services.nextcloud.package.packages.apps; {
 
-      inherit contacts calendar deck groupfolders maps bookmarks cookbook
-        cospend forms notes polls;
+      inherit
+      contacts
+      #calendar
+      deck
+      groupfolders
+      maps
+      bookmarks
+      cospend
+      notes
+      polls
+      ;
     };
     # extraAppsEnable = true;
     #notify_push.enable = true;
