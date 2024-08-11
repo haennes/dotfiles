@@ -63,6 +63,8 @@ in {
       ls = "eza -lh";
       sl = "ls";
       la = "eza -Alh";
+
+      df = "${pkgs.duf}/bin/duf";
       # path cds
       dotfiles = "cd ${dotfiles_path}";
       dotf = dotfiles;
