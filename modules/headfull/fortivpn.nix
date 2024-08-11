@@ -8,8 +8,7 @@
 
   environment = {
     etc = {
-      openfortivpnconfig.source = config.age.secrets."openfortivpn.age".path ;
-      openfortivpn.source = ./openfortivpn;
+      "openfortivpn/config".source = config.age.secrets."openfortivpn.age".path ;
 
     };
     systemPackages = with pkgs; [
