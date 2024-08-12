@@ -50,19 +50,19 @@ in {
 
       dpdf ="${pkgs.diff-pdf}/bin/diff-pdf --view";
 
-      #nix = "nom";
-      nix-build = "nom-build";
-      nix-shell = "nom-shell";
+      nix-build = "${pkgs.nix-output-monitor}/bin/nom-build";
+      nix-shell = "${pkgs.nix-output-monitor}/bin/nom-shell";
       nix-opt = with bins; ''
       ${manix} "" | ${grep} '^# ' | ${sed} 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | ${fzf} --preview="${manix} '{}'" | ${xargs} ${manix}
       '';
 
+      #settings this to pkgs fails
       vim = "nvim";
       vi = "nvim";
 
-      ls = "eza -lh";
-      sl = "ls";
-      la = "eza -Alh";
+      ls = "${pkgs.eza}/bin/eza -lh";
+      sl = ls;
+      la = "${ls} -A";
 
       df = "${pkgs.duf}/bin/duf";
       # path cds
