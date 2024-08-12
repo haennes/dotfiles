@@ -46,6 +46,9 @@ in with sshkeys;
   "openfortivpn.age".publicKeys = systems_headfull;
 
   "kehl_login.age".publicKeys = [ hannses welt root_welt root_tabula tabula ];
+  "atuin/key.age".publicKeys = [hannses];
+  "atuin/session.age".publicKeys = [hannses];
+
 } // wg_simple "mainpc" [ hannses mainpc ]
 // wg_simple "thinkpad" [ hannses thinkpad root_thinkpad ]
 // wg_simple "thinknew" [ hannses thinknew root_thinknew ]

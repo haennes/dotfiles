@@ -1,6 +1,6 @@
 { inputs, pkgs,  config, nur, ips, sshkeys, overlays, permit_pkgs, ports, ... }@all_inputs:
 let build_user = name: { ${name} = import ../../users/${name}; };
-in {
+in rec {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -18,5 +18,22 @@ in {
     };
     users = build_user "hannses";
     #// build_user "mum_dad";
+  };
+
+  age.secrets = {
+    "atuin/key.age" = {
+      file = ../../secrets/atuin/key.age;
+      name = "key";
+      symlink = false;
+      owner = "hannses";
+      path = config.home-manager.users.hannses.home.homeDirectory+"/.local/share/atuin/key";
+    };
+    "atuin/session.age" = {
+      file = ../../secrets/atuin/session.age;
+      name = "session";
+      owner = "hannses";
+      symlink = false;
+      path = config.home-manager.users.hannses.home.homeDirectory+"/.local/share/atuin/session";
+    };
   };
 }
