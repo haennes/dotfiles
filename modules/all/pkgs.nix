@@ -13,6 +13,8 @@
     lsof #list open files (I use it for local port monitoring)
     wget
     zellij #terminal multiplexer
+    tmux #backrground terminals
+    pv #util
 
     tldr #man alternative
     usbutils
