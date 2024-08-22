@@ -110,7 +110,7 @@
         specialArgs = specialArgs // {
           inherit sshkeys inputs system proxmox vps ips ports overlays;
           permit_pkgs = pkgs;
-        };
+        } // {hports = if (ports ? "${hostname}") then ports.${hostname} else null;};
       };
 
       generate_common =

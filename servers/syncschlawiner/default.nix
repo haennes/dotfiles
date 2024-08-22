@@ -18,7 +18,7 @@
 
   services.wireguard-wrapper.enable = true;
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 24 80 8080 443 ];
+  networking.firewall.allowedTCPPorts = [ 22 24 80 8080 443 ]; #should not be needed
   #networking.firewall.allowedUDPPorts = [ 25565 ];
 
 }

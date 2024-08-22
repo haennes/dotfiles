@@ -19,18 +19,29 @@ let
 
   #reverse_map = with lib; set: mapAttrs' (name: value: {name = lists.head value; value = lists.tail value;}) ( ( mapAttrsRecursive (path: value: (concatStringsSep "" path) ++ [value]) set));
   common = {
-    "51821" = "wg0";
-    "8384" = "syncthing.gui"; #not all run syncthing,but never use port for sth different
+    "51821" = "wg0";#not all run wireguard, but never use port for sth different
+    "8384" = "syncthing.gui"; #not all run syncthing, but never use port for sth different
+    "22" = "sshd";
   };
   headfull = {
     "8385" = "ssh.syncschlawiner.syncthing.gui";
-    "8386" = "ssh.syncschlawiner.80"; #IS THIS NC?
+    "8386" = "ssh.syncschlawiner.nextcloud.web";
     "8006" = "ssh.proxmox.gui";
-    "8387" = "ssh.syncschlawiner.443"; #IS THIS NC?
     "8388" = "ssh.tabula.syncthing.gui";
-    "8389" = "ssh.tabula.443";
-    "8390" = "ssh.tabula.80";
-    "9090" = "ssh.syncschlawiner.8081"; #WTF is this????
+    "8390" = "ssh.tabula.web";
+    "9090" = "ssh.syncschlawiner.ipfs.api";
+
+    "9081" = "tasks.uni";
+    "9082" = "tasks.haushalt";
+    "9083" = "tasks.projekte";
+    "9084" = "tasks.coding";
+
+    "8088" = "homepage-dashboard";
+    "8082" = "rss";
+    "8384" = "syncthing.gui";
+    "8888" = "atuin";
+
+    "5432" = "postgresql"; #default postgres port, just to make sure not bound again
 
     "20002" = "autossh-monitoring.syncschlawiner";
     "20000" = "autossh-monitoring.pve";
@@ -52,7 +63,9 @@ lib.mapAttrs'(name: value: {inherit name; value = reverse_map (common // value);
     "8384" = "syncthing.gui";
   };
   syncschlawiner_mkhh = { };
-  tabula = { };
+  tabula = {
+    "80" = "web";
+  };
   porta = { };
   welt = { };
 

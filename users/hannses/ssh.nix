@@ -1,7 +1,6 @@
-{ ips, ports, sshkeys, outer_config, lib, ... }:
+{ ips, ports, hports, sshkeys, outer_config, lib, ... }:
 let
-  hostname = outer_config.networking.hostName;
-  ssh_ports = ports."${hostname}".ssh;
+  ssh_ports = hports.ssh;
   ports_noports = { default_ports ? true, user ? "root", name ? hostname
     , hostname, proxyJump ? null, localForwards ? [ ], additionalOpts ? {} }:
     let
@@ -93,7 +92,7 @@ in with ips; {
         user = "root";
         hostname = ips.pve.vmbr0;
         proxyJump = "m_tabula";
-        localForwards = [ (simple_forward (ports."${hostname}".ssh.proxmox.gui)) ];
+        localForwards = [ (simple_forward (ssh_ports.proxmox.gui)) ];
       };
       "welt" = {
         user = "root";
@@ -126,7 +125,7 @@ in with ips; {
       forward_user = true;
       name = "pve";
       local_ip = ips.pve.vmbr0;
-      localForwards = [ (simple_forward (ports."${hostname}".ssh.proxmox.gui)) ];
+      localForwards = [ (simple_forward (ssh_ports.proxmox.gui)) ];
     } // local_global {
       forward_user = true;
       name = "syncschlawiner";
@@ -141,18 +140,13 @@ in with ips; {
           host.address = "127.0.0.1";
         }
         {
-          bind.port = ssh_ports.syncschlawiner."80";
-          host.port = 80; # See note in ports.nix
+          bind.port = ssh_ports.syncschlawiner.nextcloud.web;
+          host.port = ports.syncschlawiner.nextcloud.web;
           host.address = "127.0.0.1";
         }
         {
-          bind.port = ssh_ports.syncschlawiner."443";
-          host.port = 443;
-          host.address = "127.0.0.1";
-        }
-        {
-          bind.port = ssh_ports.syncschlawiner."8081";
-          host.port = 8081;
+          bind.port = ssh_ports.syncschlawiner.ipfs.api;
+          host.port = ports.syncschlawiner.ipfs.api;
           host.address = "127.0.0.1";
         }
       ];
@@ -171,13 +165,8 @@ in with ips; {
           host.address = "127.0.0.1";
         }
         {
-          bind.port = ssh_ports.tabula."443";
-          host.port = 443;
-          host.address = "127.0.0.1";
-        }
-        {
-          bind.port = ssh_ports.tabula."80";
-          host.port = 80;
+          bind.port = ssh_ports.tabula.web;
+          host.port = ports.tabula.web;
           host.address = "127.0.0.1";
         }
       ];

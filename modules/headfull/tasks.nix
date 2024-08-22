@@ -1,8 +1,12 @@
-{lib, ...}:{
+{lib, config, hports, ...}:{
 services.tasks_md = {
   enable = true;
   conf =
-  map(item: item // {
+  let
+    tports = hports.tasks;
+    simple = name: {title = name; port = tports.${name};};
+  in
+  lib.lists.map(item: item // {
     domain = "tasks.localhost";
     config_dir = "/home/hannses/tasks/${item.title}/config";
     tasks_dir = "/home/hannses/tasks/${item.title}/tasks";
@@ -10,22 +14,10 @@ services.tasks_md = {
     }
   )
   [
-  {
-    title = "uni";
-    port = 9081;
-  }
-  {
-    title = "haushalt";
-    port = 9082;
-  }
-  {
-    title = "projekte";
-    port = 9083;
-  }
-  {
-    title = "coding";
-    port = 9084;
-  }
+  (simple "uni")
+  (simple "haushalt")
+  (simple "projekte")
+  (simple "coding")
   ];
 };
 }

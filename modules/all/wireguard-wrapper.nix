@@ -1,4 +1,4 @@
-{config, lib, ips, ports, ...}:
+{config, lib, ips, hports, ports, ...}:
 let
   secrets = import ../../lib/wireguard;
   inherit (ips) ip_cidr subnet_cidr;
@@ -34,6 +34,6 @@ in
         ((secrets.obtain_wireguard_pub { hostname = name; }).key);
       privateKeyFile = lib.mkIf (config.services.wireguard-wrapper.enable)
         config.age.secrets."wireguard_${config.networking.hostName}_wg0_private".path;
-      port = ports."${hostname}".wg0;
+      port = hports.wg0;
     };
 } // (priv_key (config.networking.hostName))

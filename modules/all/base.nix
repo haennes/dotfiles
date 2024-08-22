@@ -1,7 +1,7 @@
 let
 
   secrets = import ../../lib/wireguard;
-in { config, pkgs, lib, ips, ports, vps ? false, proxmox ? false, ... }:
+in { config, pkgs, lib, ips, hports, vps ? false, proxmox ? false, ... }:
 with lib;
 with ips;
 let
@@ -49,7 +49,10 @@ in {
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
     # Enable the OpenSSH daemon.
-    services.openssh.enable = true; # TODO: extract into module
+    services.openssh = {
+      enable = true; # TODO: extract into module
+      ports = [  hports.sshd ];
+    };
 
   };
 }
