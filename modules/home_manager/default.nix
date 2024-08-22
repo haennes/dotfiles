@@ -1,4 +1,4 @@
-{ inputs, pkgs,  config, nur, ips, sshkeys, overlays, permit_pkgs, ports, ... }@all_inputs:
+{ inputs, pkgs,  config, nur, ips, sshkeys, overlays, permit_pkgs, ports, hports, ... }@all_inputs:
 let build_user = name: { ${name} = import ../../users/${name}; };
 in rec {
   home-manager = {
@@ -8,7 +8,7 @@ in rec {
       addons = nur.repos.rycee.firefox-addons;
       outer_config = config;
       inherit (inputs) nixvim;
-      inherit inputs ips ports sshkeys overlays permit_pkgs;
+      inherit inputs ips hports ports sshkeys overlays permit_pkgs;
       #TODO this is dumb, import them at a user level or make them user bound and move them here
       theme = import ../../users/hannses/theme.nix;
       globals = import ../../users/hannses/globals.nix all_inputs;

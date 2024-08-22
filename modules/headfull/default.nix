@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
   imports = [ ./base.nix ./pkgs.nix ./minecraft ./tasks.nix ./homepage-dashboard.nix ./local_nginx.nix ./atuin.nix ./fortivpn.nix ./virtualization.nix ];
+{ config, lib, hports, ... }: {
+  services.postgresql.settings.port = lib.mkIf (hports ? postresql) hports.postgresql;
 
 }

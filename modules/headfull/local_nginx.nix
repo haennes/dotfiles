@@ -1,8 +1,8 @@
-{ lib, config, ... }:
+{ lib, config, hports, ... }:
 let
   linking = {
-    sync = 8384;
-    "s.sync" = 8385;
+    sync = hports.syncthing.gui;
+    "s.sync" = hports.ssh.syncschlawiner.syncthing.gui;
   };
 in
 {

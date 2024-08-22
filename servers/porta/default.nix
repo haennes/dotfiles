@@ -14,10 +14,10 @@
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 80 22 24 8000 ];
-      allowedUDPPorts = [ 51821 ];
+      allowedTCPPorts = [ 80 22 24 8000 ]; #SHOULD NOT BE NEEDED
+      allowedUDPPorts = [ 51821 ]; #SHOULD NOT BE NEEDED
     };
-    nat = {
+    nat = { #SHOULD NOT BE NEEDED USE JUMP HOST FOR THAT
       enable = true;
       internalInterfaces = [ "wg0" ];
       externalInterface = "eth0";

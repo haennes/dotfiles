@@ -11,7 +11,7 @@
 
   networking.hostName = "welt";
   networking.domain = "hannses.de";
-  networking.firewall = {
+  networking.firewall = { #should not be needed as automatically opened
     allowedUDPPorts = [ 51821 ];
     allowedTCPPorts = [ 22 80 443 ];
   };
