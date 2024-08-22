@@ -52,9 +52,11 @@ in {
 
       nix-build = "${pkgs.nix-output-monitor}/bin/nom-build";
       nix-shell = "${pkgs.nix-output-monitor}/bin/nom-shell";
+
       nix-opt = with bins; ''
       ${manix} "" | ${grep} '^# ' | ${sed} 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | ${fzf} --preview="${manix} '{}'" | ${xargs} ${manix}
       '';
+      no = nix-opt;
 
       #settings this to pkgs fails
       vim = "nvim";
