@@ -30,6 +30,7 @@ let
     "8388" = "ssh.tabula.syncthing.gui";
     "8390" = "ssh.tabula.web";
     "9090" = "ssh.syncschlawiner.ipfs.api";
+    "9091" = "ssh.syncschlawiner.ipfs.gateway";
 
     "9081" = "tasks.uni";
     "9082" = "tasks.haushalt";
@@ -58,6 +59,7 @@ lib.mapAttrs'(name: value: {inherit name; value = reverse_map (common // value);
 
   syncschlawiner = {
     "8081" = "ipfs.api";
+    "8080" = "ipfs.gateway";
     "80" = "nextcloud.web";
     "8001" = "kasmweb.gui";
     "8384" = "syncthing.gui";
