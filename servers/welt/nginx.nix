@@ -14,17 +14,15 @@ let
         locations."/" = {
           proxyPass = "http${https_str}://${target_ip}${target_port_str}";
           proxyWebsockets = true; # needed if you need to use WebSocket
-          #extraConfig =
-          ## required when the target is also TLS server with multiple hosts
-          #"proxy_ssl_server_name on;" + # required when the server wants to use HTTP Authentication
-          #"proxy_pass_header Authorization;"
-          #;
         } // custom_locations;
       } // custom_settings;
     };
   recursiveMerge = listOfAttrsets:
     lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) { } listOfAttrsets;
 in {
+  networking.firewall = {
+    allowedTCPPorts = [ 80 443 ];
+  };
 } // recursiveMerge [
   {
     services.nginx = {
@@ -50,7 +48,6 @@ in {
     target_ip = ips.syncschlawiner.wg0;
     target_port = ports.syncschlawiner.kasmweb.gui;
   })
-  #(create_simple_proxy_with_domain{fqdn = "mail.hannses.de"; target_ip = ips.tabula.wg0;})
   (create_simple_proxy_with_domain {
     fqdn = "mkhh.hannses.de";
     target_ip = ips.tabula.wg0;
@@ -59,5 +56,4 @@ in {
     fqdn = "cloud.mkhh.hannses.de";
     target_ip = ips.syncschlawiner_mkhh.wg0;
   })
-  #(create_simple_proxy_with_domain{fqdn = "cloud.mkhh.hannses.de"; target_ip = ips.tabula.wg0;})
 ]
