@@ -6,6 +6,7 @@ with lib; {
     owner = "nextcloud";
     group = "nextcloud";
   };
+  networking.firewall.allowedTCPPorts = [ 80 ];
 
   #services.onlyoffice.enable = true;
   services.nextcloud = {
