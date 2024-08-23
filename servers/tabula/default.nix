@@ -8,10 +8,6 @@
     user = "nginx";
   };
   networking.hostName = "tabula";
-  networking.firewall = { #should not be needed anymore
-    allowedUDPPorts = [ 51821 ];
-    allowedTCPPorts = [ 22 80 443 ];
-  };
 
   services.wireguard-wrapper.enable = true;
 
