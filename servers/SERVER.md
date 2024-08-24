@@ -26,15 +26,19 @@
     1. Reinstall VPS
     2. add sshkey to root
     3. ssh into server as root
-    4. run 
+    4. run
         ```
         curl https://raw.githubusercontent.com/elitak/nixos-infect/master/nixos-infect | NIX_CHANNEL=nixos-unstable bash -x
         ```
     5. test if it can reboot.
 - deus: **HOST FÜR ALLE ANDEREN**
 - porta: **WG-Endpoint** bis jetzt Proxmox VM (evtl: -> microvm)
-- fenestra **2WG-Endpoint** bis jetzt Proxmox VM (evtl: -> microvm) (Backup Zugriff, falls Fehlkonfiguration von porta)
 - tabula: **Website** bis jetzt Proxmox VM (evtl: -> microvm)
-- grapheum: **OnlyOffice - Server** bis jetzt Proxmox VM (evtl: -> microvm)
 - syncschlawiner: **CLOUD ++ SYNCTHING** bis jetzt Proxmox VM (evtl: -> microvm)
+
+## inaktiv:
+- fenestra **2WG-Endpoint** bis jetzt Proxmox VM (evtl: -> microvm) (Backup Zugriff, falls Fehlkonfiguration von porta)
+- hermes: mail
+- vertumnus: **gitea**
+- grapheum: **OnlyOffice - Server** bis jetzt Proxmox VM (evtl: -> microvm)
 - speilunke: **pterodactyl** bis jetzt Proxmox VM (evtl: -> microvm)
