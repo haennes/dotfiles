@@ -49,7 +49,7 @@ in with sshkeys;
   "atuin/key.age".publicKeys = systems_headfull ++ [hannses];
   "atuin/session.age".publicKeys = systems_headfull ++ [hannses];
 
-} // wg_simple "mainpc" [ hannses mainpc ]
+} // wg_simple "deus" [ hannses deus ]
 // wg_simple "thinkpad" [ hannses thinkpad root_thinkpad ]
 // wg_simple "thinknew" [ hannses thinknew root_thinknew ]
 // wg_simple "yoga" [ hannses yoga root_yoga ]
@@ -71,9 +71,9 @@ in with sshkeys;
   syncschlawiner
   root_syncschlawiner
 ] // syncthing_keypair "tabula" [ hannses root_tabula tabula ]
-// syncthing_keypair "mainpc" [ hannses root_mainpc mainpc ]
+// syncthing_keypair "deus" [ hannses root_deus deus ]
 
-// user_password "hannses" [ hannses thinkpad thinknew yoga mainpc ]
-// user_password "mum" [ hannses thinkpad thinknew yoga mainpc ]
-// user_password "dad" [ hannses thinkpad thinknew yoga mainpc ]
+// user_password "hannses" [ hannses thinkpad thinknew yoga deus ]
+// user_password "mum" [ hannses thinkpad thinknew yoga deus ]
+// user_password "dad" [ hannses thinkpad thinknew yoga deus ]
 

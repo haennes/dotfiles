@@ -23,11 +23,11 @@
   root_thinkpad =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN7V06ySR5743z4SJssOw3+O+Ri9mWYsMzjEw64zvSUq root@thinknew";
 
-  mainpc =
+  deus =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEY+oan9+kLg58WYLt9Ulm+Dqaq7W0VD8pmiB60ryDiY root@nixos";
 
-  root_mainpc =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINN0Za1r1u1M7MMVbK2JQoTrhabXbkeCBQasAj5GqhB3 root@mainpc";
+  root_deus =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINN0Za1r1u1M7MMVbK2JQoTrhabXbkeCBQasAj5GqhB3 root@deus";
 
   root_pve =
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2gq5Cy9fMUvXu1SLAnROYC+oRCptsYbV9m/5eXjxo7yANwV4dLN/W5Io/bt5vw34UtWENr52rdSoyN6LOuo3WRWyqjrRLpX+vduJDxGvEK5F2kM1owSvg2Sc3nQ8ivD+fiUPXMvczC7TwKKwBi7fl4x8XhyBksr36A3sxHFv/OR9hD7JZd/B2cThISx4vKXlVGw2r9sj7cKqEeHCDpcBC7+ADU5uUXBmhKbJNMAQtC1bZtjj+zezxK0GSMC/3iNUjwQf4O/6gno3uKip5dAkN7yKLcD0heDxE5ps81av6ACTHjuVtTqmJuL9bC0iqB51juu1yBlB8crev77CkIfm9 root@pve";

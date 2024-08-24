@@ -244,6 +244,10 @@
       #(build_headfull{hostname = "live"; live_iso = true;}) #TAKES AGES TO MAKE THE FS
 
       # Servers
+
+      (build_headless {
+        hostname = "deus";
+      })
       (build_headless {
         hostname = "welt";
         vps = true;

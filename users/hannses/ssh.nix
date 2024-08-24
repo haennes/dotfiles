@@ -121,7 +121,12 @@ in with ips; {
         identitiesOnly = true;
         identityFile = [sshkeys.forward_path];
       };
-    } // local_global {
+    }
+    // local_global {
+      name = "deus";
+      local_ip = "192.168.0.238";
+    }
+    // local_global {
       forward_user = true;
       name = "pve";
       local_ip = ips.pve.vmbr0;

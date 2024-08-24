@@ -4,13 +4,16 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ./zfs.nix ];
 
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+
+
+  #zfs filesystem is mounted in ./zfs.nix
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/098b8a6e-9817-4ca1-a4b3-4a9aecd95f19";
