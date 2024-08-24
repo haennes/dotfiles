@@ -19,7 +19,7 @@ in
         [ "thinkpad" "welt" ]
         [ "thinknew" "welt" ]
         [ "yoga" "welt" ]
-        [ "mainpc" "welt" ]
+        [ "deus" "welt" ]
       ];
       nodes = {
         welt = {

@@ -31,6 +31,7 @@
         curl https://raw.githubusercontent.com/elitak/nixos-infect/master/nixos-infect | NIX_CHANNEL=nixos-unstable bash -x
         ```
     5. test if it can reboot.
+- deus: **HOST FÜR ALLE ANDEREN**
 - porta: **WG-Endpoint** bis jetzt Proxmox VM (evtl: -> microvm)
 - fenestra **2WG-Endpoint** bis jetzt Proxmox VM (evtl: -> microvm) (Backup Zugriff, falls Fehlkonfiguration von porta)
 - tabula: **Website** bis jetzt Proxmox VM (evtl: -> microvm)

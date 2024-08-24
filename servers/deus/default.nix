@@ -5,6 +5,7 @@
 { config, pkgs, ... }: {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    #zfs is importat in hardware-configuration!
     #./services/backup.nix
   ];
 
@@ -13,12 +14,12 @@
     efi.canTouchEfiVariables = true;
   };
 
-  services.syncthing_wrapper = { enable = true; };
-  services.syncthing = {
-    dataDir = "/data/syncthing";
-    user = "hannses";
-  };
-  services.wireguard-wrapper.enable = true;
+  #services.syncthing_wrapper = { enable = true; };
+  #services.syncthing = {
+  #  dataDir = "/data/syncthing";
+  #  user = "hannses";
+  #};
+  #services.wireguard-wrapper.enable = true;
 
   networking.hostName = "deus"; # Define your hostname.
 
