@@ -7,6 +7,7 @@ let
   priv_key = hostname: secrets.age_obtain_wireguard_priv { inherit hostname; };
 in
 {
+config = lib.mkIf config.services.wireguard-wrapper.enable ({
 
     services.wireguard-wrapper = {
       connections = [
@@ -36,4 +37,5 @@ in
         config.age.secrets."wireguard_${config.networking.hostName}_wg0_private".path;
       port = hports.wg0;
     };
-} // (priv_key (config.networking.hostName))
+} // (priv_key (config.networking.hostName)));
+}
