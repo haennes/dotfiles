@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, system, ... }:
 let
   home = config.home.homeDirectory;
   dotfiles_path = "${home}/.dotfiles";
@@ -32,17 +32,11 @@ in {
       '';
 
       aliases = ["dticket" "ticket" "db" ];
-      bins = with pkgs;{
-      manix = "${manix}/bin/manix";
-      sed = "${gnused}/bin/sed";
-      grep = "${gnugrep}/bin/grep";
-      fzf = "${fzf}/bin/fzf";
-      xargs = "${findutils}/bin/xargs";
-      };
 
     in
     rec
     {
+      #manix and its aliases are configured in ./manix.nix
       dbui = "${dbui_script}/bin/dbui";
 
       loc = "${pkgs.tokei}/bin/tokei";
@@ -52,11 +46,6 @@ in {
 
       nix-build = "${pkgs.nix-output-monitor}/bin/nom-build";
       nix-shell = "${pkgs.nix-output-monitor}/bin/nom-shell";
-
-      nix-opt = with bins; ''
-      ${manix} "" | ${grep} '^# ' | ${sed} 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | ${fzf} --preview="${manix} '{}'" | ${xargs} ${manix}
-      '';
-      no = nix-opt;
 
       #settings this to pkgs fails
       vim = "nvim";
