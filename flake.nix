@@ -9,6 +9,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    manix = {
+      url = "github:zvolin/manix/c532d14b0b59d92c4fab156fc8acd0565a0836af";
+    };
     hyprland = {
       url = "github:hyprwm/Hyprland/47b087950dcfaf6fdda63c4d5f13efda3508a6fb?submodules=1"; #works
     };
@@ -67,7 +70,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nixos-generators, deploy-rs
+  outputs = inputs@{ self, nixpkgs, home-manager, manix, nixos-generators,  deploy-rs
     , nixos-dns, rust-overlay, disko, nur, nixvim, nix-yazi-plugins, agenix, flake-utils-plus
     , simple-nixos-mailserver, wireguard-wrapper, syncthing-wrapper, tasks_md, nix-update-inputs, haumea, ... }:
     let
