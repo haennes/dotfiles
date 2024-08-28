@@ -1,4 +1,4 @@
-{ lib, config, hports, ... }:
+{ lib, config, hports, inputs, system, ... }:
 let
   linking = {
     sync = hports.syncthing.gui;
@@ -15,6 +15,7 @@ in
   };
   services.nginx.virtualHosts= {
     "localhost".locations."/".proxyPass = "http://localhost:${toString config.services.homepage-dashboard.listenPort}";
+    "ho.localhost".locations."/".root = "${inputs.home-manager-option-search.packages."${system}".default}";
   } // ( lib.mapAttrs'
       (name: value: {
         name = "${name}.localhost";
