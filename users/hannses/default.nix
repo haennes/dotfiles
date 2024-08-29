@@ -49,7 +49,8 @@
     git-crypt # should be obsolete
     gnupg
     signal-desktop
-    scli #signal cli
+    scli #signal cli-tui FIXME replace with gurk-rs as soon as upstream fixed
+    signal-cli
     dconf-editor
     poppler_utils
     pdftk
