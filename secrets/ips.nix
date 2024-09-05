@@ -68,9 +68,21 @@ in {
           "7" = "handy_hannses%wg0";
           "8" = "tabula%wg0";
         };
+
       };
 
-      "57.129.6.13" = "welt%ens3";
+      "127.0" = {
+        "1" = {
+          #vm subnet
+          # naming scheme:
+          # 1-9  - internal
+          "1" = "vm-bridge.host";
+
+          # others - any vm
+          "10" = "vm-bridge.fons";
+        };
+      };
+
     }
 
 #{

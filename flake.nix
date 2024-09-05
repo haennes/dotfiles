@@ -31,6 +31,11 @@
     #  inputs.hyprland.follows = "hyprland";
     #};
 
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -74,7 +79,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, manix, nixos-generators,  deploy-rs
+  outputs = inputs@{ self, nixpkgs, home-manager, manix, nixos-generators, deploy-rs, microvm
     , nixos-dns, rust-overlay, disko, nur, nixvim, nix-yazi-plugins, agenix, flake-utils-plus
     ,  wireguard-wrapper, syncthing-wrapper, tasks_md, nix-update-inputs, haumea, ... }:
     let
@@ -104,8 +109,11 @@
       sshkeys = import ./secrets/sshkeys.nix;
       ips = import ./secrets/ips.nix{inherit (nixpkgs) lib;};
       ports = import ./secrets/ports.nix{inherit (nixpkgs) lib;};
+      extraModules = {
+        microvm_host = import ./modules/microvm.nix;
+      };
 
-      build_common_attrs = { hostname, modules, specialArgs, proxmox, vps }: {
+      build_common_attrs = { hostname, modules, specialArgs, vm, vps }: {
         inherit system;
         modules = modules ++ [
           ./modules/all
@@ -114,38 +122,42 @@
           syncthing-wrapper.nixosModules.syncthing-wrapper
           nur.nixosModules.nur
         ];
-        specialArgs = specialArgs // {
-          inherit sshkeys inputs system proxmox vps ips ports overlays;
+        specialArgs = let args = specialArgs // {
+          inherit sshkeys inputs system vm vps ips ports overlays;
           permit_pkgs = pkgs;
-        } // {hports = if (ports ? "${hostname}") then ports.${hostname} else null;};
+        }
+        // {hports = if (ports ? "${hostname}") then ports.${hostname} else null;}
+        // {hips = if (ips ? "${hostname}") then ips.${hostname} else null;};
+        in
+        {specialArgs = args;}//args;
       };
 
       generate_common =
-        { hostname, modules, specialArgs, proxmox, vps, format }: {
+        { hostname, modules, specialArgs, vm, vps, format }: {
           packages.x86_64-linux.${hostname} = (nixos-generators.nixosGenerate
             ((build_common_attrs {
-              inherit hostname modules specialArgs proxmox vps;
+              inherit hostname modules specialArgs vm vps;
             }) // {
               inherit format;
             }));
         };
 
       build_common = { hostname, modules ? [ ], specialArgs ? { }
-        , proxmox ? false, vps ? false, live_iso ? false }:
+        , vm ? false, vps ? false, live_iso ? false }:
         {
           nixosConfigurations."${hostname}" = lib.nixosSystem
             (build_common_attrs {
-              inherit hostname modules specialArgs proxmox vps;
+              inherit hostname modules specialArgs vm vps;
             });
-        } // (if proxmox then
+        } // (if vm then
           generate_common {
-            inherit hostname modules specialArgs proxmox vps;
+            inherit hostname modules specialArgs vm vps;
             format = "proxmox";
           }
         else
           { }) // (if live_iso then
             generate_common {
-              inherit hostname modules specialArgs proxmox vps;
+              inherit hostname modules specialArgs vm vps;
               format = "install-iso";
             }
           else
@@ -162,16 +174,18 @@
         };
       };
 
-      build_headless = { hostname, dep_hostname ? hostname, proxmox ? false
-        , vps ? false, live_iso ? false, local_and_global ? proxmox
+      build_headless = { hostname, dep_hostname ? hostname, vm ? false
+        , vps ? false, live_iso ? false, local_and_global ? vm
         , specialArgs ? { }, modules ? [ ] }:
+        let
+        vm_modules = [ microvm.nixosModules.microvm ];
+        in
         build_common {
-          inherit hostname proxmox vps specialArgs live_iso;
+          inherit hostname vm vps specialArgs live_iso;
           modules = modules ++ [
             ./servers/${hostname}
             ./modules/headless
-            simple-nixos-mailserver.nixosModule
-          ];
+          ] ++ (if vm then vm_modules else [] );
         } // (if local_and_global then
           (recursiveMerge [
             (build_deploy {
@@ -246,7 +260,10 @@
       # With GUI
       (build_headfull { hostname = "thinkpad"; })
       (build_headfull { hostname = "thinknew"; })
-      (build_headfull { hostname = "yoga"; })
+      (build_headfull {
+        modules = [ extraModules.microvm_host inputs.microvm.nixosModules.host ];
+        hostname = "yoga";
+      })
       (build_headfull { hostname = "mainpc"; })
       #(build_headfull{hostname = "live"; live_iso = true;}) #TAKES AGES TO MAKE THE FS
 
@@ -254,6 +271,7 @@
 
       (build_headless {
         hostname = "deus";
+        modules = [ extraModules.microvm ];
       })
       (build_headless {
         hostname = "welt";
@@ -262,31 +280,35 @@
       })
       (build_headless {
         hostname = "porta";
-        proxmox = true;
+        vm = true;
       })
       (build_headless {
         hostname = "syncschlawiner";
-        proxmox = true;
+        vm = true;
       })
       (build_headless {
         hostname = "syncschlawiner_mkhh";
-        proxmox = true;
+        vm = true;
       })
       (build_headless {
         hostname = "tabula";
-        proxmox = true;
+        vm = true;
       })
       (build_headless {
         hostname = "tabula_mkhh";
-        proxmox = true;
+        vm = true;
       })
       (build_headless {
         hostname = "hermes";
-        proxmox = true;
+        vm = true;
+      })
+      (build_headless {
+        hostname = "fons";
+        vm = true;
       })
       (build_headless {
         hostname = "grapheum";
-        proxmox = true;
+        vm = true;
       })
     ]);
 
