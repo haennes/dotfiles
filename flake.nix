@@ -39,8 +39,6 @@
       url = "github:Janik-Haag/nixos-dns";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    simple-nixos-mailserver.url =
-      "gitlab:simple-nixos-mailserver/nixos-mailserver";
     deploy-rs.url = "github:serokell/deploy-rs";
     rust-overlay.url = "github:oxalica/rust-overlay";
     disko = {
@@ -78,7 +76,7 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, manix, nixos-generators,  deploy-rs
     , nixos-dns, rust-overlay, disko, nur, nixvim, nix-yazi-plugins, agenix, flake-utils-plus
-    , simple-nixos-mailserver, wireguard-wrapper, syncthing-wrapper, tasks_md, nix-update-inputs, haumea, ... }:
+    ,  wireguard-wrapper, syncthing-wrapper, tasks_md, nix-update-inputs, haumea, ... }:
     let
       overlays = [ nur.overlay rust-overlay.overlays.default nix-yazi-plugins.overlays.default nix-update-inputs.overlays.default ];
       system = "x86_64-linux";
