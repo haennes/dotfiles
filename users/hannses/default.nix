@@ -19,6 +19,7 @@
     ./firefox
     ./ssh.nix
     ./virtualization.nix
+    ./newsboat.nix
     #./manix.nix
     #(import ./firefox.nix{pkgs=pkgs; config=config; addons=addons;})
   ];
