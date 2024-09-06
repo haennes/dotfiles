@@ -154,6 +154,11 @@ in with ips; {
           host.port = ports.syncschlawiner.ipfs.api;
           host.address = "127.0.0.1";
         }
+        {
+          bind.port = ssh_ports.syncschlawiner.ipfs.gateway;
+          host.port = ports.syncschlawiner.ipfs.gateway;
+          host.address = "127.0.0.1";
+        }
       ];
     } // local_global {
       name = "syncschlawiner_mkhh";
