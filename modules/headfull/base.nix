@@ -26,13 +26,13 @@ in {
   hardware.pulseaudio.enable = true;
   security.rtkit.enable = true;
   services.logind.powerKey = "suspend";
-  #services.pipewire = {
-  #  enable = true;
+  services.pipewire = {
+    enable = false;
   #  pulse.enable = true;
   #  jack.enable = true;
   #  alsa.enable = true;
   #  alsa.support32Bit = true;
-  #};
+  };
 
   programs.hyprland.enable = true;
 

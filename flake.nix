@@ -249,10 +249,12 @@
             ./modules/gnome
             {
               specialisation = {
-                   gnome.configuration = {
-                     services.xserver.desktopManager.gnome.enable = true;
-                     system.nixos.tags = ["gnome"];
-                   };
+                gnome.configuration = {
+                  services.xserver.desktopManager.gnome.enable = true;
+                  services.gnome.gnome-remote-desktop.enable =
+                    false; # conflicts with pulsaudio
+                  system.nixos.tags = [ "gnome" ];
+                };
               };
             }
           ];
