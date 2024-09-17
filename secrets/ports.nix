@@ -20,6 +20,7 @@ let
   #reverse_map = with lib; set: mapAttrs' (name: value: {name = lists.head value; value = lists.tail value;}) ( ( mapAttrsRecursive (path: value: (concatStringsSep "" path) ++ [value]) set));
   common = {
     "51821" = "wg0";#not all run wireguard, but never use port for sth different
+    "5432" = "postgresql"; #default postgres port, just to make sure not bound again
     "8384" = "syncthing.gui"; #not all run syncthing, but never use port for sth different
     "22" = "sshd";
   };
@@ -42,7 +43,6 @@ let
     "8384" = "syncthing.gui";
     "8888" = "atuin";
 
-    "5432" = "postgresql"; #default postgres port, just to make sure not bound again
 
     "20002" = "autossh-monitoring.syncschlawiner";
     "20000" = "autossh-monitoring.pve";
@@ -76,4 +76,3 @@ lib.mapAttrs'(name: value: {inherit name; value = reverse_map (common // value);
   #hostname.port = "service"
   #decided to not encourage allow hostname.digit.rest = "service" as it gets to confusing
 }
-
