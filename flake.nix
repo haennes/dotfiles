@@ -76,14 +76,25 @@
     };
     tasks_md = {
       url = "git+file:///home/hannses/programming/nix/tasks";
+    signal-whisper = {
+      url = "github:haennes/signal-whisper";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, manix, nixos-generators, deploy-rs, microvm
-    , nixos-dns, rust-overlay, disko, nur, nixvim, nix-yazi-plugins, agenix, flake-utils-plus
-    ,  wireguard-wrapper, syncthing-wrapper, tasks_md, nix-update-inputs, haumea, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, manix, nixos-generators
+    , deploy-rs, microvm, nixos-dns, rust-overlay, disko, nur, nixvim
+    , nix-yazi-plugins, agenix, flake-utils-plus, wireguard-wrapper
+    , syncthing-wrapper, tasks_md, nix-update-inputs, haumea, signal-whisper
+    , ... }:
     let
-      overlays = [ nur.overlay rust-overlay.overlays.default nix-yazi-plugins.overlays.default nix-update-inputs.overlays.default ];
+      overlays = [
+        nur.overlay
+        rust-overlay.overlays.default
+        nix-yazi-plugins.overlays.default
+        nix-update-inputs.overlays.default
+        signal-whisper.overlays.default
+      ];
       system = "x86_64-linux";
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
       lib = nixpkgs.lib;
