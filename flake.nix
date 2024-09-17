@@ -19,7 +19,8 @@
       url = "github:zvolin/manix/c532d14b0b59d92c4fab156fc8acd0565a0836af";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland/47b087950dcfaf6fdda63c4d5f13efda3508a6fb?submodules=1"; #works
+      url =
+        "github:hyprwm/Hyprland/47b087950dcfaf6fdda63c4d5f13efda3508a6fb?submodules=1"; # works
     };
 
     nix-update-inputs.url = "github:haennes/nix-update-input/cycle";
@@ -74,8 +75,7 @@
     syncthing-wrapper = {
       url = "git+file:///home/hannses/programming/nix/syncthing-wrapper";
     };
-    tasks_md = {
-      url = "git+file:///home/hannses/programming/nix/tasks";
+    tasks_md = { url = "git+file:///home/hannses/programming/nix/tasks"; };
     signal-whisper = {
       url = "github:haennes/signal-whisper";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -118,11 +118,9 @@
         ];
       };
       sshkeys = import ./secrets/sshkeys.nix;
-      ips = import ./secrets/ips.nix{inherit (nixpkgs) lib;};
-      ports = import ./secrets/ports.nix{inherit (nixpkgs) lib;};
-      extraModules = {
-        microvm_host = import ./modules/microvm.nix;
-      };
+      ips = import ./secrets/ips.nix { inherit (nixpkgs) lib; };
+      ports = import ./secrets/ports.nix { inherit (nixpkgs) lib; };
+      extraModules = { microvm_host = import ./modules/microvm.nix; };
 
       build_common_attrs = { hostname, modules, specialArgs, vm, vps }: {
         inherit system;
@@ -133,28 +131,29 @@
           syncthing-wrapper.nixosModules.syncthing-wrapper
           nur.nixosModules.nur
         ];
-        specialArgs = let args = specialArgs // {
-          inherit sshkeys inputs system vm vps ips ports overlays;
-          permit_pkgs = pkgs;
-        }
-        // {hports = if (ports ? "${hostname}") then ports.${hostname} else null;}
-        // {hips = if (ips ? "${hostname}") then ips.${hostname} else null;};
-        in
-        {specialArgs = args;}//args;
+        specialArgs = let
+          args = specialArgs // {
+            inherit sshkeys inputs system vm vps ips ports overlays;
+            permit_pkgs = pkgs;
+          } // {
+            hports =
+              if (ports ? "${hostname}") then ports.${hostname} else null;
+          } // {
+            hips = if (ips ? "${hostname}") then ips.${hostname} else null;
+          };
+        in { specialArgs = args; } // args;
       };
 
-      generate_common =
-        { hostname, modules, specialArgs, vm, vps, format }: {
-          packages.x86_64-linux.${hostname} = (nixos-generators.nixosGenerate
-            ((build_common_attrs {
-              inherit hostname modules specialArgs vm vps;
-            }) // {
+      generate_common = { hostname, modules, specialArgs, vm, vps, format }: {
+        packages.x86_64-linux.${hostname} = (nixos-generators.nixosGenerate
+          ((build_common_attrs { inherit hostname modules specialArgs vm vps; })
+            // {
               inherit format;
             }));
-        };
+      };
 
-      build_common = { hostname, modules ? [ ], specialArgs ? { }
-        , vm ? false, vps ? false, live_iso ? false }:
+      build_common = { hostname, modules ? [ ], specialArgs ? { }, vm ? false
+        , vps ? false, live_iso ? false }:
         {
           nixosConfigurations."${hostname}" = lib.nixosSystem
             (build_common_attrs {
@@ -188,15 +187,11 @@
       build_headless = { hostname, dep_hostname ? hostname, vm ? false
         , vps ? false, live_iso ? false, local_and_global ? vm
         , specialArgs ? { }, modules ? [ ] }:
-        let
-        vm_modules = [ microvm.nixosModules.microvm ];
-        in
-        build_common {
+        let vm_modules = [ microvm.nixosModules.microvm ];
+        in build_common {
           inherit hostname vm vps specialArgs live_iso;
-          modules = modules ++ [
-            ./servers/${hostname}
-            ./modules/headless
-          ] ++ (if vm then vm_modules else [] );
+          modules = modules ++ [ ./servers/${hostname} ./modules/headless ]
+            ++ (if vm then vm_modules else [ ]);
         } // (if local_and_global then
           (recursiveMerge [
             (build_deploy {
@@ -274,7 +269,8 @@
       (build_headfull { hostname = "thinkpad"; })
       (build_headfull { hostname = "thinknew"; })
       (build_headfull {
-        modules = [ extraModules.microvm_host inputs.microvm.nixosModules.host ];
+        modules =
+          [ extraModules.microvm_host inputs.microvm.nixosModules.host ];
         hostname = "yoga";
       })
       (build_headfull { hostname = "mainpc"; })

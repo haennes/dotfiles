@@ -29,7 +29,6 @@
   home.username = "hannses";
   home.homeDirectory = "/home/hannses";
 
-
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -39,7 +38,6 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "23.11";
-
 
   nixpkgs.overlays = overlays;
 
@@ -52,7 +50,7 @@
     git-crypt # should be obsolete
     gnupg
     signal-desktop
-    scli #signal cli-tui FIXME replace with gurk-rs as soon as upstream fixed
+    scli # signal tui FIXME replace with gurk-rs as soon as upstream fixed
     signal-cli
     dconf-editor
     poppler_utils
@@ -63,7 +61,7 @@
     fritzing
     fontforge-gtk
     lapce
-    jetbrains.clion #fix debugging c in vim at some point
+    jetbrains.clion # fix debugging c in vim at some point
     #    anki
     #    texmaker
     musescore
@@ -171,9 +169,7 @@
       signByDefault = true;
     };
     extraConfig = {
-      init = {
-        defaultBranch = "main";
-      };
+      init = { defaultBranch = "main"; };
       push.autoSetupRemote = true;
     };
   };
@@ -192,11 +188,9 @@
     terminal = false;
   };
 
-  programs.gpg = {
-  enable = true;
-  };
+  programs.gpg = { enable = true; };
   services.gpg-agent = {
-  pinentryPackage = pkgs.pinentry-tty;
-  enable = true;
+    pinentryPackage = pkgs.pinentry-tty;
+    enable = true;
   };
 }

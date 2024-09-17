@@ -19,11 +19,9 @@ with inputs; {
       "$sccpa" = "${scripts.screenshot-fast}";
       # TODO implement screenshot dmenu script
 
-      exec-once =  scripts.startup;
+      exec-once = scripts.startup;
 
-      monitor = [
-        ",preferred,auto,1"
-      ];
+      monitor = [ ",preferred,auto,1" ];
 
       input = {
         kb_layout = "de,us,eu";
