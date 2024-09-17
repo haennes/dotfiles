@@ -23,6 +23,7 @@
     user = "hannses";
   };
   services.wireguard-wrapper.enable = true;
+  networking.networkmanager.unmanaged = [ "wg0" ];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
