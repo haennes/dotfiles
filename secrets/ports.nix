@@ -70,9 +70,11 @@ lib.mapAttrs'(name: value: {inherit name; value = reverse_map (common // value);
   };
   porta = { };
   welt = { };
+  fons = { };
 
 
 #scheme:
   #hostname.port = "service"
   #decided to not encourage allow hostname.digit.rest = "service" as it gets to confusing
 }
+

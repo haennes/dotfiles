@@ -1,4 +1,3 @@
-
 # Allgemein
 
 <https://dl.dell.com/topicspdf/optiplex-5040-desktop_owners-manual_en-us.pdf>
@@ -35,6 +34,7 @@
 - porta: **WG-Endpoint** bis jetzt Proxmox VM (evtl: -> microvm)
 - tabula: **Website** bis jetzt Proxmox VM (evtl: -> microvm)
 - syncschlawiner: **CLOUD ++ SYNCTHING** bis jetzt Proxmox VM (evtl: -> microvm)
+- fons: **rss**
 
 ## inaktiv:
 - fenestra **2WG-Endpoint** bis jetzt Proxmox VM (evtl: -> microvm) (Backup Zugriff, falls Fehlkonfiguration von porta)

@@ -119,6 +119,7 @@
       };
       sshkeys = import ./secrets/sshkeys.nix;
       ips = import ./secrets/ips.nix { inherit (nixpkgs) lib; };
+      macs = import ./secrets/macs.nix { inherit (nixpkgs) lib; };
       ports = import ./secrets/ports.nix { inherit (nixpkgs) lib; };
       extraModules = { microvm_host = import ./modules/microvm.nix; };
 
@@ -133,7 +134,7 @@
         ];
         specialArgs = let
           args = specialArgs // {
-            inherit sshkeys inputs system vm vps ips ports overlays;
+            inherit sshkeys inputs system vm vps ips macs ports overlays;
             permit_pkgs = pkgs;
           } // {
             hports =
