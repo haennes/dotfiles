@@ -1,12 +1,5 @@
 { pkgs, nixvim, config, scripts, ... }: {
   imports = [ nixvim.homeManagerModules.nixvim ];
-  #programs.neovim = { 
-  #managed by nixvim
-  #    enable = true;
-  # declared in zsh.nix
-  #    viAlias = true;
-  #    vimAlias = true;
-  #};
 
   programs.nixvim = {
     enable = true;
