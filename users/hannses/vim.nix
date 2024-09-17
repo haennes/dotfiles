@@ -54,7 +54,10 @@
 
       markdown-preview = {
         enable = true;
-        settings.auto_start = true;
+        settings = {
+          auto_start = 1;
+          auto_close = 0;
+        };
       };
       openscad = {
         enable = true;
