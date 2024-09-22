@@ -20,7 +20,8 @@
     dataDir = "/home/hannses";
     user = "hannses";
   };
-  services.wireguard-wrapper.enable = true;
+  services.wireguard-wrapper.enable =
+    false; # currently wg0 forwarind all traffic is broken
   networking.networkmanager.unmanaged = [ "wg0" ];
 
   # Configure network proxy if necessary
