@@ -15,7 +15,7 @@ in {
       sort_sensitive = false;
       sort_by = "natural"; # Sort naturally, e.g. 1.md < 2.md < 10.md
     };
-    plugins = (with permit_pkgs.yaziPlugins; { inherit bypass; })
+    plugins = (with permit_pkgs.yaziPlugins; { })
       // lib.mergeAttrsList (lib.map (p: { "${p.name}" = p.pkg; }) plugins);
     initLua = lib.concatStringsSep "\n"
       (map (p: if p ? initLua then p.initLua else "") plugins);
