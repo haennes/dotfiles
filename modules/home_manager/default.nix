@@ -1,4 +1,5 @@
-{ inputs, pkgs, system, config, nur, ips, sshkeys, overlays, permit_pkgs, ports, hports, ... }@all_inputs:
+{ inputs, pkgs, system, config, nur, ips, sshkeys, overlays, permit_pkgs, ports
+, hports, ... }@all_inputs:
 let build_user = name: { ${name} = import ../../users/${name}; };
 in rec {
   home-manager = {
@@ -26,14 +27,16 @@ in rec {
       name = "key";
       symlink = false;
       owner = "hannses";
-      path = config.home-manager.users.hannses.home.homeDirectory+"/.local/share/atuin/key";
+      path = config.home-manager.users.hannses.home.homeDirectory
+        + "/.local/share/atuin/key";
     };
     "atuin/session.age" = {
       file = ../../secrets/atuin/session.age;
       name = "session";
       owner = "hannses";
       symlink = false;
-      path = config.home-manager.users.hannses.home.homeDirectory+"/.local/share/atuin/session";
+      path = config.home-manager.users.hannses.home.homeDirectory
+        + "/.local/share/atuin/session";
     };
   };
 }

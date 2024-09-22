@@ -7,8 +7,8 @@
     tor-browser
 
     #media
-    gimp #edit
-    vlc #view
+    gimp # edit
+    vlc # view
 
     #modelling
     freecad
@@ -17,8 +17,8 @@
 
     #office & texteditors
     libreoffice
-    xournalpp             #note taking
-    permit_pkgs.obsidian  #knowledge management
+    xournalpp # note taking
+    permit_pkgs.obsidian # knowledge management
     helix
 
     #dicts
@@ -27,41 +27,41 @@
     hunspellDicts.en_US
 
     #formatting language
-    tectonic                     #tex compiler
-    texlive.combined.scheme-full #tex
-    typst                        #typst
-    typst-live                   #typst live preview browser
+    tectonic # tex compiler
+    texlive.combined.scheme-full # tex
+    typst # typst
+    typst-live # typst live preview browser
 
     #terminals
     alacritty
     blackbox-terminal
 
     #tools
-    diff-pdf    #pdf
-    pdfarranger #pdf
-    btop        #process and system monitor
+    diff-pdf # pdf
+    pdfarranger # pdf
+    btop # process and system monitor
     unzip
     cifs-utils
     yubikey-manager-qt
-    wl-clipboard  #clipboard
+    wl-clipboard # clipboard
 
     #tui
     bluetuith
     docker
 
     #programming
-    tokei                               #count loc
+    tokei # count loc
     arduino
     arduinoOTA
-    hugo                                #website
+    hugo # website
     cargo-generate
     rust-bin.nightly.latest.default
     python3
-    ruff                                #python linter
-    gcc                                 #c compiler
+    ruff # python linter
+    gcc # c compiler
 
     #Gameing
-    lutris                              #game launcher compatible with steam, wine, ...
+    lutris # game launcher compatible with steam, wine, ...
 
   ];
 }

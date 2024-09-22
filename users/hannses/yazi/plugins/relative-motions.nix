@@ -1,4 +1,4 @@
-{yaziPlugins, lib, ...}:{
+{ yaziPlugins, lib, ... }: {
   name = "relative-motions";
   pkg = yaziPlugins.relative-motions;
 
@@ -8,15 +8,13 @@
 
   keymap = {
     manager = {
-      prepend_keymap = (lib.lists.map(idx_n:
-           let
-           idx = builtins.toString idx_n;
-           in
-           {
-             on = [ idx ];
-             run = "plugin relative-motions --args=${idx}";
-             desc = "Move in relative steps";
-           }) (lib.range 1 9));
+      prepend_keymap = (lib.lists.map (idx_n:
+        let idx = builtins.toString idx_n;
+        in {
+          on = [ idx ];
+          run = "plugin relative-motions --args=${idx}";
+          desc = "Move in relative steps";
+        }) (lib.range 1 9));
     };
   };
 }

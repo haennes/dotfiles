@@ -1,8 +1,9 @@
-{ lib, favicon, pkgs, ... }:let
-  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg" ;
-in
-lib.mapAttrs (_name: value: if value ? icon then value else value // {inherit icon;})
-{
+{ lib, favicon, pkgs, ... }:
+let
+  icon =
+    "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+in lib.mapAttrs
+(_name: value: if value ? icon then value else value // { inherit icon; }) {
   "Nix Packages" = {
     urls = [{
       template = "https://search.nixos.org/packages";

@@ -6,17 +6,18 @@ in {
   home.packages = with pkgs; [ nom eza tokei ];
   programs.zsh = {
     enable = true;
-    shellAliases =
-    let
+    shellAliases = let
       deutschland_ticket_pdf = pkgs.writeShellScriptBin "deutschland_ticket_pdf"
         "${pkgs.zathura}/bin/zathura --mode=fullscreen ${home}/Documents/DeutschlandTicket.pdf";
-      deutschland_ticket_firefox = pkgs.writeShellScriptBin "deutschland_ticket_firefox"
+      deutschland_ticket_firefox =
+        pkgs.writeShellScriptBin "deutschland_ticket_firefox"
         "${pkgs.firefox}/bin/firefox --new-window https://dticket-fuer-studenten.rvv.de/account/tickets";
-      deutschland_ticket_screenshot = pkgs.writeShellScriptBin "deutschland_ticket_screenshot"
+      deutschland_ticket_screenshot =
+        pkgs.writeShellScriptBin "deutschland_ticket_screenshot"
         "${pkgs.feh}/bin/feh -FZ ${home}/Documents/DeutschlandTicket.png";
       dbui_script = pkgs.writeShellScriptBin "dbui" ''
         input=$( \
-          echo "${lib.concatLines ["browser" "pdf" "screenshot" ]}" \
+          echo "${lib.concatLines [ "browser" "pdf" "screenshot" ]}" \
           | ${pkgs.fzf}/bin/fzf)
         case $input in
           browser)
@@ -31,24 +32,21 @@ in {
         esac
       '';
 
-      aliases = ["dticket" "ticket" "db" ];
+      aliases = [ "dticket" "ticket" "db" ];
 
-    in
-    rec
-    {
+    in rec {
       #manix and its aliases are configured in ./manix.nix
       dbui = "${dbui_script}/bin/dbui";
 
       loc = "${pkgs.tokei}/bin/tokei";
       bc = "${pkgs.fend}/bin/fend";
 
-      dpdf ="${pkgs.diff-pdf}/bin/diff-pdf --view";
+      dpdf = "${pkgs.diff-pdf}/bin/diff-pdf --view";
 
       rg = "${pkgs.ripgrep-all}/bin/rg";
 
       nix-build = "${pkgs.nix-output-monitor}/bin/nom-build";
       nix-shell = "${pkgs.nix-output-monitor}/bin/nom-shell";
-
 
       #settings this to pkgs fails
       vim = "nvim";
@@ -86,24 +84,21 @@ in {
 
       # vim keybindings
       ":q" = "exit";
-    }
-    // lib.listToAttrs (lib.flatten( lib.lists.map(name:
-    [
-    {
-      name = "${name}_bak";
-      value = "${deutschland_ticket_pdf}/bin/deutschland_ticket_pdf";
-    }
-    {
-      name = "${name}_bak_bak" ;
-      value = "${deutschland_ticket_screenshot}/bin/deutschland_ticket_screenshot";
-    }
-    {
-      name = name;
-      value = "${deutschland_ticket_firefox}/bin/deutschland_ticket_firefox";
-    }
-    ]
-    ) aliases))
-    ;
+    } // lib.listToAttrs (lib.flatten (lib.lists.map (name: [
+      {
+        name = "${name}_bak";
+        value = "${deutschland_ticket_pdf}/bin/deutschland_ticket_pdf";
+      }
+      {
+        name = "${name}_bak_bak";
+        value =
+          "${deutschland_ticket_screenshot}/bin/deutschland_ticket_screenshot";
+      }
+      {
+        name = name;
+        value = "${deutschland_ticket_firefox}/bin/deutschland_ticket_firefox";
+      }
+    ]) aliases));
     initExtra = ''
       mkcdir ()
         {

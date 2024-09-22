@@ -4,8 +4,7 @@ let
     sync = hports.syncthing.gui;
     "s.sync" = hports.ssh.syncschlawiner.syncthing.gui;
   };
-in
-{
+in {
   # the tasks ones are managed in tasks.nix
 
   services.nginx = {
@@ -13,13 +12,14 @@ in
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
   };
-  services.nginx.virtualHosts= {
-    "localhost".locations."/".proxyPass = "http://localhost:${toString config.services.homepage-dashboard.listenPort}";
-    "ho.localhost".locations."/".root = "${inputs.home-manager-option-search.packages."${system}".default}";
-  } // ( lib.mapAttrs'
-      (name: value: {
-        name = "${name}.localhost";
-        value = { locations."/".proxyPass = "http://localhost:${toString value}";};
-      })
-  linking );
+  services.nginx.virtualHosts = {
+    "localhost".locations."/".proxyPass = "http://localhost:${
+        toString config.services.homepage-dashboard.listenPort
+      }";
+    "ho.localhost".locations."/".root =
+      "${inputs.home-manager-option-search.packages."${system}".default}";
+  } // (lib.mapAttrs' (name: value: {
+    name = "${name}.localhost";
+    value = { locations."/".proxyPass = "http://localhost:${toString value}"; };
+  }) linking);
 }

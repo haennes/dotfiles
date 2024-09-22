@@ -36,7 +36,7 @@ with lib; {
       ];
     };
 
-    maxUploadSize = config.nextcloud_max_size ;
+    maxUploadSize = config.nextcloud_max_size;
     #notify_push.enable = true;
     #configureRedis = true;
     #caching.redis = true;
@@ -44,17 +44,9 @@ with lib; {
     #extraOptions.trusted_domains = [ "*.local" ];
     extraApps = with config.services.nextcloud.package.packages.apps; {
 
-      inherit
-      contacts
-      #calendar
-      deck
-      groupfolders
-      maps
-      bookmarks
-      cospend
-      notes
-      polls
-      ;
+      inherit contacts
+        #calendar
+        deck groupfolders maps bookmarks cospend notes polls;
     };
     # extraAppsEnable = true;
     #notify_push.enable = true;

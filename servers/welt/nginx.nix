@@ -1,12 +1,14 @@
 { lib, config, ips, ports, ... }:
 let
-  create_simple_proxy_with_domain =
-    { fqdn, target_ip, custom_settings ? { }, custom_locations ? { }, target_port ? null, https ? false }:
+  create_simple_proxy_with_domain = { fqdn, target_ip, custom_settings ? { }
+    , custom_locations ? { }, target_port ? null, https ? false }:
     let
-    target_port_str = (if target_port == null then "" else ":${builtins.toString target_port}");
-    https_str = (if https then "s" else "");
-    in
-    {
+      target_port_str = (if target_port == null then
+        ""
+      else
+        ":${builtins.toString target_port}");
+      https_str = (if https then "s" else "");
+    in {
       security.acme.certs."${fqdn}" = { inheritDefaults = true; };
       services.nginx.virtualHosts."${fqdn}" = {
         enableACME = true;
@@ -20,9 +22,7 @@ let
   recursiveMerge = listOfAttrsets:
     lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) { } listOfAttrsets;
 in {
-  networking.firewall = {
-    allowedTCPPorts = [ 80 443 ];
-  };
+  networking.firewall = { allowedTCPPorts = [ 80 443 ]; };
 } // recursiveMerge [
   {
     services.nginx = {
@@ -39,7 +39,7 @@ in {
     fqdn = "cloud.hannses.de";
     target_ip = ips.syncschlawiner.wg0;
     custom_settings = {
-    extraConfig = "client_max_body_size ${config.nextcloud_max_size };";
+      extraConfig = "client_max_body_size ${config.nextcloud_max_size};";
     };
   })
   (create_simple_proxy_with_domain {

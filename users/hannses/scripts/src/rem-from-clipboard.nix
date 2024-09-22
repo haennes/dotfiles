@@ -1,7 +1,7 @@
 { pkgs, globals, ... }: ''
 
-    DMENU="${globals.dmenu}"
-    cliphist="${pkgs.cliphist}/bin/cliphist"
+  DMENU="${globals.dmenu}"
+  cliphist="${pkgs.cliphist}/bin/cliphist"
 
-    $cliphist list | $DMENU | $cliphist delete
-  ''
+  $cliphist list | $DMENU | $cliphist delete
+''

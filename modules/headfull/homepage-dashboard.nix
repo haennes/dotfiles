@@ -8,29 +8,27 @@ let
     lib.length (lib.elemAt (lib.attrValues
       (lib.findFirst (item: (lib.attrNames item) == [ name ]) { "" = [ ]; }
         cfg.services)) 0);
-  icon_is_favicon = old: {
-  };
+  icon_is_favicon = old: { };
 in {
-  services.autossh.sessions =
-  let
-  aports = hports.autossh-monitoring;
-  in
-  [
+  services.autossh.sessions = let aports = hports.autossh-monitoring;
+  in [
     {
       user = "hannses";
       name = "pve";
       monitoringPort = aports.pve;
-      extraArguments = "-v -A -N -o \"IdentitiesOnly=yes\" -i ${sshkeys.forward_path} forward_g_pve";
+      extraArguments = ''
+        -v -A -N -o "IdentitiesOnly=yes" -i ${sshkeys.forward_path} forward_g_pve'';
     }
     {
       user = "hannses";
       name = "syncschlawiner";
       monitoringPort = aports.syncschlawiner;
-      extraArguments = "-v -A -N -o \"IdentitiesOnly=yes\" -i ${sshkeys.forward_path} forward_g_syncschlawiner";
+      extraArguments = ''
+        -v -A -N -o "IdentitiesOnly=yes" -i ${sshkeys.forward_path} forward_g_syncschlawiner'';
     }
   ];
   services.nginx.virtualHosts."cdn.localhost".locations."/" = {
-  root = "/local_cdn";
+    root = "/local_cdn";
   };
   services.homepage-dashboard = {
     listenPort = hports.homepage-dashboard;
@@ -39,9 +37,9 @@ in {
       #startUrl = "/home";
       #base = "http://localhost/home";
       background = "http://cdn.localhost/sky.jpeg";
-        #"https://wildernessawareness.org/wp-content/uploads/2020/03/zh-caleb-woods-292ocsaybk8-unsplash.jpg";
-        #"https://solarsystem.nasa.gov/internal_resources/3271/";
-        #"https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fit=crop&w=2560&q=80";
+      #"https://wildernessawareness.org/wp-content/uploads/2020/03/zh-caleb-woods-292ocsaybk8-unsplash.jpg";
+      #"https://solarsystem.nasa.gov/internal_resources/3271/";
+      #"https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fit=crop&w=2560&q=80";
       theme = "dark";
       color = "slate";
       target = "_blank"; # open in new tab
@@ -91,7 +89,7 @@ in {
       {
         "Tasks" = map (item: {
           "${item.title}" = rec {
-            icon =  "mdi-check-#1CDC18";
+            icon = "mdi-check-#1CDC18";
             href = "http://${item.domain}/${item.base_path}";
             siteMonitor = href;
           };
@@ -143,19 +141,19 @@ in {
       }
       {
         "TT" = [
-        {
-          "Trainingskalender" = {
-            icon = "mdi-calendar-month-#FFFFFF";
-            href = link.cal;
-          };
+          {
+            "Trainingskalender" = {
+              icon = "mdi-calendar-month-#FFFFFF";
+              href = link.cal;
+            };
 
-        }
-        {
-          "click-TT" = {
-            icon = "https://www.mytischtennis.de/favicon.ico";
-            href = link.click_tt;
-          };
-        }
+          }
+          {
+            "click-TT" = {
+              icon = "https://www.mytischtennis.de/favicon.ico";
+              href = link.click_tt;
+            };
+          }
         ];
       }
       {
@@ -182,13 +180,15 @@ in {
           }
           {
             "elearning" = {
-              icon = "https://elearning.oth-regensburg.de/pluginfile.php/1/theme_boost_union/favicon/64x64/1714636855/ELO_favicon-02.png";
+              icon =
+                "https://elearning.oth-regensburg.de/pluginfile.php/1/theme_boost_union/favicon/64x64/1714636855/ELO_favicon-02.png";
               href = "https://elearning.oth-regensburg.de/";
             };
           }
           {
             "hisinone" = {
-              icon = "https://www.his.de/typo3conf/ext/vc_theme/Resources/Public/Graphics/Extensions/Favicons/android-icon-192x192.png";
+              icon =
+                "https://www.his.de/typo3conf/ext/vc_theme/Resources/Public/Graphics/Extensions/Favicons/android-icon-192x192.png";
               href =
                 "https://hisinone-studium.oth-regensburg.de/qisserver/pages/cs/sys/portal/hisinoneStartPage.faces";
             };
@@ -197,9 +197,10 @@ in {
       }
       {
         "FSIM" = [
-          { "fsim" = {
-            icon = "https://www.fsim-ev.de/favicon.ico";
-            href = "https://www.fsim-ev.de/";
+          {
+            "fsim" = {
+              icon = "https://www.fsim-ev.de/favicon.ico";
+              href = "https://www.fsim-ev.de/";
             };
           }
           {
@@ -257,23 +258,24 @@ in {
         ];
       }
       {
-        "Server" = [{
-          "PVE" = {
-            icon = "si-proxmox-#E57000";
-            href = "http://localhost:8006";
-            siteMonitor = "https://127.0.0.1:8006/";
-            statusStyle = "dot";
+        "Server" = [
+          {
+            "PVE" = {
+              icon = "si-proxmox-#E57000";
+              href = "http://localhost:8006";
+              siteMonitor = "https://127.0.0.1:8006/";
+              statusStyle = "dot";
 
-            widget = {
-              type = "proxmox";
-              url = "https://127.0.0.1:8006";
-              username = "dashboard-user-api@pam!hompage-token";
-              password = proxmox_password.password;
-              hideErrors = true;
-              fields = [ "vms" "resources.cpu" "resources.mem" ];
+              widget = {
+                type = "proxmox";
+                url = "https://127.0.0.1:8006";
+                username = "dashboard-user-api@pam!hompage-token";
+                password = proxmox_password.password;
+                hideErrors = true;
+                fields = [ "vms" "resources.cpu" "resources.mem" ];
+              };
             };
-          };
-        }
+          }
           {
             "nextcloud" = {
               icon = "si-nextcloud-#0082C9";

@@ -1,4 +1,4 @@
-{...}:{
+{ ... }: {
   "Wikipedia (en)".metaData.hidden = true;
   "Amazon.de".metaData.hidden = true;
   "Bing".metaData.hidden = true;
