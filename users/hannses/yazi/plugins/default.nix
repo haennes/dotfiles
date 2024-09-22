@@ -18,5 +18,4 @@ in [
   (import ./full-border.nix inputs)
   (import ./max-preview.nix inputs)
 
-  (import ./diff.nix inputs)
 ]
