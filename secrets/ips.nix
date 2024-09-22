@@ -114,10 +114,7 @@ in {
       "8" = "tabula%wg0";
     };
 
-  };
-
-  "127.0" = {
-    "1" = {
+    "3" = {
       #vm subnet
       # naming scheme:
       # 1-9  - internal
@@ -126,6 +123,7 @@ in {
       # others - any vm
       "10" = "vm-fons%virbr0";
     };
+
   };
 
   "57.129.6.13" = "welt%ens3"; # DO NOT USE THIS USE THE DOMAIN INSTEAD
