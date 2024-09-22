@@ -12,7 +12,8 @@ in {
     "hannses" = {
       isNormalUser = true;
       description = "hannses";
-      extraGroups = [ "networkmanager" "wheel" "family" "video" "libvirtd" "docker"];
+      extraGroups =
+        [ "networkmanager" "wheel" "family" "video" "libvirtd" "docker" ];
     };
   } // (gen_user "mum") // (gen_user "dad");
 
@@ -28,10 +29,10 @@ in {
   services.logind.powerKey = "suspend";
   services.pipewire = {
     enable = false;
-  #  pulse.enable = true;
-  #  jack.enable = true;
-  #  alsa.enable = true;
-  #  alsa.support32Bit = true;
+    #  pulse.enable = true;
+    #  jack.enable = true;
+    #  alsa.enable = true;
+    #  alsa.support32Bit = true;
   };
 
   programs.hyprland.enable = true;

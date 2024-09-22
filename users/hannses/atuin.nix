@@ -1,5 +1,4 @@
-{config, inputs, osConfig, ...}:{
-
+{ config, inputs, osConfig, ... }: {
 
   programs.atuin = {
     enable = true;

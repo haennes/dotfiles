@@ -19,32 +19,26 @@
     clipboard.providers.wl-copy.enable = true;
     autoCmd = [
       # Termdebug
-      { 
+      {
         event = "VimEnter";
         command = "packadd termdebug";
       }
-      
+
       # from https://github.com/GaetanLepage/nix-config/blob/master/home/modules/tui/neovim/autocommands.nix
       # Remove trailing whitespace on save
       {
-          event = "BufWrite";
-          command = "%s/\\s\\+$//e";
+        event = "BufWrite";
+        command = "%s/\\s\\+$//e";
       }
       # Enable spellcheck for some filetypes
       {
-          event = "FileType";
-          pattern = [
-              "tex"
-              "latex"
-              "markdown"
-          ];
-          command = "setlocal spell spelllang=en,de";
+        event = "FileType";
+        pattern = [ "tex" "latex" "markdown" ];
+        command = "setlocal spell spelllang=en,de";
       }
     ];
     plugins = {
-      neogit = {
-        enable = true;
-      };
+      neogit = { enable = true; };
       typst-vim = {
         enable = true;
         settings.cmd = "${scripts.typst-live-custom}";
@@ -61,7 +55,7 @@
       };
       openscad = {
         enable = true;
-        #autoOpen = true;
+        autoOpen = true;
         keymaps.enable = true;
         keymaps.execOpenSCADTrigger = "<A-o>";
       };
@@ -94,11 +88,11 @@
         action = "<C-\\><C-n>";
       }
       {
-	# Escape to remove highlight
-	mode = "n";
-	key = "<Esc>";
-	action = ":noh<CR>";
-	options.silent = true;
+        # Escape to remove highlight
+        mode = "n";
+        key = "<Esc>";
+        action = ":noh<CR>";
+        options.silent = true;
       }
     ];
   };

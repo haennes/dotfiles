@@ -1,5 +1,5 @@
 { pkgs, globals, ... }: ''
 
-    ${pkgs.cliphist}/bin/cliphist wipe
-    ${pkgs.wl-clipboard}/bin/wl-copy ""
-  ''
+  ${pkgs.cliphist}/bin/cliphist wipe
+  ${pkgs.wl-clipboard}/bin/wl-copy ""
+''

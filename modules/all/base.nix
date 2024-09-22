@@ -51,7 +51,7 @@ in {
     # Enable the OpenSSH daemon.
     services.openssh = {
       enable = true; # TODO: extract into module
-      ports = [  hports.sshd ];
+      ports = [ hports.sshd ];
     };
 
   };

@@ -43,11 +43,11 @@ in with sshkeys;
     [ hannses syncschlawiner root_syncschlawiner ];
   "nextcloud_mkhh/adminpass.age".publicKeys =
     [ hannses syncschlawiner_mkhh root_syncschlawiner_mkhh ];
-  "openfortivpn.age".publicKeys = systems_headfull ++ [hannses];
+  "openfortivpn.age".publicKeys = systems_headfull ++ [ hannses ];
 
   "kehl_login.age".publicKeys = [ hannses welt root_welt root_tabula tabula ];
-  "atuin/key.age".publicKeys = systems_headfull ++ [hannses];
-  "atuin/session.age".publicKeys = systems_headfull ++ [hannses];
+  "atuin/key.age".publicKeys = systems_headfull ++ [ hannses ];
+  "atuin/session.age".publicKeys = systems_headfull ++ [ hannses ];
 
 } // wg_simple "deus" [ hannses deus ]
 // wg_simple "thinkpad" [ hannses thinkpad root_thinkpad ]

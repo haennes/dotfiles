@@ -12,7 +12,6 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-
   #zfs filesystem is mounted in ./zfs.nix
 
   fileSystems."/" = {

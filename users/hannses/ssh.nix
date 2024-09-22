@@ -2,11 +2,12 @@
 let
   ssh_ports = hports.ssh;
   ports_noports = { default_ports ? true, user ? "root", name ? hostname
-    , hostname, proxyJump ? null, localForwards ? [ ], additionalOpts ? {} }:
+    , hostname, proxyJump ? null, localForwards ? [ ], additionalOpts ? { } }:
     let
       common = {
         inherit user hostname;
-      } // (if proxyJump == null then { } else { inherit proxyJump; }) // additionalOpts;
+      } // (if proxyJump == null then { } else { inherit proxyJump; })
+        // additionalOpts;
       common_ports = common // { inherit localForwards; };
     in {
       "${name}_noports" = common;
@@ -23,19 +24,16 @@ let
       inherit default_ports user localForwards;
       name = "l_${name}";
       hostname = local_ip;
-    }
-    // ports_noports {
+    } // ports_noports {
       inherit default_ports user localForwards;
       proxyJump = "porta";
       name = "g_${name}";
       hostname = local_ip;
-    }
-    // ports_noports {
+    } // ports_noports {
       inherit default_ports user name localForwards;
       proxyJump = "porta";
       hostname = local_ip;
-    }
-    // (if wg_ip == null then
+    } // (if wg_ip == null then
       { }
     else
       (ports_noports {
@@ -43,37 +41,35 @@ let
         proxyJump = "welt";
         name = "m_${name}";
         hostname = wg_ip;
-      }))
-    // (if !forward_user then {} else (
-    ports_noports{
-      inherit default_ports localForwards;
-      user = "forward";
-      name = "forward_g_${name}";
-      proxyJump = "forward_porta";
-      hostname = local_ip;
-      additionalOpts = {
-      identitiesOnly = true;
-      identityFile = [sshkeys.forward_path];
-      };
-    } //
-    ports_noports{
-      inherit default_ports localForwards;
-      user = "forward";
-      name = "forward_m_${name}";
-      proxyJump = "forward_welt";
-      hostname = wg_ip;
-      additionalOpts = {
-        identitiesOnly = true;
-        identityFile = [sshkeys.forward_path];
-      };
-    }
+      })) // (if !forward_user then
+        { }
+      else
+        (ports_noports {
+          inherit default_ports localForwards;
+          user = "forward";
+          name = "forward_g_${name}";
+          proxyJump = "forward_porta";
+          hostname = local_ip;
+          additionalOpts = {
+            identitiesOnly = true;
+            identityFile = [ sshkeys.forward_path ];
+          };
+        } // ports_noports {
+          inherit default_ports localForwards;
+          user = "forward";
+          name = "forward_m_${name}";
+          proxyJump = "forward_welt";
+          hostname = wg_ip;
+          additionalOpts = {
+            identitiesOnly = true;
+            identityFile = [ sshkeys.forward_path ];
+          };
+        }
 
-
-    ));
+        ));
 
   simple_forwards = ports: (builtins.map (port: (simple_forward port)) ports);
-  simple_forward = port:
-  {
+  simple_forward = port: {
     bind.port = port;
     host.port = port;
     host.address = "127.0.0.1";
@@ -102,7 +98,7 @@ in with ips; {
         user = "forward";
         hostname = "hannses.de";
         identitiesOnly = true;
-        identityFile = [sshkeys.forward_path];
+        identityFile = [ sshkeys.forward_path ];
       };
       # can not replace with local_global as different hostnames
       "porta_local" = {
@@ -119,14 +115,12 @@ in with ips; {
         hostname = ips.porta.wg0;
         proxyJump = "forward_welt";
         identitiesOnly = true;
-        identityFile = [sshkeys.forward_path];
+        identityFile = [ sshkeys.forward_path ];
       };
-    }
-    // local_global {
+    } // local_global {
       name = "deus";
       local_ip = "192.168.0.238";
-    }
-    // local_global {
+    } // local_global {
       forward_user = true;
       name = "pve";
       local_ip = ips.pve.vmbr0;

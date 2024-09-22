@@ -1,5 +1,5 @@
 { pkgs, lib, ... }:
-  lib.filter (a: a != "") (lib.splitString "\n"
+lib.filter (a: a != "") (lib.splitString "\n"
   #pkgs.pkgs.writeShellScript "startup"
   ''
     ${pkgs.waybar}/bin/waybar

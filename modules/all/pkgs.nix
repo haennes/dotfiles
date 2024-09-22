@@ -1,22 +1,22 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    nix-output-monitor #better visualization of nix-shell and nix-build
-    nixfmt-classic #formatting nix files
-    neofetch #display system information
+    nix-output-monitor # better visualization of nix-shell and nix-build
+    nixfmt-classic # formatting nix files
+    neofetch # display system information
     restic
-    ripgrep-all #ripgrep but for more formats
-    fd #better version of find
+    ripgrep-all # ripgrep but for more formats
+    fd # better version of find
     eza
-    lf #tui file manager
-    ncdu #disk usage
+    lf # tui file manager
+    ncdu # disk usage
     nmap
-    lsof #list open files (I use it for local port monitoring)
+    lsof # list open files (I use it for local port monitoring)
     wget
-    zellij #terminal multiplexer
-    tmux #backrground terminals
-    pv #util
+    zellij # terminal multiplexer
+    tmux # backrground terminals
+    pv # util
 
-    tldr #man alternative
+    tldr # man alternative
     usbutils
     git
     sshfs

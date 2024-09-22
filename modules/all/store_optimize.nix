@@ -1,7 +1,7 @@
 { config, lib, ... }: {
   nix.optimise = {
     automatic = true;
-    dates = ["13:15"];
+    dates = [ "13:15" ];
   };
   nix.gc = {
     automatic = true;
