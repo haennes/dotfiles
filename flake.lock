@@ -725,10 +725,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "dirtyRev": "2eadd312caaa676e7d7bd3505e8ad96b365f841b-dirty",
-        "dirtyShortRev": "2eadd31-dirty",
-        "lastModified": 1721245592,
-        "narHash": "sha256-W0MJDly3DPqq+2wc5kWYRbn0fvGC68Z7EjR1ZzVhdr8=",
+        "lastModified": 1724616035,
+        "narHash": "sha256-aS/m5J1wURbL+BPmiaRkICnW2xb86CaeS09qjHZUQX8=",
+        "ref": "refs/heads/main",
+        "rev": "b1b29fee9b1118a75730c80479f6f146d7a5c7af",
+        "revCount": 20,
         "type": "git",
         "url": "file:///home/hannses/programming/nix/nix-yazi-plugins/"
       },
