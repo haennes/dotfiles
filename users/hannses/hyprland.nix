@@ -304,16 +304,15 @@ with inputs; {
           submap = reset
 
           # togglesd
-          # TODO FIX toggleopague
-          #bind = $mod SHIFT, T, submap, toggle
+          bind = $mod SHIFT, T, submap, toggle
 
-          #submap = toggle
-          #binde = , O, toggleopaque
-          #binde = , O, submap, reset
+          submap = toggle
+          binde = , O, exec, ${scripts.toggle_opague}
+          binde = , O, submap, reset
 
-          #bind = , escape, submap, reset
-          #bind = , return, submap, reset
-          #submap = reset
+          bind = , escape, submap, reset
+          bind = , return, submap, reset
+          submap = reset
     '';
   };
 }
