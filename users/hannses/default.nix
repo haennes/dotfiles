@@ -1,5 +1,5 @@
-{ config, lib, pkgs, permit_pkgs, addons, nixvim, nixpkgs-unstable, overlays
-, inputs, ... }: {
+{ config, osConfig, lib, pkgs, permit_pkgs, addons, nixvim, nixpkgs-unstable
+, overlays, inputs, ... }: {
   imports = [
     ./wpaperd.nix
     ./fonts.nix
@@ -173,6 +173,8 @@
       push.autoSetupRemote = true;
     };
   };
+
+  services.udiskie.enable = osConfig.services.udisks2.enable;
   #programs.gitui.enable = true; #conflicts with following line
   home.file.".config/gitui/key_bindings.ron".text =
     builtins.readFile ../../ext_configs/gitui_keybindings.ron;

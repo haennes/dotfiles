@@ -35,6 +35,7 @@ in {
     #  alsa.support32Bit = true;
   };
 
+  services.udisks2.enable = true;
   programs.hyprland.enable = true;
 
 } // (secrets.age_obtain_user_password "hannses")
