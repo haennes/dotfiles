@@ -79,8 +79,15 @@
       lsp-format.enable = true;
     };
     colorschemes.gruvbox.enable = true;
+    globals.mapleader = " ";
     keymaps = [
       # Those are somewhat doom-emacs keybinds...
+      {
+        # Neogit
+        mode = "n";
+        key = "<leader>gg";
+        action = "<cmd>Neogit<CR>";
+      }
       {
         # Escape out of terminal
         mode = "t";
