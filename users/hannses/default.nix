@@ -20,6 +20,7 @@
     ./vim.nix
     ./helix.nix
     ./yazi
+    ./zathura.nix
     ./firefox
     ./ssh.nix
     ./git.nix
@@ -104,7 +105,6 @@
     gnomeExtensions.user-themes
   ];
 
-  programs.zathura.enable = true;
   # Environment
   home.sessionVariables = {
     EDITOR = "nvim";
