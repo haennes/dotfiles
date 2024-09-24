@@ -63,6 +63,10 @@ in {
         "game_servers" = [ (all_pcs // servers) ];
         "programming" = [ (all_pcs // servers) ];
         "AegisBak" = [ (all_pcs // servers) "handyHannes" ];
+        "AntennaBak" = {
+          devices = [ (all_pcs // servers) "handyHannes" ];
+          paths = { syncschlawiner = "/data/syncthing/hannses/AntennaBak"; };
+        };
         "SignalBackup" = [ (servers) "handyHannes" ];
         "DownloadHandyH" = [ (all_pcs // servers) "handyHannes" ];
         "HannesKamera" = [ (all_pcs // servers) "handyHannes" ];
