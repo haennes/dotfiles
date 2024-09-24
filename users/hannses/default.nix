@@ -22,6 +22,7 @@
     ./yazi
     ./firefox
     ./ssh.nix
+    ./git.nix
     ./virtualization.nix
     ./newsboat.nix
     #./manix.nix
@@ -50,7 +51,6 @@
     vim
     gdb
     keepassxc
-    git-crypt # should be obsolete
     gnupg
     signal-desktop
     scli # signal tui FIXME replace with gurk-rs as soon as upstream fixed
@@ -72,7 +72,6 @@
     lorien
     platformio
     rust-analyzer
-    gitui
     feh # for dticket cmd
     iamb
     element-desktop
@@ -111,20 +110,6 @@
     EDITOR = "nvim";
     BROWSER = "firefox";
     TERMINAL = "alacritty";
-  };
-  programs.git = {
-    enable = true;
-    lfs.enable = true;
-    userName = "haennes";
-    userEmail = "hannes.hofmuth@gmail.com";
-    signing = {
-      key = null;
-      signByDefault = true;
-    };
-    extraConfig = {
-      init = { defaultBranch = "main"; };
-      push.autoSetupRemote = true;
-    };
   };
 
   #programs.gitui.enable = true; #conflicts with following line
