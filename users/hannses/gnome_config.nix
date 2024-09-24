@@ -1,6 +1,10 @@
 { config, pkgs, lib, gnome_enable, ... }: {
   config = lib.mkIf gnome_enable {
 
+    home.packages = with pkgs; [
+      gnomeExtensions.dash-to-dock
+      gnomeExtensions.user-themes
+    ];
     dconf.settings = {
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
