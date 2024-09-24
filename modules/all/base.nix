@@ -44,7 +44,6 @@ in {
     programs.starship.enable = true;
 
     networking.firewall.enable = true;
-    networking.networkmanager.enable = true;
 
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;

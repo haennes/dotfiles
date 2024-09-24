@@ -20,6 +20,7 @@ in {
   users.extraGroups.vboxusers.members = [ "hannses" ];
   users.groups = { "family".members = [ "mum" "dad" "hannses" ]; };
   hardware.bluetooth.enable = true;
+  networking.networkmanager.enable = true;
 
   security.pam.services.swaylock = { };
 
