@@ -16,6 +16,7 @@
     ./pqiv.nix # images
     ./udiskie.nix
     #update broke ./vimiv.nix # images
+    ./codium.nix
     ./vim.nix
     ./yazi
     ./firefox
@@ -103,20 +104,6 @@
     gnomeExtensions.user-themes
   ];
 
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
-      mkhl.direnv
-      #matklad.rust-analyzer
-      #rust-lang.rust-analyzer
-      serayuzgur.crates
-      tamasfe.even-better-toml
-      usernamehw.errorlens
-      gruntfuggly.todo-tree
-      asvetliakov.vscode-neovim
-    ];
-  };
   programs.zathura.enable = true;
   programs.helix = {
     enable = true;
