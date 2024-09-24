@@ -14,6 +14,7 @@
     ./dunst.nix
     ./rofi.nix
     ./pqiv.nix # images
+    ./udiskie.nix
     #update broke ./vimiv.nix # images
     ./vim.nix
     ./yazi
@@ -174,7 +175,6 @@
     };
   };
 
-  services.udiskie.enable = osConfig.services.udisks2.enable;
   #programs.gitui.enable = true; #conflicts with following line
   home.file.".config/gitui/key_bindings.ron".text =
     builtins.readFile ../../ext_configs/gitui_keybindings.ron;

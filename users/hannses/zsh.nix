@@ -84,6 +84,10 @@ in {
 
       # vim keybindings
       ":q" = "exit";
+
+      udmount = "udiskctl mount -b";
+      udumount = "udiskctl umount -b";
+
     } // lib.listToAttrs (lib.flatten (lib.lists.map (name: [
       {
         name = "${name}_bak";
