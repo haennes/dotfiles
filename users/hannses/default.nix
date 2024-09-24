@@ -24,6 +24,7 @@
     ./firefox
     ./ssh.nix
     ./git.nix
+    ./gpg.nix
     ./virtualization.nix
     ./newsboat.nix
     #./manix.nix
@@ -52,7 +53,6 @@
     vim
     gdb
     keepassxc
-    gnupg
     signal-desktop
     scli # signal tui FIXME replace with gurk-rs as soon as upstream fixed
     signal-cli
@@ -125,11 +125,5 @@
     exec = "alacritty -e zellij";
     icon = ../../ext_configs/icons/zellij.ico;
     terminal = false;
-  };
-
-  programs.gpg = { enable = true; };
-  services.gpg-agent = {
-    pinentryPackage = pkgs.pinentry-tty;
-    enable = true;
   };
 }
