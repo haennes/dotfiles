@@ -1,5 +1,6 @@
-{ ips, macs, ... }: {
+{ config, ips, macs, ... }: {
   systemd.network.enable = true;
+  systemd.network.wait-online.enable = !config.networking.networkmanager.enable;
 
   systemd.network.networks."10-lan" = {
     matchConfig.Name = [ "wlp1s0" "vm-*" ];
