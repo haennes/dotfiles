@@ -61,8 +61,9 @@
     };
 
     nix-yazi-plugins = {
+      url = "github:haennes/nix-yazi-plugins";
       #url = "github:lordkekz/nix-yazi-plugins";
-      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins/";
+      #url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -73,7 +74,8 @@
     };
     wireguard-wrapper = { url = "github:haennes/wireguard-wrapper.nix"; };
     syncthing-wrapper = {
-      url = "git+file:///home/hannses/programming/nix/syncthing-wrapper";
+      url = "github:haennes/syncthing-wrapper.nix";
+      #url = "git+file:///home/hannses/programming/nix/syncthing-wrapper";
     };
     tasks_md = { url = "git+file:///home/hannses/programming/nix/tasks"; };
     signal-whisper = {
