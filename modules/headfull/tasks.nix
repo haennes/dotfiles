@@ -2,7 +2,7 @@
   services.tasks_md = {
     enable = true;
     conf = let
-      tports = hports.tasks;
+      tports = config.ports.ports.curr_ports.tasks;
       simple = name: {
         title = name;
         port = tports.${name};

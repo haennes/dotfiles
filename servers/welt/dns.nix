@@ -1,10 +1,9 @@
-{ ips, ... }:
-with ips; {
+{ config, ... }: {
   networking.domains = {
     enable = true;
     baseDomains = {
       "hannses.de" = {
-        a.data = welt.ens3;
+        a.data = config.ips.ips.ips.default.welt.ens3;
         #TODO aaaa
       };
     };

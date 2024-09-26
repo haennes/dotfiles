@@ -1,5 +1,6 @@
-{ lib, config, sshkeys, hports, ... }:
+{ lib, config, sshkeys, ... }:
 let
+  hports = config.ports.ports.curr_ports;
   proxmox_password = import ../../secrets/not_so_secret/proxmox_password.nix;
   nc_password = import ../../secrets/not_so_secret/nc_password.nix;
   link = import ../../secrets/not_so_secret/tt_link.nix;

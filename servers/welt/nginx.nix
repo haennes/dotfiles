@@ -1,5 +1,6 @@
-{ lib, config, ips, ports, ... }:
+{ lib, config, ... }:
 let
+  ips = config.ips.ips.ips.default;
   create_simple_proxy_with_domain = { fqdn, target_ip, custom_settings ? { }
     , custom_locations ? { }, target_port ? null, https ? false }:
     let
@@ -46,7 +47,7 @@ in {
     fqdn = "kasmweb.hannses.de";
     https = true;
     target_ip = ips.syncschlawiner.wg0;
-    target_port = ports.syncschlawiner.kasmweb.gui;
+    target_port = config.ports.ports.ports.syncschlawiner.kasmweb.gui;
   })
   (create_simple_proxy_with_domain {
     fqdn = "mkhh.hannses.de";
