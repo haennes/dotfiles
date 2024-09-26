@@ -33,18 +33,29 @@ in {
   };
   users.users.root.openssh.authorizedKeys.keys = [ sshkeys.hannses ];
 
+  networking.firewall.allowedTCPPorts = [ 443 80 ];
   services.freshrss = rec {
     enable = true;
-    baseUrl = "localhost";
+    baseUrl = "https://0.0.0.0";
     authType = "none";
     database = { # use postgres just because we already have it
-      port = hports.postgresql;
+      #port = hports.postgresql;
+      host = "/var/lib/postgresql";
       type = "pgsql";
     };
     # to configure a nginx virtual host directly:
   };
   services.postgresql = {
-    settings.port = hports.postgresql;
     enable = true;
+    settings.port = hports.postgresql;
+    ensureUsers = [{
+      name = config.services.freshrss.database.user;
+      ensureClauses.login = true;
+    }];
+    ensureDatabases = [ config.services.freshrss.database.name ];
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method
+      local all       all     trust
+    '';
   };
 }
