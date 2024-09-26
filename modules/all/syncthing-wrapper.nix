@@ -1,4 +1,4 @@
-{ config, lib, hports, ... }:
+{ config, lib, ... }:
 let ids = import ../../secrets/not_so_secret/syncthing.key.nix;
 in {
   services.syncthing_wrapper = rec {
@@ -86,7 +86,8 @@ in {
         relaysEnabled = true;
       };
     };
-    guiAddress = "127.0.0.1:${toString hports.syncthing.gui}";
+    guiAddress =
+      "127.0.0.1:${toString config.ports.ports.curr_ports.syncthing.gui}";
     key = lib.mkIf (config.services.syncthing.enable)
       config.age.secrets."syncthing_key_${config.networking.hostName}".path;
     cert = lib.mkIf (config.services.syncthing.enable)

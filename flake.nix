@@ -77,6 +77,11 @@
       url = "github:haennes/syncthing-wrapper.nix";
       #url = "git+file:///home/hannses/programming/nix/syncthing-wrapper";
     };
+    IPorts = {
+      #url = "github:haennes/IPorts.nix";
+      url = "git+file:///home/hannses/programming/nix/IPorts";
+
+    };
     tasks_md = { url = "git+file:///home/hannses/programming/nix/tasks"; };
     signal-whisper = {
       url = "github:haennes/signal-whisper";
@@ -88,7 +93,7 @@
     , deploy-rs, microvm, nixos-dns, rust-overlay, disko, nur, nixvim
     , nix-yazi-plugins, agenix, flake-utils-plus, wireguard-wrapper
     , syncthing-wrapper, tasks_md, nix-update-inputs, haumea, signal-whisper
-    , ... }:
+    , IPorts, ... }:
     let
       overlays = [
         nur.overlay
@@ -120,9 +125,6 @@
         ];
       };
       sshkeys = import ./secrets/sshkeys.nix;
-      ips = import ./secrets/ips.nix { inherit (nixpkgs) lib; };
-      macs = import ./secrets/macs.nix { inherit (nixpkgs) lib; };
-      ports = import ./secrets/ports.nix { inherit (nixpkgs) lib; };
       extraModules = { microvm_host = import ./modules/microvm.nix; };
 
       build_common_attrs = { hostname, modules, specialArgs, vm, vps }: {
@@ -130,19 +132,18 @@
         modules = modules ++ [
           ./modules/all
           ./modules/age.nix
+          ./secrets/macs.nix
+          ./secrets/ips.nix
+          ./secrets/ports.nix
           wireguard-wrapper.nixosModules.wireguard-wrapper
           syncthing-wrapper.nixosModules.syncthing-wrapper
           nur.nixosModules.nur
+          IPorts.nixosModules.default # adds ips, macs and ports
         ];
         specialArgs = let
           args = specialArgs // {
-            inherit sshkeys inputs system vm vps ips macs ports overlays;
+            inherit sshkeys inputs system vm vps overlays;
             permit_pkgs = pkgs;
-          } // {
-            hports =
-              if (ports ? "${hostname}") then ports.${hostname} else null;
-          } // {
-            hips = if (ips ? "${hostname}") then ips.${hostname} else null;
           };
         in { specialArgs = args; } // args;
       };
@@ -259,7 +260,6 @@
           specialArgs = specialArgs // {
             nur = pkgs.nur;
             rust-bin = pkgs.rust-bin;
-            inherit ips;
           };
         };
       recursiveMerge = listOfAttrsets:

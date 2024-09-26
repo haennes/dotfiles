@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ips, hips, macs, specialArgs, lib, ... }: {
+{ config, pkgs, specialArgs, lib, ... }: {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
@@ -35,7 +35,7 @@
   };
 
   networking.extraHosts = ''
-    ${ips.vm-fons.br0} fons
+    ${config.ips.ips.ips.default.vm-fons.br0} fons
   '';
 
 }

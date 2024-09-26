@@ -1,4 +1,6 @@
-{ hports, ... }: {
+{ config, ... }:
+let hports = config.ports.ports.curr_ports;
+in {
   networking.firewall.allowedTCPPorts = [ hports.ipfs.gateway ];
   services.kubo = {
     enable = false;

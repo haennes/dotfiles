@@ -1,6 +1,8 @@
-{ ips, ports, hports, sshkeys, outer_config, lib, ... }:
+{ sshkeys, osConfig, lib, ... }:
 let
-  ssh_ports = hports.ssh;
+  ports = osConfig.ports.ports.ports;
+  ssh_ports = osConfig.ports.ports.curr_ports.ssh;
+  ips = osConfig.ips.ips.ips.default;
   ports_noports = { default_ports ? true, user ? "root", name ? hostname
     , hostname, proxyJump ? null, localForwards ? [ ], additionalOpts ? { } }:
     let

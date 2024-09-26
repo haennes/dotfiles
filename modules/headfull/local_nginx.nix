@@ -1,5 +1,6 @@
-{ lib, config, hports, inputs, system, ... }:
+{ lib, config, inputs, system, ... }:
 let
+  hports = config.ports.ports.curr_ports;
   linking = {
     sync = hports.syncthing.gui;
     "s.sync" = hports.ssh.syncschlawiner.syncthing.gui;

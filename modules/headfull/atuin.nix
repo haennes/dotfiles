@@ -1,11 +1,11 @@
-{ config, lib, hports, ... }: {
+{ config, lib, ... }: {
   services.atuin = {
     enable = true;
     database.createLocally = true;
     openRegistration = false;
     openFirewall = false;
     host = "127.0.0.1";
-    port = hports.atuin;
+    port = config.ports.ports.curr_ports.atuin;
   };
 
   services.nginx.virtualHosts."atuin.localhost" =

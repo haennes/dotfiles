@@ -1,4 +1,6 @@
-{ config, lib, hports, ... }: {
+{ config, lib, ... }:
+let hports = config.ports.ports.curr_ports;
+in {
   imports = [
     ./base.nix
     ./pkgs.nix

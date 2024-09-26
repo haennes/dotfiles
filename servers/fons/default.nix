@@ -1,14 +1,23 @@
-{ pkgs, hports, lib, ips, config, macs, sshkeys, ... }:
-let data = name: "/data/${name}";
+{ inputs, pkgs, lib, config, sshkeys, ... }:
+let
+  hports = config.ports.ports.curr_ports;
+  data = name: "/data/${name}";
+  ips = config.ips.ips.ips.default;
 in {
   microvm = {
     #...add additional MicroVM configuration here
     interfaces = [{
       type = "tap";
       id = "vm-fons";
-      mac = "${macs.vm-fons.eth0}";
+      mac = "${config.macs.macs.vm-host.vm-fons.eth0}";
     }];
   };
+  imports = [
+    ../../secrets/macs.nix
+    ../../secrets/ips.nix
+    ../../secrets/ports.nix
+    inputs.IPorts.nixosModules.default
+  ];
   systemd.network.enable = true;
 
   systemd.network.networks."20-lan" = {
