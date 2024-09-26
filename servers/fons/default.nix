@@ -1,11 +1,11 @@
-{ hports, lib, ips, config, macs, sshkeys, ... }:
+{ pkgs, hports, lib, ips, config, macs, sshkeys, ... }:
 let data = name: "/data/${name}";
 in {
   microvm = {
     #...add additional MicroVM configuration here
     interfaces = [{
       type = "tap";
-      id = "vm-test3";
+      id = "vm-fons";
       mac = "${macs.vm-fons.eth0}";
     }];
   };
@@ -14,9 +14,9 @@ in {
   systemd.network.networks."20-lan" = {
     matchConfig.Type = "ether";
     networkConfig = {
-      Address = [ "192.168.1.3/24" "2001:db8::b/64" ];
-      Gateway = "192.168.1.1";
-      DNS = [ "192.168.1.1" ];
+      Address = [ "${ips.vm-fons.br0}/24" "2001:db8::b/64" ];
+      Gateway = ips."vm-host".br0;
+      DNS = [ ips."vm-host".br0 ];
       IPv6AcceptRA = true;
       DHCP = "no";
     };

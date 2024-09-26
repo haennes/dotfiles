@@ -17,7 +17,7 @@
   systemd.network.networks."10-lan-bridge" = {
     matchConfig.Name = "br0";
     networkConfig = {
-      Address = [ "192.168.1.2/24" "2001:db8::a/64" ];
+      Address = [ "${ips."vm-host".br0}/24" "2001:db8::a/64" ];
       IPv6AcceptRA = true;
     };
     linkConfig.RequiredForOnline = "routable";

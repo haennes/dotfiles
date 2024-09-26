@@ -118,10 +118,10 @@ in {
       #vm subnet
       # naming scheme:
       # 1-9  - internal
-      "1" = "vm-host%virbr0";
+      "1" = "vm-host%br0";
 
       # others - any vm
-      "10" = "vm-fons%virbr0";
+      "10" = "vm-fons%br0";
     };
 
   };
