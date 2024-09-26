@@ -24,7 +24,10 @@
         "github:hyprwm/Hyprland/47b087950dcfaf6fdda63c4d5f13efda3508a6fb?submodules=1"; # works
     };
 
-    nix-update-inputs.url = "github:haennes/nix-update-input/cycle";
+    nix-update-inputs = {
+      url = "github:haennes/nix-update-input/cycle";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     haumea.url = "github:nix-community/haumea/v0.2.2";
     haumea.inputs.nixpkgs.follows = "nixpkgs";
@@ -73,15 +76,19 @@
       #optional:
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    wireguard-wrapper = { url = "github:haennes/wireguard-wrapper.nix"; };
+    wireguard-wrapper = {
+      url = "github:haennes/wireguard-wrapper.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     syncthing-wrapper = {
       url = "github:haennes/syncthing-wrapper.nix";
       #url = "git+file:///home/hannses/programming/nix/syncthing-wrapper";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     IPorts = {
       #url = "github:haennes/IPorts.nix";
       url = "git+file:///home/hannses/programming/nix/IPorts";
-
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     tasks_md = { url = "git+file:///home/hannses/programming/nix/tasks"; };
     signal-whisper = {
