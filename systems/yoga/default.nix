@@ -35,7 +35,7 @@
   };
 
   networking.extraHosts = ''
-    ${ips.vm-fons.virbr0} fons
+    ${ips.vm-fons.br0} fons
   '';
 
 }
