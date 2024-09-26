@@ -638,17 +638,17 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1717281488,
-        "narHash": "sha256-Uo+4/be6rT0W8Z1dvCRXOANvoct6gJ4714flhyFzmKU=",
-        "owner": "zvolin",
+        "lastModified": 1727386637,
+        "narHash": "sha256-lmP2xdymD3ZqZZ1B38AmQ1aZyL42U4x23roVpEX9pnI=",
+        "owner": "haennes",
         "repo": "manix",
-        "rev": "c532d14b0b59d92c4fab156fc8acd0565a0836af",
+        "rev": "999caa7814d613034e70a41c887751cfaf2ad589",
         "type": "github"
       },
       "original": {
-        "owner": "zvolin",
+        "owner": "haennes",
+        "ref": "fix/hm-options-with-flakes",
         "repo": "manix",
-        "rev": "c532d14b0b59d92c4fab156fc8acd0565a0836af",
         "type": "github"
       }
     },
