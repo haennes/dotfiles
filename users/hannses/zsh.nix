@@ -104,6 +104,9 @@ in {
       }
     ]) aliases));
     initExtra = ''
+      catcp () {
+        cat "$1" | wl-copy
+      }
       mkcdir ()
         {
           mkdir -p -- "$1" &&
