@@ -16,7 +16,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     manix = {
-      url = "github:zvolin/manix/c532d14b0b59d92c4fab156fc8acd0565a0836af";
+      url = "github:haennes/manix?ref=fix/hm-options-with-flakes";
+      #url = "github:zvolin/manix/c532d14b0b59d92c4fab156fc8acd0565a0836af";
     };
     hyprland = {
       url =
