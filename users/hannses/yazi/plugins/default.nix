@@ -1,6 +1,6 @@
-{ lib, permit_pkgs, ... }@old_inputs:
+{ lib, pkgs, ... }@old_inputs:
 let
-  inputs = old_inputs // { inherit (permit_pkgs) yaziPlugins; };
+  inputs = old_inputs // { inherit (pkgs) yaziPlugins; };
   # TODO should this be automated ? (probably only after in flake...)
   # haumea ???
   #lib.map (plugin: {

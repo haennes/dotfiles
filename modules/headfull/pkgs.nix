@@ -1,4 +1,4 @@
-{ pkgs, permit_pkgs, rust-bin, ... }: {
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
 
     #browser
@@ -18,7 +18,7 @@
     #office & texteditors
     libreoffice
     xournalpp # note taking
-    permit_pkgs.obsidian # knowledge management
+    obsidian # knowledge management
     helix
 
     #dicts

@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs-stable.url = "nixpkgs/nixos-24.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-utils-plus.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    futils.url = "github:gytis-ivaskevicius/flake-utils-plus";
 
     home-manager-option-search = {
       url = "github:mipmip/home-manager-option-search";
@@ -99,237 +99,153 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, manix, nixos-generators
     , deploy-rs, microvm, nixos-dns, rust-overlay, disko, nur, nixvim
-    , nix-yazi-plugins, agenix, flake-utils-plus, wireguard-wrapper
-    , syncthing-wrapper, tasks_md, nix-update-inputs, haumea, signal-whisper
-    , IPorts, ... }:
+    , nix-yazi-plugins, agenix, futils, wireguard-wrapper, syncthing-wrapper
+    , tasks_md, nix-update-inputs, haumea, signal-whisper, IPorts, ... }:
     let
-      overlays = [
+      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
+      lib = nixpkgs.lib;
+      mkDeploy = { self }:
+        #https://github.com/Yash-Garg/dotfiles/blob/stable/lib/deploy/default.nix
+        let
+          hosts = lib.filterAttrs (_: v: v.config.is_server)
+            (self.nixosConfigurations or { });
+          genNode = machine: hostname: {
+            inherit hostname;
+            profiles.system = {
+              user = "root";
+              sshUser = "root";
+              path =
+                deploy-rs.lib.${machine.pkgs.system}.activate.nixos machine;
+            };
+          };
+          oneNodeSet = hostnameMapF:
+            lib.mapAttrs' (_: machine:
+              let
+                mappedHostname =
+                  hostnameMapF machine.config.networking.hostName;
+              in {
+                name = mappedHostname;
+                value = genNode machine mappedHostname;
+              }) hosts;
+          noports = str: "${str}_noports";
+          l = str: "l_${str}";
+          m = str: "m_${str}";
+          g = str: "g_${str}";
+          nodes = (oneNodeSet (str: l str))
+            // (oneNodeSet (str: l (noports str))) // (oneNodeSet (str: m str))
+            // (oneNodeSet (str: m (noports str))) // (oneNodeSet (str: g str))
+            // (oneNodeSet (str: g (noports str)));
+        in { inherit nodes; };
+      client_modules = [
+        home-manager.nixosModules.home-manager
+        tasks_md.nixosModules.default
+        (import ./modules/home_manager)
+        ./modules/gnome
+        ./modules/headfull
+        {
+          specialisation = {
+            gnome.configuration = {
+              services.xserver.desktopManager.gnome.enable = true;
+              services.gnome.gnome-remote-desktop.enable =
+                false; # conflicts with pulsaudio
+              system.nixos.tags = [ "gnome" ];
+            };
+          };
+        }
+      ];
+      server_modules = [ ./modules/headless ];
+      server = hostname: {
+        config.is_server = true;
+        imports = [ ./servers/${hostname} ] ++ server_modules;
+      };
+      client = hostname: {
+        config.is_client = true;
+        imports = [ ./systems/${hostname} ] ++ client_modules;
+      };
+      microvm_host = {
+        config.is_microvm_host = true;
+        imports = [ inputs.microvm.nixosModules.host ./modules/microvm.nix ];
+      };
+      microvm = hostname: {
+        config.is_microvm = true;
+        imports = [ (server hostname) inputs.microvm.nixosModules.microvm ];
+      };
+      sshkeys = import ./secrets/sshkeys.nix;
+
+    in futils.lib.mkFlake {
+      inherit self inputs;
+      supportedSystems = [ "x86_64-linux" ];
+
+      sharedOverlays = [
         nur.overlay
         rust-overlay.overlays.default
         nix-yazi-plugins.overlays.default
         nix-update-inputs.overlays.default
         signal-whisper.overlays.default
       ];
-      system = "x86_64-linux";
-      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
-      lib = nixpkgs.lib;
-      pkgs = import nixpkgs {
-        inherit system overlays;
-        config = {
-          allowUnfree = true;
-          permittedInsecurePackages = [ "electron-25.9.0" ];
+
+      channels = {
+        unfree = { # lets us explicitly declare that something is unfree
+          input = nixpkgs;
+          config.allowUnfree = true;
+        };
+        insecure = {
+          input = nixpkgs;
+          config.permittedInsecurePackages = [ "electron-25.9.0" ];
+        };
+        deployrs = {
+          input = nixpkgs;
+          overlaysBuilder = channels: [
+            deploy-rs.overlay
+            (self: super: {
+              deploy-rs = {
+                inherit (channels.nixpkgs.pkgs) deploy-rs;
+                lib = super.deploy-rs.lib;
+              };
+            })
+          ];
         };
       };
-      deployPkgs = import nixpkgs {
-        inherit system;
-        overlays = [
-          deploy-rs.overlay
-          (self: super: {
-            deploy-rs = {
-              inherit (pkgs) deploy-rs;
-              lib = super.deploy-rs.lib;
-            };
-          })
-        ];
-      };
-      sshkeys = import ./secrets/sshkeys.nix;
-      extraModules = { microvm_host = import ./modules/microvm.nix; };
 
-      build_common_attrs = { hostname, modules, specialArgs, vm, vps }: {
-        inherit system;
-        modules = modules ++ [
+      hostDefaults = rec {
+        system = "x86_64-linux";
+        modules = [
           ./modules/all
           ./modules/age.nix
+          ./modules/machine_properties.nix
           ./secrets/macs.nix
           ./secrets/ips.nix
           ./secrets/ports.nix
           wireguard-wrapper.nixosModules.wireguard-wrapper
           syncthing-wrapper.nixosModules.syncthing-wrapper
-          nur.nixosModules.nur
+          #nur.nixosModules.nur
           IPorts.nixosModules.default # adds ips, macs and ports
         ];
-        specialArgs = let
-          args = specialArgs // {
-            inherit sshkeys inputs system vm vps overlays;
-            permit_pkgs = pkgs;
-          };
-        in { specialArgs = args; } // args;
+        specialArgs = { inherit inputs sshkeys; };
+        extraArgs = { inherit sshkeys system; };
       };
 
-      generate_common = { hostname, modules, specialArgs, vm, vps, format }: {
-        packages.x86_64-linux.${hostname} = (nixos-generators.nixosGenerate
-          ((build_common_attrs { inherit hostname modules specialArgs vm vps; })
-            // {
-              inherit format;
-            }));
-      };
+      deploy = mkDeploy { inherit (inputs) self; };
+      formatter =
+        forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-classic);
 
-      build_common = { hostname, modules ? [ ], specialArgs ? { }, vm ? false
-        , vps ? false, live_iso ? false }:
-        {
-          nixosConfigurations."${hostname}" = lib.nixosSystem
-            (build_common_attrs {
-              inherit hostname modules specialArgs vm vps;
-            });
-        } // (if vm then
-          generate_common {
-            inherit hostname modules specialArgs vm vps;
-            format = "proxmox";
-          }
-        else
-          { }) // (if live_iso then
-            generate_common {
-              inherit hostname modules specialArgs vm vps;
-              format = "install-iso";
-            }
-          else
-            { });
-      build_deploy = { hostname, conf_hostname ? hostname }: {
-        deploy.nodes.${hostname} = {
-          profiles.system = {
-            user = "root";
-            path = deployPkgs.deploy-rs.lib.activate.nixos
-              self.nixosConfigurations.${conf_hostname};
-          };
-          inherit hostname;
-          sshUser = "root";
+      hosts = {
+        deus = { modules = [ (server "deus") microvm_host ]; };
+        welt = {
+          modules = [ (server "welt") inputs.nixos-dns.nixosModules.dns ];
         };
+        porta = { modules = [ (server "porta") ]; };
+        syncschlawiner = { modules = [ (server "syncschlawiner") ]; };
+        syncschlawiner_mkhh = { modules = [ (server "syncschlawiner_mkhh") ]; };
+        tabula = { modules = [ (server "tabula") ]; };
+        tabula_mkhh = { modules = [ (server "tabula_mkhh") ]; };
+        hermes = { modules = [ (server "hermes") ]; };
+        fons = { modules = [ (microvm "fons") ]; };
+        grapheum = { modules = [ (server "grapheum") ]; };
+        #
+        yoga = { modules = [ (client "yoga") microvm_host ]; };
+        thinkpad = { modules = [ (client "thinkpad") ]; };
+        thinknew = { modules = [ (client "thinknew") ]; };
       };
-
-      build_headless = { hostname, dep_hostname ? hostname, vm ? false
-        , vps ? false, live_iso ? false, local_and_global ? vm
-        , specialArgs ? { }, modules ? [ ] }:
-        let vm_modules = [ microvm.nixosModules.microvm ];
-        in build_common {
-          inherit hostname vm vps specialArgs live_iso;
-          modules = modules ++ [ ./servers/${hostname} ./modules/headless ]
-            ++ (if vm then vm_modules else [ ]);
-        } // (if local_and_global then
-          (recursiveMerge [
-            (build_deploy {
-              hostname = "${hostname}";
-              conf_hostname = hostname;
-            })
-            (build_deploy {
-              hostname = "${hostname}_noports";
-              conf_hostname = hostname;
-            })
-            (build_deploy {
-              hostname = "l_${hostname}";
-              conf_hostname = hostname;
-            })
-            (build_deploy {
-              hostname = "l_${hostname}_noports";
-              conf_hostname = hostname;
-            })
-            (build_deploy {
-              hostname = "m_${hostname}";
-              conf_hostname = hostname;
-            })
-            (build_deploy {
-              hostname = "m_${hostname}_noports";
-              conf_hostname = hostname;
-            })
-            (build_deploy {
-              hostname = "g_${hostname}";
-              conf_hostname = hostname;
-            })
-            (build_deploy {
-              hostname = "g_${hostname}_noports";
-              conf_hostname = hostname;
-            })
-          ])
-        else
-          build_deploy { inherit hostname; });
-
-      #homes_cfg = import ./modules/home_manager ;
-      build_headfull =
-        { hostname, specialArgs ? { }, modules ? [ ], live_iso ? false }:
-        build_common {
-          inherit hostname live_iso;
-          modules = modules ++ [
-            ./systems/${hostname}
-            ./modules/headfull
-            home-manager.nixosModules.home-manager
-            tasks_md.nixosModules.default
-            (import ./modules/home_manager)
-            ./modules/gnome
-            {
-              specialisation = {
-                gnome.configuration = {
-                  services.xserver.desktopManager.gnome.enable = true;
-                  services.gnome.gnome-remote-desktop.enable =
-                    false; # conflicts with pulsaudio
-                  system.nixos.tags = [ "gnome" ];
-                };
-              };
-            }
-          ];
-          specialArgs = specialArgs // {
-            nur = pkgs.nur;
-            rust-bin = pkgs.rust-bin;
-          };
-        };
-      recursiveMerge = listOfAttrsets:
-        lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) { }
-        listOfAttrsets;
-    in {
-      formatter = forAllSystems (system: pkgs.nixfmt-classic);
-    } // (recursiveMerge [
-      # With GUI
-      (build_headfull { hostname = "thinkpad"; })
-      (build_headfull { hostname = "thinknew"; })
-      (build_headfull {
-        modules =
-          [ extraModules.microvm_host inputs.microvm.nixosModules.host ];
-        hostname = "yoga";
-      })
-      (build_headfull { hostname = "mainpc"; })
-      #(build_headfull{hostname = "live"; live_iso = true;}) #TAKES AGES TO MAKE THE FS
-
-      # Servers
-
-      (build_headless {
-        hostname = "deus";
-        modules = [ extraModules.microvm ];
-      })
-      (build_headless {
-        hostname = "welt";
-        vps = true;
-        modules = [ nixos-dns.nixosModules.dns ];
-      })
-      (build_headless {
-        hostname = "porta";
-        vm = true;
-      })
-      (build_headless {
-        hostname = "syncschlawiner";
-        vm = true;
-      })
-      (build_headless {
-        hostname = "syncschlawiner_mkhh";
-        vm = true;
-      })
-      (build_headless {
-        hostname = "tabula";
-        vm = true;
-      })
-      (build_headless {
-        hostname = "tabula_mkhh";
-        vm = true;
-      })
-      (build_headless {
-        hostname = "hermes";
-        vm = true;
-      })
-      (build_headless {
-        hostname = "fons";
-        vm = true;
-      })
-      (build_headless {
-        hostname = "grapheum";
-        vm = true;
-      })
-    ]);
-
+    };
 }

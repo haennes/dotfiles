@@ -1,4 +1,4 @@
-{ permit_pkgs, lib, ... }@inputs:
+{ pkgs, lib, ... }@inputs:
 let
   plugins = import ./plugins inputs;
   recursiveMerge = listOfAttrsets:
@@ -8,14 +8,14 @@ in {
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
-    package = permit_pkgs.yazi;
+    package = pkgs.yazi;
     settings = {
       show_hidden = false;
       sort_dir_first = false;
       sort_sensitive = false;
       sort_by = "natural"; # Sort naturally, e.g. 1.md < 2.md < 10.md
     };
-    plugins = (with permit_pkgs.yaziPlugins; { })
+    plugins = (with pkgs.yaziPlugins; { })
       // lib.mergeAttrsList (lib.map (p: { "${p.name}" = p.pkg; }) plugins);
     initLua = lib.concatStringsSep "\n"
       (map (p: if p ? initLua then p.initLua else "") plugins);

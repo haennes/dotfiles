@@ -213,24 +213,6 @@
     },
     "flake-utils-plus": {
       "inputs": {
-        "flake-utils": "flake-utils"
-      },
-      "locked": {
-        "lastModified": 1722363685,
-        "narHash": "sha256-XCf2PIAT6lH7BwytgioPmVf/wkzXjSKScC4KzcZgb64=",
-        "owner": "gytis-ivaskevicius",
-        "repo": "flake-utils-plus",
-        "rev": "6b10f51ff73a66bb29f3bc8151a59d217713f496",
-        "type": "github"
-      },
-      "original": {
-        "owner": "gytis-ivaskevicius",
-        "repo": "flake-utils-plus",
-        "type": "github"
-      }
-    },
-    "flake-utils-plus_2": {
-      "inputs": {
         "flake-utils": [
           "nix-yazi-plugins",
           "flake-utils"
@@ -323,6 +305,24 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "futils": {
+      "inputs": {
+        "flake-utils": "flake-utils"
+      },
+      "locked": {
+        "lastModified": 1722363685,
+        "narHash": "sha256-XCf2PIAT6lH7BwytgioPmVf/wkzXjSKScC4KzcZgb64=",
+        "owner": "gytis-ivaskevicius",
+        "repo": "flake-utils-plus",
+        "rev": "6b10f51ff73a66bb29f3bc8151a59d217713f496",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gytis-ivaskevicius",
+        "repo": "flake-utils-plus",
         "type": "github"
       }
     },
@@ -739,7 +739,7 @@
     "nix-yazi-plugins": {
       "inputs": {
         "flake-utils": "flake-utils_4",
-        "flake-utils-plus": "flake-utils-plus_2",
+        "flake-utils-plus": "flake-utils-plus",
         "haumea": "haumea_2",
         "nixpkgs": [
           "nixpkgs"
@@ -1029,7 +1029,7 @@
         "agenix": "agenix",
         "deploy-rs": "deploy-rs",
         "disko": "disko",
-        "flake-utils-plus": "flake-utils-plus",
+        "futils": "futils",
         "haumea": "haumea",
         "home-manager": "home-manager_2",
         "home-manager-option-search": "home-manager-option-search",
@@ -1073,15 +1073,14 @@
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "systems": "systems_10"
+        ]
       },
       "locked": {
-        "lastModified": 1726581186,
-        "narHash": "sha256-tbiSwLeFnYfLc1GjxSufBo6QYDvldmlxC0q1Fx7ytPQ=",
+        "lastModified": 1727557860,
+        "narHash": "sha256-UWyWx6A4iaV2TkQ/L/3OBuGvHkCDKSoZc9py2rPZRXQ=",
         "owner": "haennes",
         "repo": "signal-whisper",
-        "rev": "26f20fde3bac79712475e69416aeb2aea477325f",
+        "rev": "bea023b1ae2a37acf1db8487fc3934aaec35ed76",
         "type": "github"
       },
       "original": {
@@ -1139,20 +1138,6 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
-      }
-    },
-    "systems_10": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "id": "systems",
-        "type": "indirect"
       }
     },
     "systems_2": {
