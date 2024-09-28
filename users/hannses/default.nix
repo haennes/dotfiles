@@ -1,5 +1,4 @@
-{ config, osConfig, lib, pkgs, permit_pkgs, addons, nixvim, nixpkgs-unstable
-, overlays, inputs, ... }: {
+{ config, osConfig, lib, pkgs, addons, inputs, ... }: {
   imports = [
     ./wpaperd.nix
     ./fonts.nix
@@ -44,11 +43,9 @@
   # changes in each release.
   home.stateVersion = "23.11";
 
-  nixpkgs.overlays = overlays;
-
   home.packages = with pkgs; [
-    permit_pkgs.update-apply-cycle
-    permit_pkgs.signal-whisper-large-v3-q5_0
+    update-apply-cycle
+    signal-whisper-large-v3-q5_0
     vim
     gdb
     keepassxc

@@ -56,6 +56,7 @@ in {
     porta = { };
     welt = { };
     fons = { };
+    deus = { };
 
     #scheme:
     #hostname.port = "service"
