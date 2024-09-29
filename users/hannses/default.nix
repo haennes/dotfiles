@@ -1,4 +1,4 @@
-{ config, osConfig, lib, pkgs, addons, inputs, ... }: {
+{ config, osConfig, lib, pkgs, inputs, ... }: {
   imports = [
     ./wpaperd.nix
     ./fonts.nix

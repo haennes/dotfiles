@@ -1,5 +1,6 @@
-{ lib, pkgs, addons, inputs, ... }@hm_inputs:
+{ lib, pkgs, inputs, ... }@hm_inputs:
 let
+  addons = pkgs.nur.repos.rycee.firefox-addons;
   recursiveMerge = listOfAttrsets:
     lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) { } listOfAttrsets;
   favicon = domain: "https://${domain}/favicon.ico"; # TODO use this instead
