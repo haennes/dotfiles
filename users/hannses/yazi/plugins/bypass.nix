@@ -1,4 +1,4 @@
-{ yaziPlugins, lib, ... }: {
+{ yaziPlugins, ... }: {
   name = "bypass";
   pkg = yaziPlugins.bypass;
 

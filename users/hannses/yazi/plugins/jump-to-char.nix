@@ -1,4 +1,4 @@
-{ yaziPlugins, lib, ... }: {
+{ yaziPlugins, ... }: {
   name = "jump-to-char";
   pkg = yaziPlugins.jump-to-char;
 

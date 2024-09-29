@@ -1,4 +1,4 @@
-{ modulesPath, config, lib, pkgs, sshkeys, ... }: {
+{ ... }: {
 
   imports = [
     ../proxmox.nix

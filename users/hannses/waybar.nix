@@ -1,4 +1,4 @@
-{ pkgs, config, scripts, globals, theme, ... }:
+{ pkgs, scripts, globals, theme, ... }:
 let
   batteryScript = pkgs.writeShellScriptBin "batteryScript" ''
     cat /sys/class/power_supply/BAT0/capacity

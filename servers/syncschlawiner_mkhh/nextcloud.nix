@@ -1,4 +1,4 @@
-{ pkgs, config, lib, sshkeys, ... }:
+{ pkgs, config, lib, ... }:
 with lib; {
 
   age.secrets.nextcloud_adminpass = {

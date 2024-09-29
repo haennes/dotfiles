@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, ... }:
 let
   gen_user = name: {
     "${name}" = {

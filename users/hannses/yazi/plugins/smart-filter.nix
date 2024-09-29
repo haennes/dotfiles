@@ -1,4 +1,4 @@
-{ yaziPlugins, lib, ... }: {
+{ yaziPlugins, ... }: {
   name = "smart-filter";
   pkg = yaziPlugins.smart-filter;
 

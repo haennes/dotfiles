@@ -1,4 +1,4 @@
-{ config, pkgs, lib, vps ? false, proxmox ? false, ... }:
+{ config, pkgs, lib, ... }:
 with lib; {
   imports = [ ./syncthing_wrapper_secrets.nix ];
   config = {

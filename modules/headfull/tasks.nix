@@ -1,4 +1,4 @@
-{ lib, config, hports, ... }: {
+{ lib, config, ... }: {
   services.tasks_md = {
     enable = true;
     conf = let

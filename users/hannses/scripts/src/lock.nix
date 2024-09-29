@@ -1,4 +1,4 @@
-{ pkgs, theme, ... }: ''
+{ theme, ... }: ''
     swaylock \
   --screenshots \
   --clock \

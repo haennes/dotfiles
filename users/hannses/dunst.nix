@@ -1,4 +1,4 @@
-{ pkgs, theme, ... }: {
+{ theme, ... }: {
   services.dunst = {
     enable = true;
     settings = {
@@ -8,7 +8,7 @@
         offset = "10x50";
         origin = "top-right";
         follow = "keyboard";
-        # doesn't work 
+        # doesn't work
         #transparency = 10;
         frame_color = "#${theme.color_second}99";
         corner_radius = 10;
