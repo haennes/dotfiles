@@ -81,7 +81,7 @@ in with ips; {
   programs.ssh = {
     addKeysToAgent = "1h";
     enable = true;
-    matchBlocks = {
+    matchBlocks = rec {
       "fs_main" = {
         user = "hoh47200";
         hostname = "cloud.fsim-ev.de";
@@ -103,6 +103,7 @@ in with ips; {
         identityFile = [ sshkeys.forward_path ];
       };
       # can not replace with local_global as different hostnames
+      "l_porta" = porta_local;
       "porta_local" = {
         user = "root";
         hostname = ips.porta.ens3;
