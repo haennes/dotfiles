@@ -1,8 +1,5 @@
 { pkgs, lib, ... }@inputs:
-let
-  plugins = import ./plugins inputs;
-  recursiveMerge = listOfAttrsets:
-    lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) { } listOfAttrsets;
+let plugins = import ./plugins inputs;
 in {
   #TODO make similar to https://github.com/lordkekz/dotfiles/blob/ecbc485609d5dc76ff2f386a216957801d0ad58c/homeProfiles/terminal/yazi.nix
   programs.yazi = {
@@ -23,7 +20,6 @@ in {
     #TODO recursiveMerge fails as it does not combine lists... maybe write sth myself or move it to a flake all together. for now this works
     #implement other plugins first
     # mkMerge might be the thing we want
-    #recursiveMerge (lib.flatten ((map(p: p.keymap) plugins) ++[{
     keymap.manager = {
       prepend_keymap = lib.flatten (lib.map
         (p: if p ? keymap then p.keymap.manager.prepend_keymap else [ ])
@@ -31,6 +27,5 @@ in {
 
         ];
     };
-    #}]));
   };
 }

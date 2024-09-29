@@ -1,10 +1,5 @@
-let secrets = import ../../lib/wireguard;
-in { config, pkgs, lib, vps ? false, proxmox ? false, ... }:
-with lib;
-let
-  recursiveMerge = listOfAttrsets:
-    lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) { } listOfAttrsets;
-in {
+{ config, pkgs, lib, vps ? false, proxmox ? false, ... }:
+with lib; {
   imports = [ ./syncthing_wrapper_secrets.nix ];
   config = {
     boot.tmp.cleanOnBoot = true;

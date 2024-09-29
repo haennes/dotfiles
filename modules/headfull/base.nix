@@ -1,6 +1,5 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 let
-  secrets = import ../../lib { };
   gen_user = name: {
     "${name}" = {
       isNormalUser = true;
@@ -39,6 +38,6 @@ in {
   services.udisks2.enable = true;
   programs.hyprland.enable = true;
 
-} // (secrets.age_obtain_user_password "hannses")
-// (secrets.age_obtain_user_password "mum")
-// (secrets.age_obtain_user_password "dad")
+} // (lib.my.age_obtain_user_password "hannses")
+// (lib.my.age_obtain_user_password "mum")
+// (lib.my.age_obtain_user_password "dad")

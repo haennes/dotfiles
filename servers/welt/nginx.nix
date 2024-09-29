@@ -20,11 +20,9 @@ let
         } // custom_locations;
       } // custom_settings;
     };
-  recursiveMerge = listOfAttrsets:
-    lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) { } listOfAttrsets;
 in {
   networking.firewall = { allowedTCPPorts = [ 80 443 ]; };
-} // recursiveMerge [
+} // lib.my.recursiveMerge [
   {
     services.nginx = {
       enable = true;
