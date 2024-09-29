@@ -1,6 +1,6 @@
-{ pkgs, ... }:
-#TODO use ${} 
-with pkgs; {
+{ ... }:
+#TODO use ${}
+{
   term = "alacritty";
   dmenu = "rofi -dmenu -i";
   app_runner = "rofi -show drun";

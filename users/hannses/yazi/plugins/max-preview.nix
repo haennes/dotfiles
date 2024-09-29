@@ -1,4 +1,4 @@
-{ yaziPlugins, lib, ... }: {
+{ yaziPlugins, ... }: {
   name = "max-preview";
   pkg = yaziPlugins.max-preview;
 

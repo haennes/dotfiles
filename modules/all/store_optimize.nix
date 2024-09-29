@@ -1,4 +1,4 @@
-{ config, lib, ... }: {
+{ ... }: {
   nix.optimise = {
     automatic = true;
     dates = [ "13:15" ];

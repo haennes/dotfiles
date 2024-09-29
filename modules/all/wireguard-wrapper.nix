@@ -2,7 +2,6 @@
 let
   inherit (lib.my) ip_cidr subnet_cidr;
   ips = config.ips.ips.ips.default;
-  hostname = config.networking.hostName;
   simple_ip = name: { "${name}".ips = [ (ip_cidr ips."${name}".wg0) ]; };
   priv_key = hostname:
     lib.my.wireguard.age_obtain_wireguard_priv { inherit hostname; };

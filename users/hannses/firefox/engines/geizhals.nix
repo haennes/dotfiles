@@ -1,4 +1,4 @@
-{ lib, favicon, pkgs, ... }:
+{ lib, pkgs, ... }:
 let
   icon =
     "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";

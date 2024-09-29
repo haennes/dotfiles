@@ -1,4 +1,4 @@
-{ pkgs, globals, ... }: ''
+{ globals, ... }: ''
   DMENU="${globals.dmenu}"
 
   # hyprctl dispatch dpms off (disable monitor power off temporarily)

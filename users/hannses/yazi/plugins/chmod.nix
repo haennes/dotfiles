@@ -1,4 +1,4 @@
-{ yaziPlugins, lib, ... }: {
+{ yaziPlugins, ... }: {
   name = "chmod";
   pkg = yaziPlugins.chmod;
 

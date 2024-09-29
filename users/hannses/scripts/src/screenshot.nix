@@ -1,4 +1,4 @@
-{ pkgs, globals, ... }: ''
+{ globals, ... }: ''
   DMENU="${globals.dmenu}"
   screenshot_dir="$HOME/.screenshots"  #TODO globals
   mkdir "$screenshot_dir"

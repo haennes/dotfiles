@@ -1,4 +1,4 @@
-{ sshkeys, osConfig, lib, ... }:
+{ sshkeys, osConfig, ... }:
 let
   ports = osConfig.ports.ports.ports;
   ssh_ports = osConfig.ports.ports.curr_ports.ssh;

@@ -491,7 +491,7 @@ in {
         # dont check it from veth-wan-a because of dnat fuckery and because we already check packets coming from wan there
         [(is.eq meta.iifname "wg0") (is.eq (fib (f: with f; [ saddr mark iif ]) (f: f.oif)) missing) (log "lan oif missing ") drop]
       ];
-      inetDnatRules = 
+      inetDnatRules =
         builtins.concatLists (map
           (rule: let
             protocols = dnatRuleProtos rule;
@@ -684,7 +684,7 @@ in {
       netdevIngressWanRules = with notnft.dsl; with payload; [
         [(is.eq (fib (f: with f; [ saddr mark iif ]) (f: f.oif)) missing) (log "wan oif missing ") drop]
       ];
-      inetDnatRules = 
+      inetDnatRules =
         builtins.concatLists (map
           (rule: let
             protocols = dnatRuleProtos rule;
@@ -853,8 +853,8 @@ in {
   systemd.services.sshd-wan = {
     description = "SSH Daemon (WAN)";
     wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" "netns-wan.service" ]; 
-    bindsTo = [ "netns-wan.service" ]; 
+    after = [ "network.target" "netns-wan.service" ];
+    bindsTo = [ "netns-wan.service" ];
     stopIfChanged = false;
     path = with pkgs; [ gawk config.programs.ssh.package ];
     environment.LD_LIBRARY_PATH = config.system.nssModules.path;

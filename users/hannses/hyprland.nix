@@ -1,5 +1,4 @@
-{ pkgs, lib, inputs, theme, globals, scripts, ... }:
-with inputs; {
+{ theme, globals, scripts, ... }: {
   wayland.windowManager.hyprland = {
     enable = true;
     #package = hyprland.packages.${pkgs.system}.hyprland;

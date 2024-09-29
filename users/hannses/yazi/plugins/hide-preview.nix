@@ -1,4 +1,4 @@
-{ yaziPlugins, lib, ... }: {
+{ yaziPlugins, ... }: {
   name = "hide-preview";
   pkg = yaziPlugins.hide-preview;
 

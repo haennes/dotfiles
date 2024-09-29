@@ -1,4 +1,4 @@
-{ pkgs, globals, ... }: ''
+{ globals, ... }: ''
   DMENU="${globals.dmenu}"
 
   getdir=false

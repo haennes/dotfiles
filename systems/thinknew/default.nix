@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   imports = [ ./hardware-configuration.nix ];
   networking.hostName = "thinknew"; # Define your hostname.
 
@@ -32,7 +32,7 @@
       ;
     };
     #extraConfig = ''
-    #    // Enable the plugin 
+    #    // Enable the plugin
     #    if ( !defined('ABSPATH') )
     #      define('ABSPATH', dirname(__FILE__) . '/');
     #    require_once(ABSPATH . 'wp-settings.php');

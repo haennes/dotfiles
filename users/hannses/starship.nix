@@ -1,4 +1,4 @@
-{ pkgs, lib, theme, ... }: {
+{ theme, ... }: {
   programs.starship = {
     enable = true;
     enableZshIntegration = true;

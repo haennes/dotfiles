@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }@old_inputs:
+{ pkgs, ... }@old_inputs:
 let
   inputs = old_inputs // { inherit (pkgs) yaziPlugins; };
   # TODO should this be automated ? (probably only after in flake...)

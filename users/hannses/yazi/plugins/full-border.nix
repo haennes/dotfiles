@@ -1,4 +1,4 @@
-{ yaziPlugins, lib, ... }: {
+{ yaziPlugins, ... }: {
   name = "full-border";
   pkg = yaziPlugins.full-border;
 
