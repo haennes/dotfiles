@@ -1,10 +1,4 @@
-{ modulesPath, config, lib, pkgs, sshkeys, ips, ... }:
-let
-  __subnet = lib: ip:
-    (builtins.concatStringsSep "."
-      (lib.lists.take 3 (lib.strings.splitString "." ip)));
-  subnet_cidr = lib: ip: let subnet = (__subnet lib ip); in "${subnet}.0/24";
-in {
+{ config, lib, pkgs, ... }: {
 
   imports = [ ./hardware-configuration.nix ./nginx.nix ./dns.nix ];
   boot.loader = {
@@ -21,7 +15,7 @@ in {
   services.wireguard-wrapper.enable = true;
   networking.nat.enable = true;
   networking.wireguard.interfaces.wg0 =
-    let net = subnet_cidr lib config.ips.ips.ips.default.welt.wg0;
+    let net = lib.my.subnet_cidr lib config.ips.ips.ips.default.welt.wg0;
     in {
       # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
       # For this to work you have to set the dnsserver IP of your router (or dnsserver of choice) in your clients
