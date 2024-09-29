@@ -28,6 +28,7 @@
       url = "github:haennes/nix-update-input/cycle";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-inspect.url = "github:bluskript/nix-inspect";
 
     haumea.url = "github:nix-community/haumea/v0.2.2";
     haumea.inputs.nixpkgs.follows = "nixpkgs";
