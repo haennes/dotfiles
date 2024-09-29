@@ -69,7 +69,7 @@ in {
             (subnet_cidr lib
               ips.welt.wg0) # added to allowedIps of the peers connecting to it
             # welt configures nat seperately to work
-          ] ++ public_ip_ranges;
+          ];
           endpoint =
             "hannses.de:${builtins.toString config.ports.ports.ports.welt.wg0}";
         };
