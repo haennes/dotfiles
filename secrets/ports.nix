@@ -1,6 +1,5 @@
 { lib, ... }:
 let
-  #reverse_map = with lib; set: mapAttrs' (name: value: {name = lists.head value; value = lists.tail value;}) ( ( mapAttrsRecursive (path: value: (concatStringsSep "" path) ++ [value]) set));
   common = {
     "51821" =
       "wg0"; # not all run wireguard, but never use port for sth different
