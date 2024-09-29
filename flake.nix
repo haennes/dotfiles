@@ -97,10 +97,9 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, manix, nixos-generators
-    , deploy-rs, microvm, nixos-dns, rust-overlay, disko, nur, nixvim
-    , nix-yazi-plugins, agenix, futils, wireguard-wrapper, syncthing-wrapper
-    , tasks_md, nix-update-inputs, haumea, signal-whisper, IPorts, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, deploy-rs, rust-overlay, nur
+    , nix-yazi-plugins, futils, wireguard-wrapper, syncthing-wrapper, tasks_md
+    , nix-update-inputs, signal-whisper, IPorts, ... }:
     let
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
       lib = nixpkgs.lib;
