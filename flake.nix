@@ -103,7 +103,12 @@
     , nix-update-inputs, signal-whisper, IPorts, ... }:
     let
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
-      lib = nixpkgs.lib;
+      lib = nixpkgs.lib.extend (self: super: {
+        my = import ./lib {
+          inherit inputs;
+          lib = self;
+        };
+      });
       mkDeploy = { self }:
         #https://github.com/Yash-Garg/dotfiles/blob/stable/lib/deploy/default.nix
         let
@@ -221,7 +226,7 @@
           #nur.nixosModules.nur
           IPorts.nixosModules.default # adds ips, macs and ports
         ];
-        specialArgs = { inherit inputs sshkeys; };
+        specialArgs = { inherit inputs sshkeys lib; };
         extraArgs = { inherit sshkeys system; };
       };
 
