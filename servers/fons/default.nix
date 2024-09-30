@@ -43,28 +43,39 @@ in {
   users.users.root.openssh.authorizedKeys.keys = [ sshkeys.hannses ];
 
   networking.firewall.allowedTCPPorts = [ 443 80 ];
-  services.freshrss = rec {
+
+  # official test: https://github.com/NixOS/nixpkgs/blob/master/nixos/tests/freshrss-pgsql.nix
+  services.freshrss = {
     enable = true;
-    baseUrl = "https://0.0.0.0";
+    baseUrl = "http://localhost";
+    #passwordFile = pkgs.writeText "password" "secret";
+    defaultUser = "hannses";
     authType = "none";
-    database = { # use postgres just because we already have it
-      #port = hports.postgresql;
-      host = "/var/lib/postgresql";
+    dataDir = "/srv/freshrss";
+    database = {
       type = "pgsql";
+      port = 5432;
+      user = "freshrss";
+      #NOTE: having the password here in plain text is ok since postgres is behind the firewall
+      #TODO: fix it anyways at some point
+      passFile = pkgs.writeText "db-password" "db-secret";
     };
-    # to configure a nginx virtual host directly:
   };
+
   services.postgresql = {
     enable = true;
-    settings.port = hports.postgresql;
+    ensureDatabases = [ "freshrss" ];
     ensureUsers = [{
-      name = config.services.freshrss.database.user;
-      ensureClauses.login = true;
+      name = "freshrss";
+      ensureDBOwnership = true;
     }];
-    ensureDatabases = [ config.services.freshrss.database.name ];
-    authentication = pkgs.lib.mkOverride 10 ''
-      #type database  DBuser  auth-method
-      local all       all     trust
+    initialScript = pkgs.writeText "postgresql-password" ''
+      CREATE ROLE freshrss WITH LOGIN PASSWORD 'db-secret' CREATEDB;
     '';
+  };
+
+  systemd.services."freshrss-config" = {
+    requires = [ "postgresql.service" ];
+    after = [ "postgresql.service" ];
   };
 }
