@@ -31,7 +31,7 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "hannses";
-  home.homeDirectory = "/home/hannses";
+  home.homeDirectory = lib.mkDefault "/home/hannses";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

@@ -42,7 +42,7 @@
       "1.1.1.1/32"
     ];
 
-  age_obtain_user_password = username: {
+  age_obtain_user_password = username: config: {
     age.secrets.${"${username}"} = {
       file = ../secrets/user_passwords/${username}.age;
       owner = "root";
