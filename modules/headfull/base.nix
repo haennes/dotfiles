@@ -1,9 +1,10 @@
-{ lib, ... }:
+{ lib, config, ... }:
 let
   gen_user = name: {
     "${name}" = {
       isNormalUser = true;
       description = name;
+      home = "/home/${name}";
     };
   };
 in {
@@ -38,6 +39,6 @@ in {
   services.udisks2.enable = true;
   programs.hyprland.enable = true;
 
-} // (lib.my.age_obtain_user_password "hannses")
-// (lib.my.age_obtain_user_password "mum")
-// (lib.my.age_obtain_user_password "dad")
+} // (lib.my.age_obtain_user_password "hannses" config)
+// (lib.my.age_obtain_user_password "mum" config)
+// (lib.my.age_obtain_user_password "dad" config)
