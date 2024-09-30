@@ -36,15 +36,15 @@ in {
   fileSystems."/persist".neededForBoot = lib.mkForce true;
   age.identityPaths = [ "/persist/root_user_key" ];
   imports = [
-    #../../secrets/macs.nix
-    #../../secrets/ips.nix
-    #../../secrets/ports.nix
-    #../../modules/all
-    #../../modules/headless
-    #inputs.IPorts.nixosModules.default
-    #inputs.wireguard-wrapper.nixosModules.default
-    #inputs.syncthing-wrapper.nixosModules.default
-    #inputs.agenix.nixosModules.default
+    ../../secrets/macs.nix
+    ../../secrets/ips.nix
+    ../../secrets/ports.nix
+    ../../modules/all
+    ../../modules/headless
+    inputs.IPorts.nixosModules.default
+    inputs.wireguard-wrapper.nixosModules.default
+    inputs.syncthing-wrapper.nixosModules.default
+    inputs.agenix.nixosModules.default
     #../proxmox.nix
     ./nginx.nix
   ];
@@ -54,8 +54,7 @@ in {
     networkConfig = {
       Address = [ "${ips.vm-tabula.br0}/24" "2001:db8::b/64" ];
       Gateway = ips."vm-host".br0;
-      DNS = [ ips."vm-host".br0 ];
-      #DNS = [ "1.1.1.1" ];
+      DNS = [ "1.1.1.1" ];
       IPv6AcceptRA = true;
       DHCP = "no";
     };
