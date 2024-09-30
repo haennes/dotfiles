@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
     ./age.nix
+    #./adb.nix #uncomment if needed
     ./all
     ./gnome
     ./headfull
