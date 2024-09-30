@@ -4,7 +4,10 @@
   macs = {
     vm-host."02" = {
       # use for vms
-      "01" = { "00:00:00:01" = "vm-fons%eth0"; };
+      "01" = {
+        "00:00:00:01" = "vm-fons%eth0";
+        "00:00:00:02" = "vm-tabula%eth0";
+      };
     };
   };
 }

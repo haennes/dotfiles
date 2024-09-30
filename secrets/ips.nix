@@ -40,6 +40,7 @@
 
         # others - any vm
         "10" = "vm-fons%br0";
+        "11" = "vm-tabula%br0";
       };
 
     };
