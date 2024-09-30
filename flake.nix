@@ -242,7 +242,8 @@
         porta = { modules = [ (server "porta") ]; };
         syncschlawiner = { modules = [ (server "syncschlawiner") ]; };
         syncschlawiner_mkhh = { modules = [ (server "syncschlawiner_mkhh") ]; };
-        tabula = { modules = [ (server "tabula") ]; };
+        #tabula = { modules = [ (server "tabula") ]; };
+        tabula = { modules = [ (microvm "tabula") ]; };
         tabula_mkhh = { modules = [ (server "tabula_mkhh") ]; };
         hermes = { modules = [ (server "hermes") ]; };
         fons = { modules = [ (microvm "fons") ]; };
