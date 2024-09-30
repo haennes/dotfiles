@@ -48,6 +48,10 @@
       #"application/x-xopp" = [ "${pkgs.xournalpp}/share/applications/com.github.xournalpp.xournalpp.desktop"];
       "application/x-xopp" = [ "com.github.xournalpp.xournalpp.desktop" ];
 
+      "x-scheme-handler/sgnl" = "signal-desktop.desktop";
+      "x-scheme-handler/signalcaptcha" = "signal-desktop.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
       #TODO
       #"inode/directory" = [ "thunar.desktop" ];
     };
