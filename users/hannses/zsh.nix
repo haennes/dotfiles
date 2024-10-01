@@ -33,6 +33,8 @@ in {
       '';
 
       aliases = [ "dticket" "ticket" "db" ];
+      semester1 = "cd ${home}/Documents/Studium/Semester1";
+      semester2 = "cd ${home}/Documents/Studium/Semester2";
 
     in rec {
       #manix and its aliases are configured in ./manix.nix
@@ -61,16 +63,24 @@ in {
       dotfiles = "cd ${dotfiles_path}";
       dotf = dotfiles;
 
-      oth = "cd ${home}/Documents/Studium/Semester1";
+      oth = semester2;
       down = "cd ${home}/Downloads";
 
       pro = "cd ${home}/programming";
 
-      pg = "${oth}/PG1";
-      ma = "${oth}/MA1";
-      ph = "${oth}/PH1";
-      ti = "${oth}/TI1";
-      uws = "${oth}/Umweltschutz_Einfuehrung";
+      # Semester 1
+      pg1 = "${semester1}/PG1";
+      ma1 = "${semester1}/MA1";
+      ph = "${semester1}/PH1";
+      ti = "${semester1}/TI1";
+      uws = "${semester1}/Umweltschutz_Einfuehrung";
+
+      # Semester 2
+      cs = "${semester2}/CS";
+      ma = "${semester2}/MA2";
+      rb = "${semester2}/RB";
+      ge = "${semester2}/GE";
+      pg = "${semester2}/PG2";
 
       "..." = "cd  ../../"; # dont want to enable prezto
       "...." = "cd  ../../../"; # dont want to enable prezto
