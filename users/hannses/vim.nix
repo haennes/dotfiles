@@ -39,11 +39,9 @@
     ];
     plugins = {
       neogit = { enable = true; };
+      yazi.enable = true;
       typst-vim = {
         enable = true;
-        settings.cmd = "${scripts.typst-live-custom}";
-        #"${config.home.packages.typst-watch-to-typst-live}" ;
-        #"${config.environment.systemPackages.typst-watch-to-typst-live}" ;
       };
 
       markdown-preview = {
