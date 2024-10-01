@@ -1,9 +1,4 @@
-{ lib, pkgs, ... }:
-let
-  icon =
-    "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-in lib.mapAttrs
-(_name: value: if value ? icon then value else value // { inherit icon; }) {
+{ lib, pkgs, favicon, ... }: {
   "geizhals" = {
     urls = [{
       template = "https://geizhals.de";
@@ -23,6 +18,6 @@ in lib.mapAttrs
       ];
     }];
     definedAliases = [ "<geiz" ];
+    iconUpdateURL = favicon "geizhals.de";
   };
-
 }
