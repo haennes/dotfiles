@@ -97,6 +97,7 @@ in {
 
       udmount = "udiskctl mount -b";
       udumount = "udiskctl umount -b";
+      mount_phone = "${pkgs.jmtpfs}/bin/jmtpfs";
 
     } // lib.listToAttrs (lib.flatten (lib.lists.map (name: [
       {
