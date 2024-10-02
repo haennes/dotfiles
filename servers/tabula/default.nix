@@ -13,9 +13,9 @@ in {
     }];
 
     shares = [{
-      source = "/home/hannses/ssh/";
+      source = "/persistant/microvms/tabula/";
       mountPoint = "/persist";
-      tag = "persist";
+      tag = "persist2-${config.networking.hostName}";
       proto = "virtiofs";
     }];
   };
@@ -70,7 +70,7 @@ in {
 
   services.syncthing_wrapper = { enable = true; };
   services.syncthing = {
-    dataDir = "/var/www";
+    dataDir = "/persist";
     user = "nginx";
   };
   networking.hostName = "tabula";
