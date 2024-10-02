@@ -39,10 +39,11 @@
     ];
     plugins = {
       neogit = { enable = true; };
-      yazi.enable = true;
-      typst-vim = {
+      yazi = {
         enable = true;
+        settings.open_for_directories = true;
       };
+      typst-vim = { enable = true; };
 
       markdown-preview = {
         enable = true;
