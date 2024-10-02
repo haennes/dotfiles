@@ -1,7 +1,6 @@
-{ pkgs, scripts, globals, config, lib, ... }:
+{ pkgs, scripts, globals, hm-config, lib, ... }:
 let
-  firefox_profiles =
-    config.home-manager.users.hannses.programs.firefox.profiles;
+  firefox_profiles = hm-config.programs.firefox.profiles;
   firefox_profiles_attr_names = with lib; (attrNames firefox_profiles);
   selector_str = with lib;
     concatStrings (map (x: ''
