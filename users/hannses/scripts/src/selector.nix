@@ -28,6 +28,7 @@ in ''
   wallpaper
   signal
   tuta
+  dbui
   bitwarden
   keepassxc
   office
@@ -95,6 +96,9 @@ in ''
       ;;
   "bitwarden")
      ${pkgs.bitwarden}/bin/bitwarden --enable-features=UseOzonePlatform --ozone-platform=wayland
+     ;;
+  "dbui")
+     ${scripts.dbui_dmenu}
      ;;
   "keepassxc")
       ${pkgs.keepassxc}/bin/keepassxc
