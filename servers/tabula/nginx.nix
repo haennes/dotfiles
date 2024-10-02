@@ -5,7 +5,7 @@
     virtualHosts = {
       "hannses.de" = {
         # https disabled because it is used up to vps
-        root = "/var/www/website";
+        root = "/persist/website";
       };
     };
   };
