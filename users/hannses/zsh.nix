@@ -13,7 +13,7 @@ in {
 
     in rec {
       #manix and its aliases are configured in ./manix.nix
-      dbui = "${scripts.dbui_fzf}/bin/dbui";
+      dbui = "${scripts.dbui_fzf}";
 
       loc = "${pkgs.tokei}/bin/tokei";
       bc = "${pkgs.fend}/bin/fend";
@@ -77,17 +77,15 @@ in {
     } // lib.listToAttrs (lib.flatten (lib.lists.map (name: [
       {
         name = "${name}_bak";
-        value = "${scripts.deutschland_ticket_pdf}/bin/deutschland_ticket_pdf";
+        value = "${scripts.deutschland_ticket_pdf}";
       }
       {
         name = "${name}_bak_bak";
-        value =
-          "${scripts.deutschland_ticket_screenshot}/bin/deutschland_ticket_screenshot";
+        value = "${scripts.deutschland_ticket_screenshot}";
       }
       {
         name = name;
-        value =
-          "${scripts.deutschland_ticket_firefox}/bin/deutschland_ticket_firefox";
+        value = "${scripts.deutschland_ticket_firefox}";
       }
     ]) aliases));
     initExtra = ''
