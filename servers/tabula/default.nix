@@ -12,22 +12,29 @@ in {
       mac = "${config.macs.macs.vm-host.vm-tabula.eth0}";
     }];
 
-    shares = [{
-      source = "/persistant/microvms/tabula/";
-      mountPoint = "/persist";
-      tag = "persist2-${config.networking.hostName}";
-      proto = "virtiofs";
-    }];
+    shares = [
+      {
+        source = "/persistant/microvms/tabula/";
+        mountPoint = "/persist";
+        tag = "persist-${config.networking.hostName}";
+        proto = "virtiofs";
+      }
+      {
+        tag = "ro-store";
+        source = "/nix/store";
+        mountPoint = "/nix/.ro-store";
+      }
+    ];
   };
   system.activationScripts.ensure-ssh-key-dir.text = "mkdir -p /persist";
   services.openssh = {
     hostKeys = [
       {
-        path = "/persist/etc/ssh/ssh_host_ed25519_key";
+        path = "/persist/ssh/ssh_host_ed25519_key";
         type = "ed25519";
       }
       {
-        path = "/persist/etc/ssh/ssh_host_rsa_key";
+        path = "/persist/ssh/ssh_host_rsa_key";
         type = "rsa";
         bits = 4096;
       }
@@ -59,6 +66,8 @@ in {
   };
   users.users.root.openssh.authorizedKeys.keys = [ sshkeys.hannses ];
 
+  system.activationScripts.ensure-syncthing-dir =
+    "mkdir -p /persist/website/.stfolder && chown -R ${config.services.syncthing.user} /persist/website";
   services.syncthing_wrapper = { enable = true; };
   services.syncthing = {
     dataDir = "/persist";
