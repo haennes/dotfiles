@@ -5,7 +5,7 @@
 { specialArgs, ... }: {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    #zfs is importat in hardware-configuration!
+    ./zfs.nix
     #./services/backup.nix
   ];
 
