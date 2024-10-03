@@ -3,8 +3,20 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.forceImportRoot = false;
 
-  fileSystems."/data" = {
-    device = "main_pool/data";
-    fsType = "zfs";
+  fileSystems = {
+    "/data" = {
+      device = "main_pool/data";
+      fsType = "zfs";
+    };
+
+    "/website" = {
+      device = "main_pool/website";
+      fsType = "zfs";
+    };
+
+    "/persistant" = {
+      device = "main_pool/persistance";
+      fsType = "zfs";
+    };
   };
 }
