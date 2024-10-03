@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ ... }: {
+{ specialArgs, ... }: {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     #zfs is importat in hardware-configuration!
@@ -14,12 +14,24 @@
     efi.canTouchEfiVariables = true;
   };
 
+  microvm.vms = {
+    tabula = {
+      inherit specialArgs;
+      config = import ../../servers/tabula;
+      pkgs = null;
+    };
+  };
   #services.syncthing_wrapper = { enable = true; };
   #services.syncthing = {
   #  dataDir = "/data/syncthing";
   #  user = "hannses";
   #};
-  #services.wireguard-wrapper.enable = true;
+
+  microvmHost.extInterface = "enp37s0";
+
+  networking.networkmanager.unmanaged = [ "wg0" ];
+  networking.networkmanager.enable = true;
+  services.wireguard-wrapper.enable = true;
 
   networking.hostName = "deus"; # Define your hostname.
 

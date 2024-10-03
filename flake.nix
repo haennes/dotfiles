@@ -109,6 +109,18 @@
           lib = self;
         };
       });
+      all_modules = [
+        ./modules/all
+        ./modules/age.nix
+        ./modules/machine_properties.nix
+        ./secrets/macs.nix
+        ./secrets/ips.nix
+        ./secrets/ports.nix
+        wireguard-wrapper.nixosModules.wireguard-wrapper
+        syncthing-wrapper.nixosModules.syncthing-wrapper
+        #nur.nixosModules.nur
+        IPorts.nixosModules.default # adds ips, macs and ports
+      ];
       client_modules = [
         home-manager.nixosModules.home-manager
         tasks_md.nixosModules.default
@@ -173,23 +185,21 @@
 
       hostDefaults = rec {
         system = "x86_64-linux";
-        modules = [
-          ./modules/all
-          ./modules/age.nix
-          ./modules/machine_properties.nix
-          ./secrets/macs.nix
-          ./secrets/ips.nix
-          ./secrets/ports.nix
-          wireguard-wrapper.nixosModules.wireguard-wrapper
-          syncthing-wrapper.nixosModules.syncthing-wrapper
-          #nur.nixosModules.nur
-          IPorts.nixosModules.default # adds ips, macs and ports
-        ];
-        specialArgs = { inherit inputs sshkeys lib; };
+        modules = all_modules;
+        specialArgs = { inherit inputs sshkeys lib all_modules system; };
         extraArgs = { inherit sshkeys system; };
       };
 
-      deploy = lib.my.mkDeploy { inherit (inputs) self; };
+      #deploy = lib.my.mkDeploy { inherit (inputs) self; };
+      deploy.nodes."deus" = {
+        hostname = "l_deus";
+        profiles.system = {
+          user = "root";
+          sshUser = "root";
+          path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos
+            self.nixosConfigurations.deus;
+        };
+      };
       formatter =
         forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-classic);
 

@@ -24,14 +24,7 @@
     false; # currently wg0 forwarind all traffic is broken
   networking.networkmanager.unmanaged = [ "wg0" ];
 
-  networking.nat = {
-    enable = true;
-    enableIPv6 = true;
-    # Change this to the interface with upstream Internet access
-    externalInterface = "wlp1s0";
-    internalInterfaces = [ "br0" ];
-  };
-
+  microvmHost.extInterface = "wlp1s0";
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -39,12 +32,13 @@
     fons = {
       inherit specialArgs;
       config = import ../../servers/fons;
-    };
-    tabula = {
-      inherit specialArgs;
-      config = import ../../servers/tabula;
       pkgs = null;
     };
+    #tabula = {
+    #  inherit specialArgs;
+    #  config = import ../../servers/tabula;
+    #  pkgs = null;
+    #};
   };
 
   networking.extraHosts = ''
