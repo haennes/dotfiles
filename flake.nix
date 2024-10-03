@@ -114,17 +114,8 @@
         tasks_md.nixosModules.default
         (import ./modules/home_manager)
         ./modules/gnome
+        ./modules/gnome/specialisation.nix
         ./modules/headfull
-        {
-          specialisation = {
-            gnome.configuration = {
-              services.xserver.desktopManager.gnome.enable = true;
-              services.gnome.gnome-remote-desktop.enable =
-                false; # conflicts with pulsaudio
-              system.nixos.tags = [ "gnome" ];
-            };
-          };
-        }
       ];
       server_modules = [ ./modules/headless ];
       server = hostname: {
