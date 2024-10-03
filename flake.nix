@@ -109,38 +109,6 @@
           lib = self;
         };
       });
-      mkDeploy = { self }:
-        #https://github.com/Yash-Garg/dotfiles/blob/stable/lib/deploy/default.nix
-        let
-          hosts = lib.filterAttrs (_: v: v.config.is_server)
-            (self.nixosConfigurations or { });
-          genNode = machine: hostname: {
-            inherit hostname;
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy-rs.lib.${machine.pkgs.system}.activate.nixos machine;
-            };
-          };
-          oneNodeSet = hostnameMapF:
-            lib.mapAttrs' (_: machine:
-              let
-                mappedHostname =
-                  hostnameMapF machine.config.networking.hostName;
-              in {
-                name = mappedHostname;
-                value = genNode machine mappedHostname;
-              }) hosts;
-          noports = str: "${str}_noports";
-          l = str: "l_${str}";
-          m = str: "m_${str}";
-          g = str: "g_${str}";
-          nodes = (oneNodeSet (str: l str))
-            // (oneNodeSet (str: l (noports str))) // (oneNodeSet (str: m str))
-            // (oneNodeSet (str: m (noports str))) // (oneNodeSet (str: g str))
-            // (oneNodeSet (str: g (noports str)));
-        in { inherit nodes; };
       client_modules = [
         home-manager.nixosModules.home-manager
         tasks_md.nixosModules.default
@@ -230,7 +198,7 @@
         extraArgs = { inherit sshkeys system; };
       };
 
-      deploy = mkDeploy { inherit (inputs) self; };
+      deploy = lib.my.mkDeploy { inherit (inputs) self; };
       formatter =
         forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-classic);
 
