@@ -1,4 +1,4 @@
-{ inputs, config, lib, sshkeys, ... }:
+{ inputs, config, lib, sshkeys, all_modules, ... }:
 let
   ips = config.ips.ips.ips.default;
   hports = config.ports.ports.curr_ports;
@@ -36,18 +36,9 @@ in {
   fileSystems."/persist".neededForBoot = lib.mkForce true;
   age.identityPaths = [ "/persist/root_user_key" ];
   imports = [
-    ../../secrets/macs.nix
-    ../../secrets/ips.nix
-    ../../secrets/ports.nix
-    ../../modules/all
-    ../../modules/headless
-    inputs.IPorts.nixosModules.default
-    inputs.wireguard-wrapper.nixosModules.default
-    inputs.syncthing-wrapper.nixosModules.default
-    inputs.agenix.nixosModules.default
     #../proxmox.nix
     ./nginx.nix
-  ];
+  ] ++ all_modules;
 
   systemd.network.networks."20-lan" = {
     matchConfig.Type = "ether";

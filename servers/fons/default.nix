@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, config, sshkeys, ... }:
+{ inputs, pkgs, lib, config, sshkeys, all_modules, ... }:
 let
   hports = config.ports.ports.curr_ports;
   data = name: "/data/${name}";
@@ -12,12 +12,7 @@ in {
       mac = "${config.macs.macs.vm-host.vm-fons.eth0}";
     }];
   };
-  imports = [
-    ../../secrets/macs.nix
-    ../../secrets/ips.nix
-    ../../secrets/ports.nix
-    inputs.IPorts.nixosModules.default
-  ];
+  imports = all_modules;
   systemd.network.enable = true;
 
   systemd.network.networks."20-lan" = {
