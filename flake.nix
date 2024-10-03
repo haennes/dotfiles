@@ -130,6 +130,12 @@
         ./modules/headfull
       ];
       server_modules = [ ./modules/headless ];
+      microvm_modules_host =
+        [ inputs.microvm.nixosModules.host ./modules/microvm_host.nix ];
+      microvm_modules_guest = [ ];
+      # ./modules/microvm_guest.nix is not included as it includes these modules when using declarative configuration
+      # inputs.microvm.nixosModules.microvm is not included as it automatically gets when using declarative configuration
+
       server = hostname: {
         config.is_server = true;
         imports = [ ./servers/${hostname} ] ++ server_modules;
@@ -140,11 +146,15 @@
       };
       microvm_host = {
         config.is_microvm_host = true;
-        imports = [ inputs.microvm.nixosModules.host ./modules/microvm.nix ];
+        imports = microvm_modules_host;
       };
       microvm = hostname: {
         config.is_microvm = true;
-        imports = [ (server hostname) inputs.microvm.nixosModules.microvm ];
+        imports = [
+          (server hostname)
+          ./modules/microvm_guest.nix
+          inputs.microvm.nixosModules.microvm
+        ] ++ microvm_modules_guest;
       };
       sshkeys = import ./secrets/sshkeys.nix;
 
@@ -186,7 +196,10 @@
       hostDefaults = rec {
         system = "x86_64-linux";
         modules = all_modules;
-        specialArgs = { inherit inputs sshkeys lib all_modules system; };
+        specialArgs = {
+          inherit inputs sshkeys lib all_modules client_modules server_modules
+            microvm_modules_host microvm_modules_guest system;
+        };
         extraArgs = { inherit sshkeys system; };
       };
 
