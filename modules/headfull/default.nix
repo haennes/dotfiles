@@ -2,6 +2,7 @@
 let hports = config.ports.ports.curr_ports;
 in {
   imports = [
+    ./adb.nix # uncomment if needed
     ./base.nix
     ./pkgs.nix
     ./minecraft
