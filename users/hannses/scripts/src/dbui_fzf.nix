@@ -4,13 +4,13 @@
     | ${pkgs.fzf}/bin/fzf)
   case $input in
     browser)
-      ${scripts.deutschland_ticket_firefox}/bin/deutschland_ticket_firefox
+      ${scripts.deutschland_ticket_firefox}
     ;;
     pdf)
-      ${scripts.deutschland_ticket_pdf}/bin/deutschland_ticket_pdf
+      ${scripts.deutschland_ticket_pdf}
     ;;
     screenshot)
-      ${scripts.deutschland_ticket_screenshot}/bin/deutschland_ticket_screenshot
+      ${scripts.deutschland_ticket_screenshot}
     ;;
   esac
 ''
