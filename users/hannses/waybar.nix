@@ -25,7 +25,7 @@ let
       #"custom/notification"
       "memory"
       "battery"
-      #"tray"
+      "tray"
     ];
 
     bluetooth = {
@@ -267,6 +267,7 @@ let
     #custom-mode,
     #tray {
       color: #${theme.foreground};
+      background: black;
     }
 
     #custom-battery {
