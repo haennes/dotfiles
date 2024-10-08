@@ -1357,11 +1357,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1727291772,
-        "narHash": "sha256-7kGQc3l0KMmuNsmeaB7VGRt8SHeZz/+/ylgWWXmD4F4=",
+        "lastModified": 1728309531,
+        "narHash": "sha256-kqfQbUbpPGRNpiG/m3mYhXaYIYurNFBnu+Xkg+vO+hI=",
         "owner": "haennes",
         "repo": "syncthing-wrapper.nix",
-        "rev": "e17c70d7b99e6781586907d9d8bfd98a6b338594",
+        "rev": "2d367cd4822861eda08b78277fda881c60918a6a",
         "type": "github"
       },
       "original": {
@@ -1611,11 +1611,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1726587282,
-        "narHash": "sha256-bKOD6NPSNfCBuaFe6g+tuIjgtwq1bbrF4WsOU6NXTfI=",
+        "lastModified": 1727292086,
+        "narHash": "sha256-nhxPrLvOKW1xoA+KuIPdM9DUENPpdUv78adaWcYpJKk=",
         "owner": "haennes",
         "repo": "wireguard-wrapper.nix",
-        "rev": "e80ccab820a706a7ad999cb9e6524f10843749f4",
+        "rev": "2d1c9e2c58ea584a90e434ac33b00f9304f06471",
         "type": "github"
       },
       "original": {

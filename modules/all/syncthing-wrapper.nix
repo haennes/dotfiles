@@ -1,7 +1,20 @@
 { config, lib, ... }:
-let ids = import ../../secrets/not_so_secret/syncthing.key.nix;
+let
+  ids = import ../../secrets/not_so_secret/syncthing.key.nix;
+  sharedFolderFn = { folder_name, DirUsers, DirGroups }:
+    "${config.services.syncthing.dataDir}/${folder_name}";
+  family_if_client = (if (config.is_client) then {
+    DirGroups = [ "family" ];
+    ensureDirExists = "setfacl";
+  } else
+    { });
 in {
   services.syncthing_wrapper = rec {
+    DirUsersDefault = [ "hannses" ];
+    folderToPathFuncDefault = { folder_name, DirUsers, DirGroups }:
+      "${config.services.syncthing.dataDir}/${
+        lib.lists.head DirUsers
+      }/${folder_name}";
     default_versioning = {
       type = "simple";
       params.keep = "10";
@@ -34,20 +47,16 @@ in {
       with devices.all_servers; {
         "Family" = {
           devices = [ (all_pcs // servers) "thinkpad" ];
-          paths = {
-            "mainpc" = "/home/Family";
-            "thinkpad" = "/home/Family";
-            "thinknew" = "/home/Family";
-            "yoga" = "/home/Family";
-          };
-        };
+          folderToPathFunc = sharedFolderFn;
+        } // family_if_client;
         "Passwords" = {
           devices = [ (all_pcs // all_handys // servers) "thinkpad" ];
           versioning = {
             type = "simple";
             params.keep = "100";
           };
-        };
+          folderToPathFunc = sharedFolderFn;
+        } // family_if_client;
         "3d_printing" = [ (all_pcs // servers) ];
         "Documents" = [ (all_pcs // servers) ];
         "Notes" = [ (all_pcs // servers) ];
