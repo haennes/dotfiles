@@ -17,7 +17,7 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   services.syncthing_wrapper = { enable = true; };
   services.syncthing = {
-    dataDir = "/home/hannses";
+    dataDir = "/home";
     user = "hannses";
   };
   services.wireguard-wrapper.enable =
