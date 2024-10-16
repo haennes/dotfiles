@@ -65,10 +65,10 @@
         enable = true;
         servers = {
           nixd.enable = true;
-          typst-lsp.enable = true;
+          typst_lsp.enable = true;
 
           clangd.enable = true;
-          rust-analyzer = {
+          rust_analyzer = {
             installRustc = true;
             installCargo = true;
             enable = true;
