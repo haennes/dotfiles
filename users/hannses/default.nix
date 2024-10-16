@@ -21,6 +21,7 @@
     ./yazi
     ./zathura.nix
     ./firefox
+    ./rss.nix
     ./ssh.nix
     ./git.nix
     ./gpg.nix
