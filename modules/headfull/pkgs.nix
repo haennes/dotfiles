@@ -59,6 +59,7 @@
     python3
     ruff # python linter
     gcc # c compiler
+    valgrind # c heap debugging
 
     #Gameing
     lutris # game launcher compatible with steam, wine, ...
