@@ -11,7 +11,7 @@ in {
     ./local_nginx.nix
     ./atuin.nix
     ./fortivpn.nix
-    ./virtualization.nix
+    #./virtualization.nix # dont build virtualbox
   ];
   services.postgresql.settings.port =
     lib.mkIf (hports ? postresql) hports.postgresql;
