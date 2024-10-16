@@ -49,6 +49,7 @@
     vim
     gdb
     nix-diff
+    icdiff
     inputs.nix-inspect.packages.${system}.default
     keepassxc
     signal-desktop
