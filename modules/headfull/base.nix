@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 let
   gen_user = name: {
     "${name}" = {
@@ -23,7 +23,11 @@ in {
   networking.networkmanager.enable = true;
 
   security.pam.services.swaylock = { };
-
+  boot.kernelPackages =
+    if (lib.any (v: v.fsType == "zfs") (lib.attrValues config.fileSystems)) then
+      config.boot.zfs.package.latestCompatibleLinuxPackages
+    else
+      pkgs.linuxPackages_latest;
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = true;
   security.rtkit.enable = true;
