@@ -49,7 +49,7 @@
         enable = true;
         settings = {
           auto_start = 1;
-          auto_close = 0;
+          auto_close = 1;
         };
       };
       openscad = {
