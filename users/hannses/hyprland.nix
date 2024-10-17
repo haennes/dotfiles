@@ -20,7 +20,7 @@
 
       exec-once = scripts.startup;
 
-      monitor = [ ",preferred,auto,1" ];
+      monitor = [ ",preferred,auto,1, mirror, eDP-1" ];
 
       input = {
         kb_layout = "de,us,eu";
