@@ -42,6 +42,8 @@ in ''
   bluetooth gui
   clipboard
   remove from clipboard
+  disturb
+  silent
   clear-clipboard
   screenshot
   sccpa
@@ -99,6 +101,12 @@ in ''
      ;;
   "dbui")
      ${scripts.dbui_dmenu}
+     ;;
+  "disturb")
+     ${scripts.donotdisturb}
+     ;;
+  "silent")
+      ${pkgs.dunst}/bin/dunstctl set-paused true
      ;;
   "keepassxc")
       ${pkgs.keepassxc}/bin/keepassxc
