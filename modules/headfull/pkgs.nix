@@ -12,7 +12,7 @@
 
     #modelling
     freecad
-    openscad
+    openscad-unstable
     prusa-slicer
 
     #office & texteditors
