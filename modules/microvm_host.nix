@@ -17,7 +17,7 @@ in {
       !config.networking.networkmanager.enable;
 
     systemd.network.networks."10-lan" = {
-      matchConfig.Name = [ "wlp1s0" "vm-*" ];
+      matchConfig.Name = [ config.microvmHost.extInterface "vm-*" ];
       networkConfig = { Bridge = "br0"; };
     };
 
