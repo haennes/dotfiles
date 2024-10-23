@@ -20,7 +20,7 @@ in {
 
       dpdf = "${pkgs.diff-pdf}/bin/diff-pdf --view";
 
-      rg = "${pkgs.ripgrep-all}/bin/rg";
+      rg = "${pkgs.ripgrep-all}/bin/rga";
 
       nix-build = "${pkgs.nix-output-monitor}/bin/nom-build";
       nix-shell = "${pkgs.nix-output-monitor}/bin/nom-shell";
