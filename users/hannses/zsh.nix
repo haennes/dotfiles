@@ -14,6 +14,7 @@ in {
     in rec {
       #manix and its aliases are configured in ./manix.nix
       dbui = "${scripts.dbui_fzf}";
+      gcpp = "${scripts.gcpp}";
 
       loc = "${pkgs.tokei}/bin/tokei";
       bc = "${pkgs.fend}/bin/fend";
