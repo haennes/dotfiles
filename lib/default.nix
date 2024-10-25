@@ -60,9 +60,7 @@
   mkDeploy = { self }:
     #https://github.com/Yash-Garg/dotfiles/blob/stable/lib/deploy/default.nix
     let
-      hosts =
-        lib.filterAttrs (_: v: v.config.is_server && (!v.config.is_microvm))
-        (self.nixosConfigurations or { });
+      hosts = (self.nixosConfigurations or { });
       genNode = machine: hostname: {
         inherit hostname;
         profiles.system = {
