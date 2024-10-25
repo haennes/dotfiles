@@ -97,7 +97,7 @@
     wdisplays # gui display positioning
     swaylock-effects
     #swaynotificationcenter
-    lemurs # TODO fix
+    #lemurs # TODO fix
     ripdrag
 
     fend
