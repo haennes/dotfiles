@@ -6,6 +6,9 @@ with lib; {
     owner = "nextcloud";
     group = "nextcloud";
   };
+  system.activiationScripts.ensure-nextcloud-dir.text =
+    let dir = config.services.nextcloud.home;
+    in "mkdir -p ${dir} && chown nextcloud ${dir}";
   networking.firewall.allowedTCPPorts = [ 80 ];
 
   #services.onlyoffice.enable = true;
