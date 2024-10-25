@@ -6,10 +6,11 @@ with lib; {
     system.stateVersion = "23.11"; # Did you read the comment?
 
     # Make ready for nix flakes
-    nix.package = pkgs.nixFlakes;
-    nix.extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
+
+    nix = {
+      package = pkgs.nix;
+      settings.experimental-features = [ "nix-command" "flakes" ];
+    };
 
     time.timeZone = "Europe/Berlin";
     i18n.defaultLocale = "en_US.UTF-8";
