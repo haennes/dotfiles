@@ -69,7 +69,7 @@
         enable = true;
         servers = {
           nixd.enable = true;
-          typst_lsp.enable = true;
+          #typst_lsp.enable = true;
 
           clangd.enable = true;
           rust_analyzer = {
