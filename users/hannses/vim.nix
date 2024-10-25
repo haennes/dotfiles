@@ -1,4 +1,4 @@
-{ nixvim, scripts, ... }: {
+{ nixvim, pkgs, scripts, ... }: {
   imports = [ nixvim.homeManagerModules.nixvim ];
 
   programs.nixvim = {
@@ -43,7 +43,11 @@
         enable = true;
         settings.open_for_directories = true;
       };
-      typst-vim = { enable = true; };
+      typst-vim = {
+        enable = true;
+        settings.pdf_viewer = "${pkgs.zathura}/bin/zathura";
+        keymaps.watch = "<leader>tw";
+      };
 
       markdown-preview = {
         enable = true;
