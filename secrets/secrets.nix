@@ -68,6 +68,7 @@ in with sshkeys;
   syncschlawiner
   root_syncschlawiner
 ] // syncthing_keypair "tabula" [ hannses root_tabula tabula ]
+// syncthing_keypair "fons" [ hannses root_fons ]
 // syncthing_keypair "deus" [ hannses root_deus deus ]
 
 // user_password "hannses" [ hannses thinkpad thinknew yoga deus ]

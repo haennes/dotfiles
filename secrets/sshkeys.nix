@@ -64,6 +64,9 @@
   hermes = "";
   root_hermes = "";
 
+  root_fons =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDRh9WygBI7noq/G1gXW7LiqjspK6srzk+5InVEoq6g root@fons";
+
   forward =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOdPOsfBr/WM2R0GnDyeenFq2OB8rgs1P09BATvxbOl3 hannses@yoga";
   forward_path = "/home/hannses/.ssh/id_ed25519_forward";

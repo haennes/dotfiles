@@ -1,55 +1,45 @@
 { inputs, pkgs, lib, config, sshkeys, all_modules, ... }:
 let
   hports = config.ports.ports.curr_ports;
-  data = name: "/data/${name}";
   ips = config.ips.ips.ips.default;
+  user_group = config.services.freshrss.user;
 in {
-  microvm = {
-    #...add additional MicroVM configuration here
-    interfaces = [{
-      type = "tap";
-      id = "vm-fons";
-      mac = "${config.macs.macs.vm-host.vm-fons.eth0}";
-    }];
-  };
-  imports = all_modules;
-  systemd.network.enable = true;
 
-  systemd.network.networks."20-lan" = {
-    matchConfig.Type = "ether";
-    networkConfig = {
-      Address = [ "${ips.vm-fons.br0}/24" "2001:db8::b/64" ];
-      Gateway = ips."vm-host".br0;
-      DNS = [ ips."vm-host".br0 ];
-      IPv6AcceptRA = true;
-      DHCP = "no";
-    };
-  };
-  #services.syncthing_wrapper.enable = false;
+  imports = [ ../../modules/microvm_guest.nix ];
 
-  networking.useDHCP = lib.mkForce false;
+  #services.wireguard-wrapper.enable = true;
+  services.syncthing_wrapper = {
+    enable = true;
+    ensureDirsExistsDefault = "setfacl";
+  };
+  services.syncthing = {
+    dataDir = "/persist";
+    user = config.services.freshrss.user;
+  };
+
   networking.hostName = "fons";
-  users.users.root.password = "root";
-
-  services.openssh = {
-    enable = true; # TODO: extract into module
-    ports = [ hports.sshd ];
-  };
-  users.users.root.openssh.authorizedKeys.keys = [ sshkeys.hannses ];
 
   networking.firewall.allowedTCPPorts = [ 443 80 ];
 
+  system.activationScripts.ensure-dirs-exist.text = let
+    rss = config.services.freshrss.dataDir;
+    pg = config.services.postgresql.dataDir;
+  in ''
+    mkdir -p ${rss}
+    chown ${user_group}:${user_group} ${rss}
+    mkdir -p ${pg}
+    chown postgres:postgres ${rss}
+  '';
   # official test: https://github.com/NixOS/nixpkgs/blob/master/nixos/tests/freshrss-pgsql.nix
   services.freshrss = {
     enable = true;
-    baseUrl = "http://localhost";
-    #passwordFile = pkgs.writeText "password" "secret";
+    baseUrl = "http://${ips.vm-fons.br0}";
+    passwordFile = pkgs.writeText "password" "secret";
     defaultUser = "hannses";
-    authType = "none";
-    dataDir = "/srv/freshrss";
+    dataDir = "/persist/freshrss";
     database = {
       type = "pgsql";
-      port = 5432;
+      port = hports.postgresql;
       user = "freshrss";
       #NOTE: having the password here in plain text is ok since postgres is behind the firewall
       #TODO: fix it anyways at some point
@@ -64,6 +54,7 @@ in {
       name = "freshrss";
       ensureDBOwnership = true;
     }];
+    dataDir = "/persist/pg";
     initialScript = pkgs.writeText "postgresql-password" ''
       CREATE ROLE freshrss WITH LOGIN PASSWORD 'db-secret' CREATEDB;
     '';
