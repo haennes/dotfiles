@@ -31,10 +31,12 @@ in {
         handyAlexandra = ids.handyMum;
         handyThomas = ids.handyThomas;
         tablet = ids.tablet;
-
       };
       servers = { syncschlawiner = ids.syncschlawiner; };
-      all_servers = servers // { tabula = ids.tabula; };
+      all_servers = servers // {
+        tabula = ids.tabula;
+        fons = ids.fons;
+      };
 
       #uni = {
       #  stefan_handy = ids.stefan_handy;
@@ -45,6 +47,10 @@ in {
     folders = with devices;
       with devices.all_handys;
       with devices.all_servers; {
+        "freshrss" = {
+          folderToPathFunc = sharedFolderFn;
+          devices = [ servers fons ];
+        };
         "Family" = {
           devices = [ (all_pcs // servers) "thinkpad" ];
           folderToPathFunc = sharedFolderFn;
