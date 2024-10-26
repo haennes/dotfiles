@@ -24,11 +24,8 @@ let
       #	wireguard.${hostname}.${interface}.pub = import "${base_folder}/${hostname}/${interface}/pub.nix".key;
     };
   syncthing_keypair = hostname: publicKeys: {
-    "syncthing/${hostname}/id.age".publicKeys = syncthing_users;
     "syncthing/${hostname}/key.age".publicKeys = publicKeys;
     "syncthing/${hostname}/cert.age".publicKeys = publicKeys;
-    "syncthing/${hostname}/https-cert.age".publicKeys = publicKeys;
-    "syncthing/${hostname}/https-key.age".publicKeys = publicKeys;
   };
   user_password = username: publicKeys: {
     "user_passwords/${username}.age".publicKeys = publicKeys;
