@@ -6,8 +6,8 @@ in {
     #...add additional MicroVM configuration here
     interfaces = [{
       type = "tap";
-      id = "vm-tabula";
-      mac = "${config.macs.macs.vm-host.vm-tabula.eth0}";
+      id = "vm-${config.networking.hostName}";
+      mac = config.macs.macs.vm-host."vm-${config.networking.hostName}".eth0;
     }];
 
     shares = [
@@ -42,10 +42,13 @@ in {
   };
   age.identityPaths = [ "/persist/root_user_key" ];
 
+  networking.useNetworkd = false;
+  systemd.network.enable = true;
   systemd.network.networks."20-lan" = {
     matchConfig.Type = "ether";
-    networkConfig = {
-      Address = [ "${ips.vm-tabula.br0}/24" "2001:db8::b/64" ];
+    networkConfig = let ip = ips."vm-${config.networking.hostName}".br0;
+    in {
+      Address = [ "${ip}/24" ];
       Gateway = ips."vm-host".br0;
       DNS = [ "1.1.1.1" ];
       IPv6AcceptRA = true;

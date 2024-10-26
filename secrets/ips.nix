@@ -36,11 +36,11 @@
         #vm subnet
         # naming scheme:
         # 1-9  - internal
-        "1" = "vm-host%br0";
+        "2" = "vm-host%br0";
 
         # others - any vm
-        "10" = "vm-fons%br0";
         "11" = "vm-tabula%br0";
+        "12" = "vm-fons%br0";
       };
 
     };
