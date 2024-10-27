@@ -6,14 +6,13 @@ let
   syncthing_users = with sshkeys; [
     hannses
     root_thinkpad
-    root_thinknew
     syncschlawiner
     root_syncschlawiner
     root_tabula
     tabula
   ];
 
-  systems_headfull = with sshkeys; [ thinkpad thinknew yoga ];
+  systems_headfull = with sshkeys; [ thinkpad yoga ];
   wg_simple = hostname: publicKeys:
     wireguard_keypair { inherit hostname publicKeys; };
   wireguard_keypair = { hostname, publicKeys, interface ? "wg0"
@@ -48,7 +47,6 @@ in with sshkeys;
 
 } // wg_simple "deus" [ hannses deus ]
 // wg_simple "thinkpad" [ hannses thinkpad root_thinkpad ]
-// wg_simple "thinknew" [ hannses thinknew root_thinknew ]
 // wg_simple "yoga" [ hannses yoga root_yoga ]
 // wg_simple "porta" [ hannses porta root_porta ]
 // wg_simple "welt" [ hannses welt root_welt ]
@@ -61,7 +59,6 @@ in with sshkeys;
 // wg_simple "hermes" [ hannses hermes root_hermes ]
 
 // syncthing_keypair "thinkpad" [ hannses thinkpad root_thinkpad ]
-// syncthing_keypair "thinknew" [ hannses thinknew root_thinknew ]
 // syncthing_keypair "yoga" [ hannses yoga root_yoga ]
 // syncthing_keypair "syncschlawiner" [
   hannses
@@ -71,7 +68,7 @@ in with sshkeys;
 // syncthing_keypair "fons" [ hannses root_fons ]
 // syncthing_keypair "deus" [ hannses root_deus deus ]
 
-// user_password "hannses" [ hannses thinkpad thinknew yoga deus ]
-// user_password "mum" [ hannses thinkpad thinknew yoga deus ]
-// user_password "dad" [ hannses thinkpad thinknew yoga deus ]
+// user_password "hannses" [ hannses thinkpad yoga deus ]
+// user_password "mum" [ hannses thinkpad yoga deus ]
+// user_password "dad" [ hannses thinkpad yoga deus ]
 

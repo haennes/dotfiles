@@ -21,7 +21,6 @@ in {
     };
     devices = rec {
       all_pcs = {
-        thinknew = ids.thinknew;
         mainpc = ids.mainpc;
         yoga = ids.yoga;
       };
