@@ -1357,11 +1357,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1728309531,
-        "narHash": "sha256-kqfQbUbpPGRNpiG/m3mYhXaYIYurNFBnu+Xkg+vO+hI=",
+        "lastModified": 1730044275,
+        "narHash": "sha256-IfU+CiF/VS93R+xziyV9v3wqEuCIs/BRS8l50iH/oqY=",
         "owner": "haennes",
         "repo": "syncthing-wrapper.nix",
-        "rev": "2d367cd4822861eda08b78277fda881c60918a6a",
+        "rev": "aed77b847e33d0d393463d79841756fecc2c7ad9",
         "type": "github"
       },
       "original": {
