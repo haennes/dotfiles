@@ -19,7 +19,6 @@ in {
         [ "syncschlawiner_mkhh" "welt" ]
         [ "handy_hannses" "welt" ]
         [ "thinkpad" "welt" ]
-        [ "thinknew" "welt" ]
         [ "yoga" "welt" ]
         [ "deus" "welt" ]
       ];
@@ -36,7 +35,7 @@ in {
         };
       } // simple_ip "porta" // simple_ip "hermes" // simple_ip "syncschlawiner"
         // simple_ip "syncschlawiner_mkhh" // simple_ip "tabula"
-        // simple_ip "thinkpad" // simple_ip "thinknew" // simple_ip "deus"
+        // simple_ip "thinkpad" // simple_ip "deus"
         // simple_ip "yoga" // simple_ip "handy_hannses";
       publicKey = name:
         ((lib.my.wireguard.obtain_wireguard_pub { hostname = name; }).key);
