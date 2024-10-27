@@ -21,15 +21,15 @@
       "1" = {
         "3" = "welt%wg0";
         "4" = "porta%wg0";
-        "11" = "hermes%wg0";
         "5" = "syncschlawiner%wg0";
-        "9" = "syncschlawiner_mkhh%wg0";
         "6" = "thinkpad%wg0";
-        "16" = "thinknew%wg0";
-        "17" = "yoga%wg0";
-        "10" = "deus%wg0";
         "7" = "handy_hannses%wg0";
         "8" = "tabula%wg0";
+        "9" = "syncschlawiner_mkhh%wg0";
+        "10" = "deus%wg0";
+        "11" = "hermes%wg0";
+        "16" = "thinknew%wg0";
+        "17" = "yoga%wg0";
       };
 
       "3" = {
