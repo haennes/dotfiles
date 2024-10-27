@@ -32,15 +32,11 @@ in {
     root = "/local_cdn";
   };
   services.homepage-dashboard = {
+    #fix for update breaking: https://github.com/NixOS/nixpkgs/issues/346016
     listenPort = hports.homepage-dashboard;
     enable = true;
     settings = {
-      #startUrl = "/home";
-      #base = "http://localhost/home";
       background = "http://cdn.localhost/bg.png";
-      #"https://wildernessawareness.org/wp-content/uploads/2020/03/zh-caleb-woods-292ocsaybk8-unsplash.jpg";
-      #"https://solarsystem.nasa.gov/internal_resources/3271/";
-      #"https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fit=crop&w=2560&q=80";
       theme = "dark";
       color = "slate";
       target = "_blank"; # open in new tab
