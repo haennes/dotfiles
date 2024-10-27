@@ -14,7 +14,7 @@
     freecad
     openscad-unstable
     prusa-slicer
-    kicad #cad for pcbs
+    #kicad #cad for pcbs
 
     #office & texteditors
     libreoffice
