@@ -44,6 +44,7 @@ in with sshkeys;
   "kehl_login.age".publicKeys = [ hannses welt root_welt root_tabula tabula ];
   "atuin/key.age".publicKeys = systems_headfull ++ [ hannses ];
   "atuin/session.age".publicKeys = systems_headfull ++ [ hannses ];
+  "wifihotspot.age".publicKeys = systems_headfull ++ [ hannses ];
 
 } // wg_simple "deus" [ hannses deus ]
 // wg_simple "thinkpad" [ hannses thinkpad root_thinkpad ]
