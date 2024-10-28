@@ -26,7 +26,6 @@
     ./git.nix
     ./gpg.nix
     ./virtualization.nix
-    ./newsboat.nix
     ./manix.nix
   ];
   # Home Manager needs a bit of information about you and the
