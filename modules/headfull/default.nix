@@ -9,7 +9,6 @@ in {
     ./tasks.nix
     ./homepage-dashboard.nix
     ./local_nginx.nix
-    ./atuin.nix
     ./fortivpn.nix
     ./power.nix
     #./virtualization.nix # dont build virtualbox
