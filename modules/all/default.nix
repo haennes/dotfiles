@@ -4,6 +4,7 @@
     ./pkgs.nix
     ./store_optimize.nix
     ./acme.nix
+    ./physical.nix
     ./syncthing-wrapper.nix
     ./wireguard-wrapper.nix
   ];
