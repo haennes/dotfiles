@@ -21,7 +21,7 @@
     user = "hannses";
   };
   services.wireguard-wrapper.enable =
-    false; # currently wg0 forwarind all traffic is broken
+    true; # currently wg0 forwarind all traffic is broken
   networking.networkmanager.unmanaged = [ "wg0" ];
 
   microvmHost.extInterface = "wlp1s0";
