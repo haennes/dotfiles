@@ -37,5 +37,9 @@ in rec {
       path = config.home-manager.users.hannses.home.homeDirectory
         + "/.local/share/atuin/session";
     };
+    "wifihotspot.age" = {
+      file = ../../secrets/wifihotspot.age;
+      owner = "hannses";
+    };
   };
 }
