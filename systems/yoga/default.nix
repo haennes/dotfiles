@@ -29,12 +29,6 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   microvm.vms = {
-    historia = {
-      inherit specialArgs;
-      config = import ../../servers/historia;
-      pkgs = null;
-    };
-
     #tabula = {
     #  inherit specialArgs;
     #  config = import ../../servers/tabula;
