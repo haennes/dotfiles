@@ -50,10 +50,11 @@ in ''
   brightness
   volume
   volume gui
-  monitor setup
-  monitor setup gui
   mount
   umount
+  eject usb
+  monitor setup
+  monitor setup gui
   lock
   sleep
   shutdown
@@ -170,10 +171,13 @@ in ''
       ${pkgs.wdisplays}/bin/wdisplays
       ;;
   "mount")
-      # TODO script
+      ${scripts.mount} -m
       ;;
   "umount")
-      # TODO script
+      ${scripts.mount} -u
+      ;;
+  "eject usb")
+      ${scripts.mount} -e
       ;;
   "lock")
       ${scripts.lock}
