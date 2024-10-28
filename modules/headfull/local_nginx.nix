@@ -23,6 +23,8 @@ in {
     "atuin.localhost".locations."/".proxyPass = "http://${ips.historia.wg0}:${
         toString config.ports.ports.ports.historia.atuin
       }";
+
+    "rss.localhost".locations."/".proxyPass = "http://${ips.fons.wg0}";
     "ho.localhost".locations."/".root =
       "${inputs.home-manager-option-search.packages."${system}".default}";
   } // (lib.mapAttrs' (name: value: {

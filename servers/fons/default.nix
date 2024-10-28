@@ -34,6 +34,7 @@ in {
   services.freshrss = {
     enable = true;
     baseUrl = "http://${ips.vm-fons.br0}";
+    # api access: https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#enable-the-api-in-freshrss
     passwordFile = pkgs.writeText "password" "secret";
     defaultUser = "hannses";
     dataDir = "/persist/freshrss";
