@@ -29,6 +29,7 @@
         "10" = "deus%wg0";
         "11" = "hermes%wg0";
         "12" = "historia%wg0";
+        "13" = "fons%wg0";
         "16" = "thinknew%wg0";
         "17" = "yoga%wg0";
       };

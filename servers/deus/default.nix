@@ -20,6 +20,11 @@
       config = import ../../servers/tabula;
       pkgs = null;
     };
+    fons = {
+      inherit specialArgs;
+      config = import ../../servers/fons;
+      pkgs = null;
+    };
   };
   #services.syncthing_wrapper = { enable = true; };
   #services.syncthing = {
