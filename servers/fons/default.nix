@@ -7,7 +7,7 @@ in {
 
   imports = [ ../../modules/microvm_guest.nix ];
 
-  #services.wireguard-wrapper.enable = true;
+  services.wireguard-wrapper.enable = true;
   services.syncthing_wrapper = {
     enable = true;
     ensureDirsExistsDefault = "setfacl";
@@ -28,7 +28,7 @@ in {
     mkdir -p ${rss}
     chown ${user_group}:${user_group} ${rss}
     mkdir -p ${pg}
-    chown postgres:postgres ${rss}
+    chown postgres:postgres ${pg}
   '';
   # official test: https://github.com/NixOS/nixpkgs/blob/master/nixos/tests/freshrss-pgsql.nix
   services.freshrss = {

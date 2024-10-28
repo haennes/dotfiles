@@ -22,6 +22,7 @@ in {
         [ "yoga" "welt" ]
         [ "deus" "welt" ]
         [ "historia" "welt" ]
+        [ "fons" "welt" ]
       ];
       nodes = {
         welt = {
@@ -36,9 +37,8 @@ in {
         };
       } // simple_ip "porta" // simple_ip "hermes" // simple_ip "syncschlawiner"
         // simple_ip "syncschlawiner_mkhh" // simple_ip "tabula"
-        // simple_ip "thinkpad" // simple_ip "deus"
-        // simple_ip "yoga" // simple_ip "handy_hannses";
         // simple_ip "historia" // simple_ip "thinkpad" // simple_ip "deus"
+        // simple_ip "yoga" // simple_ip "handy_hannses" // simple_ip "fons";
       publicKey = name:
         ((lib.my.wireguard.obtain_wireguard_pub { hostname = name; }).key);
       privateKeyFile = lib.mkIf (config.services.wireguard-wrapper.enable)
