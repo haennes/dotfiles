@@ -26,7 +26,6 @@ let
     "8088" = "homepage-dashboard";
     "8082" = "rss";
     "8384" = "syncthing.gui";
-    "8888" = "atuin";
 
     "20002" = "autossh-monitoring.syncschlawiner";
     "20000" = "autossh-monitoring.pve";
@@ -56,6 +55,7 @@ in {
     welt = { };
     fons = { };
     deus = { };
+    historia = { "8888" = "atuin"; };
 
     #scheme:
     #hostname.port = "service"

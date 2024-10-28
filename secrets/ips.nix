@@ -28,6 +28,7 @@
         "9" = "syncschlawiner_mkhh%wg0";
         "10" = "deus%wg0";
         "11" = "hermes%wg0";
+        "12" = "historia%wg0";
         "16" = "thinknew%wg0";
         "17" = "yoga%wg0";
       };
@@ -41,6 +42,7 @@
         # others - any vm
         "11" = "vm-tabula%br0";
         "12" = "vm-fons%br0";
+        "13" = "vm-historia%br0";
       };
 
     };

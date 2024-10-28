@@ -55,6 +55,8 @@
   root_tabula =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC5azJp5sS2+wYjLAq85K5yOuoGgF4byX1Oaq4D6Zquq root@tabula";
 
+  root_historia =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAr3y36HfTLKJ7hd0e6xP92dstzDyk+anpCnd/jOkui4 root@historia";
   hermes = "";
   root_hermes = "";
 

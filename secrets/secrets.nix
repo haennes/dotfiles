@@ -57,6 +57,7 @@ in with sshkeys;
   root_syncschlawiner_mkhh
 ] // wg_simple "tabula" [ hannses tabula root_tabula ]
 // wg_simple "hermes" [ hannses hermes root_hermes ]
+// wg_simple "historia" [ hannses root_historia ]
 
 // syncthing_keypair "thinkpad" [ hannses thinkpad root_thinkpad ]
 // syncthing_keypair "yoga" [ hannses yoga root_yoga ]
