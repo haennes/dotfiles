@@ -25,6 +25,11 @@
       config = import ../../servers/fons;
       pkgs = null;
     };
+    historia = {
+      inherit specialArgs;
+      config = import ../../servers/historia;
+      pkgs = null;
+    };
   };
   #services.syncthing_wrapper = { enable = true; };
   #services.syncthing = {
