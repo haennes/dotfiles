@@ -34,6 +34,13 @@
       config = import ../../servers/fons;
       pkgs = null;
     };
+
+    historia = {
+      inherit specialArgs;
+      config = import ../../servers/historia;
+      pkgs = null;
+    };
+
     #tabula = {
     #  inherit specialArgs;
     #  config = import ../../servers/tabula;

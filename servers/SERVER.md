@@ -13,6 +13,7 @@
 - tabula: **Website** Microvm inside of deus
 - syncschlawiner: **CLOUD ++ SYNCTHING** bis jetzt Proxmox VM (evtl: -> microvm)
 - fons: **rss**
+- historia: **atuin shell history**
 
 ## inaktiv:
 - porta: **WG-Endpoint** war Proxmox VM (evtl: -> PI bzw. als teil von PI config) (nicht mehr gebraucht, da ssh bereits über deus möglich)
