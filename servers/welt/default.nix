@@ -15,7 +15,7 @@
   services.wireguard-wrapper.enable = true;
   networking.nat.enable = true;
   networking.wireguard.interfaces.wg0 =
-    let net = lib.my.subnet_cidr lib config.ips.ips.ips.default.welt.wg0;
+    let net = lib.my.subnet_cidr config.ips.ips.ips.default.welt.wg0;
     in {
       # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
       # For this to work you have to set the dnsserver IP of your router (or dnsserver of choice) in your clients
