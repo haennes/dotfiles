@@ -6,6 +6,7 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./zfs.nix
+    ./hydra.nix
     #./services/backup.nix
   ];
 
