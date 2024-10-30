@@ -25,6 +25,8 @@ in {
       }";
 
     "rss.localhost".locations."/".proxyPass = "http://${ips.fons.wg0}";
+    "hydra.localhost".locations."/".proxyPass =
+      "http://${ips.deus.wg0}:${toString config.ports.ports.ports.deus.hydra}";
     "ho.localhost".locations."/".root =
       "${inputs.home-manager-option-search.packages."${system}".default}";
   } // (lib.mapAttrs' (name: value: {

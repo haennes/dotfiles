@@ -54,7 +54,9 @@ in {
     porta = { };
     welt = { };
     fons = { };
-    deus = { };
+    deus = {
+      "3000" = "hydra";
+    };
     historia = { "8888" = "atuin"; };
 
     #scheme:
