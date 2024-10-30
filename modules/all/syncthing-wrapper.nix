@@ -89,7 +89,10 @@ in {
         "AlexandraGalerie" = [ (servers) "handyAlexandra" ];
         "ThomasKamera" = [ (servers) ];
         "ThomasGalerie" = [ (servers) ];
-        "website" = [ (all_pcs) "tabula" ];
+        "website" = {
+          devices = [ (all_pcs) "tabula" ];
+          paths.tabula = "/persist/website";
+        };
       };
   };
 
