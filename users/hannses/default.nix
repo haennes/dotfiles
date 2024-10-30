@@ -22,6 +22,7 @@
     ./zathura.nix
     ./firefox
     ./rss.nix
+    ./mail.nix
     ./ssh.nix
     ./git.nix
     ./gpg.nix
