@@ -103,11 +103,12 @@
       url = "github:haennes/signal-whisper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-topology.url = "github:oddlama/nix-topology";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, deploy-rs, rust-overlay, nur
     , nix-yazi-plugins, futils, wireguard-wrapper, syncthing-wrapper, tasks_md
-    , nix-update-inputs, signal-whisper, IPorts, ... }:
+    , nix-update-inputs, signal-whisper, IPorts, nix-topology, ... }:
     let
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
       lib = nixpkgs.lib.extend (self: super: {
@@ -127,6 +128,7 @@
         syncthing-wrapper.nixosModules.syncthing-wrapper
         #nur.nixosModules.nur
         IPorts.nixosModules.default # adds ips, macs and ports
+        nix-topology.nixosModules.default
       ];
       client_modules = [
         home-manager.nixosModules.home-manager
@@ -164,6 +166,11 @@
         ] ++ microvm_modules_guest;
       };
       sshkeys = import ./secrets/sshkeys.nix;
+
+      topology_pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = [ nix-topology.overlays.default ];
+      };
 
     in futils.lib.mkFlake {
       inherit self inputs;
@@ -223,6 +230,16 @@
       formatter =
         forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-classic);
 
+      topology.x86_64-linux = import nix-topology {
+        pkgs =
+          topology_pkgs; # Only this package set must include nix-topology.overlays.default
+        modules = [
+          # Your own file to define global topology. Works in principle like a nixos module but uses different options.
+          #./topology.nix
+          # Inline module to inform topology of your existing NixOS hosts.
+          { nixosConfigurations = self.nixosConfigurations; }
+        ];
+      };
       hosts = {
         deus = { modules = [ (server "deus") microvm_host ]; };
         welt = {
