@@ -245,16 +245,15 @@
         welt = {
           modules = [ (server "welt") inputs.nixos-dns.nixosModules.dns ];
         };
-        porta = { modules = [ (server "porta") ]; };
-        syncschlawiner = { modules = [ (server "syncschlawiner") ]; };
-        syncschlawiner_mkhh = { modules = [ (server "syncschlawiner_mkhh") ]; };
+        #porta = { modules = [ (server "porta") ]; };
+        #syncschlawiner = { modules = [ (server "syncschlawiner") ]; };
+        #syncschlawiner_mkhh = { modules = [ (server "syncschlawiner_mkhh") ]; };
         #tabula = { modules = [ (server "tabula") ]; };
-        tabula = { modules = [ (microvm "tabula") ]; };
-        tabula_mkhh = { modules = [ (server "tabula_mkhh") ]; };
-        hermes = { modules = [ (server "hermes") ]; };
-        fons = { modules = [ (microvm "fons") ]; };
-        grapheum = { modules = [ (server "grapheum") ]; };
-        #
+        #tabula = { modules = [ (microvm "tabula") ]; };
+        #tabula_mkhh = { modules = [ (server "tabula_mkhh") ]; };
+        #hermes = { modules = [ (server "hermes") ]; };
+        #fons = { modules = [ (microvm "fons") ]; };
+        #grapheum = { modules = [ (server "grapheum") ]; };
         yoga = { modules = [ (client "yoga") microvm_host ]; };
         thinkpad = { modules = [ (client "thinkpad") ]; };
         thinknew = { modules = [ (client "thinknew") ]; };
