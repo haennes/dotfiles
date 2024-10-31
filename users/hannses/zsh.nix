@@ -115,10 +115,20 @@ in {
       size = 10000;
     };
   };
+
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
     nix-direnv = { enable = true; };
   };
-  programs.thefuck.enable = true;
+
+  programs.thefuck = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.carapace = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 }
