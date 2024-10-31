@@ -1,4 +1,8 @@
-{ theme, globals, scripts, ... }: {
+{ inputs, theme, globals, scripts, ... }: {
+  imports = [ inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger ];
+
+  programs.hyprcursor-phinger.enable = true;
+
   wayland.windowManager.hyprland = {
     enable = true;
     #package = hyprland.packages.${pkgs.system}.hyprland;
@@ -33,6 +37,9 @@
           drag_lock = true;
         };
       };
+
+      env =
+        [ "HYPRCURSOR_THEME,phinger-cursors-hyprcursor" "HYPRCURSOR_SIZE,24" ];
 
       general = {
         gaps_in = 5;
