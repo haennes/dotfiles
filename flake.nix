@@ -217,16 +217,10 @@
         extraArgs = { inherit sshkeys system; };
       };
 
-      #deploy = lib.my.mkDeploy { inherit (inputs) self; };
-      deploy.nodes."deus" = {
-        hostname = "l_deus";
-        profiles.system = {
-          user = "root";
-          sshUser = "root";
-          path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos
-            self.nixosConfigurations.deus;
-        };
-      };
+      deploy.nodes = (lib.my.mkDeploy {
+        inherit (inputs) self;
+        exclude = [ "welt" ];
+      }) // (lib.my.genNodeSimple self "welt");
       formatter =
         forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-classic);
 

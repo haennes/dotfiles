@@ -57,19 +57,22 @@
   recursiveMerge = listOfAttrsets:
     lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) { } listOfAttrsets;
 
-  mkDeploy = { self }:
+  genNodeSimple = self: name: {
+    ${name} = genNode self.nixosConfigurations.${name} name;
+  };
+  genNode = machine: hostname: {
+    inherit hostname;
+    profiles.system = {
+      user = "root";
+      sshUser = "root";
+      path = inputs.deploy-rs.lib.${machine.pkgs.system}.activate.nixos machine;
+    };
+  };
+
+  mkDeploy = { self, exclude }:
     #https://github.com/Yash-Garg/dotfiles/blob/stable/lib/deploy/default.nix
     let
-      hosts = (self.nixosConfigurations or { });
-      genNode = machine: hostname: {
-        inherit hostname;
-        profiles.system = {
-          user = "root";
-          sshUser = "root";
-          path =
-            inputs.deploy-rs.lib.${machine.pkgs.system}.activate.nixos machine;
-        };
-      };
+      hosts = lib.removeAttrs (self.nixosConfigurations or { }) exclude;
       oneNodeSet = hostnameMapF:
         lib.mapAttrs' (_: machine:
           let mappedHostname = hostnameMapF machine.config.networking.hostName;
@@ -84,5 +87,5 @@
       nodes = (oneNodeSet (str: l str)) // (oneNodeSet (str: l (noports str)))
         // (oneNodeSet (str: m str)) // (oneNodeSet (str: m (noports str)))
         // (oneNodeSet (str: g str)) // (oneNodeSet (str: g (noports str)));
-    in { inherit nodes; };
+    in nodes;
 }
