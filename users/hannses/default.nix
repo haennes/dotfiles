@@ -14,6 +14,7 @@
     ./rofi.nix
     ./pqiv.nix # images
     ./udiskie.nix
+    ./power.nix
     #update broke ./vimiv.nix # images
     ./codium.nix
     ./vim.nix
