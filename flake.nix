@@ -95,7 +95,10 @@
       url = "git+file:///home/hannses/programming/nix/IPorts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    tasks_md = { url = "git+file:///home/hannses/programming/nix/tasks"; };
+    tasks_md = {
+      url = "git+file:///home/hannses/programming/nix/tasks?ref=four_working";
+      #url = "github:haennes/tasks_md.nix/four_working";
+    };
     signal-whisper = {
       url = "github:haennes/signal-whisper";
       inputs.nixpkgs.follows = "nixpkgs";
