@@ -19,6 +19,10 @@
       url = "github:haennes/manix?ref=fix/hm-options-with-flakes";
       #url = "github:zvolin/manix/c532d14b0b59d92c4fab156fc8acd0565a0836af";
     };
+    hyprcursor-phinger = {
+      url = "github:jappie3/hyprcursor-phinger";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprland = {
       url =
         "github:hyprwm/Hyprland/47b087950dcfaf6fdda63c4d5f13efda3508a6fb?submodules=1"; # works
