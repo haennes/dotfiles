@@ -1530,15 +1530,16 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1727291924,
-        "narHash": "sha256-xa5hgtPgtznAHejRAIseCoj1fz75+w2qIsd78NO+PuQ=",
-        "ref": "refs/heads/four_working",
-        "rev": "669e312f192bb5e441301b2470b7f9e2ad11f35e",
-        "revCount": 5,
+        "lastModified": 1730386673,
+        "narHash": "sha256-YKbtm/R04sWF8ahB1C0xJCfqd1Vb1JAm2104izU7pOw=",
+        "ref": "four_working",
+        "rev": "83da18b5cd685ccfe491ae4a75f5fcdda2df5b2b",
+        "revCount": 10,
         "type": "git",
         "url": "file:///home/hannses/programming/nix/tasks"
       },
       "original": {
+        "ref": "four_working",
         "type": "git",
         "url": "file:///home/hannses/programming/nix/tasks"
       }
