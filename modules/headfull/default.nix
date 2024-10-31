@@ -12,6 +12,7 @@ in {
     ./fortivpn.nix
     ./power.nix
     ./virtualization.nix
+    ./mail.nix
   ];
   services.postgresql.settings.port =
     lib.mkIf (hports ? postresql) hports.postgresql;
