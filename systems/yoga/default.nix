@@ -34,6 +34,11 @@
     #  config = import ../../servers/tabula;
     #  pkgs = null;
     #};
+    vertumnus = {
+      inherit specialArgs;
+      config = import ../../servers/vertumnus;
+      pkgs = null;
+    };
   };
 
   networking.extraHosts = ''

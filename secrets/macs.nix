@@ -9,6 +9,7 @@
         "00:00:00:02" = "vm-tabula%eth0";
         "00:00:00:03" = "vm-historia%eth0";
         "00:00:00:04" = "vm-minerva%eth0";
+        "00:00:00:05" = "vm-vertumnus%eth0";
       };
     };
   };

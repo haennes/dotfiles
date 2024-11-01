@@ -15,11 +15,11 @@
 - fons: **rss**
 - historia: **atuin shell history**
 - minerva: **anki-sync**
+- vertumnus: **gitea**
 
 ## inaktiv:
 - porta: **WG-Endpoint** war Proxmox VM (evtl: -> PI bzw. als teil von PI config) (nicht mehr gebraucht, da ssh bereits über deus möglich)
 - fenestra **2WG-Endpoint** bis jetzt Proxmox VM (evtl: -> microvm) (Backup Zugriff, falls Fehlkonfiguration von porta)
 - hermes: mail
-- vertumnus: **gitea**
 - grapheum: **OnlyOffice - Server** bis jetzt Proxmox VM (evtl: -> microvm)
 - speilunke: **pterodactyl** bis jetzt Proxmox VM (evtl: -> microvm)

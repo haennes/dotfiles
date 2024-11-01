@@ -63,6 +63,7 @@ in with sshkeys;
 // wg_simple "historia" [ hannses root_historia ]
 // wg_simple "fons" [ hannses root_fons ]
 // wg_simple "minerva" [ hannses root_minerva ]
+// wg_simple "vertumnus" [ hannses root_vertumnus ]
 
 // syncthing_keypair "thinkpad" [ hannses thinkpad root_thinkpad ]
 // syncthing_keypair "yoga" [ hannses yoga root_yoga ]

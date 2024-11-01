@@ -52,13 +52,14 @@ in {
     syncschlawiner_mkhh = { };
     tabula = { "80" = "web"; };
     porta = { };
-    welt = { };
+    welt = { "24" = "sshd"; };
     fons = { };
     deus = {
       "3000" = "hydra";
     };
     historia = { "8888" = "atuin"; };
     minerva = { "27701" = "ankisync"; };
+    vertumnus = { "3000" = "gitea.web"; };
 
     #scheme:
     #hostname.port = "service"
