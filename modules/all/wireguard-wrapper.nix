@@ -25,6 +25,7 @@ in {
         [ "historia" "welt" ]
         [ "fons" "welt" ]
         [ "minerva" "welt" ]
+        [ "vertumnus" "welt" ]
       ];
       nodes = {
         welt = {
@@ -50,6 +51,7 @@ in {
         "handy_hannses"
         "fons"
         "minerva"
+        "vertumnus"
       ]);
       publicKey = name:
         ((lib.my.wireguard.obtain_wireguard_pub { hostname = name; }).key);

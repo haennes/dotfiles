@@ -1,5 +1,6 @@
 { lib, config, ... }:
 let
+  ports = config.ports.ports.ports;
   ips = config.ips.ips.ips.default;
   create_simple_proxy_with_domain = { fqdn, target_ip, custom_settings ? { }
     , custom_locations ? { }, target_port ? null, https ? false }:
@@ -21,18 +22,35 @@ let
       } // custom_settings;
     };
 in {
-  networking.firewall = { allowedTCPPorts = [ 80 443 ]; };
+  networking.firewall = { allowedTCPPorts = [ 80 443 ports.vertumnus.sshd ]; };
 } // lib.my.recursiveMerge [
   {
     services.nginx = {
       enable = true;
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
+      streamConfig = let port = toString ports.vertumnus.sshd;
+      in ''
+        upstream ssh-gitea {
+            server ${ips.vertumnus.wg0}:${port};
+        }
+
+        server {
+            listen ${port};
+            proxy_pass ssh-gitea;
+        }
+      '';
     };
   }
   (create_simple_proxy_with_domain {
     fqdn = "hannses.de";
     target_ip = ips.tabula.wg0;
+  })
+  (create_simple_proxy_with_domain {
+    fqdn = "git.hannses.de";
+    target_ip = ips.vertumnus.wg0;
+    target_port = ports.vertumnus.gitea.web;
+    custom_settings = { };
   })
   (create_simple_proxy_with_domain {
     fqdn = "cloud.hannses.de";
@@ -41,12 +59,13 @@ in {
       extraConfig = "client_max_body_size ${config.nextcloud_max_size};";
     };
   })
-  (create_simple_proxy_with_domain {
-    fqdn = "kasmweb.hannses.de";
-    https = true;
-    target_ip = ips.syncschlawiner.wg0;
-    target_port = config.ports.ports.ports.syncschlawiner.kasmweb.gui;
-  })
+  #only accessible through wg
+  #(create_simple_proxy_with_domain {
+  #  fqdn = "kasmweb.hannses.de";
+  #  https = true;
+  #  target_ip = ips.deus.wg0;
+  #  target_port = config.ports.ports.ports.deus.kasmweb.gui;
+  #})
   (create_simple_proxy_with_domain {
     fqdn = "mkhh.hannses.de";
     target_ip = ips.tabula.wg0;
