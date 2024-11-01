@@ -9,7 +9,6 @@ let
     lib.length (lib.elemAt (lib.attrValues
       (lib.findFirst (item: (lib.attrNames item) == [ name ]) { "" = [ ]; }
         cfg.services)) 0);
-  icon_is_favicon = old: { };
 in {
   services.autossh.sessions = let aports = hports.autossh-monitoring;
   in [

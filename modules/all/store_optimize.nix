@@ -1,4 +1,5 @@
-{ ... }: {
+{ lib, config, ... }:
+lib.mkIf (!config.is_microvm) {
   nix.optimise = {
     automatic = true;
     dates = [ "13:15" ];

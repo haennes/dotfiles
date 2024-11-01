@@ -1,5 +1,5 @@
 { lib, inputs, ... }: rec {
-  wireguard = import ./wireguard;
+  wireguard = import ./wireguard.nix;
 
   ip_cidr = ip: "${ip}/32";
   __subnet = ip:
