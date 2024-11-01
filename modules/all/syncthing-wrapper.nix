@@ -9,6 +9,7 @@ let
   } else
     { });
 in {
+  imports = [ ./syncthing_wrapper_secrets.nix ];
   services.syncthing_wrapper = rec {
     DirUsersDefault = [ "hannses" ];
     folderToPathFuncDefault = { folder_name, DirUsers, DirGroups }:
@@ -19,29 +20,14 @@ in {
       type = "simple";
       params.keep = "10";
     };
-    devices = rec {
-      all_pcs = {
-        mainpc = ids.mainpc;
-        yoga = ids.yoga;
-      };
-      thinkpad = { thinkpad = ids.thinkpad; };
-      all_handys = {
-        handyHannes = ids.handyHannes;
-        handyAlexandra = ids.handyMum;
-        handyThomas = ids.handyThomas;
-        tablet = ids.tablet;
-      };
-      servers = { syncschlawiner = ids.syncschlawiner; };
-      all_servers = servers // {
-        tabula = ids.tabula;
-        fons = ids.fons;
-      };
+    devices = with ids; rec {
+      all_pcs = { inherit (ids) mainpc yoga; };
+      thinkpad = { inherit (ids) thinkpad; };
+      all_handys = { inherit (ids) handyHannes handyMum handyDad tablet; };
+      servers = { inherit (ids) syncschlawiner; };
+      all_servers = servers // { inherit (ids) tabula fons; };
 
-      #uni = {
-      #  stefan_handy = ids.stefan_handy;
-      #  sebastian_s_mac = ids.sebastian_s_mac;
-      #  sebastian_r_laptop = ids.sebastian_r_laptop;
-      #};
+      #uni = { inherit stefan_handy sebastian_s_mac sebastian_r_laptop; };
     };
     folders = with devices;
       with devices.all_handys;

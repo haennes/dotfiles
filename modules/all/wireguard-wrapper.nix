@@ -3,6 +3,7 @@ let
   inherit (lib.my) ip_cidr subnet_cidr;
   ips = config.ips.ips.ips.default;
   simple_ip = name: { "${name}".ips = [ (ip_cidr ips."${name}".wg0) ]; };
+  simple_ips = names: lib.mergeAttrsList (map (v: simple_ip v) names);
   priv_key = hostname:
     lib.my.wireguard.age_obtain_wireguard_priv { inherit hostname; };
 
@@ -36,11 +37,20 @@ in {
           endpoint =
             "hannses.de:${builtins.toString config.ports.ports.ports.welt.wg0}";
         };
-      } // simple_ip "porta" // simple_ip "hermes" // simple_ip "syncschlawiner"
-        // simple_ip "syncschlawiner_mkhh" // simple_ip "tabula"
-        // simple_ip "historia" // simple_ip "thinkpad" // simple_ip "deus"
-        // simple_ip "yoga" // simple_ip "handy_hannses" // simple_ip "fons"
-        // simple_ip "minerva";
+      } // (simple_ips [
+        "porta"
+        "hermes"
+        "syncschlawiner"
+        "syncschlawiner_mkhh"
+        "tabula"
+        "historia"
+        "thinkpad"
+        "deus"
+        "yoga"
+        "handy_hannses"
+        "fons"
+        "minerva"
+      ]);
       publicKey = name:
         ((lib.my.wireguard.obtain_wireguard_pub { hostname = name; }).key);
       privateKeyFile = lib.mkIf (config.services.wireguard-wrapper.enable)

@@ -1,10 +1,15 @@
 { lib, ... }: {
   imports = [
-    ./base.nix
-    ./pkgs.nix
-    ./store_optimize.nix
     ./acme.nix
-    ./physical.nix
+    ./base.nix
+    ./distributed_builds.nix
+    ./fwupd.nix
+    ./i18n.nix
+    ./nix.nix
+    ./pkgs.nix
+    ./shell.nix
+    ./ssh.nix
+    ./store_optimize.nix
     ./syncthing-wrapper.nix
     ./wireguard-wrapper.nix
   ];

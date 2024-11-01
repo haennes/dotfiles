@@ -1,20 +1,19 @@
-{ config, lib, ... }:
-let hports = config.ports.ports.curr_ports;
-in {
+{ config, lib, ... }: {
   imports = [
-    ./adb.nix # uncomment if needed
+    ./adb.nix
+    ./audio.nix
     ./base.nix
-    ./pkgs.nix
-    ./minecraft
-    ./tasks.nix
-    ./homepage-dashboard.nix
-    ./local_nginx.nix
     ./fortivpn.nix
-    ./power.nix
-    ./virtualization.nix
+    ./homepage-dashboard.nix
+    ./hyprland.nix
+    ./local_nginx.nix
     ./mail.nix
+    ./minecraft.nix
+    ./pkgs.nix
+    ./power.nix
+    ./tasks.nix
+    ./users.nix
+    ./virtualization.nix
   ];
-  services.postgresql.settings.port =
-    lib.mkIf (hports ? postresql) hports.postgresql;
 
 }
