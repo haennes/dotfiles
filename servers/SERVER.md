@@ -14,6 +14,7 @@
 - syncschlawiner: **CLOUD ++ SYNCTHING** bis jetzt Proxmox VM (evtl: -> microvm)
 - fons: **rss**
 - historia: **atuin shell history**
+- minerva: **anki-sync**
 
 ## inaktiv:
 - porta: **WG-Endpoint** war Proxmox VM (evtl: -> PI bzw. als teil von PI config) (nicht mehr gebraucht, da ssh bereits über deus möglich)
