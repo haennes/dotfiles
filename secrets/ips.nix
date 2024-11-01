@@ -30,6 +30,7 @@
         "11" = "hermes%wg0";
         "12" = "historia%wg0";
         "13" = "fons%wg0";
+        "14" = "minerva%wg0";
         "16" = "thinknew%wg0";
         "17" = "yoga%wg0";
       };
@@ -44,6 +45,7 @@
         "11" = "vm-tabula%br0";
         "12" = "vm-fons%br0";
         "13" = "vm-historia%br0";
+        "14" = "vm-minerva%br0";
       };
 
     };

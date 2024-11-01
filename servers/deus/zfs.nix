@@ -18,5 +18,9 @@
       device = "main_pool/persistance";
       fsType = "zfs";
     };
+    "/ankisync" = {
+      device = "main_pool/ankisync";
+      fsType = "zfs";
+    };
   };
 }

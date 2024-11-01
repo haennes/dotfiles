@@ -31,6 +31,11 @@
       config = import ../../servers/historia;
       pkgs = null;
     };
+    minerva = {
+      inherit specialArgs;
+      config = import ../../servers/minerva;
+      pkgs = null;
+    };
   };
   #services.syncthing_wrapper = { enable = true; };
   #services.syncthing = {

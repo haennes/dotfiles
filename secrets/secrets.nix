@@ -46,6 +46,7 @@ in with sshkeys;
   "atuin/session.age".publicKeys = systems_headfull ++ [ hannses ];
   "wifihotspot.age".publicKeys = systems_headfull ++ [ hannses ];
   "hydra/users/hannses.age".publicKeys = [ root_deus deus ];
+  "ankisync/pwhannses.age".publicKeys = [ root_minerva ];
 
 } // wg_simple "deus" [ hannses deus ]
 // wg_simple "thinkpad" [ hannses thinkpad root_thinkpad ]
@@ -61,6 +62,7 @@ in with sshkeys;
 // wg_simple "hermes" [ hannses hermes root_hermes ]
 // wg_simple "historia" [ hannses root_historia ]
 // wg_simple "fons" [ hannses root_fons ]
+// wg_simple "minerva" [ hannses root_minerva ]
 
 // syncthing_keypair "thinkpad" [ hannses thinkpad root_thinkpad ]
 // syncthing_keypair "yoga" [ hannses yoga root_yoga ]

@@ -58,6 +58,7 @@ in {
       "3000" = "hydra";
     };
     historia = { "8888" = "atuin"; };
+    minerva = { "27701" = "ankisync"; };
 
     #scheme:
     #hostname.port = "service"
