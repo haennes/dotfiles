@@ -4,10 +4,12 @@ let
   ssh_ports = osConfig.ports.ports.curr_ports.ssh;
   ips = osConfig.ips.ips.ips.default;
   ports_noports = { default_ports ? true, user ? "root", name ? hostname
-    , hostname, proxyJump ? null, localForwards ? [ ], additionalOpts ? { } }:
+    , hostname, base_name, proxyJump ? null, localForwards ? [ ]
+    , additionalOpts ? { } }:
     let
       common = {
         inherit user hostname;
+        port = ports.${base_name}.sshd;
       } // (if proxyJump == null then { } else { inherit proxyJump; })
         // additionalOpts;
       common_ports = common // { inherit localForwards; };
@@ -22,24 +24,25 @@ let
   # g  = "" -> welt -> porta -> server
   local_global = { default_ports ? true, user ? "root", name, local_ip
     , wg_ip ? null, localForwards ? [ ], forward_user ? false }:
-    ports_noports {
-      inherit default_ports user localForwards;
+    let base_name = name;
+    in ports_noports {
+      inherit default_ports user localForwards base_name;
       name = "l_${name}";
       hostname = local_ip;
     } // ports_noports {
-      inherit default_ports user localForwards;
+      inherit default_ports user localForwards base_name;
       proxyJump = "porta";
       name = "g_${name}";
       hostname = local_ip;
     } // ports_noports {
-      inherit default_ports user name localForwards;
+      inherit default_ports user name localForwards base_name;
       proxyJump = "porta";
       hostname = local_ip;
     } // (if wg_ip == null then
       { }
     else
       (ports_noports {
-        inherit default_ports user localForwards;
+        inherit default_ports user localForwards base_name;
         proxyJump = "welt";
         name = "m_${name}";
         hostname = wg_ip;
@@ -47,7 +50,7 @@ let
         { }
       else
         (ports_noports {
-          inherit default_ports localForwards;
+          inherit default_ports localForwards base_name;
           user = "forward";
           name = "forward_g_${name}";
           proxyJump = "forward_porta";
@@ -57,7 +60,7 @@ let
             identityFile = [ sshkeys.forward_path ];
           };
         } // ports_noports {
-          inherit default_ports localForwards;
+          inherit default_ports localForwards base_name;
           user = "forward";
           name = "forward_m_${name}";
           proxyJump = "forward_welt";
@@ -94,6 +97,7 @@ in with ips; {
       };
       "welt" = {
         user = "root";
+        port = ports.welt.sshd;
         hostname = "hannses.de";
       };
       "forward_welt" = {
@@ -177,10 +181,12 @@ in with ips; {
           host.address = "127.0.0.1";
         }
       ];
-    } // local_global {
-      name = "grapheum";
-      local_ip = ips.grapheum.ens3;
-      #wg_ip =  grapheum.wg0;
-    };
+    }
+    #// local_global {
+    #  name = "grapheum";
+    #  local_ip = ips.grapheum.ens3;
+    #  #wg_ip =  grapheum.wg0;
+    #}
+    ;
   };
 }
