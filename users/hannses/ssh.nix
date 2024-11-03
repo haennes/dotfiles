@@ -1,85 +1,104 @@
-{ sshkeys, osConfig, ... }:
+{ sshkeys, osConfig, lib, ... }:
 let
+  inherit (lib)
+    optionalAttrs mapAttrsRecursive attrsToList removeAttrs listToAttrs flatten
+    getAttrFromPath collect isList optionals elem;
+  inherit (lib.my) mapAttrsFlattened;
+  forwards = [ "pve" "syncschlawiner" ];
   ports = osConfig.ports.ports.ports;
   ssh_ports = osConfig.ports.ports.curr_ports.ssh;
   ips = osConfig.ips.ips.ips.default;
-  ports_noports = { default_ports ? true, user ? "root", name ? hostname
+  curr_ports = osConfig.ports.ports.curr_ports;
+  ports_noports = { default_ports ? false, user ? "root", name ? hostname
     , hostname, base_name, proxyJump ? null, localForwards ? [ ]
-    , additionalOpts ? { } }:
+    , extraArgs ? { } }:
     let
       common = {
         inherit user hostname;
         port = ports.${base_name}.sshd;
       } // (if proxyJump == null then { } else { inherit proxyJump; })
-        // additionalOpts;
+        // extraArgs;
       common_ports = common // { inherit localForwards; };
-    in {
+    in (if hostname == null then
+      { }
+    else {
       "${name}_noports" = common;
       "${name}_ports" = common_ports;
       "${name}" = (if default_ports then common_ports else common);
-    };
+    });
 
-  # l -> local ip
-  # m -> welt -> server only do this if we have a wg ip
-  # g  = "" -> welt -> porta -> server
-  local_global = { default_ports ? true, user ? "root", name, local_ip
-    , wg_ip ? null, localForwards ? [ ], forward_user ? false }:
-    let base_name = name;
-    in ports_noports {
-      inherit default_ports user localForwards base_name;
-      name = "l_${name}";
-      hostname = local_ip;
-    } // ports_noports {
-      inherit default_ports user localForwards base_name;
-      proxyJump = "porta";
-      name = "g_${name}";
-      hostname = local_ip;
-    } // ports_noports {
-      inherit default_ports user name localForwards base_name;
-      proxyJump = "porta";
-      hostname = local_ip;
-    } // (if wg_ip == null then
-      { }
-    else
-      (ports_noports {
-        inherit default_ports user localForwards base_name;
+  # l = local ip
+  # w = directly using wireguard
+  # m = welt -> server only do this if we have a wg ip
+  # g  = welt -> porta -> server
+  local_global = inputs@{ default_ports ? true, user ? "root", name
+    , hostname ? name, localForwards ? [ ], forward_user ? false
+    , extraArgs ? { } }:
+    let
+      base_name = hostname;
+      this_ip = ips.${hostname};
+      wg_ip = if this_ip ? wg0 then this_ip.wg0 else null;
+      local_ip = if this_ip ? "ens3" then
+        this_ip.ens3
+      else if this_ip ? "eth0" then
+        this_ip.eth0
+      else if this_ip ? "vmbr0" then
+        this_ip.vmbr0
+      else if this_ip ? "enp37s0" then
+        this_ip.enp37s0
+      else
+        null; # dont generate
+
+      wg_variants = (optionalAttrs (wg_ip != null) (ports_noports {
+        inherit default_ports user localForwards base_name extraArgs;
+        name = "w_${name}";
+        hostname = wg_ip;
+      } // ports_noports {
+        inherit default_ports user localForwards base_name extraArgs;
         proxyJump = "welt";
         name = "m_${name}";
         hostname = wg_ip;
-      })) // (if !forward_user then
-        { }
-      else
+      }));
+      local_variants = (if local_ip != null then
         (ports_noports {
-          inherit default_ports localForwards base_name;
-          user = "forward";
-          name = "forward_g_${name}";
-          proxyJump = "forward_porta";
+          inherit default_ports user localForwards base_name extraArgs;
+          name = "l_${name}";
           hostname = local_ip;
-          additionalOpts = {
-            identitiesOnly = true;
-            identityFile = [ sshkeys.forward_path ];
-          };
         } // ports_noports {
-          inherit default_ports localForwards base_name;
-          user = "forward";
-          name = "forward_m_${name}";
-          proxyJump = "forward_welt";
-          hostname = wg_ip;
-          additionalOpts = {
-            identitiesOnly = true;
-            identityFile = [ sshkeys.forward_path ];
-          };
-        }
+          inherit default_ports user localForwards base_name extraArgs;
+          proxyJump = "porta";
+          name = "g_${name}";
+          hostname = local_ip;
+        })
+      else # this is a microvm TODO add jump over the host
+        { });
+      forward_variants = (optionalAttrs forward_user (local_global (inputs // {
+        user = "forward";
+        name = "forward_${inputs.name}";
+        forward_user = false;
+        extraArgs = { identityFile = [ sshkeys.forward_path ]; } // extraArgs;
+      })));
+      plain_variant = (if wg_variants != { } then
+        wg_variants."w_${name}"
+      else if local_variants != { } then
+        local_variants."g_${name}"
+      else
+        null);
+      plain_variant_noports = (if wg_variants != { } then
+        wg_variants."w_${name}_noports"
+      else if local_variants != { } then
+        local_variants."g_${name}_noports"
+      else
+        null);
+    in wg_variants // local_variants // forward_variants
+    // (optionalAttrs (plain_variant != null) {
+      ${name} = plain_variant;
+      "${name}_ports" = plain_variant;
+    }) // optionalAttrs (plain_variant_noports != null) {
+      "${name}_noports" = plain_variant_noports;
+    };
 
-        ));
-
-  simple_forwards = ports: (builtins.map (port: (simple_forward port)) ports);
-  simple_forward = port: {
-    bind.port = port;
-    host.port = port;
-    host.address = "127.0.0.1";
-  };
-in with ips; {
+in {
   services.ssh-agent.enable = true;
   programs.ssh = {
     addKeysToAgent = "1h";
@@ -88,12 +107,6 @@ in with ips; {
       "fs_main" = {
         user = "hoh47200";
         hostname = "cloud.fsim-ev.de";
-      };
-      "pve_tabula" = {
-        user = "root";
-        hostname = ips.pve.vmbr0;
-        proxyJump = "m_tabula";
-        localForwards = [ (simple_forward (ssh_ports.proxmox.gui)) ];
       };
       "welt" = {
         user = "root";
@@ -124,69 +137,19 @@ in with ips; {
         identitiesOnly = true;
         identityFile = [ sshkeys.forward_path ];
       };
-    } // local_global {
-      name = "deus";
-      local_ip = "192.168.0.238";
-    } // local_global {
-      forward_user = true;
-      name = "pve";
-      local_ip = ips.pve.vmbr0;
-      localForwards = [ (simple_forward (ssh_ports.proxmox.gui)) ];
-    } // local_global {
-      forward_user = true;
-      name = "syncschlawiner";
-      local_ip = ips.syncschlawiner.ens3;
-      wg_ip = ips.syncschlawiner.wg0;
-      localForwards = [
-        #TODO: determine allowed ports
-        {
-          #bind.port = 8385;
-          bind.port = ssh_ports.syncschlawiner.syncthing.gui;
-          host.port = ports.syncschlawiner.syncthing.gui;
-          host.address = "127.0.0.1";
-        }
-        {
-          bind.port = ssh_ports.syncschlawiner.nextcloud.web;
-          host.port = ports.syncschlawiner.nextcloud.web;
-          host.address = "127.0.0.1";
-        }
-        {
-          bind.port = ssh_ports.syncschlawiner.ipfs.api;
-          host.port = ports.syncschlawiner.ipfs.api;
-          host.address = "127.0.0.1";
-        }
-        {
-          bind.port = ssh_ports.syncschlawiner.ipfs.gateway;
-          host.port = ports.syncschlawiner.ipfs.gateway;
-          host.address = "127.0.0.1";
-        }
-      ];
-    } // local_global {
-      name = "syncschlawiner_mkhh";
-      local_ip = ips.syncschlawiner_mkhh.ens3;
-      wg_ip = ips.syncschlawiner_mkhh.wg0;
-    } // local_global {
-      name = "tabula";
-      local_ip = ips.tabula.ens3;
-      wg_ip = ips.tabula.wg0;
-      localForwards = [
-        {
-          bind.port = ssh_ports.tabula.syncthing.gui;
-          host.port = ports.tabula.syncthing.gui;
-          host.address = "127.0.0.1";
-        }
-        {
-          bind.port = ssh_ports.tabula.web;
-          host.port = ports.tabula.web;
-          host.address = "127.0.0.1";
-        }
-      ];
-    }
-    #// local_global {
-    #  name = "grapheum";
-    #  local_ip = ips.grapheum.ens3;
-    #  #wg_ip =  grapheum.wg0;
-    #}
-    ;
+    } // listToAttrs (flatten (map (tuple:
+      attrsToList (local_global rec {
+        inherit (tuple) name;
+        hostname = tuple.name;
+        forward_user = (elem name forwards);
+        localForwards = optionals (curr_ports.ssh ? "${name}") (flatten
+          (collect isList (mapAttrsRecursive (path: value: [{
+            host.address = "127.0.0.1";
+            host.port = getAttrFromPath path ports.${name};
+            bind.port = value;
+          }]) curr_ports.ssh.${name})));
+      })
+
+    ) (attrsToList (removeAttrs ips [ "welt" "porta" "handy_hannses" ]))));
   };
 }

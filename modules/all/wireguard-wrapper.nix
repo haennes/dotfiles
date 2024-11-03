@@ -15,7 +15,6 @@ in {
       connections = [
         [ "tabula" "welt" ]
         [ "porta" "welt" ]
-        [ "hermes" "welt" ]
         [ "syncschlawiner" "welt" ]
         [ "syncschlawiner_mkhh" "welt" ]
         [ "handy_hannses" "welt" ]
@@ -41,7 +40,6 @@ in {
         };
       } // (simple_ips [
         "porta"
-        "hermes"
         "syncschlawiner"
         "syncschlawiner_mkhh"
         "tabula"
