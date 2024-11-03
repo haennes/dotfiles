@@ -9,7 +9,7 @@ in {
     interfaces = [{
       type = "tap";
       id = "vm-${config.networking.hostName}";
-      mac = config.macs.macs.vm-host."vm-${config.networking.hostName}".eth0;
+      mac = config.macs.macs.vm-host.${config.networking.hostName}.eth0;
     }];
 
     shares = [
@@ -48,7 +48,7 @@ in {
   systemd.network.enable = true;
   systemd.network.networks."20-lan" = {
     matchConfig.Type = "ether";
-    networkConfig = let ip = ips."vm-${config.networking.hostName}".br0;
+    networkConfig = let ip = ips.${config.networking.hostName}.br0;
     in {
       Address = [ "${ip}/24" ];
       Gateway = ips."vm-host".br0;
