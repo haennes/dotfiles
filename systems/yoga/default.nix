@@ -45,9 +45,4 @@
       pkgs = null;
     };
   };
-
-  networking.extraHosts = ''
-    ${config.ips.ips.ips.default.vm-fons.br0} fons
-  '';
-
 }
