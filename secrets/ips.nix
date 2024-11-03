@@ -46,12 +46,12 @@
         "2" = "vm-host%br0";
 
         # others - any vm
-        "11" = "vm-tabula%br0";
-        "12" = "vm-fons%br0";
-        "13" = "vm-historia%br0";
-        "14" = "vm-minerva%br0";
-        "15" = "vm-vertumnus%br0";
-        "16" = "vm-concordia%br0";
+        "11" = "tabula%br0";
+        "12" = "fons%br0";
+        "13" = "historia%br0";
+        "14" = "minerva%br0";
+        "15" = "vertumnus%br0";
+        "16" = "concordia%br0";
       };
 
     };
