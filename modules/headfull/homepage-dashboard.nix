@@ -17,14 +17,14 @@ in {
       name = "pve";
       monitoringPort = aports.pve;
       extraArguments = ''
-        -v -A -N -o "IdentitiesOnly=yes" -i ${sshkeys.forward_path} forward_g_pve'';
+        -v -A -N -o "IdentitiesOnly=yes" -i ${sshkeys.forward_path} g_forward_pve'';
     }
     {
       user = "hannses";
       name = "syncschlawiner";
       monitoringPort = aports.syncschlawiner;
       extraArguments = ''
-        -v -A -N -o "IdentitiesOnly=yes" -i ${sshkeys.forward_path} forward_g_syncschlawiner'';
+        -v -A -N -o "IdentitiesOnly=yes" -i ${sshkeys.forward_path} g_forward_syncschlawiner'';
     }
   ];
   services.nginx.virtualHosts."cdn.localhost".locations."/" = {
@@ -264,7 +264,8 @@ in {
 
               widget = {
                 type = "proxmox";
-                url = "https://127.0.0.1:8006";
+                url =
+                  "https://127.0.0.1:${toString hports.ssh.pve.proxmox.gui}";
                 username = "dashboard-user-api@pam!hompage-token";
                 password = proxmox_password.password;
                 hideErrors = true;

@@ -12,7 +12,7 @@ let
   headfull = {
     "8385" = "ssh.syncschlawiner.syncthing.gui";
     "8386" = "ssh.syncschlawiner.nextcloud.web";
-    "8006" = "ssh.proxmox.gui";
+    "8006" = "ssh.pve.proxmox.gui";
     "8388" = "ssh.tabula.syncthing.gui";
     "8390" = "ssh.tabula.web";
     "9090" = "ssh.syncschlawiner.ipfs.api";
@@ -65,6 +65,10 @@ in {
       "8080" = "ipfs.gateway";
       "8081" = "ipfs.api";
       "8384" = "syncthing.gui";
+    };
+
+    pve = {
+    "8006" = "proxmox.gui";
     };
 
     #scheme:

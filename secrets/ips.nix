@@ -9,7 +9,8 @@
         "23" = "syncschlawiner%ens3";
         "27" = "syncschlawiner_mkhh%ens3";
         "25" = "tabula%ens3";
-        "26" = "grapheum%ens3";
+        "238" = "deus%enp37s0";
+        #"26" = "grapheum%ens3";
       };
 
       #vpn endpoints
@@ -27,7 +28,7 @@
         "8" = "tabula%wg0";
         "9" = "syncschlawiner_mkhh%wg0";
         "10" = "deus%wg0";
-        "11" = "hermes%wg0";
+        #"11" = "hermes%wg0";
         "12" = "historia%wg0";
         "13" = "fons%wg0";
         "14" = "minerva%wg0";
