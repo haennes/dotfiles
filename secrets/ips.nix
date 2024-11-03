@@ -32,8 +32,11 @@
         "13" = "fons%wg0";
         "14" = "minerva%wg0";
         "15" = "vertumnus%wg0";
+
         "16" = "thinknew%wg0";
         "17" = "yoga%wg0";
+
+        "18" = "concordia%wg0";
       };
 
       "3" = {
@@ -48,6 +51,7 @@
         "13" = "vm-historia%br0";
         "14" = "vm-minerva%br0";
         "15" = "vm-vertumnus%br0";
+        "16" = "vm-concordia%br0";
       };
 
     };

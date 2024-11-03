@@ -60,6 +60,12 @@ in {
     historia = { "8888" = "atuin"; };
     minerva = { "27701" = "ankisync"; };
     vertumnus = { "3000" = "gitea.web"; };
+    concordia = {
+      "80" = "nextcloud.web";
+      "8080" = "ipfs.gateway";
+      "8081" = "ipfs.api";
+      "8384" = "syncthing.gui";
+    };
 
     #scheme:
     #hostname.port = "service"

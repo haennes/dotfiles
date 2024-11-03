@@ -26,6 +26,7 @@ in {
         [ "fons" "welt" ]
         [ "minerva" "welt" ]
         [ "vertumnus" "welt" ]
+        [ "concordia" "welt" ]
       ];
       nodes = {
         welt = {
@@ -52,6 +53,7 @@ in {
         "fons"
         "minerva"
         "vertumnus"
+        "concordia"
       ]);
       publicKey = name:
         ((lib.my.wireguard.obtain_wireguard_pub { hostname = name; }).key);

@@ -36,7 +36,7 @@ in with sshkeys;
   "restic_passwords".publicKeys = [ hannses restic ];
 
   "nextcloud/adminpass.age".publicKeys =
-    [ hannses syncschlawiner root_syncschlawiner ];
+    [ hannses syncschlawiner root_syncschlawiner root_concordia ];
   "nextcloud_mkhh/adminpass.age".publicKeys =
     [ hannses syncschlawiner_mkhh root_syncschlawiner_mkhh ];
   "openfortivpn.age".publicKeys = systems_headfull ++ [ hannses ];
@@ -64,6 +64,7 @@ in with sshkeys;
 // wg_simple "fons" [ hannses root_fons ]
 // wg_simple "minerva" [ hannses root_minerva ]
 // wg_simple "vertumnus" [ hannses root_vertumnus ]
+// wg_simple "concordia" [ hannses root_concordia ]
 
 // syncthing_keypair "thinkpad" [ hannses thinkpad root_thinkpad ]
 // syncthing_keypair "yoga" [ hannses yoga root_yoga ]
@@ -71,7 +72,8 @@ in with sshkeys;
   hannses
   syncschlawiner
   root_syncschlawiner
-] // syncthing_keypair "tabula" [ hannses root_tabula tabula ]
+] // syncthing_keypair "concordia" [ hannses root_concordia ]
+// syncthing_keypair "tabula" [ hannses root_tabula tabula ]
 // syncthing_keypair "fons" [ hannses root_fons ]
 // syncthing_keypair "deus" [ hannses root_deus deus ]
 
