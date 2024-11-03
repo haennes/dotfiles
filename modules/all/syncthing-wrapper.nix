@@ -23,6 +23,7 @@ in {
     devices = with ids; rec {
       all_pcs = { inherit (ids) mainpc yoga; };
       thinkpad = { inherit (ids) thinkpad; };
+      concordia = { inherit (ids) concordia; };
       all_handys = { inherit (ids) handyHannes handyMum handyDad tablet; };
       servers = { inherit (ids) syncschlawiner; };
       all_servers = servers // { inherit (ids) tabula fons; };
@@ -52,7 +53,7 @@ in {
         "Documents" = [ (all_pcs // servers) ];
         "Notes" = [ (all_pcs // servers) ];
         "tasks" = {
-          devices = [ (all_pcs // servers) ];
+          devices = [ (all_pcs // servers) concordia ];
           paths = { syncschlawiner = "/data/syncthing/hannses/tasks"; };
         };
         "Downloads" = [ (all_pcs // servers) ];

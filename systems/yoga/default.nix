@@ -39,6 +39,11 @@
       config = import ../../servers/vertumnus;
       pkgs = null;
     };
+    concordia = {
+      inherit specialArgs;
+      config = import ../../servers/concordia;
+      pkgs = null;
+    };
   };
 
   networking.extraHosts = ''

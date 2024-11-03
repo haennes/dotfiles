@@ -1,6 +1,8 @@
 # Names from:
 [non wikipedia](https://www.forumtraiani.de/roemische-goettinen-roemische-goettin/)
+
 [wikipedia](https://de.wikipedia.org/wiki/R%C3%B6mische_Mythologie#Die_r%C3%B6mischen_G%C3%B6tter)
+
 [wikipedia en](https://en.wikipedia.org/wiki/List_of_Roman_deities)
 # Infrastruktur:
 
@@ -20,6 +22,7 @@
 - historia: **atuin shell history**
 - minerva: **anki-sync**
 - vertumnus: **gitea**
+- concordia: **cloud + ipfs + syncthing**
 
 ## inaktiv:
 - porta: **WG-Endpoint** war Proxmox VM (evtl: -> PI bzw. als teil von PI config) (nicht mehr gebraucht, da ssh bereits über deus möglich)
