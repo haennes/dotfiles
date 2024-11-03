@@ -1724,11 +1724,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1730388853,
-        "narHash": "sha256-ZPJM7jHR2eAj6CvAWNCMMEYjjWFRrlS/3+V1J1obrEg=",
+        "lastModified": 1730580600,
+        "narHash": "sha256-vvmMY5lV/aqrTAKi1ZQhQoXAxjlZ0oueuz5MHuZgebU=",
         "ref": "four_working",
-        "rev": "ef5321633f1150dd6dcad7635fe4b29c9c4901b0",
-        "revCount": 12,
+        "rev": "6790fdbea418445259215af8585a7623e8f02609",
+        "revCount": 13,
         "type": "git",
         "url": "file:///home/hannses/programming/nix/tasks"
       },
