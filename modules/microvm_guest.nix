@@ -3,6 +3,7 @@ let ips = config.ips.ips.ips.default;
 in {
   imports = all_modules ++ server_modules ++ microvm_modules_guest;
   is_microvm = true;
+  is_client = false;
   microvm = {
     #...add additional MicroVM configuration here
     interfaces = [{
