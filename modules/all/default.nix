@@ -12,6 +12,8 @@
     ./store_optimize.nix
     ./syncthing-wrapper.nix
     ./wireguard-wrapper.nix
+    ./ports_cli.nix
+    ./ips_cli.nix
   ];
 
   options = { nextcloud_max_size = lib.mkOption { }; };
