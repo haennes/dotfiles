@@ -85,6 +85,11 @@
       url = "github:haennes/wireguard-wrapper.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    wg-friendly-peer-names = {
+      #url = "git+file:///home/hannses/programming/wg-friendly-peer-names";
+      url = "github:haennes/wg-friendly-peer-names";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     syncthing-wrapper = {
       url = "github:haennes/syncthing-wrapper.nix";
       #url = "git+file:///home/hannses/programming/nix/syncthing-wrapper";
@@ -107,8 +112,9 @@
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, deploy-rs, rust-overlay, nur
-    , nix-yazi-plugins, futils, wireguard-wrapper, syncthing-wrapper, tasks_md
-    , nix-update-inputs, signal-whisper, IPorts, nix-topology, ... }:
+    , nix-yazi-plugins, futils, wireguard-wrapper, wg-friendly-peer-names
+    , syncthing-wrapper, tasks_md, nix-update-inputs, signal-whisper, IPorts
+    , nix-topology, ... }:
     let
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
       lib = nixpkgs.lib.extend (self: super: {
@@ -129,6 +135,7 @@
         #nur.nixosModules.nur
         IPorts.nixosModules.default # adds ips, macs and ports
         nix-topology.nixosModules.default
+        wg-friendly-peer-names.nixosModules.default
       ];
       client_modules = [
         home-manager.nixosModules.home-manager

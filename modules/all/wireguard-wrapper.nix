@@ -9,6 +9,7 @@ let
 
 in {
   config = lib.mkIf config.services.wireguard-wrapper.enable ({
+    wg-friendly-peer-names.enable = true;
 
     services.wireguard-wrapper = {
       kind = lib.mkDefault "wireguard"; # use "normal" backend by default
