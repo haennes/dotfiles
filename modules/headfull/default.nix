@@ -11,9 +11,9 @@
     ./minecraft.nix
     ./pkgs.nix
     ./power.nix
-    ./tasks.nix
     ./users.nix
     ./virtualization.nix
+    ../tasks.nix
   ];
 
 }

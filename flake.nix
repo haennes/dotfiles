@@ -135,11 +135,11 @@
         #nur.nixosModules.nur
         IPorts.nixosModules.default # adds ips, macs and ports
         nix-topology.nixosModules.default
+        tasks_md.nixosModules.default
         wg-friendly-peer-names.nixosModules.default
       ];
       client_modules = [
         home-manager.nixosModules.home-manager
-        tasks_md.nixosModules.default
         (import ./modules/home_manager)
         ./modules/gnome
         ./modules/gnome/specialisation.nix
