@@ -26,11 +26,11 @@ let
 
   common_ports_app_prelude = ports: ''
     ssh=0
-    while getopts "s" opt
-    do
-        case $opt in
-        (s) ssh=1;;
-        (*) printf "Illegal option '-%s'\n" "$opt" && exit 1 ;;
+    hostname=""
+    for (( i=1; i<=$#; i++)); do
+        case "''${!i}" in
+          "-s") ssh=1;;
+          (*) hostname=''${!i};;
         esac
     done
     all=$(cat ${ports_file ports})
@@ -56,6 +56,9 @@ let
       ${common_ports_app_prelude all_ports_sorted}
       if [[ "$ssh" -eq 1 ]]; then
         all=$(echo "$all" | grep -E "^[[:alnum:]]*/ssh\.")
+      fi
+      if [[ "$hostname" != "" ]]; then
+      all=$(echo "$all" | grep -E "^$hostname/")
       fi
       echo "$all" | column -s${_split_delim} -t --table-noheadings --table-columns HOST,SERVICE,PORT --table-right PORT | ${pkgs.fzf}/bin/fzf
     '';
