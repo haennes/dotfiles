@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, specialArgs, ... }: {
+{ config, specialArgs, lib, ... }: {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
@@ -28,21 +28,8 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-  microvm.vms = {
-    #tabula = {
-    #  inherit specialArgs;
-    #  config = import ../../servers/tabula;
-    #  pkgs = null;
-    #};
-    vertumnus = {
-      inherit specialArgs;
-      config = import ../../servers/vertumnus;
-      pkgs = null;
-    };
-    concordia = {
-      inherit specialArgs;
-      config = import ../../servers/concordia;
-      pkgs = null;
-    };
+  microvm.vms = lib.my.mkVMS {
+    names = [ "concordia" ];
+    inherit specialArgs;
   };
 }
