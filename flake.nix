@@ -220,6 +220,7 @@
         specialArgs = {
           inherit inputs sshkeys lib all_modules client_modules server_modules
             microvm_modules_host microvm_modules_guest system;
+          inherit (self) topology;
         };
         extraArgs = { inherit sshkeys system; };
       };
