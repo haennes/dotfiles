@@ -1453,6 +1453,7 @@
         "signal-whisper": "signal-whisper",
         "syncthing-wrapper": "syncthing-wrapper",
         "tasks_md": "tasks_md",
+        "wg-friendly-peer-names": "wg-friendly-peer-names",
         "wireguard-wrapper": "wireguard-wrapper"
       }
     },
@@ -1817,6 +1818,26 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "wg-friendly-peer-names": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1730724998,
+        "narHash": "sha256-6UkbAJc+/RyDqbEXTOCaX9fkAcmiScMJFymSW0V3xwU=",
+        "owner": "haennes",
+        "repo": "wg-friendly-peer-names",
+        "rev": "8adfab8bda37c608af6346e7ef0c5312aaa96311",
+        "type": "github"
+      },
+      "original": {
+        "owner": "haennes",
+        "repo": "wg-friendly-peer-names",
         "type": "github"
       }
     },
