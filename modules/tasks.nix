@@ -1,17 +1,23 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+#let hips = config.ips.ips.ips.default.${config.networking.hostName};
+#in
+{
   services.tasks_md = {
     enable = true;
+    enableNginx = lib.mkDefault true;
     conf = let
       tports = config.ports.ports.curr_ports.tasks;
       simple = name: {
         title = name;
         port = tports.${name};
       };
+      base_dir = config.services.syncthing.settings.folders.tasks.path;
     in lib.lists.map (item:
       item // {
+        #domain = (if (config.is_client) then "tasks.localhost" else hips.wg0);
         domain = "tasks.localhost";
-        config_dir = "/home/hannses/tasks/${item.title}/config";
-        tasks_dir = "/home/hannses/tasks/${item.title}/tasks";
+        config_dir = "${base_dir}/${item.title}/config";
+        tasks_dir = "${base_dir}/${item.title}/tasks";
         base_path = "/${item.title}";
       }) [
         (simple "uni")
