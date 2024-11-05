@@ -48,6 +48,7 @@ let
         this_ip.enp37s0
       else
         null; # dont generate
+      porta_prefix = if (user=="forward") then "forward_" else "";
 
       wg_variants = (optionalAttrs (wg_ip != null) (ports_noports {
         inherit default_ports user localForwards base_name extraArgs;
@@ -66,7 +67,7 @@ let
           hostname = local_ip;
         } // ports_noports {
           inherit default_ports user localForwards base_name extraArgs;
-          proxyJump = "porta";
+          proxyJump = "${porta_prefix}porta";
           name = "g_${name}";
           hostname = local_ip;
         })
@@ -116,6 +117,7 @@ in {
       "forward_welt" = {
         user = "forward";
         hostname = "hannses.de";
+        port = ports.welt.sshd;
         identitiesOnly = true;
         identityFile = [ sshkeys.forward_path ];
       };
