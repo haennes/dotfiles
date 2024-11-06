@@ -67,8 +67,6 @@
     fontforge-gtk
     lapce
     jetbrains.clion # fix debugging c in vim at some point
-    #    anki
-    #    texmaker
     musescore
     yubikey-manager-qt
     lorien
