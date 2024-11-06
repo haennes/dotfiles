@@ -192,9 +192,19 @@
       ];
 
       channels = {
-        unfree = { # lets us explicitly declare that something is unfree
+        unstable = { # lets us explicitly declare that something is unfree
           input = nixpkgs;
-          config.allowUnfree = true;
+          #config.allowUnfree = true;
+          config = {
+            allowUnfreePredicate = pkg:
+              builtins.elem (lib.getName pkg) [
+                "obsidian"
+                "lutris"
+                "steam" # lutris
+                "steam-unwrapped" # lutris
+                "clion"
+              ];
+          };
         };
         insecure = {
           input = nixpkgs;
@@ -217,6 +227,7 @@
       hostDefaults = rec {
         system = "x86_64-linux";
         modules = all_modules;
+        channelName = "unstable";
         specialArgs = {
           inherit inputs sshkeys lib all_modules client_modules server_modules
             microvm_modules_host microvm_modules_guest system;
@@ -247,7 +258,7 @@
         welt = {
           modules = [ (server "welt") inputs.nixos-dns.nixosModules.dns ];
         };
-        #porta = { modules = [ (server "porta") ]; };
+        porta = { modules = [ (server "porta") ]; };
         syncschlawiner = { modules = [ (server "syncschlawiner") ]; };
         #syncschlawiner_mkhh = { modules = [ (server "syncschlawiner_mkhh") ]; };
         #tabula = { modules = [ (server "tabula") ]; };
