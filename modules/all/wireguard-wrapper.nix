@@ -12,6 +12,7 @@ in {
     wg-friendly-peer-names.enable = true;
 
     services.wireguard-wrapper = {
+      RestartOnFailure.enable = true;
       kind = lib.mkDefault "wireguard"; # use "normal" backend by default
       connections = [
         [ "tabula" "welt" ]
