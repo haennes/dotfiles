@@ -28,6 +28,7 @@
   #};
 
   microvmHost.extInterface = "enp37s0";
+  networking.useNetworkd = true;
 
   #networking.networkmanager.unmanaged = [ "wg0" ];
   #networking.networkmanager.enable = true;

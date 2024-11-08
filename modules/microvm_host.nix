@@ -1,9 +1,12 @@
 { config, lib, ... }:
 let
-  inherit (lib) mkOption mapAttrsToList head;
+  inherit (lib) mkOption mkEnableOption;
   inherit (lib.types) str;
 in {
-  options.microvmHost.extInterface = mkOption { type = str; };
+  options.microvmHost = {
+    extInterface = mkOption { type = str; };
+    systemd = mkEnableOption "systemd networkd";
+  };
   config = {
     networking = {
       nat = {
@@ -13,13 +16,11 @@ in {
         externalInterface = config.microvmHost.extInterface;
         internalInterfaces = [ "br0" ];
       };
-      bridges.br0.interfaces =
-        mapAttrsToList (_n: v: (head v.config.config.microvm.interfaces).id)
-        config.microvm.vms;
-      interfaces."br0".ipv4.addresses = [{
-        address = config.ips.ips.ips.default."vm-host".br0;
-        prefixLength = 24;
-      }];
     };
   };
+  imports = [
+   ./microvm_host_stock.nix
+   ./microvm_host_systemd.nix
+  ];
+
 }
