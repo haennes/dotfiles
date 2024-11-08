@@ -31,7 +31,21 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
+  systemd.network.networks."10-wan" = {
+    matchConfig.Name = "enp37s0";
+    networkConfig = {
+      # start a DHCP Client for IPv4 Addressing/Routing
+      DHCP = "ipv4";
+      # accept Router Advertisements for Stateless IPv6 Autoconfiguraton (SLAAC)
+      IPv6AcceptRA = true;
+    };
+    # make routing on this interface a dependency for network-online.target
+    linkConfig.RequiredForOnline = "routable";
+  };
+  microvmHost.systemd = true;
+
+  #networking.interfaces.${config.microvmHost.extInterface}.useDHCP =
+  #  lib.mkDefault false;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode =
