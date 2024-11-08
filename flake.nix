@@ -82,6 +82,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     wireguard-wrapper = {
+      #url = "git+file:///home/hannses/programming/nix/wireguard-wrapper";
       url = "github:haennes/wireguard-wrapper.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
