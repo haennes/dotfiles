@@ -47,6 +47,7 @@ in with sshkeys;
   "wifihotspot.age".publicKeys = systems_headfull ++ [ hannses ];
   "hydra/users/hannses.age".publicKeys = [ root_deus deus ];
   "ankisync/pwhannses.age".publicKeys = [ root_minerva ];
+  "freshrss/password_hannses.age".publicKeys = [ root_fons ];
 
 } // wg_simple "deus" [ hannses deus ]
 // wg_simple "thinkpad" [ hannses thinkpad root_thinkpad ]

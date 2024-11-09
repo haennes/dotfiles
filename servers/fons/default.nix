@@ -7,6 +7,11 @@ in {
 
   imports = [ ../../modules/microvm_guest.nix ];
 
+  age.secrets."freshrss/password_hannses.age" = {
+    file = ../../secrets/freshrss/password_hannses.age;
+    owner = config.services.freshrss.user;
+  };
+
   services.wireguard-wrapper.enable = true;
   services.syncthing_wrapper = {
     enable = true;
@@ -35,7 +40,7 @@ in {
     enable = true;
     baseUrl = "http://${ips.fons.br0}";
     # api access: https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#enable-the-api-in-freshrss
-    passwordFile = pkgs.writeText "password" "secret";
+    passwordFile = config.age.secrets."freshrss/password_hannses.age".path;
     defaultUser = "hannses";
     dataDir = "/persist/freshrss";
     database = {
