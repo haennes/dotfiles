@@ -155,6 +155,7 @@
 
       server = hostname: {
         config.is_server = true;
+        config.is_client = false;
         imports = [ ./servers/${hostname} ] ++ server_modules;
       };
       client = hostname: {
