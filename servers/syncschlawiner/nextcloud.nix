@@ -15,7 +15,7 @@ with lib; {
   services.nextcloud = {
     enable = true;
     hostName = "localhost";
-    package = pkgs.nextcloud29;
+    package = pkgs.nextcloud30;
     https = true;
 
     home = "/data/nextcloud";
@@ -49,7 +49,9 @@ with lib; {
 
       inherit contacts
         #calendar
-        deck groupfolders maps bookmarks cospend notes polls;
+        deck groupfolders
+        #maps
+        bookmarks cospend notes polls;
     };
     # extraAppsEnable = true;
     #notify_push.enable = true;
