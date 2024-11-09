@@ -12,10 +12,12 @@ in {
   imports = [ ./syncthing_wrapper_secrets.nix ];
   services.syncthing_wrapper = rec {
     DirUsersDefault = [ "hannses" ];
-    folderToPathFuncDefault = { folder_name, DirUsers, DirGroups }:
-      "${config.services.syncthing.dataDir}/${
-        lib.lists.head DirUsers
-      }/${folder_name}";
+    folderToPathFuncDefault =
+      lib.mkIf (config.networking.hostName != "syncschlawiner")
+      ({ folder_name, DirUsers, DirGroups }:
+        "${config.services.syncthing.dataDir}/${
+          lib.lists.head DirUsers
+        }/${folder_name}");
     default_versioning = {
       type = "simple";
       params.keep = "10";
