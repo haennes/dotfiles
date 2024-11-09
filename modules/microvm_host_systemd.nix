@@ -13,10 +13,9 @@
             IPv6SendRA = false;
           };
           addresses = [{
-            addressConfig.Address =
-              "${config.ips.ips.ips.default."vm-host".br0}/24";
+            Address = "${config.ips.ips.ips.default."vm-host".br0}/24";
           }
-          #{ addressConfig.Address = "fd12:3456:789a::1/64"; }
+          #{ Address = "fd12:3456:789a::1/64"; }
             ];
           #ipv6Prefixes = [{ ipv6PrefixConfig.Prefix = "fd12:3456:789a::/64"; }];
         };
