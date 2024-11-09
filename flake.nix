@@ -238,10 +238,14 @@
         extraArgs = { inherit sshkeys system; };
       };
 
-      deploy.nodes = (lib.my.mkDeploy {
-        inherit (inputs) self;
-        exclude = [ "welt" ];
-      }) // (lib.my.genNodeSimple self "welt");
+      deploy = {
+        activationTimeout = 600;
+        confirmTimeout = 120;
+        nodes = (lib.my.mkDeploy {
+          inherit (inputs) self;
+          exclude = [ "welt" ];
+        }) // (lib.my.genNodeSimple self "welt");
+      };
       formatter =
         forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-classic);
 
