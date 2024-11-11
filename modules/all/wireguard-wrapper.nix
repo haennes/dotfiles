@@ -9,7 +9,10 @@ let
 
 in {
   config = lib.mkIf config.services.wireguard-wrapper.enable ({
-    wg-friendly-peer-names.enable = true;
+    wg-friendly-peer-names = {
+      wggn.enable = true;
+      enable = true;
+    };
 
     services.wireguard-wrapper = {
       RestartOnFailure.enable = true;
