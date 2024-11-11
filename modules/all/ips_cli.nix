@@ -17,7 +17,7 @@ let
     bashOptions = [ ]; # unbound variable $1
     text = ''
       all=$(cat ${ips_file})
-      echo "$all" | column -s${_split_delim} -t --table-noheadings --table-columns HOSTNAME,INTERFACE,PORT --table-right PORT | ${pkgs.fzf}/bin/fzf
+      echo "$all" | column -s${_split_delim} -t --table-noheadings --table-columns HOSTNAME,INTERFACE,PORT --table-right PORT | ${pkgs.fzf}/bin/fzf | awk '{print $NF}' | wl-copy
     '';
   };
 in {
