@@ -17,7 +17,7 @@
   };
 
   microvm.vms = lib.my.mkVMS {
-    names = [ "tabula" "fons" "historia" "minerva" "vertumnus" ];
+    names = [ "tabula" "fons" "historia" "minerva" "vertumnus" "concordia" ];
     inherit specialArgs;
   };
 

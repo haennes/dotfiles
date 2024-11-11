@@ -5,6 +5,7 @@ let
   NCdataDir = "/data/nextcloud";
   PGdataDir = "/data/pg";
   SCdataDir = "/data/syncthing";
+  IPFSdataDir = config.services.kubo.dataDir;
 in {
 
   age.secrets = {
@@ -21,32 +22,43 @@ in {
     group = user;
   };
   services.syncthing_wrapper = { enable = true; };
+  systemd.services."nextcloud-setup".requires = [ "syncthing.service" ];
+  systemd.services."nextcloud-setup".after = [ "syncthing.service" ];
 
-  system.activationScripts.ensure-dirs-exist.text = ''
-    mkdir -p ${NCdataDir}
-    chown -R ${owner}:${group} ${NCdataDir}
-    mkdir -p ${SCdataDir}
-    chown -R ${owner}:${group} ${SCdataDir}
-    mkdir -p ${PGdataDir}
-    chown postgres:postgres ${PGdataDir}
-  '';
+  system.activationScripts.ensure-syncthing-dir-ownership.deps =
+    [ "users" "groups" ];
+  system.activationScripts.ensure-syncthing-dir-permissions.deps =
+    [ "users" "groups" ];
+  system.activationScripts.ensure-dirs-exist = {
+    deps = [ "users" "groups" ];
+    text = ''
+      mkdir -p ${NCdataDir}
+      chown -R ${owner}:${group} ${NCdataDir}
+      mkdir -p ${SCdataDir}
+      chown -R ${owner}:${group} ${SCdataDir}
+      mkdir -p ${IPFSdataDir}
+      chown -R ${owner}:${group} ${IPFSdataDir}
+    '';
+  };
+  #mkdir -p ${PGdataDir}
+  #chown postgres:postgres ${PGdataDir}
 
   networking.firewall.allowedTCPPorts =
     [ config.ports.ports.curr_ports.nextcloud.web ];
 
-  services.postgresql.dataDir = PGdataDir;
+  #services.postgresql.dataDir = PGdataDir;
   #services.onlyoffice.enable = true;
   services.nextcloud = {
     enable = true;
     hostName = "localhost"; # TODO this should maybe be set to cloud.hannses.de
-    package = pkgs.nextcloud29;
+    package = pkgs.nextcloud30;
     #https = true;
 
     home = NCdataDir;
 
     config = {
       adminpassFile = config.age.secrets.nextcloud_adminpass.path;
-      dbtype = "pgsql";
+      #dbtype = "pgsql";
     };
     database.createLocally = true; # automatically generate a pgsql db
     settings = {
@@ -71,7 +83,8 @@ in {
     extraApps = with config.services.nextcloud.package.packages.apps; {
       inherit contacts
         #calendar
-        deck groupfolders maps bookmarks cospend notes polls;
+        #maps
+        deck groupfolders bookmarks cospend notes polls;
     };
   };
 }
