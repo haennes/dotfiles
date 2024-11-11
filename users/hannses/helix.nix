@@ -34,5 +34,7 @@
         }
       ];
     };
+
+    settings = { theme = "material_deep_ocean"; };
   };
 }
