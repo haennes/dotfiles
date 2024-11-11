@@ -14,6 +14,7 @@
     ./users.nix
     ./virtualization.nix
     ../tasks.nix
+    ./pg_dev.nix
   ];
 
 }
