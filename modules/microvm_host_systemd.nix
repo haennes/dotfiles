@@ -1,5 +1,6 @@
 { config, lib, ... }: {
   config = lib.mkIf config.microvmHost.systemd {
+    systemd.network.enable = true;
     systemd.network = {
       netdevs."10-microvm".netdevConfig = {
         Kind = "bridge";
@@ -8,10 +9,10 @@
       networks = {
         "10-microvm" = {
           matchConfig.Name = "br0";
-          networkConfig = {
-            DHCPServer = true;
-            IPv6SendRA = false;
-          };
+          #networkConfig = {
+          #  DHCPServer = true;
+          #  IPv6SendRA = false;
+          #};
           addresses = [{
             Address = "${config.ips.ips.ips.default."vm-host".br0}/24";
           }
