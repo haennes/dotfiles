@@ -11,6 +11,7 @@ let
 in {
   imports = [ ./syncthing_wrapper_secrets.nix ];
   services.syncthing_wrapper = rec {
+    ensureServiceOwnerShip = true;
     DirUsersDefault = [ "hannses" ];
     folderToPathFuncDefault =
       lib.mkIf (config.networking.hostName != "syncschlawiner")
@@ -27,7 +28,7 @@ in {
       thinkpad = { inherit (ids) thinkpad; };
       concordia = { inherit (ids) concordia; };
       all_handys = { inherit (ids) handyHannes handyMum handyDad tablet; };
-      servers = { inherit (ids) syncschlawiner; };
+      servers = { inherit (ids) syncschlawiner concordia; };
       all_servers = servers // { inherit (ids) tabula fons; };
 
       #uni = { inherit stefan_handy sebastian_s_mac sebastian_r_laptop; };
@@ -55,7 +56,7 @@ in {
         "Documents" = [ (all_pcs // servers) ];
         "Notes" = [ (all_pcs // servers) ];
         "tasks" = {
-          devices = [ (all_pcs // servers) concordia ];
+          devices = [ (all_pcs // servers) ];
           paths = { syncschlawiner = "/data/syncthing/hannses/tasks"; };
         };
         "Downloads" = [ (all_pcs // servers) ];
@@ -74,10 +75,22 @@ in {
         "DownloadHandyH" = [ (all_pcs // servers) "handyHannes" ];
         "HannesKamera" = [ (all_pcs // servers) "handyHannes" ];
         "HannesGalerie" = [ (all_pcs // servers) "handyHannes" ];
-        "AlexandraKamera" = [ (servers) "handyAlexandra" ];
-        "AlexandraGalerie" = [ (servers) "handyAlexandra" ];
-        "ThomasKamera" = [ (servers) ];
-        "ThomasGalerie" = [ (servers) ];
+        "AlexandraKamera" = {
+          devices = [ (servers) "handyAlexandra" ];
+          DirUsers = [ "mum" ];
+        };
+        "AlexandraGalerie" = {
+          devices = [ (servers) "handyAlexandra" ];
+          DirUsers = [ "mum" ];
+        };
+        "ThomasKamera" = {
+          devices = [ (servers) ];
+          DirUsers = [ "dad" ];
+        };
+        "ThomasGalerie" = {
+          devices = [ (servers) ];
+          DirUsers = [ "dad" ];
+        };
         "website" = {
           devices = [ (all_pcs) "tabula" ];
           paths.tabula = "/persist/website";
