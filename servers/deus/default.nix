@@ -20,6 +20,7 @@
     names = [ "tabula" "fons" "historia" "minerva" "vertumnus" "concordia" ];
     inherit specialArgs;
   };
+  services.getty.autologinUser = "root";
 
   #services.syncthing_wrapper = { enable = true; };
   #services.syncthing = {
