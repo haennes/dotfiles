@@ -64,6 +64,7 @@
 
     #Gameing
     lutris # game launcher compatible with steam, wine, ...
+    wineWowPackages.waylandFull
 
   ];
 }
