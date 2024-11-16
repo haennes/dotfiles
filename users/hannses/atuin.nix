@@ -13,7 +13,8 @@ in {
           toString osConfig.ports.ports.ports.historia.atuin
         }";
       key_path = osConfig.age.secrets."atuin/key.age".path;
-      session_path = osConfig.age.secrets."atuin/session.age".path;
+      #session_path = osConfig.age.secrets."atuin/session.age".path;
+      keymap_mode = "vim-normal";
     };
   };
 }
