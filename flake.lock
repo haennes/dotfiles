@@ -1550,17 +1550,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1731249529,
+        "lastModified": 1731368000,
         "narHash": "sha256-BSiTt7yQbTXbbGMz7zIwJNu1CmG7fZ4yKNN+NQEdJUU=",
-        "ref": "refs/heads/main",
-        "rev": "47d1d7d17cb12c7955a5d0ef4a52c8b7b935a042",
-        "revCount": 24,
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/syncthing-wrapper"
+        "owner": "haennes",
+        "repo": "syncthing-wrapper.nix",
+        "rev": "c3db44cd1f73d71b715e636da580313f4f58fd9b",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/syncthing-wrapper"
+        "owner": "haennes",
+        "repo": "syncthing-wrapper.nix",
+        "type": "github"
       }
     },
     "systems": {
@@ -1822,15 +1822,15 @@
       "locked": {
         "lastModified": 1731173524,
         "narHash": "sha256-9g6Q+/VozAmscSO/njV9j8LglsBCCVLJu1NRPUGsx9o=",
-        "ref": "refs/heads/master",
+        "owner": "haennes",
+        "repo": "wg-friendly-peer-names",
         "rev": "bf748c713b80fcb4472b34725ad107013e76e4ca",
-        "revCount": 18,
-        "type": "git",
-        "url": "file:///home/hannses/programming/wg-friendly-peer-names"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/hannses/programming/wg-friendly-peer-names"
+        "owner": "haennes",
+        "repo": "wg-friendly-peer-names",
+        "type": "github"
       }
     },
     "wireguard-wrapper": {
