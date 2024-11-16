@@ -1,5 +1,8 @@
 { inputs, theme, globals, scripts, ... }: {
-  imports = [ inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger ];
+  imports = [
+    inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger
+    ./nightlight.nix
+  ];
 
   programs.hyprcursor-phinger.enable = true;
 

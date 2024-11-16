@@ -55,6 +55,7 @@ in ''
   eject usb
   monitor setup
   monitor setup gui
+  nightlight
   lock
   sleep
   shutdown
@@ -169,6 +170,9 @@ in ''
       ;;
   "monitor setup gui")
       ${pkgs.wdisplays}/bin/wdisplays
+      ;;
+  "nightlight")
+      ${scripts.nightlight}
       ;;
   "mount")
       ${scripts.mount} -m
