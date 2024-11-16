@@ -1,6 +1,6 @@
 #!/bin/sh
 pushd ~/.dotfiles
-git add .
+git add --intent-to-add .
 sudo nixos-rebuild switch --flake .# --show-trace
 #sudo nixos-rebuild switch --flake .# --show-trace --builders ""
 hyprctl reload
