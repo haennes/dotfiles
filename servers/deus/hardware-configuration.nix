@@ -35,9 +35,9 @@
     matchConfig.Name = "enp37s0";
     networkConfig = {
       # start a DHCP Client for IPv4 Addressing/Routing
-      DHCP = "ipv4";
+      DHCP = "yes";
       # accept Router Advertisements for Stateless IPv6 Autoconfiguraton (SLAAC)
-      IPv6AcceptRA = true;
+      #IPv6AcceptRA = true;
     };
     # make routing on this interface a dependency for network-online.target
     linkConfig.RequiredForOnline = "routable";

@@ -3,6 +3,7 @@
   imports = [ ./nextcloud.nix ./ipfs.nix ../../modules/microvm_guest.nix ];
 
   microvm.mem = 4096;
+  microvm.vcpu = 4;
 
   networking.hostName = "concordia"; # Define your hostname.
   microvm.shares = [{

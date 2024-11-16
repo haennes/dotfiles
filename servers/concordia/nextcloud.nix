@@ -50,9 +50,9 @@ in {
   #services.onlyoffice.enable = true;
   services.nextcloud = {
     enable = true;
-    hostName = "localhost"; # TODO this should maybe be set to cloud.hannses.de
+    hostName = "cloud.hannses.de";
     package = pkgs.nextcloud30;
-    #https = true;
+    https = true;
 
     home = NCdataDir;
 
