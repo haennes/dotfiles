@@ -3,7 +3,7 @@
     ./acme.nix
     ./base.nix
     ./distributed_builds.nix
-    ./fwupd.nix
+    #./fwupd.nix
     ./i18n.nix
     ./nix.nix
     ./pkgs.nix
