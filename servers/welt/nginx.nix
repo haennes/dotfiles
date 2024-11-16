@@ -50,7 +50,6 @@ in {
     fqdn = "git.hannses.de";
     target_ip = ips.vertumnus.wg0;
     target_port = ports.vertumnus.gitea.web;
-    custom_settings = { };
   })
   (create_simple_proxy_with_domain {
     fqdn = "cloud.hannses.de";
