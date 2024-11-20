@@ -2,8 +2,8 @@
   services.wlsunset = {
     enable = true;
     temperature = {
-      day = 51;
-      night = 50;
+      day = 851;
+      night = 850;
     };
     longitude = 10;
     latitude = 50;
