@@ -1,4 +1,4 @@
-{ globals, ... }: ''
+{ globals, hm-config, lib, ... }: ''
   DMENU="${globals.dmenu}"
   screenshot_dir="$HOME/.screenshots"  #TODO globals
   mkdir "$screenshot_dir"
@@ -34,7 +34,14 @@
       exit
   fi
 
+  ${lib.optionalString hm-config.services.wlsunset.enable
+  "systemctl --user stop wlsunset.service"}
   sleep $timer
+
+  hyprctl setprop active opaque true
   grimblast --notify $outputCMD $targetCMD "$screenshot_dir/$(get_timestamp).png"
+
+  ${lib.optionalString hm-config.services.wlsunset.enable
+  "systemctl --user start wlsunset.service"}
 ''
 
