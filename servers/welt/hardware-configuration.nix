@@ -2,14 +2,14 @@
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
   boot.initrd.availableKernelModules =
-    [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" ];
-  boot.kernelModules = [ "kvm-intel" ];
+    [ "ata_piix" "uhci_hcd" "xen_blkfront" "vmw_pvscsi" ];
+  boot.kernelModules = [ "nvme" ];
 
   #boot.loader.grub.enable = true;
   #boot.loader.grub.devices =  ["/efi"];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/46330877-4e0f-45b3-8a6d-9284dedf3cb1";
+    device = "/dev/disk/by-uuid/7c0c627f-f3a8-4d96-ae32-062f22a6d2af";
     fsType = "ext4";
   };
 
