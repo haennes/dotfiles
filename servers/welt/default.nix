@@ -3,8 +3,8 @@
   imports = [ ./hardware-configuration.nix ./nginx.nix ./dns.nix ];
   boot.loader = {
     grub.enable = true;
-    grub.device = "/dev/sda15";
-    grub.forceInstall = true;
+    grub.device = "/dev/sda";
+    #grub.forceInstall = true;
   };
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
