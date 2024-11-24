@@ -1,7 +1,8 @@
 #!/bin/sh
 pushd ~/.dotfiles
-git add --intent-to-add .
-sudo nixos-rebuild switch --flake .# --show-trace
+#git add --intent-to-add .
+#sudo nixos-rebuild switch --flake .# --show-trace
 #sudo nixos-rebuild switch --flake .# --show-trace --builders ""
+sudo nixos-rebuild switch --flake path://$(pwd)# --show-trace --builders ""
 hyprctl reload
 popd
