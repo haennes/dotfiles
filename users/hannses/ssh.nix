@@ -48,7 +48,7 @@ let
         this_ip.enp37s0
       else
         null; # dont generate
-      porta_prefix = if (user=="forward") then "forward_" else "";
+      porta_prefix = if (user == "forward") then "forward_" else "";
 
       wg_variants = (optionalAttrs (wg_ip != null) (ports_noports {
         inherit default_ports user localForwards base_name extraArgs;
