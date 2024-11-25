@@ -13,8 +13,13 @@
     4. run
         ```
         curl https://raw.githubusercontent.com/elitak/nixos-infect/master/nixos-infect | NIX_CHANNEL=nixos-unstable bash -x
+        curl https://raw.githubusercontent.com/elitak/nixos-infect/master/nixos-infect | NIX_CHANNEL=24.05 bash -x
         ```
-    5. test if it can reboot.
+    5. ```
+      umount /run/lock
+      mkdir -p /run/current-system/sw/bin
+    ```
+    6. test if it can reboot.
 - deus: **HOST FÜR ALLE ANDEREN**
 - tabula: **Website** Microvm inside of deus
 - syncschlawiner: **CLOUD ++ SYNCTHING** bis jetzt Proxmox VM (evtl: -> microvm)
