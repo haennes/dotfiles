@@ -51,6 +51,7 @@ in {
     };
     syncschlawiner_mkhh = { };
     tabula = { "80" = "web"; };
+    proserpina = { "80" = "esw"; };
     porta = { };
     welt = { "24" = "sshd"; };
     fons = { };

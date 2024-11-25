@@ -11,6 +11,7 @@
         "00:00:00:04" = "minerva%eth0";
         "00:00:00:05" = "vertumnus%eth0";
         "00:00:00:06" = "concordia%eth0";
+        "00:00:00:07" = "proserpina%eth0";
       };
     };
   };

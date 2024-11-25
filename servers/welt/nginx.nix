@@ -52,6 +52,11 @@ in {
     target_port = ports.vertumnus.gitea.web;
   })
   (create_simple_proxy_with_domain {
+    fqdn = "esw.hannses.de";
+    target_ip = ips.proserpina.wg0;
+    target_port = ports.proserpina.esw;
+  })
+  (create_simple_proxy_with_domain {
     fqdn = "cloud.hannses.de";
     target_ip = ips.concordia.wg0;
     #https = true;

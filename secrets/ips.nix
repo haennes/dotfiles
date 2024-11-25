@@ -38,6 +38,7 @@
         "17" = "yoga%wg0";
 
         "18" = "concordia%wg0";
+        "19" = "proserpina%wg0";
       };
 
       "3" = {
@@ -53,6 +54,7 @@
         "14" = "minerva%br0";
         "15" = "vertumnus%br0";
         "16" = "concordia%br0";
+        "17" = "proserpina%br0";
       };
 
     };

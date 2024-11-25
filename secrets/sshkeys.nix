@@ -69,6 +69,8 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF0P63Gtr6J4R5khmopYvpFX0CRVBpGk6pM/lHdSE8WY root@vertumnus";
   root_concordia =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGrIkgGfwHCuZl+9aEmwnOb3bU+emwKEctnuFvD9/neY hannses@yoga";
+  root_proserpina =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMl1TWbMf79dh7lf0AUCix4TkqxyQaYWHZcBPPyuBHnw root@proserpina";
 
   forward =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOdPOsfBr/WM2R0GnDyeenFq2OB8rgs1P09BATvxbOl3 hannses@yoga";
