@@ -110,6 +110,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-topology.url = "github:oddlama/nix-topology";
+    #esw-machines.url = "git+file:///home/hannses/programming/esw-machines";
+    esw-machines.url = "github:haennes/esw-machines";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, deploy-rs, rust-overlay, nur
