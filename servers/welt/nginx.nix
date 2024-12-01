@@ -50,6 +50,9 @@ in {
     fqdn = "git.hannses.de";
     target_ip = ips.vertumnus.wg0;
     target_port = ports.vertumnus.gitea.web;
+    custom_settings = {
+      extraConfig = "client_max_body_size 20G;"; # lfs
+    };
   })
   (create_simple_proxy_with_domain {
     fqdn = "esw.hannses.de";

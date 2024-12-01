@@ -35,7 +35,8 @@ in {
       server = rec {
         DOMAIN = "git.hannses.de";
         HTTP_PORT = sports.web;
-        SSH_DOMAIN = "hannses.de";
+        SSH_DOMAIN = DOMAIN;
+        ROOT_URL = "https://git.hannses.de";
       };
       "repository.pull-request".DEFAULT_MERGE_STYLE = "rebase";
     };
