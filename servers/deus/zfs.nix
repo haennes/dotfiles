@@ -6,7 +6,7 @@ let
     bashOptions = [ ]; # unbound variable $1
     text = ''
       date=$(date '+%Y-%m-%d')
-      ${pkgs.zfs}/bin/zfs snapshot main_pool@$date
+      ${pkgs.zfs}/bin/zfs snapshot -r main_pool@$date
     '';
   };
 
