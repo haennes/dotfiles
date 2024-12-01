@@ -15,6 +15,7 @@
     ./virtualization.nix
     ../tasks.nix
     ./pg_dev.nix
+    ./chromecast.nix
   ];
 
 }
