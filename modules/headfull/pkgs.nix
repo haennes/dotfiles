@@ -43,7 +43,6 @@
     btop # process and system monitor
     unzip
     cifs-utils
-    yubikey-manager-qt
     wl-clipboard # clipboard
 
     #tui
