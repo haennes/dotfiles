@@ -60,6 +60,7 @@
     python3
     ruff # python linter
     gcc # c compiler
+    gnumake
     valgrind # c heap debugging
 
     #Gameing
