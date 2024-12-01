@@ -1,2 +1,2 @@
-nixos-rebuild build --flake .#$2
+nixos-rebuild build --flake .#$2 &&
 nix-diff result $1 --color=always | less
