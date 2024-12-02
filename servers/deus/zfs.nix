@@ -5,7 +5,7 @@ let
     checkPhase = ":"; # too many failed checks
     bashOptions = [ ]; # unbound variable $1
     text = ''
-      date=$(date '+%Y-%m-%d')
+      date=$(date '+%Y-%m-%d-%H-%M-%S')
       ${pkgs.zfs}/bin/zfs snapshot -r main_pool@$date
     '';
   };
