@@ -18,7 +18,7 @@
         }
         {
           name = "nix";
-          formatter = { command = "nixpkgs-fmt"; };
+          formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
           auto-format = true;
         }
         {
@@ -35,6 +35,13 @@
       ];
     };
 
-    settings = { theme = "material_deep_ocean"; };
+    settings = {
+      theme = "material_deep_ocean";
+      editor.cursor-shape = {
+        normal = "block";
+        insert = "bar";
+        select = "block";
+      };
+    };
   };
 }
