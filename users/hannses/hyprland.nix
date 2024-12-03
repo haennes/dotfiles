@@ -31,7 +31,7 @@
 
       input = {
         kb_layout = "de,us,eu";
-        kb_options = "caps:escape_shifted_capslock";
+        kb_options = "caps:escape";
 
         follow_mouse = 1;
         touchpad = {
