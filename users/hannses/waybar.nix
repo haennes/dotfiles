@@ -24,6 +24,7 @@ let
       "cpu"
       #"custom/notification"
       "memory"
+      "disk"
       "battery"
       "tray"
     ];
@@ -152,6 +153,14 @@ let
       format-ru = "русский";
     };
 
+    disk = {
+      format = "🖫 {percentage_free}%";
+      format-alt = "🖫 {free}";
+      interval = 30;
+      max-length = 30;
+      tooltip = true;
+      tooltip-format = "🖫 {free}/{percentage_free}%";
+    };
     memory = {
       format = " {percentage}%";
       format-alt = " {used}GB";
@@ -255,6 +264,7 @@ let
 
     #cpu,
     #memory,
+    #disk,
     #custom-power,
     #clock,
     #workspaces,
