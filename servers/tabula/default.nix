@@ -12,6 +12,7 @@
     dataDir = "/persist";
     user = "nginx";
   };
+  microvm.mem = 256;
   networking.hostName = "tabula";
 
   services.wireguard-wrapper.enable = true;
