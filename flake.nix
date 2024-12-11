@@ -204,8 +204,13 @@
               builtins.elem (lib.getName pkg) [
                 "obsidian"
                 "lutris"
-                "steam" # lutris
-                "steam-unwrapped" # lutris
+                "steam"
+                "steam-original"
+                "steam-unwrapped"
+                "steam-run"
+                "corefonts-1"
+                "corefonts"
+                "vista-fonts"
                 "clion"
               ];
           };
