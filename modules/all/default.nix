@@ -3,6 +3,7 @@
     ./acme.nix
     ./base.nix
     ./distributed_builds.nix
+    ./crosscompile.nix
     #./fwupd.nix
     ./i18n.nix
     ./nix.nix

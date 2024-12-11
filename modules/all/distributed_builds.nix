@@ -7,7 +7,8 @@
         protocol = "ssh-ng";
         sshUser = "forward";
         sshKey = "/home/hannses/.ssh/id_ed25519_forward";
-        system = "x86_64-linux";
+        systems = [ "x86_64-linux" ]
+          ++ config.boot.binfmt.emulatedSystems; # TODO this is somewhat a coincidence
         supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
         maxJobs = 16;
       }];
