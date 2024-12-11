@@ -3,7 +3,7 @@ let
   home = config.home.homeDirectory;
   dotfiles_path = "${home}/.dotfiles";
 in {
-  home.packages = with pkgs; [ nom eza tokei ];
+  home.packages = with pkgs; [ nix-output-monitor eza tokei ];
   programs.zsh = {
     enable = true;
     shellAliases = let
