@@ -30,7 +30,7 @@ in {
   nix.buildMachines = [{
     hostName = "localhost";
     protocol = null;
-    system = "x86_64-linux";
+    systems = [ "x86_64-linux" ] ++ config.boot.binfmt.emulatedSystems;
     supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
     maxJobs = 16;
   }];
