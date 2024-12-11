@@ -5,7 +5,7 @@ in {
     ../../secrets/hydra/users/hannses.age;
   networking.firewall.interfaces.wg0.allowedTCPPorts = [ port ];
   services.hydra = rec {
-    enable = false;
+    enable = true;
     hydraURL = "http://${config.ips.ips.ips.default.deus.wg0}:${toString port}";
     inherit port;
     notificationSender = "hydra@localhost";
@@ -15,6 +15,7 @@ in {
 
   };
 
+  #TODO make this a upstream patch. this fails if this is run when hydra get enabled for the first time
   system.activationScripts.createHydraUser =
     lib.mkIf config.services.hydra.enable {
       text = ''
