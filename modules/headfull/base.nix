@@ -9,7 +9,7 @@ in {
     if (lib.any (v: v.fsType == "zfs") (lib.attrValues config.fileSystems)) then
       config.boot.zfs.package.latestCompatibleLinuxPackages
     else
-      pkgs.linuxPackages_latest;
+      pkgs.linuxPackages;
   services.logind.powerKey = "suspend";
 
   services.udisks2.enable = true;
