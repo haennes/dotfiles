@@ -9,6 +9,7 @@
     ./local_nginx.nix
     ./mail.nix
     ./minecraft.nix
+    ./steam.nix
     ./pkgs.nix
     ./power.nix
     ./users.nix
