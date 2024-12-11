@@ -188,7 +188,7 @@
       supportedSystems = [ "x86_64-linux" ];
 
       sharedOverlays = [
-        nur.overlay
+        nur.overlays.default
         rust-overlay.overlays.default
         nix-yazi-plugins.overlays.default
         nix-update-inputs.overlays.default
