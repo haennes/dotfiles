@@ -64,7 +64,9 @@ in ''
   kill
   killall
   fix
-  keyboard layout\
+  keyboard layout
+  rescue sh alacritty
+  rescue sh kitty\
   "
 
   choice=$(echo -e "$menu" | ''${DMENU}) || exit
@@ -207,6 +209,13 @@ in ''
       ;;
   "keyboard layout")
       ${scripts.keyboard_layout}
+      ;;
+
+  "rescue sh alacritty")
+      ${pkgs.alacritty}/bin/alacritty -e /bin/sh
+      ;;
+  "rescue sh kitty")
+      ${pkgs.kitty}/bin/kitty /bin/sh
       ;;
   *)
       echo "ERROR: choice not in list"
