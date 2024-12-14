@@ -60,7 +60,9 @@
     ruff # python linter
     gcc # c compiler
     gnumake
+    cmake
     valgrind # c heap debugging
+    jq # pretty json
 
     #Gameing
     wineWowPackages.waylandFull
