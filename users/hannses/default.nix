@@ -9,6 +9,7 @@
     ./waybar.nix
     ./cliphist.nix
     ./zsh.nix
+    ./carapace.nix
     ./atuin.nix
     ./dunst.nix
     ./rofi.nix
