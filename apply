@@ -3,7 +3,9 @@ pushd ~/.dotfiles
 #git add --intent-to-add .
 #sudo nixos-rebuild switch --flake .# --show-trace
 #sudo nixos-rebuild switch --flake path://$(pwd)# --show-trace --builders ""
-sudo nixos-rebuild switch --flake path://$(pwd)# --show-trace --builders "" --log-format internal-json -v |& nom --json
+sudo -v
+sudo nixos-rebuild switch --flake .# --show-trace --builders "" --log-format internal-json -v |& nom --json
+#sudo nixos-rebuild switch --flake path://$(pwd)# --show-trace --builders "" --log-format internal-json -v
 #sudo nixos-rebuild switch --flake path://$(pwd)# --show-trace
 hyprctl reload
 popd
