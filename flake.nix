@@ -5,6 +5,7 @@
     nixpkgs-stable.url = "nixpkgs/nixos-24.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     futils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
 
     home-manager-option-search = {
       url = "github:mipmip/home-manager-option-search";
@@ -70,9 +71,11 @@
     };
 
     nix-yazi-plugins = {
-      url = "github:haennes/nix-yazi-plugins";
+      #url = "github:haennes/nix-yazi-plugins";
       #url = "github:lordkekz/nix-yazi-plugins";
       #url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins/";
+      url =
+        "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=dc26c5539c8a064a1f128635b2631ffd3e533a59";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -112,12 +115,13 @@
     nix-topology.url = "github:oddlama/nix-topology";
     #esw-machines.url = "git+file:///home/hannses/programming/esw-machines";
     esw-machines.url = "github:haennes/esw-machines";
+    prost.url = "git+file:///home/hannses/programming/PRoST";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, deploy-rs, rust-overlay, nur
     , nix-yazi-plugins, futils, wireguard-wrapper, wg-friendly-peer-names
     , syncthing-wrapper, tasks_md, nix-update-inputs, signal-whisper, IPorts
-    , nix-topology, ... }:
+    , nix-topology, raspberry-pi-nix, ... }:
     let
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
       lib = nixpkgs.lib.extend (self: super: {
@@ -185,7 +189,7 @@
 
     in futils.lib.mkFlake {
       inherit self inputs;
-      supportedSystems = [ "x86_64-linux" ];
+      supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
 
       sharedOverlays = [
         nur.overlays.default
@@ -231,6 +235,7 @@
             })
           ];
         };
+        pi = { input = nixpkgs; };
       };
 
       hostDefaults = rec {
@@ -268,6 +273,7 @@
       };
       hosts = {
         deus = { modules = [ (server "deus") microvm_host ]; };
+        dea = { modules = [ (server "dea") microvm_host ]; };
         welt = {
           modules = [ (server "welt") inputs.nixos-dns.nixosModules.dns ];
         };
@@ -280,7 +286,27 @@
         #hermes = { modules = [ (server "hermes") ]; };
         #fons = { modules = [ (microvm "fons") ]; };
         #grapheum = { modules = [ (server "grapheum") ]; };
-        yoga = { modules = [ (client "yoga") microvm_host ]; };
+        yoga = {
+          modules =
+            [ (client "yoga") microvm_host inputs.prost.nixosModules.default ];
+        };
+        fabulinus = {
+          system = "aarch64-linux";
+          modules = [
+            raspberry-pi-nix.nixosModules.raspberry-pi
+            raspberry-pi-nix.nixosModules.sd-image
+            (server "fabulinus")
+          ];
+        };
+
+        matemate = { # deutch englisch
+          system = "aarch64-linux";
+          modules = [
+            raspberry-pi-nix.nixosModules.raspberry-pi
+            raspberry-pi-nix.nixosModules.sd-image
+            ./servers/matemate
+          ];
+        };
         thinkpad = { modules = [ (client "thinkpad") ]; };
         thinknew = { modules = [ (client "thinknew") ]; };
       };

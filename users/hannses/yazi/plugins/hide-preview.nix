@@ -6,7 +6,7 @@
     manager = {
       prepend_keymap = {
         on = [ "T" ];
-        run = "plugin --sync hide-preview";
+        run = "plugin hide-preview";
         desc = "Hide or show preview";
       };
     };

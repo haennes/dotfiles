@@ -6,7 +6,7 @@
     manager = {
       prepend_keymap = {
         on = [ "R" ];
-        run = "plugin --sync max-preview";
+        run = "plugin max-preview";
         desc = "Maximize or restore preview";
       };
     };

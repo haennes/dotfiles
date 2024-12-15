@@ -481,11 +481,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1710146030,
-        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
         "type": "github"
       },
       "original": {
@@ -1139,17 +1139,18 @@
         "systems": "systems_9"
       },
       "locked": {
-        "lastModified": 1724616035,
-        "narHash": "sha256-aS/m5J1wURbL+BPmiaRkICnW2xb86CaeS09qjHZUQX8=",
-        "owner": "haennes",
-        "repo": "nix-yazi-plugins",
-        "rev": "b1b29fee9b1118a75730c80479f6f146d7a5c7af",
-        "type": "github"
+        "lastModified": 1734216639,
+        "narHash": "sha256-SCa+e+Iw923KmC7UJR/v61GMfTILucgCpjxbsbjGBNg=",
+        "ref": "dc26c5539c8a064a1f128635b2631ffd3e533a59",
+        "rev": "dc26c5539c8a064a1f128635b2631ffd3e533a59",
+        "revCount": 33,
+        "type": "git",
+        "url": "file:///home/hannses/programming/nix/nix-yazi-plugins"
       },
       "original": {
-        "owner": "haennes",
-        "repo": "nix-yazi-plugins",
-        "type": "github"
+        "ref": "dc26c5539c8a064a1f128635b2631ffd3e533a59",
+        "type": "git",
+        "url": "file:///home/hannses/programming/nix/nix-yazi-plugins"
       }
     },
     "nixlib": {
@@ -1418,11 +1419,11 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1733392399,
-        "narHash": "sha256-kEsTJTUQfQFIJOcLYFt/RvNxIK653ZkTBIs4DG+cBns=",
+        "lastModified": 1733940404,
+        "narHash": "sha256-Pj39hSoUA86ZePPF/UXiYHHM7hMIkios8TYG29kQT4g=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d0797a04b81caeae77bcff10a9dde78bc17f5661",
+        "rev": "5d67ea6b4b63378b9c13be21e2ec9d1afc921713",
         "type": "github"
       },
       "original": {
@@ -1592,14 +1593,17 @@
         "nixpkgs": "nixpkgs_11"
       },
       "locked": {
-        "lastModified": 1733694600,
-        "narHash": "sha256-3+Hy9rWCoxeQoYT04iVWn6lA0aeRu9qeRrrkF3KanTE=",
-        "path": "/home/hannses/programming/PRoST",
-        "type": "path"
+        "lastModified": 1733674337,
+        "narHash": "sha256-Ii4HwUZXDpkak9gJTPEc1VfHgOKunPV1ufbLKuYGEgU=",
+        "ref": "refs/heads/main",
+        "rev": "a5e02d9623b425ad96d8a05383bba072088676eb",
+        "revCount": 232,
+        "type": "git",
+        "url": "file:///home/hannses/programming/PRoST"
       },
       "original": {
-        "path": "/home/hannses/programming/PRoST",
-        "type": "path"
+        "type": "git",
+        "url": "file:///home/hannses/programming/PRoST"
       }
     },
     "purescript-overlay": {
