@@ -74,8 +74,7 @@
       #url = "github:haennes/nix-yazi-plugins";
       #url = "github:lordkekz/nix-yazi-plugins";
       #url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins/";
-      url =
-        "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=dc26c5539c8a064a1f128635b2631ffd3e533a59";
+      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

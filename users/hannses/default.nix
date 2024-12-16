@@ -20,7 +20,7 @@
     ./codium.nix
     ./vim.nix
     ./helix.nix
-    ./yazi
+    ./yazi.nix
     ./zathura.nix
     ./firefox
     ./rss.nix

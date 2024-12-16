@@ -481,11 +481,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
         "type": "github"
       },
       "original": {
@@ -1139,16 +1139,15 @@
         "systems": "systems_9"
       },
       "locked": {
-        "lastModified": 1734216639,
-        "narHash": "sha256-SCa+e+Iw923KmC7UJR/v61GMfTILucgCpjxbsbjGBNg=",
-        "ref": "dc26c5539c8a064a1f128635b2631ffd3e533a59",
-        "rev": "dc26c5539c8a064a1f128635b2631ffd3e533a59",
-        "revCount": 33,
+        "lastModified": 1734363675,
+        "narHash": "sha256-E2OqY9K8PU92JlCvo6DKBWOk5aFfjO8ttlILYAzxQ5g=",
+        "ref": "refs/heads/main",
+        "rev": "ac57edc9bb8f87420963475a236afa9fb1c18115",
+        "revCount": 53,
         "type": "git",
         "url": "file:///home/hannses/programming/nix/nix-yazi-plugins"
       },
       "original": {
-        "ref": "dc26c5539c8a064a1f128635b2631ffd3e533a59",
         "type": "git",
         "url": "file:///home/hannses/programming/nix/nix-yazi-plugins"
       }
