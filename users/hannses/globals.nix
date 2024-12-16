@@ -10,4 +10,5 @@
   pdf = "zathura";
   docs = "libreoffice-fresh";
   archive = "p7zip";
+  filemanager = "yazi";
 }

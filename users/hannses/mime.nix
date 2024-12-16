@@ -6,6 +6,7 @@
       # https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
 
       # image
+      "inode/directory" = [ "${globals.filemanager}.desktop" ];
       "image/png" = [ "${globals.image}.desktop" ];
       "image/jpeg" = [ "${globals.image}.desktop" ];
       "image/webp" = [ "${globals.image}.desktop" ];
