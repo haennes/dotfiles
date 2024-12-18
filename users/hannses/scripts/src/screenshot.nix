@@ -43,7 +43,7 @@
   ''}
   sleep $timer
 
-  hyprctl setprop active opaque true
+  hyprctl dispatch setprop active opaque true
   grimblast --notify $outputCMD $targetCMD "$screenshot_dir/$(get_timestamp).png"
 
   ${lib.optionalString hm-config.services.wlsunset.enable ''

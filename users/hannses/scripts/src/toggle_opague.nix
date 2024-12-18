@@ -1,3 +1,3 @@
 { ... }: ''
-  hyprctl setprop active opaque toggle
+  hyprctl dispatch setprop active opaque toggle
 ''
