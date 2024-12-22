@@ -119,7 +119,6 @@
         "CTRL, space, exec, $runprompt"
         "$mod SHIFT, L, exec, ${scripts.lock}"
         "$mod, V, exec, ${scripts.clipboard}"
-        "$mod SHIFT, S, exec, grim"
 
         # kill window
         "$mod, Q, killactive"
@@ -138,6 +137,9 @@
         "$mod, J, movefocus, d"
 
         # workspaces
+        "$mod, o, workspace, e+1"
+        "$mod, u, workspace, e-1"
+
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
         "$mod, 3, workspace, 3"
