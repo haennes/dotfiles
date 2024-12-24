@@ -1,7 +1,8 @@
 #!/bin/sh
 pushd ~/.dotfiles
 git add .
-nixos-rebuild build --flake .# --show-trace
+nixos-rebuild build --flake .?submodules=1# --show-trace --builders "" --log-format internal-json -v |& nom --json
+#nixos-rebuild build --flake .?submodules=1# --show-trace --log-format internal-json -v |& nom --json
 git restore --staged .
-#sudo nixos-rebuild switch --flake .# 
+#sudo nixos-rebuild switch --flake .#
 popd
