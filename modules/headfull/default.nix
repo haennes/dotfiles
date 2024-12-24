@@ -16,6 +16,7 @@
     ./virtualization.nix
     ../tasks.nix
     ./pg_dev.nix
+    ./yubikey.nix
     ./chromecast.nix
     ./printing.nix
   ];

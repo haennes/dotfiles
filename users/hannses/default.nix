@@ -69,7 +69,6 @@
     lapce
     jetbrains.clion # fix debugging c in vim at some point
     musescore
-    yubikey-manager-qt
     lorien
     platformio
     rust-analyzer
