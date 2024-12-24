@@ -5,10 +5,10 @@ let
   user_group = config.services.freshrss.user;
 in {
 
-  imports = [ ../../modules/microvm_guest.nix ];
+  imports = [ ../../../modules/microvm_guest.nix ];
 
   age.secrets."freshrss/password_hannses.age" = {
-    file = ../../secrets/freshrss/password_hannses.age;
+    file = ../../../secrets/freshrss/password_hannses.age;
     owner = config.services.freshrss.user;
   };
 

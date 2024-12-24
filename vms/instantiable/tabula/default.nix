@@ -1,7 +1,8 @@
+hostname:
 { config, ... }: {
   imports = [
     #../proxmox.nix
-    ../../modules/microvm_guest.nix
+    ../../../modules/microvm_guest.nix
     ./nginx.nix
   ];
 
@@ -13,7 +14,7 @@
     user = "nginx";
   };
   microvm.mem = 256;
-  networking.hostName = "tabula";
+  networking.hostName = hostname;
 
   services.wireguard-wrapper.enable = true;
 

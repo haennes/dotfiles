@@ -69,17 +69,6 @@
     };
   };
 
-  mkVMS = { names, specialArgs }:
-    let inherit (lib) listToAttrs map;
-    in listToAttrs (map (name: {
-      inherit name;
-      value = {
-        inherit specialArgs;
-        config = import ../servers/${name};
-        pkgs = null;
-      };
-    }) names);
-
   mkDeploy = { self, exclude }:
     #https://github.com/Yash-Garg/dotfiles/blob/stable/lib/deploy/default.nix
     let

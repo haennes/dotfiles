@@ -16,18 +16,6 @@
     efi.canTouchEfiVariables = true;
   };
 
-  microvm.vms = lib.my.mkVMS {
-    names = [
-      "tabula"
-      "fons"
-      "historia"
-      "minerva"
-      "vertumnus"
-      "concordia"
-      "proserpina"
-    ];
-    inherit specialArgs;
-  };
   services.getty.autologinUser = "root";
 
   #services.syncthing_wrapper = { enable = true; };

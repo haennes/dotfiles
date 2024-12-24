@@ -15,6 +15,8 @@
     ./wireguard-wrapper.nix
     ./ports_cli.nix
     ./ips_cli.nix
+    #./vms.nix
+    #./microvms.nix
   ];
 
   options = { nextcloud_max_size = lib.mkOption { }; };

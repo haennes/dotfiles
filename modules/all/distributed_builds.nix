@@ -1,9 +1,9 @@
 { config, lib, ... }: {
   config = lib.mkIf (!config.is_microvm
     && config.services.wireguard-wrapper.enable && config.networking.hostName
-    != "deus") {
+    != "deus" && config.networking.hostName != "dea") {
       nix.buildMachines = [{
-        hostName = config.ips.ips.ips.default.deus.wg0;
+        hostName = config.ips.ips.ips.default.dea.wg0;
         protocol = "ssh-ng";
         sshUser = "forward";
         sshKey = "/home/hannses/.ssh/id_ed25519_forward";

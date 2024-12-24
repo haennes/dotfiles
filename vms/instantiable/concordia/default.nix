@@ -1,6 +1,6 @@
 { config, lib, ... }: {
   system.stateVersion = "23.11";
-  imports = [ ./nextcloud.nix ./ipfs.nix ../../modules/microvm_guest.nix ];
+  imports = [ ./nextcloud.nix ./ipfs.nix ../../../modules/microvm_guest.nix ];
 
   microvm.mem = 4096;
   microvm.vcpu = 4;

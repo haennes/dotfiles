@@ -28,8 +28,10 @@ in {
       thinkpad = { inherit (ids) thinkpad; };
       concordia = { inherit (ids) concordia; };
       all_handys = { inherit (ids) handyHannes handyMum handyDad tablet; };
-      servers = { inherit (ids) syncschlawiner concordia; };
-      all_servers = servers // { inherit (ids) tabula fons; };
+      servers = { inherit (ids) syncschlawiner concordia dea; };
+      all_servers = servers // {
+        inherit (ids) tabula tabula_1 tabula_3 fons fabulinus;
+      };
 
       #uni = { inherit stefan_handy sebastian_s_mac sebastian_r_laptop; };
     };
@@ -92,8 +94,14 @@ in {
           DirUsers = [ "dad" ];
         };
         "website" = {
-          devices = [ (all_pcs) "tabula" ];
+          devices = [ (all_pcs) "tabula" tabula_1 tabula_3 ];
           paths.tabula = "/persist/website";
+          paths.tabula_1 = "/persist/website";
+          paths.tabula_3 = "/persist/website";
+        };
+        "esw-machines" = {
+          devices = [ fabulinus ];
+          paths = { fabulinus = "/persist/esw2"; };
         };
       };
   };

@@ -1,7 +1,7 @@
 { ... }: {
 
   imports = [
-    ../proxmox.nix
+    #../proxmox.nix
     #    ./nginx.nix
   ];
 

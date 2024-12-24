@@ -1,21 +1,17 @@
-{ config, pkgs, inputs, ... }: {
-  imports = [
-    ../../modules/microvm_guest.nix
-    inputs.esw-machines.nixosModules.default
-  ];
-
-  networking.hostName = "proserpina";
-
-  services.wireguard-wrapper.enable = true;
-
-  system.stateVersion = "23.11";
-
+{ config, ... }: {
   networking.firewall.allowedTCPPorts = [ config.ports.ports.curr_ports.esw ];
 
   system.activationScripts.ensure-syncthing-dir = ''
     touch -p /persist/esw2
     chown ${config.services.esw-machines.user}:${config.services.esw-machines.user} /persist/website
   '';
+
+  services.syncthing_wrapper.enable = true;
+
+  services.syncthing = {
+    dataDir = "/persist";
+    user = config.services.esw-machines.user;
+  };
 
   services.esw-machines = {
     enable = true;

@@ -40,11 +40,25 @@ in {
             proxy_pass ssh-gitea;
         }
       '';
+      upstreams = {
+        tabula = {
+          servers = {
+            "${ips.tabula_1.wg0}:${toString ports.tabula_1.web}" = { };
+            #"${ips.tabula_2.wg0}:${toString ports.tabula_2.web}" = { };
+            "${ips.tabula_3.wg0}:${toString ports.tabula_3.web}" = { };
+          };
+        };
+      };
     };
   }
   (create_simple_proxy_with_domain {
     fqdn = "hannses.de";
-    target_ip = ips.tabula.wg0;
+    target_ip = "tabula";
+    #target_ip = "${ips.tabula_3.wg0}
+    #target_port = ports.tabula_3.web;
+    custom_locations = {
+      #extraConfig = "proxy_set_header Host hannses.de;"; # lfs
+    };
   })
   (create_simple_proxy_with_domain {
     fqdn = "git.hannses.de";

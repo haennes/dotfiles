@@ -2,7 +2,7 @@
 let ips = config.ips.ips.ips.default;
 in {
 
-  imports = [ ../../modules/microvm_guest.nix ];
+  imports = [ ../../../modules/microvm_guest.nix ];
 
   services.wireguard-wrapper.enable = true;
 

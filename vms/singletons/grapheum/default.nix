@@ -1,6 +1,8 @@
 { ... }: {
   system.stateVersion = "23.11";
-  imports = [ ../proxmox.nix ];
+  imports = [
+  #../proxmox.nix
+  ];
   services.onlyoffice.enable = true;
 
   networking.hostName = "grapheum"; # Define your hostname.

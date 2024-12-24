@@ -10,7 +10,7 @@ in {
 
   age.secrets = {
     nextcloud_adminpass = {
-      file = ../../secrets/nextcloud/adminpass.age;
+      file = ../../../secrets/nextcloud/adminpass.age;
       inherit group owner;
     };
   };

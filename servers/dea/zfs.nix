@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   zfssnap = pkgs.writeShellApplication {
     name = "zfssnap";
@@ -11,7 +11,7 @@ let
   };
 
 in {
-  networking.hostId = "d395beb7";
+  networking.hostId = "cd0745fd";
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.forceImportRoot = false;
 
@@ -23,12 +23,15 @@ in {
       fsType = "zfs";
       neededForBoot = false;
     };
-  }) [ "data" "website" "ankisync" "kasmweb" "git" ]) // {
-    "persistance" = {
-      device = "main_pool/persistant";
-      fsType = "zfs";
-    };
-  });
+  }) [ "data" "website" "ankisync" "kasmweb" "git" "persistant" ]));
 
   environment.systemPackages = [ zfssnap ];
+
+  services.syncthing_wrapper = { enable = true; };
+
+  system.activationScripts.ensure-syncthing-dir = ''
+    mkdir -p /data
+    chown -R ${config.services.syncthing.user}:${config.services.syncthing.user} /data
+  '';
+  services.syncthing = { dataDir = "/data"; };
 }

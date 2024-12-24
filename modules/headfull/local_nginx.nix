@@ -12,7 +12,7 @@ let
   linking = {
     "atuin" = [ ips.historia.wg0 ports.historia.atuin ];
     "rss" = [ ips.fons.wg0 ];
-    "hydra" = [ ips.deus.wg0 ports.deus.hydra ];
+    "hydra" = [ ips.dea.wg0 ports.dea.hydra ];
   };
   all_linking = linking // (mapAttrs (_: v: [ "localhost" v ]) local_linking);
   write_index_with_file_ref = path:

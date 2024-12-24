@@ -1,5 +1,7 @@
 { config, lib, all_modules, server_modules, microvm_modules_guest, ... }:
-let ips = config.ips.ips.ips.default;
+let
+  ips = config.ips.ips.ips.default;
+  hostname = config.networking.hostName;
 in {
   imports = all_modules ++ server_modules ++ microvm_modules_guest;
   is_microvm = true;
@@ -8,15 +10,15 @@ in {
     #...add additional MicroVM configuration here
     interfaces = [{
       type = "tap";
-      id = "vm-${config.networking.hostName}";
-      mac = config.macs.macs.vm-host.${config.networking.hostName}.eth0;
+      id = "vm-${hostname}";
+      mac = config.macs.macs.vm-host.${hostname}.eth0;
     }];
 
     shares = [
       {
-        source = "/persistant/microvms/${config.networking.hostName}/";
+        source = "/persistant/microvms/${hostname}/";
         mountPoint = "/persist";
-        tag = "persist-${config.networking.hostName}";
+        tag = "persist-${hostname}";
         proto = "virtiofs";
       }
       {
@@ -42,7 +44,7 @@ in {
       }
     ];
   };
-  age.identityPaths = [ "/persist/root_user_key" ];
+  age.identityPaths = [ "/persist/age_key" ];
 
   networking.useNetworkd = false;
   systemd.network.enable = true;

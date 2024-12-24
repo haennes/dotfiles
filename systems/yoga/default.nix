@@ -2,9 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, specialArgs, lib, ... }: {
+{ config, specialArgs, lib, ... }:
+let
+  hostname = "tabula_3";
+  hostname_2 = "tabula_1";
+in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./prost.nix
   ];
 
   # Bootloader.
@@ -31,8 +36,48 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-  microvm.vms = lib.my.mkVMS {
-    names = [ ];
-    inherit specialArgs;
+
+  microvm.vms = {
+    tabula_3 = {
+      inherit specialArgs;
+      config = ../../vms/instances/tabula_3.nix;
+      pkgs = null;
+    };
+    tabula_1 = {
+      inherit specialArgs;
+      config = ../../vms/instances/tabula_1.nix;
+      pkgs = null;
+    };
+  };
+
+  age.secrets."sshkeys/${hostname}/age_key" = {
+    path = "/persistant/microvms/${hostname}/age_key";
+    file = ../../secrets/sshkeys/${hostname}/age_key.age;
+    symlink = false;
+  };
+  age.secrets."sshkeys/${hostname}/ssh_host_ed25519_key" = {
+    path = "/persistant/microvms/${hostname}/ssh/ssh_host_ed25519_key";
+    file = ../../secrets/sshkeys/${hostname}/ssh_host_ed25519_key.age;
+    symlink = false;
+  };
+  age.secrets."sshkeys/${hostname}/ssh_host_rsa_key" = {
+    path = "/persistant/microvms/${hostname}/ssh/ssh_host_rsa_key";
+    file = ../../secrets/sshkeys/${hostname}/ssh_host_rsa_key.age;
+    symlink = false;
+  };
+  age.secrets."sshkeys/${hostname_2}/age_key" = {
+    path = "/persistant/microvms/${hostname_2}/age_key";
+    file = ../../secrets/sshkeys/${hostname_2}/age_key.age;
+    symlink = false;
+  };
+  age.secrets."sshkeys/${hostname_2}/ssh_host_ed25519_key" = {
+    path = "/persistant/microvms/${hostname_2}/ssh/ssh_host_ed25519_key";
+    file = ../../secrets/sshkeys/${hostname_2}/ssh_host_ed25519_key.age;
+    symlink = false;
+  };
+  age.secrets."sshkeys/${hostname_2}/ssh_host_rsa_key" = {
+    path = "/persistant/microvms/${hostname_2}/ssh/ssh_host_rsa_key";
+    file = ../../secrets/sshkeys/${hostname_2}/ssh_host_rsa_key.age;
+    symlink = false;
   };
 }

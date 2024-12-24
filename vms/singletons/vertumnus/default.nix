@@ -7,7 +7,7 @@ let
   dataDir = "/git";
 in {
 
-  imports = [ ../../modules/microvm_guest.nix ];
+  imports = [ ../../../modules/microvm_guest.nix ];
 
   microvm.shares = [{
     source = "/git";

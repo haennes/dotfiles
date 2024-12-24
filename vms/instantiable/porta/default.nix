@@ -1,7 +1,7 @@
 { ... }: {
   system.stateVersion = "23.11";
 
-  imports = [ ../proxmox.nix ];
+  #imports = [ ../proxmox.nix ];
 
   networking.hostName = "porta"; # Define your hostname.
 

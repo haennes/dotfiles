@@ -2,7 +2,7 @@
 with lib; {
 
   age.secrets.nextcloud_adminpass = {
-    file = ../../secrets/nextcloud/adminpass.age;
+    file = ../../../secrets/nextcloud/adminpass.age;
     owner = "nextcloud";
     group = "nextcloud";
   };

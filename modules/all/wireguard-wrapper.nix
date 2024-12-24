@@ -19,6 +19,9 @@ in {
       kind = lib.mkDefault "wireguard"; # use "normal" backend by default
       connections = [
         [ "tabula" "welt" ]
+        [ "tabula_1" "welt" ]
+        [ "tabula_3" "welt" ]
+        [ "fabulinus" "welt" ]
         [ "porta" "welt" ]
         [ "syncschlawiner" "welt" ]
         [ "syncschlawiner_mkhh" "welt" ]
@@ -26,6 +29,7 @@ in {
         [ "thinkpad" "welt" ]
         [ "yoga" "welt" ]
         [ "deus" "welt" ]
+        [ "dea" "welt" ]
         [ "historia" "welt" ]
         [ "fons" "welt" ]
         [ "minerva" "welt" ]
@@ -49,9 +53,13 @@ in {
         "syncschlawiner"
         "syncschlawiner_mkhh"
         "tabula"
+        "tabula_1"
+        "tabula_3"
+        "fabulinus"
         "historia"
         "thinkpad"
         "deus"
+        "dea"
         "yoga"
         "handy_hannses"
         "fons"
