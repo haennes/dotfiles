@@ -276,8 +276,8 @@
         welt = {
           modules = [ (server "welt") inputs.nixos-dns.nixosModules.dns ];
         };
-        porta = { modules = [ (server "porta") ]; };
-        syncschlawiner = { modules = [ (server "syncschlawiner") ]; };
+        #porta = { modules = [ (server "porta") ]; };
+        #syncschlawiner = { modules = [ (server "syncschlawiner") ]; };
         #syncschlawiner_mkhh = { modules = [ (server "syncschlawiner_mkhh") ]; };
         #tabula = { modules = [ (server "tabula") ]; };
         #tabula = { modules = [ (microvm "tabula") ]; };
