@@ -72,7 +72,7 @@
             enable = true;
             settings.formatting.command = [ "nix" "fmt" "--" "--" ];
           };
-          #typst_lsp.enable = true;
+          tinymist.enable = true;
 
           clangd.enable = true;
           rust_analyzer = {
