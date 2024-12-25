@@ -196,6 +196,19 @@
         nix-yazi-plugins.overlays.default
         nix-update-inputs.overlays.default
         signal-whisper.overlays.default
+        (final: prev: {
+          neovim-unwrapped = prev.neovim-unwrapped.overrideAttrs (oldAttrs: {
+            patches = (prev.patches or [ ]) ++ [
+              # https://github.com/neovim/neovim/issues/30675
+              (final.fetchpatch {
+                name = "str_byteindex_enc-bounds-checking";
+                url =
+                  "https://github.com/neovim/neovim/commit/a7ce36c9a335de52739c94a410b5b385a0535ee4.patch";
+                hash = "sha256-2oNHUQozXKrHvKxt7R07T9YRIIx8W3gt8cVHLm2gYhg=";
+              })
+            ];
+          });
+        })
       ];
 
       channels = {

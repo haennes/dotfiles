@@ -18,7 +18,7 @@
         }
         {
           name = "nix";
-          formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+          formatter.command = "nix fmt -- --";
           auto-format = true;
         }
         {

@@ -68,7 +68,10 @@
       lsp = {
         enable = true;
         servers = {
-          nixd.enable = true;
+          nixd = {
+            enable = true;
+            settings.formatting.command = [ "nix" "fmt" "--" "--" ];
+          };
           #typst_lsp.enable = true;
 
           clangd.enable = true;
