@@ -18,9 +18,6 @@ in {
       };
     };
   };
-  imports = [
-   ./microvm_host_stock.nix
-   ./microvm_host_systemd.nix
-  ];
+  imports = [ ./microvm_host_stock.nix ./microvm_host_systemd.nix ];
 
 }

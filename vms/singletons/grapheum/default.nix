@@ -1,7 +1,7 @@
 { ... }: {
   system.stateVersion = "23.11";
   imports = [
-  #../proxmox.nix
+    #../proxmox.nix
   ];
   services.onlyoffice.enable = true;
 
