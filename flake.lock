@@ -1139,11 +1139,11 @@
         "systems": "systems_9"
       },
       "locked": {
-        "lastModified": 1734371756,
-        "narHash": "sha256-kNTSaxSjUrJXpyLi0utJAttTOTxry5WAoYjabUWhdtw=",
-        "ref": "refs/heads/main",
-        "rev": "d114bad5cd645c25c010867b69bd4eee2a19f1f5",
-        "revCount": 54,
+        "lastModified": 1735140215,
+        "narHash": "sha256-Lc9FVHiWQtlypUzZgwpgv5ZswxREB+hK2yGHDCd9n3g=",
+        "ref": "refs/heads/fg",
+        "rev": "ce087c9dc581e7146ea57625ed22cf60cc3220a9",
+        "revCount": 87,
         "type": "git",
         "url": "file:///home/hannses/programming/nix/nix-yazi-plugins"
       },

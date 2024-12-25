@@ -3,7 +3,6 @@
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
-    package = pkgs.yazi;
     settings = {
       show_hidden = false;
       sort_dir_first = false;
@@ -20,10 +19,14 @@
       full-border.enable = true;
       hide-preview.enable = true;
       starship.enable = true;
-      jump-to-char.enable = true;
+      jump-to-char = {
+        enable = true;
+        keys.toggle.on = [ "F" ];
+      };
       max-preview.enable = true;
       smart-filter.enable = true;
       relative-motions.enable = true;
+      fg.enable = true;
     };
   };
 }
