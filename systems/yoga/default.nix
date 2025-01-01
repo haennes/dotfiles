@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, specialArgs, lib, ... }:
+{ config, specialArgs, lib, inputs, pkgs, ... }:
 let
   hostname = "tabula_3";
   hostname_2 = "tabula_1";
@@ -10,11 +10,22 @@ in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./prost.nix
+    inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  #boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  # Lanzaboote currently replaces the systemd-boot module.
+  # This setting is usually set to true in configuration.nix
+  # generated at installation time. So we force it to false
+  # for now.
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+  };
 
   boot.initrd.luks.devices."luks-25879778-fcba-4dab-9ad7-a929638b13ec".device =
     "/dev/disk/by-uuid/25879778-fcba-4dab-9ad7-a929638b13ec";

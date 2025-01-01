@@ -115,6 +115,12 @@
     #esw-machines.url = "git+file:///home/hannses/programming/esw-machines";
     esw-machines.url = "github:haennes/esw-machines";
     prost.url = "git+file:///home/hannses/programming/PRoST";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.1";
+
+      # Optional but recommended to limit the size of your system closure.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, deploy-rs, rust-overlay, nur
