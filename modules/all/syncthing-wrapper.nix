@@ -37,7 +37,8 @@ in {
     };
     folders = with devices;
       with devices.all_handys;
-      with devices.all_servers; {
+      with devices.all_servers;
+      with devices.all_pcs; {
         "freshrss" = {
           folderToPathFunc = sharedFolderFn;
           devices = [ servers fons ];
@@ -77,12 +78,16 @@ in {
         "DownloadHandyH" = [ (all_pcs // servers) "handyHannes" ];
         "HannesKamera" = [ (all_pcs // servers) "handyHannes" ];
         "HannesGalerie" = [ (all_pcs // servers) "handyHannes" ];
+        "AlexandraWA" = {
+          devices = [ (servers) "handyMum" yoga ];
+          DirUsers = [ "mum" ];
+        };
         "AlexandraKamera" = {
-          devices = [ (servers) "handyAlexandra" ];
+          devices = [ (servers) "handyMum" ];
           DirUsers = [ "mum" ];
         };
         "AlexandraGalerie" = {
-          devices = [ (servers) "handyAlexandra" ];
+          devices = [ (servers) "handyMum" ];
           DirUsers = [ "mum" ];
         };
         "ThomasKamera" = {
@@ -101,7 +106,7 @@ in {
         };
         "esw-machines" = {
           devices = [ fabulinus ];
-          paths = { fabulinus = "/persist/esw2"; };
+          folderToPathFunc = sharedFolderFn;
         };
       };
   };
