@@ -10,6 +10,8 @@ in {
     ./zfs.nix
     #./kasm.nix
     ./hydra.nix
+    ./ipfs.nix
+    ./nextcloud.nix
     #./services/backup.nix
   ];
 
