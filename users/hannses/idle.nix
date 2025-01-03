@@ -11,5 +11,9 @@
         command = "${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
+    events = [{
+      event = "lock";
+      command = "${scripts.lock} -f";
+    }];
   };
 }
