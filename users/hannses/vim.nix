@@ -107,6 +107,18 @@
         action = ":noh<CR>";
         options.silent = true;
       }
+      {
+        # better indent in visual mode
+        mode = "v";
+        key = ">";
+        action = ">gv";
+      }
+      {
+        # better unindent in visual mode
+        mode = "v";
+        key = "<";
+        action = "<gv";
+      }
     ];
   };
 }
