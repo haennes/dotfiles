@@ -25,7 +25,7 @@
 		},
 		"image_preview": {
 			"protocol": {
-				"type": "sixel"
+				"type": "kitty"
 			},
 			"size": {
 				"width": 66,

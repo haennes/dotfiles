@@ -27,6 +27,7 @@ in ''
   kitty
   wallpaper
   signal
+  iamb
   tuta
   dbui
   bitwarden
@@ -96,6 +97,10 @@ in ''
       ;;
   "signal")
       ${pkgs.signal-desktop}/bin/signal-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland
+      ;;
+
+  "iamb")
+      ${scripts.iamb}
       ;;
   "tuta")
       # TODO
