@@ -1,5 +1,6 @@
-{ theme, ... }: ''
-    swaylock \
+{ theme, pkgs, ... }: ''
+    ${pkgs.swaylock-effects}/bin/swaylock \
+  --ignore-empty-password \
   --screenshots \
   --clock \
   --indicator \
@@ -14,7 +15,7 @@
   --inside-color 00000088 \
   --separator-color 00000000 \
   --text-ver "..." \
-  --fade-in 0.3
+  --fade-in 0.3 $@
   # key-hl-color = indicator-color on clicked
 ''
 

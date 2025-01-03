@@ -4,6 +4,7 @@
     ./fonts.nix
     ./gnome_config.nix
     ./hyprland.nix
+    ./idle.nix
     ./gtk.nix # (hopefully) just dark mode
     ./mime.nix # setup default programs
     ./waybar.nix
