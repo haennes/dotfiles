@@ -67,7 +67,7 @@ let
           hostname = local_ip;
         } // ports_noports {
           inherit default_ports user localForwards base_name extraArgs;
-          proxyJump = "${porta_prefix}porta";
+          proxyJump = "${porta_prefix}dea";
           name = "g_${name}";
           hostname = local_ip;
         })
