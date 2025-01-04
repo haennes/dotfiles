@@ -74,7 +74,7 @@
       #url = "github:haennes/nix-yazi-plugins";
       #url = "github:lordkekz/nix-yazi-plugins";
       #url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins/";
-      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins";
+      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=fg";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -94,8 +94,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     syncthing-wrapper = {
-      url = "github:haennes/syncthing-wrapper.nix";
-      #url = "git+file:///home/hannses/programming/nix/syncthing-wrapper";
+      #url = "github:haennes/syncthing-wrapper.nix";
+      url = "git+file:///home/hannses/programming/nix/syncthing-wrapper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     IPorts = {
@@ -202,19 +202,6 @@
         nix-yazi-plugins.overlays.default
         nix-update-inputs.overlays.default
         signal-whisper.overlays.default
-        (final: prev: {
-          neovim-unwrapped = prev.neovim-unwrapped.overrideAttrs (oldAttrs: {
-            patches = (prev.patches or [ ]) ++ [
-              # https://github.com/neovim/neovim/issues/30675
-              (final.fetchpatch {
-                name = "str_byteindex_enc-bounds-checking";
-                url =
-                  "https://github.com/neovim/neovim/commit/a7ce36c9a335de52739c94a410b5b385a0535ee4.patch";
-                hash = "sha256-2oNHUQozXKrHvKxt7R07T9YRIIx8W3gt8cVHLm2gYhg=";
-              })
-            ];
-          });
-        })
       ];
 
       channels = {

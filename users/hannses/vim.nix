@@ -58,9 +58,10 @@
       };
       openscad = {
         enable = true;
-        autoOpen = true;
-        keymaps.enable = true;
-        keymaps.execOpenSCADTrigger = "<A-o>";
+        settings = {
+          auto_open = true;
+          exec_openscad_trig_key = "<A-o>";
+        };
       };
 
       comment.enable = true;
