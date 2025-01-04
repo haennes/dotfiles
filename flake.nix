@@ -217,9 +217,9 @@
                 "steam-original"
                 "steam-unwrapped"
                 "steam-run"
-                "corefonts-1"
-                "corefonts"
-                "vista-fonts"
+                "corefonts-1" # ksp
+                "corefonts" # ksp
+                "vista-fonts" # ksp
                 "clion"
               ];
           };
