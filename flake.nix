@@ -202,28 +202,6 @@
         nix-yazi-plugins.overlays.default
         nix-update-inputs.overlays.default
         signal-whisper.overlays.default
-        (final: prev: {
-          rofi = prev.rofi.overrideAttrs (oldAttrs: rec {
-            version = "1.7.6";
-            src = prev.fetchFromGitHub {
-              owner = "davatorium";
-              repo = "rofi";
-              rev = version;
-              fetchSubmodules = true;
-              hash = "sha256-hT9FMCAwY8hZx4y1l0vHfcReIJUBxSmixZJhKP8nRpw=";
-            };
-          });
-          rofi-wayland = prev.rofi.overrideAttrs (oldAttrs: rec {
-            version = "latest";
-            src = prev.fetchFromGitHub {
-              owner = "lbonn";
-              repo = "rofi";
-              rev = "0abd88784ba5b43c44ccb9e90e8ae0262862d47b";
-              fetchSubmodules = true;
-              hash = "sha256-Xm5UUktlMjiecRUaTIrSjPPYJHjWqfSpAQ0D0G4ldr4=";
-            };
-          });
-        })
       ];
 
       channels = {
