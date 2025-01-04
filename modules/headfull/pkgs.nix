@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    sbctl #secure boot
+    sbctl # secure boot
 
     #browser
     firefox
