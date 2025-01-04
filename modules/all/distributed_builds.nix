@@ -11,6 +11,7 @@
           ++ config.boot.binfmt.emulatedSystems; # TODO this is somewhat a coincidence
         supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
         maxJobs = 16;
+        speedFactor = 4;
       }];
       nix.distributedBuilds = true;
       # optional, useful when the builder has a faster internet connection than yours
