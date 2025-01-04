@@ -30,7 +30,7 @@
 
     #formatting language
     tectonic # tex compiler
-    texlive.combined.scheme-full # tex
+    #texlive.combined.scheme-full # tex
     typst # typst
     typst-live # typst live preview browser
 
