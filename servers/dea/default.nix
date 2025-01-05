@@ -12,6 +12,7 @@ in {
     ./hydra.nix
     ./ipfs.nix
     ./nextcloud.nix
+    ./vms.nix
     #./services/backup.nix
   ];
 
@@ -22,42 +23,6 @@ in {
     useOSProber = true;
   };
 
-  #microvm.vms = {
-  #  tabula_1 = {
-  #    inherit specialArgs;
-  #    config = ../../vms/instances/tabula_1.nix;
-  #    pkgs = null;
-  #  };
-  #};
-
-  #age.secrets."sshkeys/${hostname}/age_key" = {
-  #  path = "/persistant/microvms/${hostname}/age_key";
-  #  file = ../../secrets/sshkeys/${hostname}/age_key.age;
-  #  symlink = false;
-  #};
-  #age.secrets."sshkeys/${hostname}/ssh_host_ed25519_key" = {
-  #  path = "/persistant/microvms/${hostname}/ssh/ssh_host_ed25519_key";
-  #  file = ../../secrets/sshkeys/${hostname}/ssh_host_ed25519_key.age;
-  #  symlink = false;
-  #};
-  #age.secrets."sshkeys/${hostname}/ssh_host_rsa_key" = {
-  #  path = "/persistant/microvms/${hostname}/ssh/ssh_host_rsa_key";
-  #  file = ../../secrets/sshkeys/${hostname}/ssh_host_rsa_key.age;
-  #  symlink = false;
-  #};
-
-  #microvm.vms = lib.my.mkVMS {
-  #  names = [
-  #    "tabula"
-  #    "fons"
-  #    "historia"
-  #    "minerva"
-  #    "vertumnus"
-  #    "concordia"
-  #    "proserpina"
-  #  ];
-  #  inherit specialArgs;
-  #};
   services.getty.autologinUser = "root";
 
   #services.syncthing_wrapper = { enable = true; };
@@ -76,29 +41,3 @@ in {
   networking.hostName = "dea"; # Define your hostname.
 
 }
-#//
-#(lib.my.recursiveMerge (map (vm: {
-#  microvm.vms = {
-#    tabula_1 = {
-#      inherit specialArgs;
-#      config = import ../../vms/instances/tabula_1.nix;
-#      pkgs = null;
-#    };
-#  };
-#
-#  age.secrets."sshkeys/${hostname}/age_key" = {
-#    path = "/persistant/microvms/${hostname}/age_key";
-#    file = ../../secrets/sshkeys/${hostname}/age_key.age;
-#    symlink = false;
-#  };
-#  age.secrets."sshkeys/${hostname}/ssh_host_ed25519_key" = {
-#    path = "/persistant/microvms/${hostname}/ssh/ssh_host_ed25519_key";
-#    file = ../../secrets/sshkeys/${hostname}/ssh_host_ed25519_key.age;
-#    symlink = false;
-#  };
-#  age.secrets."sshkeys/${hostname}/ssh_host_rsa_key" = {
-#    path = "/persistant/microvms/${hostname}/ssh/ssh_host_rsa_key";
-#    file = ../../secrets/sshkeys/${hostname}/ssh_host_rsa_key.age;
-#    symlink = false;
-#  };
-#})))
