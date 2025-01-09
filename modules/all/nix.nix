@@ -1,4 +1,8 @@
-{ pkgs, ... }: {
+{ inputs, pkgs, ... }:
+let
+  channelPath = "/nix/var/nix/profiles/per-user/root/channels";
+  #"/etc/nixpkgs/channel/nixpkgs";
+in {
   nix = {
     package = pkgs.nix;
     settings = {
@@ -11,5 +15,13 @@
       # Make ready for nix flakes
       experimental-features = [ "nix-command" "flakes" ];
     };
+    registry.nixpkgs.flake = inputs.nixpkgs;
+
+    nixPath = [
+      "nixpkgs=${channelPath}"
+      #"/nix/var/nix/profiles/per-user/root/channels"
+    ];
   };
+  systemd.tmpfiles.rules =
+    [ "L+ ${channelPath}     - - - - ${inputs.nixpkgs}" ];
 }
