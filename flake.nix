@@ -203,6 +203,11 @@
         nix-update-inputs.overlays.default
         signal-whisper.overlays.default
       ];
+      nix = {
+        generateRegistryFromInputs = true;
+        generateNixPathFromInputs = true;
+        linkInputs = true;
+      };
 
       channels = {
         unstable = { # lets us explicitly declare that something is unfree
