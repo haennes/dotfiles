@@ -1402,22 +1402,6 @@
     },
     "nixpkgs_11": {
       "locked": {
-        "lastModified": 1732014248,
-        "narHash": "sha256-y/MEyuJ5oBWrWAic/14LaIr/u5E0wRVzyYsouYY3W6w=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "23e89b7da85c3640bbc2173fe04f4bd114342367",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_12": {
-      "locked": {
         "lastModified": 1728193676,
         "narHash": "sha256-PbDWAIjKJdlVg+qQRhzdSor04bAPApDqIv2DofTyynk=",
         "owner": "NixOS",
@@ -1432,7 +1416,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_13": {
+    "nixpkgs_12": {
       "locked": {
         "lastModified": 1728538411,
         "narHash": "sha256-f0SBJz1eZ2yOuKUr5CA9BHULGXVSn6miBuUWdTyhUhU=",
@@ -1444,6 +1428,22 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_13": {
+      "locked": {
+        "lastModified": 1726320982,
+        "narHash": "sha256-RuVXUwcYwaUeks6h3OLrEmg14z9aFXdWppTWPMTwdQw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "8f7492cce28977fbf8bd12c72af08b1f6c7c3e49",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -1756,24 +1756,6 @@
         "type": "github"
       }
     },
-    "prost": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_11"
-      },
-      "locked": {
-        "lastModified": 1733674337,
-        "narHash": "sha256-Ii4HwUZXDpkak9gJTPEc1VfHgOKunPV1ufbLKuYGEgU=",
-        "ref": "refs/heads/main",
-        "rev": "a5e02d9623b425ad96d8a05383bba072088676eb",
-        "revCount": 232,
-        "type": "git",
-        "url": "file:///home/hannses/programming/PRoST"
-      },
-      "original": {
-        "type": "git",
-        "url": "file:///home/hannses/programming/PRoST"
-      }
-    },
     "purescript-overlay": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -1820,7 +1802,7 @@
       "inputs": {
         "libcamera-src": "libcamera-src",
         "libpisp-src": "libpisp-src",
-        "nixpkgs": "nixpkgs_12",
+        "nixpkgs": "nixpkgs_11",
         "rpi-bluez-firmware-src": "rpi-bluez-firmware-src",
         "rpi-firmware-nonfree-src": "rpi-firmware-nonfree-src",
         "rpi-firmware-src": "rpi-firmware-src",
@@ -1869,10 +1851,10 @@
         "nixpkgs-stable": "nixpkgs-stable_2",
         "nixvim": "nixvim",
         "nur": "nur",
-        "prost": "prost",
         "raspberry-pi-nix": "raspberry-pi-nix",
         "rust-overlay": "rust-overlay_3",
         "signal-whisper": "signal-whisper",
+        "strichliste": "strichliste",
         "syncthing-wrapper": "syncthing-wrapper",
         "tasks_md": "tasks_md",
         "wg-friendly-peer-names": "wg-friendly-peer-names",
@@ -2030,7 +2012,7 @@
     },
     "rust-overlay_3": {
       "inputs": {
-        "nixpkgs": "nixpkgs_13"
+        "nixpkgs": "nixpkgs_12"
       },
       "locked": {
         "lastModified": 1735871325,
@@ -2106,6 +2088,24 @@
         "url": "https://spectrum-os.org/git/spectrum"
       }
     },
+    "strichliste": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_13"
+      },
+      "locked": {
+        "lastModified": 1736899005,
+        "narHash": "sha256-bz4YX4mEUG/jbXtxMpT6K1w+O48oQKffg5CXBsdRT/c=",
+        "ref": "refs/heads/no-docker",
+        "rev": "7a6ac1734df3b7f1d5addddfd47c8a9edf9ff180",
+        "revCount": 14,
+        "type": "git",
+        "url": "file:///home/hannses/programming/nix/nix-strichliste"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/hannses/programming/nix/nix-strichliste"
+      }
+    },
     "syncthing-wrapper": {
       "inputs": {
         "nixpkgs": [
@@ -2113,11 +2113,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1735216272,
-        "narHash": "sha256-cvw5Ibw9vGe8AoHzA/lK4rgcZtDrOBN+gdwnG/pMx3s=",
+        "lastModified": 1736630581,
+        "narHash": "sha256-3sjDB8RXeWsYYSZ9Tuo4K3Tj+Ew4Ppitml6v9XnRf6k=",
         "ref": "refs/heads/main",
-        "rev": "11db64e4a01785a113184b94c9fe1df299af6886",
-        "revCount": 22,
+        "rev": "44d33a23625fd0c92d1bbb18b86682c5e7d6ecf2",
+        "revCount": 25,
         "type": "git",
         "url": "file:///home/hannses/programming/nix/syncthing-wrapper"
       },
