@@ -316,5 +316,15 @@
         thinkpad = { modules = [ (client "thinkpad") ]; };
         thinknew = { modules = [ (client "thinknew") ]; };
       };
+      hydraJobs = {
+        system-builds = let
+          makeConfigurations = configurations:
+            builtins.listToAttrs (map (configuration: {
+              name = configuration;
+              value =
+                self.nixosConfigurations.${configuration}.config.system.build.toplevel;
+            }) configurations);
+        in makeConfigurations [ "dea" ];
+      };
     };
 }
