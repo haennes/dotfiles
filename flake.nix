@@ -71,10 +71,9 @@
     };
 
     nix-yazi-plugins = {
-      #url = "github:haennes/nix-yazi-plugins";
+      url = "github:haennes/nix-yazi-plugins?ref=fg";
       #url = "github:lordkekz/nix-yazi-plugins";
-      #url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins/";
-      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=fg";
+      #url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=fg";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -94,18 +93,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     syncthing-wrapper = {
-      #url = "github:haennes/syncthing-wrapper.nix";
-      url = "git+file:///home/hannses/programming/nix/syncthing-wrapper";
+      url = "github:haennes/syncthing-wrapper.nix";
+      #url = "git+file:///home/hannses/programming/nix/syncthing-wrapper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     IPorts = {
-      #url = "github:haennes/IPorts.nix";
-      url = "git+file:///home/hannses/programming/nix/IPorts";
+      url = "github:haennes/IPorts.nix";
+      #url = "git+file:///home/hannses/programming/nix/IPorts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tasks_md = {
-      url = "git+file:///home/hannses/programming/nix/tasks?ref=four_working";
-      #url = "github:haennes/tasks_md.nix/four_working";
+      #url = "git+file:///home/hannses/programming/nix/tasks?ref=four_working";
+      url = "github:haennes/tasks_md.nix/four_working";
     };
     signal-whisper = {
       url = "github:haennes/signal-whisper";
