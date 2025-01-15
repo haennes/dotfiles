@@ -44,6 +44,8 @@ let
         this_ip.eth0
       else if this_ip ? "vmbr0" then
         this_ip.vmbr0
+      else if this_ip ? "br0" && hostname != "vm-host" then
+        this_ip.br0
       else if this_ip ? "enp37s0" then
         this_ip.enp37s0
       else
