@@ -55,6 +55,12 @@ in {
           };
           folderToPathFunc = sharedFolderFn;
         } // family_if_client;
+
+        "AnkiBackup" = {
+          devices = [ (all_pcs // servers) ];
+          folderToPathFunc = lib.mkIf (config.is_client)
+            (_: "/home/hannses/.local/share/Anki2/User 1/backups");
+        };
         "3d_printing" = [ (all_pcs // servers) ];
         "Documents" = [ (all_pcs // servers) ];
         "Notes" = [ (all_pcs // servers) ];
