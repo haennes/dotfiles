@@ -1434,22 +1434,6 @@
     },
     "nixpkgs_13": {
       "locked": {
-        "lastModified": 1726320982,
-        "narHash": "sha256-RuVXUwcYwaUeks6h3OLrEmg14z9aFXdWppTWPMTwdQw=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "8f7492cce28977fbf8bd12c72af08b1f6c7c3e49",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-24.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_14": {
-      "locked": {
         "lastModified": 1715787315,
         "narHash": "sha256-cYApT0NXJfqBkKcci7D9Kr4CBYZKOQKDYA23q8XNuWg=",
         "owner": "nixos",
@@ -1854,7 +1838,6 @@
         "raspberry-pi-nix": "raspberry-pi-nix",
         "rust-overlay": "rust-overlay_3",
         "signal-whisper": "signal-whisper",
-        "strichliste": "strichliste",
         "syncthing-wrapper": "syncthing-wrapper",
         "tasks_md": "tasks_md",
         "wg-friendly-peer-names": "wg-friendly-peer-names",
@@ -2088,24 +2071,6 @@
         "url": "https://spectrum-os.org/git/spectrum"
       }
     },
-    "strichliste": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_13"
-      },
-      "locked": {
-        "lastModified": 1736899005,
-        "narHash": "sha256-bz4YX4mEUG/jbXtxMpT6K1w+O48oQKffg5CXBsdRT/c=",
-        "ref": "refs/heads/no-docker",
-        "rev": "7a6ac1734df3b7f1d5addddfd47c8a9edf9ff180",
-        "revCount": 14,
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/nix-strichliste"
-      },
-      "original": {
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/nix-strichliste"
-      }
-    },
     "syncthing-wrapper": {
       "inputs": {
         "nixpkgs": [
@@ -2307,7 +2272,7 @@
     },
     "tasks_md": {
       "inputs": {
-        "nixpkgs": "nixpkgs_14"
+        "nixpkgs": "nixpkgs_13"
       },
       "locked": {
         "lastModified": 1730580600,
