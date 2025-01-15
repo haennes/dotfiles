@@ -114,7 +114,6 @@
     nix-topology.url = "github:oddlama/nix-topology";
     #esw-machines.url = "git+file:///home/hannses/programming/esw-machines";
     esw-machines.url = "github:haennes/esw-machines";
-    prost.url = "git+file:///home/hannses/programming/PRoST";
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.1";
 
@@ -296,10 +295,7 @@
         #hermes = { modules = [ (server "hermes") ]; };
         #fons = { modules = [ (microvm "fons") ]; };
         #grapheum = { modules = [ (server "grapheum") ]; };
-        yoga = {
-          modules =
-            [ (client "yoga") microvm_host inputs.prost.nixosModules.default ];
-        };
+        yoga = { modules = [ (client "yoga") microvm_host ]; };
         fabulinus = {
           system = "aarch64-linux";
           modules = [
