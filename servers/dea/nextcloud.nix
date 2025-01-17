@@ -58,6 +58,7 @@ in {
     config = {
       adminpassFile = config.age.secrets.nextcloud_adminpass.path;
       #dbtype = "pgsql";
+      dbtype = "mysql";
     };
     database.createLocally = true; # automatically generate a pgsql db
     settings = {
