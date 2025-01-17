@@ -1,0 +1,35 @@
+{ inputs, config, ... }:
+with inputs.dns.lib.combinators;
+let
+  ips = config.ips.ips.ips.default;
+  zone = "local.hannses.de.";
+  serial = 2025011701;
+
+  /* *
+     Creates a CNAME record
+  */
+  mkCname = target: { CNAME = [ target ]; };
+
+  nameserver = "ns.hannses.de";
+in {
+  TTL = 1800; # 30 minutes
+
+  SOA = {
+    nameServer = nameserver;
+    adminEmail = "1nkolr58@anonaddy.me";
+    inherit serial;
+  };
+
+  NS = [ nameserver ];
+
+  CAA = letsEncrypt config.security.acme.defaults.email;
+
+  subdomains = {
+    # nameserver:
+    ns = mkCname "ns.hannses.de";
+
+    # hosts:
+    anki = host ips.minerva.wg0 null;
+    hydra = host ips.welt.wg0 null;
+  };
+}

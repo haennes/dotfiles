@@ -6,6 +6,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     futils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
+    dns = {
+      url = "github:nix-community/dns.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager-option-search = {
       url = "github:mipmip/home-manager-option-search";

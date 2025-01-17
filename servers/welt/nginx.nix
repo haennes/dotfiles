@@ -3,24 +3,28 @@ let
   ports = config.ports.ports.ports;
   ips = config.ips.ips.ips.default;
   create_simple_proxy_with_domain = { fqdn, target_ip, custom_settings ? { }
-    , custom_locations ? { }, target_port ? null, https ? false }:
+    , custom_locations ? { }, target_port ? null, https ? false, local ? false
+    }:
     let
       target_port_str = (if target_port == null then
         ""
       else
         ":${builtins.toString target_port}");
       https_str = (if https then "s" else "");
-    in {
-      security.acme.certs."${fqdn}" = { inheritDefaults = true; };
+    in ({
       services.nginx.virtualHosts."${fqdn}" = {
-        enableACME = true;
-        forceSSL = true;
+        enableACME = !local;
+        forceSSL = !local;
+        listenAddresses = lib.mkIf local [ ips.welt.wg0 ];
         locations."/" = {
           proxyPass = "http${https_str}://${target_ip}${target_port_str}";
           proxyWebsockets = true; # needed if you need to use WebSocket
         } // custom_locations;
       } // custom_settings;
-    };
+    } // (if (!local) then {
+      security.acme.certs.${fqdn}.inheritDefaults = true;
+    } else
+      { }));
 in {
   networking.firewall = { allowedTCPPorts = [ 80 443 ports.vertumnus.sshd ]; };
 } // lib.my.recursiveMerge [
@@ -80,6 +84,14 @@ in {
     custom_settings = {
       extraConfig = "client_max_body_size ${config.nextcloud_max_size};";
     };
+  })
+
+  (create_simple_proxy_with_domain {
+    fqdn = "hyrda.local.hannses.de";
+    target_ip = ips.dea.wg0;
+    target_port = ports.dea.hydra;
+    local = true;
+    #https = true;
   })
   #only accessible through wg
   #(create_simple_proxy_with_domain {
