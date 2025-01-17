@@ -75,7 +75,9 @@
     };
 
     nix-yazi-plugins = {
-      url = "github:haennes/nix-yazi-plugins?ref=fg";
+      #url = "github:haennes/nix-yazi-plugins?ref=wip";
+      url = "github:haennes/nix-yazi-plugins/wip";
+      #url = "github:haennes/nix-yazi-plugins/wip_inf_rec3";
       #url = "github:lordkekz/nix-yazi-plugins";
       #url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=fg";
       inputs.nixpkgs.follows = "nixpkgs";
