@@ -67,6 +67,10 @@ in {
       # config apply & build
       cfg_apply = "${dotfiles_path}/apply";
       cfg_update = "pushd ${dotfiles_path} && ${dotfiles_path}/update && popd";
+      fs_cfg_sync =
+      let
+       path = "/home/hannses/programming/nix/server-pedro";
+      in "rsync -r fs_main:/etc/nixos/ ${path}";
 
       # vim keybindings
       ":q" = "exit";
