@@ -93,6 +93,13 @@ in {
     local = true;
     #https = true;
   })
+  (create_simple_proxy_with_domain {
+    fqdn = "nix-serve.local.hannses.de";
+    target_ip = ips.dea.wg0;
+    target_port = ports.dea.nix-serve;
+    local = true;
+    #https = true;
+  })
   #only accessible through wg
   #(create_simple_proxy_with_domain {
   #  fqdn = "kasmweb.hannses.de";

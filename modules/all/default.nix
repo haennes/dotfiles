@@ -15,6 +15,7 @@
     ./wireguard-wrapper.nix
     ./ports_cli.nix
     ./ips_cli.nix
+    ./nix-serve.nix
     #./vms.nix
     #./microvms.nix
   ];

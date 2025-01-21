@@ -22,6 +22,7 @@ in {
     device = "/dev/sdb";
     useOSProber = true;
   };
+  services.nix-serve.enable = true; # is configured in modules/all/nix-serve
 
   services.getty.autologinUser = "root";
 
