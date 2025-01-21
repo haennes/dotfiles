@@ -26,6 +26,7 @@ in {
     devices = with ids; rec {
       all_pcs = { inherit (ids) mainpc yoga; };
       thinkpad = { inherit (ids) thinkpad; };
+      proserpina_1 = { inherit (ids) proserpina_1; };
       concordia = { inherit (ids) concordia; };
       all_handys = { inherit (ids) handyHannes handyMum handyDad tablet; };
       servers = { inherit (ids) syncschlawiner concordia dea; };
@@ -111,7 +112,7 @@ in {
           paths.tabula_3 = "/persist/website";
         };
         "esw-machines" = {
-          devices = [ fabulinus ];
+          devices = [ fabulinus proserpina_1 servers ];
           folderToPathFunc = sharedFolderFn;
         };
       };

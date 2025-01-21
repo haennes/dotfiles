@@ -62,15 +62,12 @@
 
   services.syncthing_wrapper = { enable = true; };
 
-  system.activationScripts.ensure-syncthing-dir = ''
-    mkdir -p /persist/esw2
-    chown ${config.services.esw-machines.user}:${config.services.esw-machines.user} /persist/website
-  '';
-
   services.esw-machines = {
     enable = true;
     port = config.ports.ports.curr_ports.esw;
     domain = "0.0.0.0";
-    dataFilePath = "/persist/esw2";
+    user = config.services.syncthing.user;
+    dataFilePath =
+      "${config.services.syncthing.settings.folders.esw-machines.path}/esw";
   };
 }

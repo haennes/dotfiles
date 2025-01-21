@@ -52,6 +52,17 @@ in {
             "${ips.tabula_3.wg0}:${toString ports.tabula_3.web}" = { };
           };
         };
+        esw = {
+          servers = {
+            "${ips.fabulinus.wg0}:${toString ports.fabulinus.esw}" = {
+              backup = true;
+            };
+            "${ips.proserpina_1.wg0}:${toString ports.proserpina_1.esw}" = {
+              fail_timeout = "3s";
+              max_fails = 2;
+            };
+          };
+        };
       };
     };
   }
@@ -74,8 +85,7 @@ in {
   })
   (create_simple_proxy_with_domain {
     fqdn = "esw.hannses.de";
-    target_ip = ips.proserpina.wg0;
-    target_port = ports.proserpina.esw;
+    target_ip = "esw";
   })
   (create_simple_proxy_with_domain {
     fqdn = "cloud.hannses.de";
