@@ -1,5 +1,7 @@
 { pkgs, inputs, ... }: {
-  imports = [ (inputs.nix-yazi-plugins.homeManagerModules.default) ];
+  imports = [
+    (inputs.nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default)
+  ];
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
@@ -25,8 +27,12 @@
       };
       max-preview.enable = true;
       smart-filter.enable = true;
-      relative-motions.enable = true;
-      fg.enable = true;
+      relative-motions = {
+        enable = true;
+        show_numbers = "relative_absolute";
+        show_motion = true;
+      };
+      #fg.enable = true;
     };
   };
 }

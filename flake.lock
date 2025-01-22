@@ -1297,18 +1297,17 @@
         "systems": "systems_10"
       },
       "locked": {
-        "lastModified": 1737369585,
-        "narHash": "sha256-A+Pz+l/Opx9VSJZcJJRzoZ38xZYhTjT9/2OS+U28CUc=",
-        "ref": "wip",
-        "rev": "a77b917779b306ed3af40736aef67d5fb10273de",
-        "revCount": 61,
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/nix-yazi-plugins"
+        "lastModified": 1737417368,
+        "narHash": "sha256-JExM3nZwg07iMhXDQSIXc5KmVqbBRA4IfNgs1gFmneg=",
+        "owner": "lordkekz",
+        "repo": "nix-yazi-plugins",
+        "rev": "c251d3db84f3a10f95993112132fe5ffc37a279f",
+        "type": "github"
       },
       "original": {
-        "ref": "wip",
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/nix-yazi-plugins"
+        "owner": "lordkekz",
+        "repo": "nix-yazi-plugins",
+        "type": "github"
       }
     },
     "nixlib": {
