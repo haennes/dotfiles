@@ -82,7 +82,7 @@ in {
     };
     services = let tasks_md = config.services.tasks_md;
     in [
-      {
+      (lib.optionalAttrs tasks_md.enable {
         "Tasks" = map (item: {
           "${item.title}" = rec {
             icon = "mdi-check-#1CDC18";
@@ -90,7 +90,7 @@ in {
             siteMonitor = href;
           };
         }) tasks_md.conf;
-      }
+      })
       {
         "Syncthing" = [
           {
