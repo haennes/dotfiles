@@ -10,7 +10,7 @@ let
             {
               name = "q";
               value = if personal then
-                "owner:haennes+{searchTerms}"
+                "owner:haennes+fork:true+{searchTerms}"
               else
                 "" + "{searchTerms}";
             }
