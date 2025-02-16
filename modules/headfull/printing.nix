@@ -1,5 +1,8 @@
-{ ... }: {
-  services.printing.enable = true;
+{ pkgs, ... }: {
+  services.printing = {
+    drivers = [ pkgs.gutenprint ];
+    enable = true;
+  };
   services.avahi = {
     enable = true;
     nssmdns4 = true;
