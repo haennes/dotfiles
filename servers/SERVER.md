@@ -20,19 +20,19 @@
       mkdir -p /run/current-system/sw/bin
     ```
     6. test if it can reboot.
-- deus: **HOST FÜR ALLE ANDEREN**
-- tabula: **Website** Microvm inside of deus
-- syncschlawiner: **CLOUD ++ SYNCTHING** bis jetzt Proxmox VM (evtl: -> microvm)
+- dea: **cloud + syncthing**
+- tabula: **Website**
 - fons: **rss**
 - historia: **atuin shell history**
 - minerva: **anki-sync**
 - vertumnus: **gitea**
-- concordia: **cloud + ipfs + syncthing**
+- proserpina: **esw machines**
 
 ## inaktiv:
+- deus: **HOST FÜR ALLE ANDEREN**
+- concordia: **cloud + ipfs + syncthing**
 - porta: **WG-Endpoint** war Proxmox VM (evtl: -> PI bzw. als teil von PI config) (nicht mehr gebraucht, da ssh bereits über deus möglich)
 - fenestra **2WG-Endpoint** bis jetzt Proxmox VM (evtl: -> microvm) (Backup Zugriff, falls Fehlkonfiguration von porta)
 - hermes: mail
 - grapheum: **OnlyOffice - Server** bis jetzt Proxmox VM (evtl: -> microvm)
 - speilunke: **pterodactyl** bis jetzt Proxmox VM (evtl: -> microvm)
-- proserpina: **esw machines**
