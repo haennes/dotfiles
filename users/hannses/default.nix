@@ -70,7 +70,7 @@
     fritzing
     fontforge-gtk
     lapce
-    jetbrains.clion # fix debugging c in vim at some point
+    #jetbrains.clion # fix debugging c in vim at some point
     musescore
     lorien
     platformio
