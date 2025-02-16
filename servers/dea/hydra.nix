@@ -37,7 +37,7 @@ in {
     maxJobs = 16;
   }];
 
-  nix.settings.trusted-users = [ "forward" ];
+  nix.settings.trusted-users = [ "forward" "hydra" ];
   nix.settings.allowed-uris =
     [ "github:" "git+https://github.com/" "git+ssh://github.com/" ];
 }
