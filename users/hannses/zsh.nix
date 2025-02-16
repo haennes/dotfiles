@@ -8,8 +8,9 @@ in {
     enable = true;
     shellAliases = let
       aliases = [ "dticket" "ticket" "db" ];
-      semester1 = "cd ${home}/Documents/Studium/Semester1";
-      semester2 = "cd ${home}/Documents/Studium/Semester2";
+      studium = "cd ${home}/Documents/Studium";
+      semester1 = "${studium}/Semester1";
+      semester2 = "${studium}/Semester2";
 
     in rec {
       #manix and its aliases are configured in ./manix.nix
@@ -44,6 +45,7 @@ in {
 
       pro = "cd ${home}/programming";
 
+      fsim = "${studium}/FSIM";
       # Semester 1
       pg1 = "${semester1}/PG1";
       ma1 = "${semester1}/MA1";
@@ -67,9 +69,7 @@ in {
       # config apply & build
       cfg_apply = "${dotfiles_path}/apply";
       cfg_update = "pushd ${dotfiles_path} && ${dotfiles_path}/update && popd";
-      fs_cfg_sync =
-      let
-       path = "/home/hannses/programming/nix/server-pedro";
+      fs_cfg_sync = let path = "/home/hannses/programming/nix/server-pedro";
       in "rsync -r fs_main:/etc/nixos/ ${path}";
 
       # vim keybindings
