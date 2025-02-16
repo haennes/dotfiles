@@ -1,5 +1,6 @@
 { lib, inputs, ... }: rec {
   wireguard = import ./wireguard.nix;
+  systemd_timer_service = import ./systemd_timer_service.nix;
 
   ip_cidr = ip: "${ip}/32";
   __subnet = ip:
