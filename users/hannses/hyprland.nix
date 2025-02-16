@@ -1,4 +1,24 @@
-{ inputs, theme, globals, scripts, ... }: {
+{ inputs, theme, globals, scripts, ... }:
+let
+  monitors_laptop = {
+    builtin = "eDP-1";
+    fsim = {
+      table-right = {
+        left =
+          "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000844";
+        right =
+          "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000852";
+      };
+
+      table-left = {
+        left =
+          "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000850";
+        right =
+          "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000842";
+      };
+    };
+  };
+in {
   imports = [
     inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger
     ./nightlight.nix
@@ -27,7 +47,16 @@
 
       exec-once = scripts.startup;
 
-      monitor = [ ",preferred,auto,1, mirror, eDP-1" ];
+      monitor = [
+        "${monitors_laptop.builtin}, preferred,auto,1"
+
+        # fsim
+        "${monitors_laptop.fsim.table-right.left}, preferred, auto-up, 1"
+        "${monitors_laptop.fsim.table-right.right}, preferred, auto-up, 1"
+
+        "${monitors_laptop.fsim.table-left.right}, preferred, auto-up, 1"
+        "${monitors_laptop.fsim.table-left.right}, preferred, auto-up, 1"
+      ];
 
       input = {
         kb_layout = "de,us,eu";
