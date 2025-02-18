@@ -118,7 +118,6 @@
   home.file.".config/iamb/config.json".text =
     builtins.readFile ../../ext_configs/iamb/config.json;
 
-  programs.starship.enable = true;
   xdg.desktopEntries.zellij = {
     name = "ZelliJ";
     genericName = "Terminal";
