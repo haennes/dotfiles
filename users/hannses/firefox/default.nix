@@ -9,7 +9,7 @@ in {
     enable = true;
     profiles.default = {
       isDefault = true;
-      extensions = with addons; [
+      extensions.packages = with addons; [
         tridactyl
         ublock-origin
         floccus
