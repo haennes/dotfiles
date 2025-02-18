@@ -218,6 +218,11 @@ in {
         "$mod SHIFT, 9, movetoworkspacesilent, 9"
         "$mod SHIFT, 0, movetoworkspacesilent, 10"
         "$mod SHIFT, space, movetoworkspacesilent, special:scratch"
+
+        #move workspace to differen monitor
+        "$mod, code:112, focusmonitor, +1"
+        "$mod SHIFT, code:112, movewindow, mon:+1"
+        "$mod SHIFT, P,  movecurrentworkspacetomonitor, +1"
         #"$mod SHIFT, 1, split-movetoworkspacesilent, 1"
         #"$mod SHIFT, 2, split-movetoworkspacesilent, 2"
         #"$mod SHIFT, 3, split-movetoworkspacesilent, 3"
