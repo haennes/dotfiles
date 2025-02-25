@@ -20,6 +20,11 @@ in {
           on-resume = "${brightnessctl} -r";
         }
         {
+          timeout = 140;
+          on-timeout = ''
+            ${pkgs.libnotify}/bin/notify-send -u critical -e -t 10000 "about to go to lock"'';
+        }
+        {
           timeout = 150;
           on-timeout = "loginctl lock-session";
         }
