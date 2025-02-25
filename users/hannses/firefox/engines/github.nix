@@ -1,7 +1,11 @@
-{ updateInterval, ... }:
+{ updateInterval, lib, ... }:
 let
-  gh_search = { type, alias, personal ? false, addAliases ? [ ], ... }:
-    let title = "GitHub ${type}" + (if personal then " personal" else "");
+  gh_search = { type, alias, personal ? false, addAliases ? [ ]
+    , addSearchParams ? [ ]
+    , title ? "GitHub ${type}" + (if personal then " personal" else ""), ... }:
+    let
+      inherit (lib) concatMapStrings;
+      additionalSearchParams = concatMapStrings (v: "${v}+") addSearchParams;
     in {
       "${title}" = {
         urls = [{
@@ -10,9 +14,9 @@ let
             {
               name = "q";
               value = if personal then
-                "owner:haennes+fork:true+{searchTerms}"
+                "owner:haennes+${additionalSearchParams}{searchTerms}"
               else
-                "" + "{searchTerms}";
+                "${additionalSearchParams}{searchTerms}";
             }
             {
               name = "type";
@@ -43,6 +47,7 @@ in gh_search ({
   alias = "r";
   personal = true;
   addAlias = [ "ghp" ];
+  addSearchParams = [ "fork:true" ];
 }) # <ghpr or <ghp
 // gh_search ({
   type = "users";
@@ -54,3 +59,15 @@ in gh_search ({
   alias = "i";
   personal = true;
 }) # <ghpi
+// gh_search {
+  type = "code";
+  title = "GitHub nix files";
+  alias = "nf";
+  addSearchParams = [ "path%3A**%2F*.nix" ];
+} # <ghnf
+// gh_search {
+  type = "code";
+  title = "GitHub nix flakes";
+  alias = "nff";
+  addSearchParams = [ "path%3A**%2Fflake.nix" ];
+} # <ghnf
