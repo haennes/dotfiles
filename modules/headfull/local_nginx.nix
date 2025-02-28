@@ -1,6 +1,8 @@
 { lib, config, inputs, system, topology, pkgs, ... }:
 let
-  inherit (lib) mapAttrs head length last;
+  inherit (lib)
+    mapAttrs mapAttrs' splitString reverseList concatStringsSep head length
+    last;
   ips = config.ips.ips.ips.default;
   hports = config.ports.ports.curr_ports;
   ports = config.ports.ports.ports;
@@ -43,6 +45,7 @@ in {
     enable = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
+    serverNamesHashBucketSize = 128;
   };
   services.nginx.virtualHosts = {
     "localhost".locations."/".proxyPass = "http://localhost:${
@@ -63,5 +66,11 @@ in {
     in {
       name = "${name}.localhost";
       value = { locations."/".proxyPass = "http://${ip}${second_part}"; };
-    }) all_linking);
+    }) all_linking) // (mapAttrs' (name: value: {
+      name = concatStringsSep "."
+        ((reverseList (splitString "." name)) ++ [ "ports" "localhost" ]);
+      value = {
+        locations."/".proxyPass = "http://localhost:${toString value}";
+      };
+    }) (lib.my.flatten_attrs config.ports.ports.curr_ports));
 }
