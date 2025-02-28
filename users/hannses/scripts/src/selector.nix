@@ -48,6 +48,7 @@ in ''
   clear-clipboard
   screenshot
   sccpa
+  ports
   brightness
   volume
   volume gui
@@ -110,6 +111,9 @@ in ''
      ;;
   "dbui")
      ${scripts.dbui_dmenu}
+     ;;
+  "ports")
+     ${scripts.ports_fzf}
      ;;
   "disturb")
      ${scripts.donotdisturb}
