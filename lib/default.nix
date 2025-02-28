@@ -1,6 +1,22 @@
-{ lib, inputs, ... }: rec {
+{ lib, inputs, ... }: rec
+{
   wireguard = import ./wireguard.nix;
   systemd_timer_service = import ./systemd_timer_service.nix;
+
+  mapAttrsToPathValueList = set:
+    lib.mapAttrsRecursive (path: value: [{
+      name = "${lib.concatStringsSep "." path}";
+      inherit value;
+    }]) set;
+
+  flatten_attrs_to_list =
+  let
+    inherit (lib) flatten collect isList;
+  in
+  set:
+    flatten (collect isList (mapAttrsToPathValueList set));
+
+  flatten_attrs = set: lib.listToAttrs (flatten_attrs_to_list set);
 
   ip_cidr = ip: "${ip}/32";
   __subnet = ip:
