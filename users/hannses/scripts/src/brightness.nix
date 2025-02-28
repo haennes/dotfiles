@@ -12,7 +12,7 @@
 
   end () {
       if [ -n "$value" ]; then
-          ${pkgs.brightnessctl}/bin/brightnessctl  s $value%
+          ${pkgs.brightnessctl}/bin/brightnessctl  s $value% -n 5
           current=$(${pkgs.brightnessctl}/bin/brightnessctl -m  | grep -o '[^,]\+' | sed -n '4p')
           notify-send -a "brightness" "set brightness to $current"
       fi
