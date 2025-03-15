@@ -47,9 +47,15 @@ in {
       upstreams = {
         tabula = {
           servers = {
-            "${ips.tabula_1.wg0}:${toString ports.tabula_1.web}" = { };
+            "${ips.tabula_1.wg0}:${toString ports.tabula_1.web}" = {
+              fail_timeout = "3s";
+              max_fails = 2;
+            };
             #"${ips.tabula_2.wg0}:${toString ports.tabula_2.web}" = { };
-            "${ips.tabula_3.wg0}:${toString ports.tabula_3.web}" = { };
+            "${ips.tabula_3.wg0}:${toString ports.tabula_3.web}" = {
+              fail_timeout = "3s";
+              max_fails = 2;
+            };
           };
         };
         esw = {
