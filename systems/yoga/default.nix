@@ -30,14 +30,12 @@ in {
     "/dev/disk/by-uuid/25879778-fcba-4dab-9ad7-a929638b13ec";
   networking.hostName = "yoga"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  services.syncthing_wrapper = {
-    enable = true;
-    ensureDirsExistsDefault = "setfacl";
-  };
+  services.syncthing_wrapper = { enable = true; };
   services.syncthing = {
     dataDir = "/home";
     user = "hannses";
   };
+
   services.wireguard-wrapper.enable =
     true; # currently wg0 forwarind all traffic is broken
   networking.networkmanager.unmanaged = [ "wg0" ];

@@ -9,13 +9,13 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.forceImportRoot = false;
   networking.hostId = "61647c16";
-  services.syncthing_wrapper = { enable = true; };
+  services.syncthing_wrapper = { enable = false; };
   services.syncthing = {
     dataDir = "/home/hannses";
     user = "hannses";
   };
   virtualisation.docker.enable = true;
-  services.wireguard-wrapper.enable = true;
+  services.wireguard-wrapper.enable = false;
 
   services.wordpress.sites."localhost" = {
     languages = [ pkgs.wordpressPackages.languages.de_DE ];
