@@ -22,17 +22,20 @@
     6. test if it can reboot.
 - dea: **cloud + syncthing**
 - tabula: **Website**
+- hesperos: **openfortivpn jump**
 - fons: **rss**
 - historia: **atuin shell history**
 - minerva: **anki-sync**
 - vertumnus: **gitea**
 - proserpina: **esw machines**
+- pales: **github, gitea runners, nginx file host**
 
 ## inaktiv:
 - deus: **HOST FÜR ALLE ANDEREN**
 - concordia: **cloud + ipfs + syncthing**
 - porta: **WG-Endpoint** war Proxmox VM (evtl: -> PI bzw. als teil von PI config) (nicht mehr gebraucht, da ssh bereits über deus möglich)
 - fenestra **2WG-Endpoint** bis jetzt Proxmox VM (evtl: -> microvm) (Backup Zugriff, falls Fehlkonfiguration von porta)
-- hermes: mail
+- merkur: mail
 - grapheum: **OnlyOffice - Server** bis jetzt Proxmox VM (evtl: -> microvm)
 - speilunke: **pterodactyl** bis jetzt Proxmox VM (evtl: -> microvm)
+- Terminus: **Calendar**

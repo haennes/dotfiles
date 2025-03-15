@@ -1,7 +1,7 @@
 { specialArgs, lib, ... }:
 let
   hostnames =
-    [ "tabula_1" "minerva" "vertumnus" "proserpina_1" "historia" ];
+    [ "tabula_1" "minerva" "vertumnus" "proserpina_1" "historia" "pales_1" ];
   inherit (lib) mkMerge listToAttrs map;
 in {
   imports = (map (hostname:
@@ -50,6 +50,12 @@ in {
       config = ../../vms/singletons/historia;
       pkgs = null;
     };
+    #pales_1 = {
+    #  inherit specialArgs;
+    #  config = ../../vms/instances/pales_1.nix;
+    #  pkgs = null;
+    #};
+
   };
 
   #microvm.vms = lib.my.mkVMS {

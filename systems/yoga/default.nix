@@ -4,8 +4,8 @@
 
 { config, specialArgs, lib, inputs, pkgs, ... }:
 let
-  hostname = "tabula_3";
-  hostname_2 = "tabula_1";
+  hostname = "hesperos_1";
+  hostname_2 = "tabula_3";
 in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -48,16 +48,17 @@ in {
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   microvm.vms = {
+    hesperos_1 = {
+      inherit specialArgs;
+      config = ../../vms/instances/hesperos_1.nix;
+      pkgs = null;
+    };
     tabula_3 = {
       inherit specialArgs;
       config = ../../vms/instances/tabula_3.nix;
       pkgs = null;
     };
-    tabula_1 = {
-      inherit specialArgs;
-      config = ../../vms/instances/tabula_1.nix;
-      pkgs = null;
-    };
+
   };
 
   age.secrets."sshkeys/${hostname}/age_key" = {
