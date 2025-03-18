@@ -94,6 +94,17 @@ in {
     target_ip = "esw";
   })
   (create_simple_proxy_with_domain {
+    fqdn = "ha1.esw.hannses.de";
+    target_ip = ips.proserpina_1.wg0;
+    target_port = ports.proserpina_1.esw;
+  })
+  (create_simple_proxy_with_domain {
+    fqdn = "ha2.esw.hannses.de";
+    target_ip = ips.fabulinus.wg0;
+    target_port = ports.fabulinus.esw;
+  })
+
+  (create_simple_proxy_with_domain {
     fqdn = "cloud.hannses.de";
     target_ip = ips.dea.wg0;
     #https = true;
