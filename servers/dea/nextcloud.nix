@@ -20,7 +20,6 @@ in {
     user = "nextcloud";
     group = user;
   };
-  services.syncthing_wrapper = { enable = true; };
   systemd.services."nextcloud-setup".requires = [ "syncthing.service" ];
   systemd.services."nextcloud-setup".after = [ "syncthing.service" ];
 

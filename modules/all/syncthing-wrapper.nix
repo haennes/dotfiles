@@ -1,120 +1,144 @@
 { config, lib, ... }:
 let
+  inherit (lib)
+    mapAttrs attrNames head splitString tail optional concatStringsSep;
+  splitStringOnce = sep: str:
+    let
+      sp = (splitString sep str);
+      first = head sp;
+      second = (concatStringsSep sep (tail sp));
+    in [ first ] ++ optional (second != "") second;
+  #TODO move to own lib
   ids = import ../../secrets/not_so_secret/syncthing.key.nix;
-  sharedFolderFn = { folder_name, DirUsers, DirGroups }:
-    "${config.services.syncthing.dataDir}/${folder_name}";
-  family_if_client = (if (config.is_client) then {
-    DirGroups = [ "family" ];
-    ensureDirExists = "setfacl";
-  } else
-    { });
+  ids_attrs = mapAttrs (_: v: { id = v; }) ids;
+  #sharedFolderFn = { folder_name, DirUsers, DirGroups }:
+  #  "${config.services.syncthing.dataDir}/${folder_name}";
+  #family_if_client = (if (config.is_client) then {
+  #  DirGroups = [ "family" ];
+  #  ensureDirExists = "setfacl";
+  #} else
+  #  { });
+  devices = rec {
+    all_pcs = { inherit (ids_attrs) mainpc yoga; };
+    all_handys = { inherit (ids_attrs) handyHannes handyMum handyDad tablet; };
+    servers = { inherit (ids_attrs) dea; };
+    all_servers = servers // {
+      inherit (ids_attrs) tabula tabula_1 tabula_3 proserpina_1 fons fabulinus;
+    };
+
+    #uni = { inherit stefan_handy sebastian_s_mac sebastian_r_laptop; };
+  } // ids_attrs;
 in {
   imports = [ ./syncthing_wrapper_secrets.nix ];
-  services.syncthing_wrapper = rec {
-    ensureServiceOwnerShip = true;
-    DirUsersDefault = [ "hannses" ];
-    folderToPathFuncDefault =
-      lib.mkIf (config.networking.hostName != "syncschlawiner")
-      ({ folder_name, DirUsers, DirGroups }:
-        "${config.services.syncthing.dataDir}/${
-          lib.lists.head DirUsers
-        }/${folder_name}");
-    default_versioning = {
-      type = "simple";
-      params.keep = "10";
+  services.syncthing-wrapper = {
+    secrets = {
+      keyFunction = hostname:
+        config.age.secrets."syncthing_key_${hostname}".path;
+      certFunction = hostname:
+        lib.mkIf (config.services.syncthing.enable)
+        config.age.secrets."syncthing_cert_${hostname}".path;
     };
-    devices = with ids; rec {
-      all_pcs = { inherit (ids) mainpc yoga; };
-      thinkpad = { inherit (ids) thinkpad; };
-      proserpina_1 = { inherit (ids) proserpina_1; };
-      concordia = { inherit (ids) concordia; };
-      all_handys = { inherit (ids) handyHannes handyMum handyDad tablet; };
-      servers = { inherit (ids) syncschlawiner concordia dea; };
-      all_servers = servers // {
-        inherit (ids) tabula tabula_1 tabula_3 fons fabulinus;
+    defaultVersioning.simple.params.keep = 10;
+    servers = attrNames devices.all_servers;
+    pseudoGroups."family" = [ "hannses" "mum" "dad" ];
+    legacyIDMap = {
+      "hannses__freshrss" = "freshrss";
+      "hannses__AnkiBackup" = "AnkiBackup";
+      "hannses__3d_printing" = "3d_printing";
+      "hannses__Documents" = "Documents";
+      "hannses__Notes" = "Notes";
+      "hannses__tasks" = "tasks";
+      "hannses__Downloads" = "Downloads";
+      "hannses__Music" = "Music";
+      "hannses__Templates" = "Templates";
+      "hannses__Videos" = "Videos";
+      "hannses__game_servers" = "game_servers";
+      "hannses__programming" = "programming";
+      "hannses__AegisBak" = "AegisBak";
+      "hannses__AntennaBak" = "AntennaBak";
+      "hannses__SignalBackup" = "SignalBackup";
+      "hannses__DownloadHandy" = "DownloadHandyH";
+      "hannses__Kamera" = "HannesKamera";
+      "hannses__Galerie" = "HannesGalerie";
+      "mum__WA" = "AlexandraWA";
+      "mum__Kamera" = "AlexandraKamera";
+      "mum__Galerie" = "AlexandraGalerie";
+      "dad__Kamera" = "ThomasKamera";
+      "dad__Galerie" = "ThomasGalerie";
+      "hannses__website" = "website";
+      "esw-machine__esw-machines" = "esw-machines";
+    };
+    paths = {
+      users = {
+        userDirFolderMap = {
+          hannses.AnkiBackup =
+            "/home/hannses/.local/share/Anki2/User 1/backups";
+        };
+        defaultUserDir = "/home";
       };
-
-      #uni = { inherit stefan_handy sebastian_s_mac sebastian_r_laptop; };
     };
+    idToOptionalUserName = folderId:
+      let
+        v = head (splitStringOnce "__" folderId);
+        cfg = config.services.syncthing-wrapper;
+      in if v == (cfg.idToTargetName folderId) then null else v;
     folders = with devices;
       with devices.all_handys;
       with devices.all_servers;
       with devices.all_pcs; {
-        "freshrss" = {
-          folderToPathFunc = sharedFolderFn;
-          devices = [ servers fons ];
-        };
+        "hannses__freshrss".devices = { inherit fons; } // servers;
         "Family" = {
-          devices = [ (all_pcs // servers) "thinkpad" ];
-          folderToPathFunc = sharedFolderFn;
-        } // family_if_client;
+          devices = all_pcs // servers // { inherit thinkpad; };
+          pseudoGroups = [ "family" ];
+        };
         "Passwords" = {
-          devices = [ (all_pcs // all_handys // servers) "thinkpad" ];
-          versioning = {
-            type = "simple";
-            params.keep = "100";
-          };
-          folderToPathFunc = sharedFolderFn;
-        } // family_if_client;
+          devices = all_pcs // all_handys // servers // { inherit thinkpad; };
+          versioning.type.simple.params.keep = 100;
+          pseudoGroups = [ "family" ];
+        };
 
-        "AnkiBackup" = {
-          devices = [ (all_pcs // servers) ];
-          folderToPathFunc = lib.mkIf (config.is_client)
-            (_: "/home/hannses/.local/share/Anki2/User 1/backups");
+        "hannses__AnkiBackup".devices = all_pcs // servers;
+        "hannses__3d_printing".devices = all_pcs // servers;
+        "hannses__Documents".devices = all_pcs // servers;
+        "hannses__Notes".devices = all_pcs // servers;
+        "hannses__tasks".devices = all_pcs // servers;
+        "hannses__Downloads".devices = all_pcs // servers;
+        "hannses__Music".devices = all_pcs // servers;
+        "Pictures" = {
+          devices = servers // all_pcs;
+          pseudoGroups = [ "family" ];
         };
-        "3d_printing" = [ (all_pcs // servers) ];
-        "Documents" = [ (all_pcs // servers) ];
-        "Notes" = [ (all_pcs // servers) ];
-        "tasks" = {
-          devices = [ (all_pcs // servers) ];
-          paths = { syncschlawiner = "/data/syncthing/hannses/tasks"; };
-        };
-        "Downloads" = [ (all_pcs // servers) ];
-        "Music" = [ (all_pcs // servers) ];
-        "Pictures" = [ (servers // all_pcs) ];
-        "Templates" = [ (all_pcs // servers) ];
-        "Videos" = [ (all_pcs // servers) ];
-        "game_servers" = [ (all_pcs // servers) ];
-        "programming" = [ (all_pcs // servers) ];
-        "AegisBak" = [ (all_pcs // servers) "handyHannes" ];
-        "AntennaBak" = {
-          devices = [ (all_pcs // servers) "handyHannes" ];
-          paths = { syncschlawiner = "/data/syncthing/hannses/AntennaBak"; };
-        };
-        "SignalBackup" = [ (servers) "handyHannes" ];
-        "DownloadHandyH" = [ (all_pcs // servers) "handyHannes" ];
-        "HannesKamera" = [ (all_pcs // servers) "handyHannes" ];
-        "HannesGalerie" = [ (all_pcs // servers) "handyHannes" ];
-        "AlexandraWA" = {
-          devices = [ (servers) "handyMum" yoga ];
-          DirUsers = [ "mum" ];
-        };
-        "AlexandraKamera" = {
-          devices = [ (servers) "handyMum" ];
-          DirUsers = [ "mum" ];
-        };
-        "AlexandraGalerie" = {
-          devices = [ (servers) "handyMum" ];
-          DirUsers = [ "mum" ];
-        };
-        "ThomasKamera" = {
-          devices = [ (servers) ];
-          DirUsers = [ "dad" ];
-        };
-        "ThomasGalerie" = {
-          devices = [ (servers) ];
-          DirUsers = [ "dad" ];
-        };
-        "website" = {
-          devices = [ (all_pcs) "tabula" tabula_1 tabula_3 ];
-          paths.tabula = "/persist/website";
-          paths.tabula_1 = "/persist/website";
-          paths.tabula_3 = "/persist/website";
-        };
-        "esw-machines" = {
-          devices = [ fabulinus proserpina_1 servers ];
-          folderToPathFunc = sharedFolderFn;
-        };
+        "hannses__Templates".devices = all_pcs // servers;
+        "hannses__Videos".devices = all_pcs // servers;
+        "hannses__game_servers".devices = all_pcs // servers;
+        "hannses__programming".devices = all_pcs // servers;
+        "hannses__AegisBak".devices = {
+          inherit handyHannes;
+        } // all_pcs // servers;
+        "hannses__AntennaBak".devices = {
+          inherit handyHannes;
+        } // all_pcs // servers;
+        "hannses__SignalBackup".devices = { inherit handyHannes; } // servers;
+        "hannses__DownloadHandy".devices = {
+          inherit handyHannes;
+        } // all_pcs // servers;
+        "hannses__Kamera".devices = {
+          inherit handyHannes;
+        } // all_pcs // servers;
+        "hannses__Galerie".devices = {
+          inherit handyHannes;
+        } // all_pcs // servers;
+        "mum__WA".devices = { inherit handyMum yoga; } // servers;
+        "mum__Kamera".devices = { inherit handyMum; } // servers;
+        "mum__Galerie".devices = { inherit handyMum; } // servers;
+        "dad__Kamera".devices = servers;
+        "dad__Galerie".devices = servers;
+        "hannses__website".devices = {
+          inherit tabula tabula_1 tabula_3;
+        } // all_pcs;
+        "esw-machine__esw-machines".devices = {
+          inherit fabulinus proserpina_1;
+        } // servers;
       };
   };
 
@@ -127,9 +151,5 @@ in {
     };
     guiAddress =
       "127.0.0.1:${toString config.ports.ports.curr_ports.syncthing.gui}";
-    key = lib.mkIf (config.services.syncthing.enable)
-      config.age.secrets."syncthing_key_${config.networking.hostName}".path;
-    cert = lib.mkIf (config.services.syncthing.enable)
-      config.age.secrets."syncthing_cert_${config.networking.hostName}".path;
   };
 }

@@ -30,10 +30,10 @@ in {
     "/dev/disk/by-uuid/25879778-fcba-4dab-9ad7-a929638b13ec";
   networking.hostName = "yoga"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  services.syncthing_wrapper = { enable = true; };
+  services.syncthing-wrapper = { enable = true; };
   services.syncthing = {
-    dataDir = "/home";
-    user = "hannses";
+    dataDir = "/syncthing";
+    #user = "hannses";
   };
 
   services.wireguard-wrapper.enable =

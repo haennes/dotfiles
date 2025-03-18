@@ -13,10 +13,6 @@ in {
   };
 
   services.wireguard-wrapper.enable = true;
-  services.syncthing_wrapper = {
-    enable = true;
-    ensureDirsExistsDefault = "setfacl";
-  };
   services.syncthing = {
     dataDir = "/persist";
     user = config.services.freshrss.user;

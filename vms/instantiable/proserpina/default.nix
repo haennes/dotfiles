@@ -20,7 +20,7 @@ hostname:
     chown -R ${config.services.esw-machines.user}:${config.services.esw-machines.user} /persist/esw-machines
   '';
 
-  services.syncthing_wrapper.enable = true;
+  services.syncthing-wrapper = { enable = true; };
   services.syncthing = {
     dataDir = "/persist";
     user = config.services.esw-machines.user;
@@ -31,6 +31,6 @@ hostname:
     enable = true;
     port = config.ports.ports.curr_ports.esw;
     domain = "0.0.0.0";
-    dataFilePath = "/persist/esw-machines/esw";
+    dataFilePath = "/persist/esw-machine__esw-machines/esw";
   };
 }

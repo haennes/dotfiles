@@ -27,7 +27,17 @@ in {
 
   environment.systemPackages = [ zfssnap ];
 
-  services.syncthing_wrapper = { enable = true; };
+  services.syncthing-wrapper = {
+    enable = true;
+    paths.system.pathFunc = { folderID, physicalPath, ... }:
+      let
+        cfg = config.services.syncthing-wrapper;
+        cfg_s = config.services.syncthing;
+        optionalUser = cfg.idToOptionalUserName folderID;
+        middle = lib.optionalString (optionalUser != null) "/${optionalUser}";
+        legacyID = cfg_s.settings.folders.${folderID}.id;
+      in "${physicalPath}${middle}/${legacyID}";
+  };
 
   system.activationScripts.ensure-syncthing-dir = ''
     mkdir -p /data

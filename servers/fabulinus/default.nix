@@ -60,14 +60,15 @@
 
   networking.firewall.allowedTCPPorts = [ config.ports.ports.curr_ports.esw ];
 
-  services.syncthing_wrapper = { enable = true; };
+  services.syncthing-wrapper = { enable = true; };
 
   services.esw-machines = {
     enable = true;
     port = config.ports.ports.curr_ports.esw;
     domain = "0.0.0.0";
     user = config.services.syncthing.user;
-    dataFilePath =
-      "${config.services.syncthing.settings.folders.esw-machines.path}/esw";
+    dataFilePath = "${
+        config.services.syncthing.settings.folders."esw-machine__esw-machines".path
+      }/esw";
   };
 }

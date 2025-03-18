@@ -9,9 +9,9 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.forceImportRoot = false;
   networking.hostId = "61647c16";
-  services.syncthing_wrapper = { enable = false; };
+  services.syncthing-wrapper = { enable = false; };
   services.syncthing = {
-    dataDir = "/home/hannses";
+    dataDir = "/syncthing";
     user = "hannses";
   };
   virtualisation.docker.enable = true;

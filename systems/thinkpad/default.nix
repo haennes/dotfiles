@@ -6,10 +6,9 @@
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  services.syncthing_wrapper = { enable = true; };
+  services.syncthing-wrapper = { enable = true; };
   services.syncthing = {
-    dataDir = "/home/hannses";
-    user = "hannses";
+    dataDir = "/syncthing";
   };
   virtualisation.docker.enable = true;
   networking.hostName = "thinkpad";
