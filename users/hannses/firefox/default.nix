@@ -17,7 +17,10 @@ in {
         darkreader
         ipfs-companion
       ];
-      settings = { "browser.link.open_newwindow.restriction" = 0; };
+      settings = {
+        "browser.link.open_newwindow.restriction" = 0;
+        "signon.rememberSignons" = false;
+      };
       search = {
         force = true;
         default = "ecosia";
