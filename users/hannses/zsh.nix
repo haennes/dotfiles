@@ -8,9 +8,10 @@ in {
     enable = true;
     shellAliases = let
       aliases = [ "dticket" "ticket" "db" ];
-      studium = "cd ${home}/Documents/Studium";
+      studium = "${home}/Documents/Studium";
       semester1 = "${studium}/Semester1";
       semester2 = "${studium}/Semester2";
+      semester3 = "${studium}/Semester3";
 
     in rec {
       #manix and its aliases are configured in ./manix.nix
@@ -40,7 +41,7 @@ in {
       dotfiles = "cd ${dotfiles_path}";
       dotf = dotfiles;
 
-      oth = semester2;
+      oth = semester3;
       down = "cd ${home}/Downloads";
 
       pro = "cd ${home}/programming";
@@ -59,6 +60,13 @@ in {
       rb = "${semester2}/RB";
       ge = "${semester2}/GE";
       pg = "${semester2}/PG2";
+
+      # Semester 3
+      ad = "${semester3}/AD";
+      em = "${semester3}/EM";
+      se = "${semester3}/SE";
+      st = "${semester3}/ST";
+      zock = "${semester3}/ZOCK";
 
       "..." = "cd  ../../"; # dont want to enable prezto
       "...." = "cd  ../../../"; # dont want to enable prezto
