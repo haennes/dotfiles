@@ -1,11 +1,10 @@
 { ... }: {
-  services.pulseaudio.enable = true;
+  # rtkit is optional but recommended
   security.rtkit.enable = true;
   services.pipewire = {
-    enable = false;
-    #  pulse.enable = true;
-    #  jack.enable = true;
-    #  alsa.enable = true;
-    #  alsa.support32Bit = true;
+    enable = true; # if not already enabled
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
 }

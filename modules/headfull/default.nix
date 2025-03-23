@@ -19,6 +19,7 @@
     ./yubikey.nix
     ./chromecast.nix
     ./printing.nix
+    ./xdg.nix
   ];
 
 }
