@@ -395,6 +395,7 @@ in {
     package = pkgs.waybar.overrideAttrs (oldAttrs: {
       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
     });
+    systemd.enable = true;
     style = css;
     settings = { mainBar = mainWaybarConfig; };
   };
