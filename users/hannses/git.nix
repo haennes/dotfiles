@@ -17,4 +17,14 @@
       push.autoSetupRemote = true;
     };
   };
+  programs.zsh.shellAliases = {
+    gitcpr = "${pkgs.writeShellScript "gitcpr" ''
+      pr=$1
+      shift
+      set -x
+      git fetch $@ pull/$pr/head:pr_$pr
+      git switch pr_$pr
+    ''}";
+    gitam = "git commit --amend --no-edit";
+  };
 }
