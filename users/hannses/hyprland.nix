@@ -68,6 +68,7 @@ in {
           disable_while_typing = true;
           drag_lock = true;
         };
+        tablet.output = monitors_laptop.builtin;
       };
 
       env =
