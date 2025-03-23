@@ -111,6 +111,11 @@ in {
         user = "hoh47200";
         hostname = "cloud.fsim-ev.de";
       };
+      "fs_main_jmp" = {
+        user = "hoh47200";
+        hostname = "ole.blue";
+        port = 2222;
+      };
       "welt" = {
         user = "root";
         port = ports.welt.sshd;
