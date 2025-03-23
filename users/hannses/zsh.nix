@@ -25,8 +25,8 @@ in {
 
       rg = "${pkgs.ripgrep-all}/bin/rga";
 
-      nix-build = "${pkgs.nix-output-monitor}/bin/nom-build";
-      nix-shell = "${pkgs.nix-output-monitor}/bin/nom-shell";
+      nix-build = "${pkgs.nix-output-monitor}/bin/nom-build --run $SHELL";
+      nix-shell = "${pkgs.nix-output-monitor}/bin/nom-shell --run $SHELL";
 
       #settings this to pkgs fails
       vim = "nvim";
@@ -102,6 +102,14 @@ in {
       }
     ]) aliases));
     initExtra = ''
+      nix() {
+        if [[ $1 == "develop" ]]; then
+          shift
+          command nix develop -c $SHELL "$@"
+        else
+          command nix "$@"
+        fi
+      }
       catcp () {
         cat "$1" | wl-copy
       }
