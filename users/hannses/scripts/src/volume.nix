@@ -1,41 +1,41 @@
-{ globals, ... }: ''
+{ globals, pkgs, ... }: ''
         DMENU="${globals.dmenu}"
 
-        outputs=$(pactl list sinks | grep -E "device.profile.description|State" | sed 'N;s/\n/ /g' | sed 's/\s*State: \(\S*\)\s*device.* = "\(.*\)"/\2 (\1)/')
-        output_indexes=($(pactl list sinks short | awk '{print $1}'))
+        outputs=$(${pkgs.pulseaudio}/bin/pactl list sinks | grep -E "device.profile.description|State" | sed 'N;s/\n/ /g' | sed 's/\s*State: \(\S*\)\s*device.* = "\(.*\)"/\2 (\1)/')
+        output_indexes=($(${pkgs.pulseaudio}/bin/pactl list sinks short | awk '{print $1}'))
 
-        inputs=$(pactl list sources | grep -E "Source #|device.profile.description|State|Active Port:" | sed 'N;N;N;s/\n/ /g' | grep "Active Port: \[In\]")
+        inputs=$(${pkgs.pulseaudio}/bin/pactl list sources | grep -E "Source #|device.profile.description|State|Active Port:" | sed 'N;N;N;s/\n/ /g' | grep "Active Port: \[In\]")
         input_indexes=($(echo "$inputs" | awk '{print $2}' | grep -oP "\d+"))
         inputs=$(echo "$inputs" | sed 's/.*State: \(\S*\)\s*device.* = "\(.*\)".*/\2 (\1)/')
   # TODO
         active_inputs=($())
 
-        applications=$(pactl list sink-inputs | grep -E "media.name|Corked" | sed 'N;s/\n//g' | sed 's/\s*Corked: \(\S*\)\s*media.* = "\(.*\)"$/\2 (\1)/' | sed 's/no)$/RUNNING)/' | sed 's/yes)$/PAUSED)/')
-        application_indexes=($(pactl list sink-inputs | grep "Sink Input" | grep -oP "\d+$"))
-        active_sinks=($(pactl list sink-inputs | grep -E "Sink:|Corked:" | sed 'N;s/\n//g' | grep "Corked: no" | awk '{print $2}' | sort -u))
+        applications=$(${pkgs.pulseaudio}/bin/pactl list sink-inputs | grep -E "media.name|Corked" | sed 'N;s/\n//g' | sed 's/\s*Corked: \(\S*\)\s*media.* = "\(.*\)"$/\2 (\1)/' | sed 's/no)$/RUNNING)/' | sed 's/yes)$/PAUSED)/')
+        application_indexes=($(${pkgs.pulseaudio}/bin/pactl list sink-inputs | grep "Sink Input" | grep -oP "\d+$"))
+        active_sinks=($(${pkgs.pulseaudio}/bin/pactl list sink-inputs | grep -E "Sink:|Corked:" | sed 'N;s/\n//g' | grep "Corked: no" | awk '{print $2}' | sort -u))
 
         set_app_output () {
   # app-index, output
-  	  pactl move-sink-input "$i" "$2"
+  	  ${pkgs.pulseaudio}/bin/pactl move-sink-input "$i" "$2"
         }
 
     set_app_vol () {
   # app-index, vol
-        pactl set-sink-input-volume "$i" "$2%"
+        ${pkgs.pulseaudio}/bin/pactl set-sink-input-volume "$i" "$2%"
     }
 
     toggle_app () {
   # app-index
-        pactl set-sink-input-mute "$i" toggle
+        ${pkgs.pulseaudio}/bin/pactl set-sink-input-mute "$i" toggle
     }
 
     get_app_vol () {
   # app-index
-        pactl list sink-inputs | sed -n -e "/Sink Input #$1/,/Volume/ p" | grep -oP "\d+%" | head -n 1
+        ${pkgs.pulseaudio}/bin/pactl list sink-inputs | sed -n -e "/Sink Input #$1/,/Volume/ p" | grep -oP "\d+%" | head -n 1
     }
 
     get_app_muted () {
-        muted=$(pactl list sink-inputs | sed -n -e "/Client: $1/,/Mute: / p" | grep "Mute: " | sed 's/.*Mute: //')
+        muted=$(${pkgs.pulseaudio}/bin/pactl list sink-inputs | sed -n -e "/Client: $1/,/Mute: / p" | grep "Mute: " | sed 's/.*Mute: //')
   	  if [ $muted = "yes" ]; then
   	      echo 1
   	  else
@@ -45,20 +45,20 @@
 
     set_output_vol () {
   # output, volume
-        pactl set-sink-volume "$i" "$2%"
+        ${pkgs.pulseaudio}/bin/pactl set-sink-volume "$i" "$2%"
     }
 
     toggle_output () {
   # output
-        pactl set-sink-mute "$i" toggle
+        ${pkgs.pulseaudio}/bin/pactl set-sink-mute "$i" toggle
     }
 
     get_output_vol () {
-        pactl get-sink-volume "$1" | grep -oP "\d+%" | head -n 1
+        ${pkgs.pulseaudio}/bin/pactl get-sink-volume "$1" | grep -oP "\d+%" | head -n 1
     }
 
     get_output_muted () {
-        if [ $(pactl get-sink-mute "$1" | sed 's/.* //') = "yes" ]; then
+        if [ $(${pkgs.pulseaudio}/bin/pactl get-sink-mute "$1" | sed 's/.* //') = "yes" ]; then
   	  echo 1
         else
   	  echo 0
@@ -67,21 +67,21 @@
 
     set_mic_vol () {
   # mic-index, vol
-        pactl set-source-volume "$i" "$2"
+        ${pkgs.pulseaudio}/bin/pactl set-source-volume "$i" "$2"
     }
 
     toggle_mic () {
   	# mic-index
-        pactl set-source-mute "$i" toggle
+        ${pkgs.pulseaudio}/bin/pactl set-source-mute "$i" toggle
     }
 
     get_mic_vol () {
   	#mic-index
-        pactl get-source-volume "$1" | grep -oP "\d+%" | head -n 1
+        ${pkgs.pulseaudio}/bin/pactl get-source-volume "$1" | grep -oP "\d+%" | head -n 1
     }
 
     get_mic_muted () {
-        if [ $(pactl get-source-mute "$1" | sed 's/.* //') = "yes" ]; then
+        if [ $(${pkgs.pulseaudio}/bin/pactl get-source-mute "$1" | sed 's/.* //') = "yes" ]; then
   	  echo 1
         else
   	  echo 0
@@ -254,8 +254,8 @@
   					      fi
   					      ;;
   			  "set default output")
-  			      list_arr=($(pactl list sinks | grep "Name: " | sed 's/.*Name: //'))
-  			      search=$(pactl get-default-sink)
+  			      list_arr=($(${pkgs.pulseaudio}/bin/pactl list sinks | grep "Name: " | sed 's/.*Name: //'))
+  			      search=$(${pkgs.pulseaudio}/bin/pactl get-default-sink)
   			      index=""
   			      for i in "''${!list_arr[@]}"; do
   				  if [[ "''${list_arr[$i]}" = "''${search}" ]]; then
@@ -266,7 +266,7 @@
   					  if [ -z $index ]; then exit; fi
   					      output=$(get_output)
   						  if [ -z "$output" ]; then exit; fi
-  						      pactl set-default-sink "$output"
+  						      ${pkgs.pulseaudio}/bin/pactl set-default-sink "$output"
   							  ;;
   			  *)
   			      ;;
