@@ -51,6 +51,7 @@
   home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
+    comma
     update-apply-cycle
     signal-whisper-large-v3-q5_0
     vim
