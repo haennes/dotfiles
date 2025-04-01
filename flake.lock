@@ -45,26 +45,6 @@
     },
     "bindfs": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1742033677,
-        "narHash": "sha256-amDIndNoIXLU8wUrIIaWrjTNtjEGF5YRCn0QxxwhnIQ=",
-        "owner": "haennes",
-        "repo": "bindfs.nix",
-        "rev": "090af700a3e485c3215f630983b47073cc587d78",
-        "type": "github"
-      },
-      "original": {
-        "owner": "haennes",
-        "repo": "bindfs.nix",
-        "type": "github"
-      }
-    },
-    "bindfs_2": {
-      "inputs": {
         "nixpkgs": "nixpkgs_12"
       },
       "locked": {
@@ -1771,7 +1751,6 @@
       "inputs": {
         "IPorts": "IPorts",
         "agenix": "agenix",
-        "bindfs": "bindfs",
         "deploy-rs": "deploy-rs",
         "disko": "disko",
         "dns": "dns",
@@ -2087,7 +2066,7 @@
     },
     "syncthing-wrapper": {
       "inputs": {
-        "bindfs": "bindfs_2",
+        "bindfs": "bindfs",
         "nixpkgs": [
           "nixpkgs"
         ]

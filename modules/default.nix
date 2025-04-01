@@ -2,6 +2,7 @@
   imports = [
     ./age.nix
     ./all
+    ./adb.nix
     ./gnome
     ./headfull
     ./headless
