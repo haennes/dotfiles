@@ -27,7 +27,7 @@ let
         definedAliases =
           [ ("<gh" + (if personal then "p" else "") + "${alias}") ]
           ++ addAliases;
-        iconUpdateURL =
+        icon =
           "https://github.githubassets.com/assets/pinned-octocat-093da3e6fa40.svg";
         inherit updateInterval;
       };

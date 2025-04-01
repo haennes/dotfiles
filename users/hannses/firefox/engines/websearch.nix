@@ -3,7 +3,7 @@
     urls = [{
       template = "https://www.ecosia.org/search?method=index&q={searchTerms}";
     }];
-    iconUpdateURL = favicon "www.ecosia.org";
+    icon = favicon "www.ecosia.org";
     inherit updateInterval;
   };
 
@@ -22,7 +22,7 @@
       ];
     }];
     definedAliases = [ "<sp" ];
-    iconUpdateURL =
+    icon =
       "https://www.startpage.com/sp/cdn/images/startpage-logo-gradient-dark.svg";
     inherit updateInterval;
   };
@@ -45,8 +45,7 @@
         }
       ];
     }];
-    iconUpdateURL =
-      "https://duckduckgo.com/duckduckgo-help-pages/logo.v109.svg";
+    icon = "https://duckduckgo.com/duckduckgo-help-pages/logo.v109.svg";
     inherit updateInterval;
     definedAliases = [ "<ddg" ];
   };

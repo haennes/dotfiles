@@ -5,7 +5,7 @@
         "https://typst.app/docs/reference/symbols/sym?query={searchTerms}";
     }];
     definedAliases = [ "<typs" "<typsym" "<tys" "<ty" "<typ" ];
-    iconUpdateURL = favicon "typst.app";
+    icon = favicon "typst.app";
     inherit updateInterval;
   };
 
@@ -15,7 +15,7 @@
         "https://typst.app/docs/reference/symbols/emoji?query={searchTerms}";
     }];
     definedAliases = [ "<type" "<typemoji" "<tye" ];
-    iconUpdateURL = favicon "typst.app";
+    icon = favicon "typst.app";
     inherit updateInterval;
   };
 
@@ -23,7 +23,7 @@
     urls =
       [{ template = "https://typst.app/universe/search?q={searchTerms}"; }];
     definedAliases = [ "<typu" "<typuniverse" "<tyu" ];
-    iconUpdateURL = favicon "typst.app";
+    icon = favicon "typst.app";
     inherit updateInterval;
   };
 

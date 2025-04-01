@@ -18,6 +18,6 @@
       ];
     }];
     definedAliases = [ "<geiz" ];
-    iconUpdateURL = favicon "geizhals.de";
+    icon = favicon "geizhals.de";
   };
 }
