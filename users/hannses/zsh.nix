@@ -1,7 +1,5 @@
-{ config, pkgs, lib, scripts, ... }:
-let
-  home = config.home.homeDirectory;
-  dotfiles_path = "${home}/.dotfiles";
+{ config, pkgs, lib, scripts, globals, ... }:
+let home = config.home.homeDirectory;
 in {
   home.packages = with pkgs; [ nix-output-monitor eza tokei ];
   programs.zsh = {
@@ -38,7 +36,7 @@ in {
 
       df = "${pkgs.duf}/bin/duf";
       # path cds
-      dotfiles = "cd ${dotfiles_path}";
+      dotfiles = "cd ${globals.dotfiles_path}";
       dotf = dotfiles;
 
       oth = semester3;
@@ -67,6 +65,7 @@ in {
       se = "${semester3}/SE";
       st = "${semester3}/ST";
       zock = "${semester3}/ZOCK";
+      tt = "${semester3}/TTPG1";
 
       "..." = "cd  ../../"; # dont want to enable prezto
       "...." = "cd  ../../../"; # dont want to enable prezto
@@ -75,8 +74,9 @@ in {
       # ...... seems more than enough
 
       # config apply & build
-      cfg_apply = "${dotfiles_path}/apply";
-      cfg_update = "pushd ${dotfiles_path} && ${dotfiles_path}/update && popd";
+      cfg_apply = "${globals.dotfiles_path}/apply";
+      cfg_update =
+        "pushd ${globals.dotfiles_path} && ${globals.dotfiles_path}/update && popd";
       fs_cfg_sync = let path = "/home/hannses/programming/nix/server-pedro";
       in "rsync -r fs_main:/etc/nixos/ ${path}";
 
