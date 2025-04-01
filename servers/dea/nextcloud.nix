@@ -51,7 +51,7 @@ in {
     hostName = "cloud.hannses.de";
     package = pkgs.nextcloud30;
     https = true;
-
+    configureRedis = true;
     home = NCdataDir;
 
     config = {
@@ -79,10 +79,8 @@ in {
 
     maxUploadSize = config.nextcloud_max_size;
     extraApps = with config.services.nextcloud.package.packages.apps; {
-      inherit
-      #contacts
-      #calendar
-      #maps
+      inherit contacts calendar
+        #maps
         deck groupfolders bookmarks cospend notes polls;
     };
   };
