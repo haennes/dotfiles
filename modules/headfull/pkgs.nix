@@ -29,7 +29,7 @@
     hunspellDicts.en_US
 
     #formatting language
-    tectonic # tex compiler
+    #tectonic # tex compiler
     #texlive.combined.scheme-full # tex
     typst # typst
     typst-live # typst live preview browser
