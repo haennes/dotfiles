@@ -6,6 +6,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     futils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
+    watcher = {
+      url = "github:haennes/watcher.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     dns = {
       url = "github:nix-community/dns.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,6 +35,10 @@
     hyprland = {
       url =
         "github:hyprwm/Hyprland/47b087950dcfaf6fdda63c4d5f13efda3508a6fb?submodules=1"; # works
+    };
+    helix = {
+      url = "github:helix-editor/helix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-update-inputs = {
@@ -67,11 +75,11 @@
     };
     nur = {
       url = "github:nix-community/NUR";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
       url = "github:nix-community/nixvim";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-yazi-plugins = {
@@ -128,10 +136,11 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, deploy-rs, rust-overlay, nur
-    , nix-yazi-plugins, futils, wireguard-wrapper, wg-friendly-peer-names
-    , syncthing-wrapper, tasks_md, nix-update-inputs, signal-whisper, IPorts
-    , nix-topology, raspberry-pi-nix, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, home-manager-option-search
+    , deploy-rs, rust-overlay, nur, nix-yazi-plugins, futils, wireguard-wrapper
+    , wg-friendly-peer-names, syncthing-wrapper, tasks_md, nix-update-inputs
+    , signal-whisper, IPorts, nix-topology, raspberry-pi-nix, helix, watcher
+    , ... }:
     let
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
       lib = nixpkgs.lib.extend (self: super: {
@@ -154,6 +163,7 @@
         nix-topology.nixosModules.default
         tasks_md.nixosModules.default
         wg-friendly-peer-names.nixosModules.default
+        watcher.nixosModules.default
       ];
       client_modules = [
         home-manager.nixosModules.home-manager
@@ -207,6 +217,8 @@
         nix-yazi-plugins.overlays.default
         nix-update-inputs.overlays.default
         signal-whisper.overlays.default
+        helix.overlays.default
+
       ];
       nix = {
         generateRegistryFromInputs = true;
