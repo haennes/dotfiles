@@ -58,6 +58,7 @@ in ''
   monitor setup
   monitor setup gui
   nightlight
+  nix
   lock
   sleep
   shutdown
@@ -219,7 +220,9 @@ in ''
   "keyboard layout")
       ${scripts.keyboard_layout}
       ;;
-
+  "nix")
+      ${scripts.nix-selector}
+      ;;
   "rescue sh alacritty")
       ${pkgs.alacritty}/bin/alacritty -e /bin/sh
       ;;

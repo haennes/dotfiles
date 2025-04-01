@@ -21,6 +21,8 @@ in {
       ];
       # Make ready for nix flakes
       experimental-features = [ "nix-command" "flakes" ];
+      connect-timeout = 5;
+      log-lines = 25;
     };
     registry.nixpkgs.flake = inputs.nixpkgs;
 
@@ -31,4 +33,12 @@ in {
   };
   systemd.tmpfiles.rules =
     [ "L+ ${channelPath}     - - - - ${inputs.nixpkgs}" ];
+  programs.nh = {
+    enable = true;
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 4d";
+      dates = "daily";
+    };
+  };
 }
