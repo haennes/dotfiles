@@ -62,6 +62,7 @@ in ''
   lock
   sleep
   shutdown
+  color-picker
   restart
   reboot
   kill
@@ -222,6 +223,9 @@ in ''
       ;;
   "nix")
       ${scripts.nix-selector}
+      ;;
+  "color-picker")
+      ${pkgs.wl-color-picker}/bin/wl-color-picker clipboard
       ;;
   "rescue sh alacritty")
       ${pkgs.alacritty}/bin/alacritty -e /bin/sh
