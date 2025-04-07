@@ -64,7 +64,7 @@ in {
       em = "${semester3}/EM";
       se = "${semester3}/SE";
       st = "${semester3}/ST";
-      zock = "${semester3}/ZOCK";
+      zock = "${semester3}/ZOCK/group";
       tt = "${semester3}/TTPG1";
 
       "..." = "cd  ../../"; # dont want to enable prezto
