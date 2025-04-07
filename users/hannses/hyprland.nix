@@ -47,6 +47,7 @@ in {
 
       exec-once = scripts.startup;
 
+      ecosystem = { no_update_news = true; };
       monitor = [
         "${monitors_laptop.builtin}, preferred,auto,1"
 
