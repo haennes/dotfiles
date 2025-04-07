@@ -47,6 +47,7 @@
           formatter.command = "nix fmt -- --";
           auto-format = true;
         }
+        { name = "cpp"; }
         {
           name = "python";
           language-servers = [ "ruff-lsp" ];
