@@ -18,13 +18,31 @@
     };
   };
   programs.zsh.shellAliases = {
-    gitcpr = "${pkgs.writeShellScript "gitcpr" ''
+    gitcpr = "${pkgs.writeShellScript "gitcpr" (''
       pr=$1
+      remote=$2
+      shift
+      if [ ! -z "$remote" ]; then
+        shift
+      fi
       shift
       set -x
-      git fetch $@ pull/$pr/head:pr_$pr
-      git switch pr_$pr
-    ''}";
+      git fetch $'' + ''
+        {remote:-origin} pull/$pr/head:pr_$pr
+              git switch pr_$pr $@
+      '')}";
+    gitcmr = "${pkgs.writeShellScript "gitcmr" (''
+      mr=$1
+      remote=$2
+      shift
+      if [ ! -z "$remote" ]; then
+        shift
+      fi
+      set -x
+      git fetch $'' + ''
+        {remote:-origin} merge-requests/$mr/head:mr_$mr
+                      git switch mr_$mr $@
+      '')}";
     gitam = "git commit --amend --no-edit";
   };
 }
