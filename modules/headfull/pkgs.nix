@@ -68,5 +68,7 @@
     #Gameing
     wineWowPackages.waylandFull
 
+    zip
+
   ];
 }
