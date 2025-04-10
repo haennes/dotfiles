@@ -49,7 +49,7 @@ in {
   services.nextcloud = {
     enable = true;
     hostName = "cloud.hannses.de";
-    package = pkgs.nextcloud30;
+    package = pkgs.nextcloud31;
     https = true;
     configureRedis = true;
     home = NCdataDir;
