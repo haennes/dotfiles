@@ -168,6 +168,7 @@
       ];
       client_modules = [
         home-manager.nixosModules.home-manager
+        #home-manager-option-search.nixosModules.default
         (import ./modules/home_manager)
         ./modules/gnome
         ./modules/gnome/specialisation.nix

@@ -47,13 +47,16 @@ in {
     recommendedTlsSettings = true;
     serverNamesHashBucketSize = 128;
   };
+  #home-manager-option-search = {
+  #  enable = true;
+  #  domain = "ho.localhost";
+  #};
   services.nginx.virtualHosts = {
     "localhost".locations."/".proxyPass = "http://localhost:${
         toString config.services.homepage-dashboard.listenPort
       }";
 
-    "ho.localhost".locations."/".root =
-      "${inputs.home-manager-option-search.packages."${system}".default}";
+    #"ho.localhost".root = "${config.home-manager-option-search.target-package}";
 
     "net.topo.localhost".locations."/".root =
       nginx_file_serve_topology "network.svg";
