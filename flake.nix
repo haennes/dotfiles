@@ -18,11 +18,14 @@
 
     home-manager-option-search = {
       url = "github:mipmip/home-manager-option-search";
+      #url =
+      #"git+file:///home/hannses/programming/nix/home-manager-option-search";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
       url = "github:nix-community/home-manager";
+      #url = "git+file:///home/hannses/programming/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     manix = {
@@ -84,12 +87,9 @@
     };
 
     nix-yazi-plugins = {
-      #url = "github:haennes/nix-yazi-plugins?ref=wip";
-      #url = "github:haennes/nix-yazi-plugins/fg";
-      #url = "github:haennes/nix-yazi-plugins/wip_inf_rec3";
-      url = "github:lordkekz/nix-yazi-plugins";
-      #url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=fg";
-      #url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=wip";
+      #url = "github:Mcrtin/nix-yazi-plugins?ref=open-with-cmd+bookmarks";
+      #url = "github:lordkekz/nix-yazi-plugins?ref=pull/27/head";
+      url = "/home/hannses/programming/nix/nix-yazi-plugins?ref=pr_27";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
