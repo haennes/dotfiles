@@ -17,6 +17,10 @@
     enable = true;
     plugins = {
       bypass.enable = true;
+
+      smart-enter.enable = true;
+      git.enable = true;
+
       chmod.enable = true;
       full-border.enable = true;
       hide-preview.enable = true;
@@ -29,6 +33,7 @@
         persist = "all";
         enable = true;
       };
+      open-with-cmd.enable = true;
       max-preview.enable = true;
       smart-filter.enable = true;
       relative-motions = {
