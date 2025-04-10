@@ -244,6 +244,7 @@
                 "corefonts" # ksp
                 "vista-fonts" # ksp
                 "clion"
+                "minecraft-server"
               ];
           };
         };
