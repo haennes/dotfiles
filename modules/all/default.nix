@@ -16,6 +16,7 @@
     ./ports_cli.nix
     ./ips_cli.nix
     ./nix-serve.nix
+    ./minecraft.nix
     #./vms.nix
     #./microvms.nix
   ];
