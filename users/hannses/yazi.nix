@@ -25,6 +25,10 @@
         enable = true;
         keys.toggle.on = [ "F" ];
       };
+      bookmarks = {
+        persist = "all";
+        enable = true;
+      };
       max-preview.enable = true;
       smart-filter.enable = true;
       relative-motions = {
