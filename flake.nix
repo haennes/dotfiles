@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs-stable.url = "nixpkgs/nixos-24.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    #nixpkgs.url = "git+file:///home/hannses/programming/nix/nixpkgs?ref=master_dotfiles";
     futils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     watcher = {
