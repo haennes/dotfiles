@@ -39,6 +39,17 @@ in {
         lib.mkIf (config.services.syncthing.enable)
         config.age.secrets."syncthing_cert_${hostname}".path;
     };
+    defaultEnsure = {
+      DirExists = true;
+      group = {
+        group = true;
+        recursive = true;
+      };
+      owner = {
+        owner = true;
+        recursive = true;
+      };
+    };
     defaultVersioning.simple.params.keep = 10;
     servers = attrNames devices.all_servers;
     pseudoGroups."family" = [ "hannses" "mum" "dad" ];
