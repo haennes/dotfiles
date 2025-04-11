@@ -20,6 +20,7 @@ let
   #  { });
   devices = rec {
     all_pcs = { inherit (ids_attrs) mainpc yoga; };
+    all_pcs_minimal = all_pcs // { inherit (ids_attrs) thinknew; };
     all_handys = { inherit (ids_attrs) handyHannes handyMum handyDad tablet; };
     servers = { inherit (ids_attrs) dea; };
     all_servers = servers // {
@@ -92,36 +93,38 @@ in {
           pseudoGroups = [ "family" ];
         };
         "Passwords" = {
-          devices = all_pcs // all_handys // servers // { inherit thinkpad; };
+          devices = all_pcs_minimal // all_handys // servers // {
+            inherit thinkpad;
+          };
           versioning.type.simple.params.keep = 100;
           pseudoGroups = [ "family" ];
         };
 
-        "hannses__AnkiBackup".devices = all_pcs // servers;
-        "hannses__3d_printing".devices = all_pcs // servers;
-        "hannses__Documents".devices = all_pcs // servers;
-        "hannses__Notes".devices = all_pcs // servers;
-        "hannses__tasks".devices = all_pcs // servers;
-        "hannses__Downloads".devices = all_pcs // servers;
+        "hannses__AnkiBackup".devices = all_pcs_minimal // servers;
+        "hannses__3d_printing".devices = all_pcs_minimal // servers;
+        "hannses__Documents".devices = all_pcs_minimal // servers;
+        "hannses__Notes".devices = all_pcs_minimal // servers;
+        "hannses__tasks".devices = all_pcs_minimal // servers;
+        "hannses__Downloads".devices = all_pcs_minimal // servers;
         "hannses__Music".devices = all_pcs // servers;
         "Pictures" = {
           devices = servers // all_pcs;
           pseudoGroups = [ "family" ];
         };
-        "hannses__Templates".devices = all_pcs // servers;
+        "hannses__Templates".devices = all_pcs_minimal // servers;
         "hannses__Videos".devices = all_pcs // servers;
         "hannses__game_servers".devices = all_pcs // servers;
         "hannses__programming".devices = all_pcs // servers;
         "hannses__AegisBak".devices = {
           inherit handyHannes;
-        } // all_pcs // servers;
+        } // all_pcs_minimal // servers;
         "hannses__AntennaBak".devices = {
           inherit handyHannes;
-        } // all_pcs // servers;
+        } // all_pcs_minimal // servers;
         "hannses__SignalBackup".devices = { inherit handyHannes; } // servers;
         "hannses__DownloadHandy".devices = {
           inherit handyHannes;
-        } // all_pcs // servers;
+        } // all_pcs_minimal // servers;
         "hannses__Kamera".devices = {
           inherit handyHannes;
         } // all_pcs // servers;
@@ -135,7 +138,7 @@ in {
         "dad__Galerie".devices = servers;
         "hannses__website".devices = {
           inherit tabula tabula_1 tabula_3;
-        } // all_pcs;
+        } // all_pcs_minimal;
         "esw-machine__esw-machines".devices = {
           inherit fabulinus proserpina_1;
         } // servers;
