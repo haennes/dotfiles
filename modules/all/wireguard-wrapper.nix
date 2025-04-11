@@ -38,6 +38,7 @@ in {
         [ "proserpina_1" "welt" ]
         [ "proserpina_2" "welt" ]
         [ "pales_1" "welt" ]
+        [ "thinknew" "welt" ]
       ];
       nodes = {
         welt = {
@@ -71,6 +72,7 @@ in {
         "proserpina_1"
         "proserpina_2"
         "pales_1"
+        "thinknew"
       ]);
       publicKey = name:
         ((lib.my.wireguard.obtain_wireguard_pub { hostname = name; }).key);

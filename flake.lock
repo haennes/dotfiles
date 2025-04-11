@@ -1207,15 +1207,16 @@
       "locked": {
         "lastModified": 1742757304,
         "narHash": "sha256-T6sc+JbUTvxd2fb7MBgU/6EBCOSrvnZaEYTW5xincds=",
-        "ref": "refs/heads/pr_27",
+        "owner": "lordkekz",
+        "repo": "nix-yazi-plugins",
         "rev": "afb1b8e010667eb551c2c06ce6b6ec3936ccf768",
-        "revCount": 45,
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/nix-yazi-plugins"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/nix-yazi-plugins"
+        "owner": "lordkekz",
+        "ref": "pull/27/head",
+        "repo": "nix-yazi-plugins",
+        "type": "github"
       }
     },
     "nixlib": {

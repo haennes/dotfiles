@@ -88,8 +88,8 @@
 
     nix-yazi-plugins = {
       #url = "github:Mcrtin/nix-yazi-plugins?ref=open-with-cmd+bookmarks";
-      #url = "github:lordkekz/nix-yazi-plugins?ref=pull/27/head";
-      url = "/home/hannses/programming/nix/nix-yazi-plugins?ref=pr_27";
+      url = "github:lordkekz/nix-yazi-plugins?ref=pull/27/head";
+      #url = "/home/hannses/programming/nix/nix-yazi-plugins?ref=pr_27";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -326,14 +326,14 @@
           ];
         };
 
-        matemate = { # deutch englisch
-          system = "aarch64-linux";
-          modules = [
-            raspberry-pi-nix.nixosModules.raspberry-pi
-            raspberry-pi-nix.nixosModules.sd-image
-            ./servers/matemate
-          ];
-        };
+        #matemate = { # deutch englisch
+        #  system = "aarch64-linux";
+        #  modules = [
+        #    raspberry-pi-nix.nixosModules.raspberry-pi
+        #    raspberry-pi-nix.nixosModules.sd-image
+        #    ./servers/matemate
+        #  ];
+        #};
         thinkpad = { modules = [ (client "thinkpad") ]; };
         thinknew = { modules = [ (client "thinknew") ]; };
       };

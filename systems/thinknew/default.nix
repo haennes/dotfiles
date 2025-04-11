@@ -2,20 +2,10 @@
   imports = [ ./hardware-configuration.nix ];
   networking.hostName = "thinknew"; # Define your hostname.
 
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
-  boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.forceImportRoot = false;
-  networking.hostId = "61647c16";
-  services.syncthing-wrapper = { enable = false; };
-  services.syncthing = {
-    dataDir = "/syncthing";
-    user = "hannses";
-  };
+  services.syncthing-wrapper = { enable = true; };
+  services.syncthing = { dataDir = "/syncthing"; };
   virtualisation.docker.enable = true;
-  services.wireguard-wrapper.enable = false;
+  services.wireguard-wrapper.enable = true;
 
   services.wordpress.sites."localhost" = {
     languages = [ pkgs.wordpressPackages.languages.de_DE ];
