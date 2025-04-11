@@ -39,7 +39,7 @@ in {
         lib.mkIf (config.services.syncthing.enable)
         config.age.secrets."syncthing_cert_${hostname}".path;
     };
-    defaultEnsure = {
+    defaultEnsure = lib.mkIf config.is_client {
       DirExists = true;
       group = {
         group = true;
