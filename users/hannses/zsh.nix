@@ -1,5 +1,8 @@
-{ config, pkgs, lib, scripts, globals, ... }:
-let home = config.home.homeDirectory;
+{ config, pkgs, lib, scripts, globals, inputs, ... }:
+let
+  home = config.home.homeDirectory;
+  joint-standalone =
+    inputs.nix-joint-venture.packages.x86_64-linux.scripts.standalone;
 in {
   home.packages = with pkgs; [ nix-output-monitor eza tokei ];
   programs.zsh = {
@@ -91,6 +94,11 @@ in {
       udmount = "udiskctl mount -b";
       udumount = "udiskctl umount -b";
       mount_phone = "${pkgs.jmtpfs}/bin/jmtpfs";
+
+      cat_tests = "${joint-standalone.c_cat_tests}";
+      edit_tests = "${joint-standalone.c_edit_tests}";
+      gen_tests = "${joint-standalone.c_gen_tests}";
+      run_tests = "${joint-standalone.c_run_tests}";
 
     } // lib.listToAttrs (lib.flatten (lib.lists.map (name: [
       {
