@@ -77,8 +77,13 @@ in {
       cfg_apply = "${globals.dotfiles_path}/apply";
       cfg_update =
         "pushd ${globals.dotfiles_path} && ${globals.dotfiles_path}/update && popd";
-      fs_cfg_sync = let path = "/home/hannses/programming/nix/server-pedro";
-      in "rsync -r fs_main:/etc/nixos/ ${path}";
+      fs_cfg_sync =
+        let path = "/home/hannses/Documents/Studium/FSIM/server-pedro";
+        in "rsync -r fs_main:/etc/nixos/ ${path}";
+
+      fs_cfg_sync_jmp =
+        let path = "/home/hannses/Documents/Studium/FSIM/server-pedro";
+        in "rsync -r fs_main_jmp:/etc/nixos/ ${path}";
 
       # vim keybindings
       ":q" = "exit";
