@@ -43,11 +43,11 @@ in {
       DirExists = true;
       group = {
         group = true;
-        recursive = true;
+        recursive = false;
       };
       owner = {
         owner = true;
-        recursive = true;
+        recursive = false;
       };
     };
     defaultVersioning.simple.params.keep = 10;
