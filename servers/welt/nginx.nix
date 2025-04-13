@@ -26,7 +26,9 @@ let
     } else
       { }));
 in {
-  networking.firewall = { allowedTCPPorts = [ 80 443 ports.vertumnus.sshd ]; };
+  networking.firewall = {
+    allowedTCPPorts = [ 80 443 ports.vertumnus.sshd ports.dea.minecraft ];
+  };
 } // lib.my.recursiveMerge [
   {
     services.nginx = {

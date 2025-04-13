@@ -1,3 +1,3 @@
-{pkgs, ...}: ''
-${pkgs.kitty}/bin/kitty ${pkgs.iamb}/bin/iamb
+{ pkgs, ... }: ''
+  ${pkgs.kitty}/bin/kitty ${pkgs.iamb}/bin/iamb
 ''

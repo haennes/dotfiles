@@ -7,9 +7,7 @@
   boot.loader.grub.useOSProber = true;
 
   services.syncthing-wrapper = { enable = true; };
-  services.syncthing = {
-    dataDir = "/syncthing";
-  };
+  services.syncthing = { dataDir = "/syncthing"; };
   virtualisation.docker.enable = true;
   networking.hostName = "thinkpad";
   services.wireguard-wrapper.enable = true;
