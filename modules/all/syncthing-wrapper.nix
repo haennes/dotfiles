@@ -20,7 +20,7 @@ let
   #  { });
   devices = rec {
     all_pcs = { inherit (ids_attrs) mainpc yoga; };
-    all_pcs_minimal = all_pcs // { inherit (ids_attrs) thinknew; };
+    all_pcs_minimal = all_pcs // { inherit (ids_attrs) thinknew thinkpad; };
     all_handys = { inherit (ids_attrs) handyHannes handyMum handyDad tablet; };
     servers = { inherit (ids_attrs) dea; };
     all_servers = servers // {
