@@ -63,6 +63,8 @@ in ''
   sleep
   shutdown
   color-picker
+  keep-unlocked
+  allow-lock
   restart
   reboot
   kill
@@ -232,6 +234,13 @@ in ''
       ;;
   "rescue sh kitty")
       ${pkgs.kitty}/bin/kitty /bin/sh
+      ;;
+
+  "keep-unlocked")
+      systemctl stop --user hypridle
+      ;;
+  "allow-lock")
+      systemctl start --user hypridle
       ;;
   *)
       echo "ERROR: choice not in list"
