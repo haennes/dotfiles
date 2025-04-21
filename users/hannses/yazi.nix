@@ -20,6 +20,7 @@
 
       smart-enter.enable = true;
       git.enable = true;
+      glow.enable = true;
 
       chmod.enable = true;
       full-border.enable = true;
