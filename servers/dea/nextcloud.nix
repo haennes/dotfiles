@@ -31,11 +31,11 @@ in {
     deps = [ "users" "groups" ];
     text = ''
       mkdir -p ${NCdataDir}
-      chown -R ${owner}:${group} ${NCdataDir}
+      chown -R ${owner}:${group} ${NCdataDir} --quiet
       mkdir -p ${SCdataDir}
-      chown -R ${owner}:${group} ${SCdataDir}
+      chown -R ${owner}:${group} ${SCdataDir} --quiet
       mkdir -p ${IPFSdataDir}
-      chown -R ${owner}:${group} ${IPFSdataDir}
+      chown -R ${owner}:${group} ${IPFSdataDir} --quiet
     '';
   };
   #mkdir -p ${PGdataDir}
