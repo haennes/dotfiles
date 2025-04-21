@@ -63,6 +63,18 @@
           exec_openscad_trig_key = "<A-o>";
         };
       };
+      telescope = {
+        enable = true;
+        #extensions = { fzf-native.enable = true; };
+        keymaps = {
+          "<leader>gf" = {
+            action = "git_files";
+            options = { desc = "Telescope Git Files"; };
+          };
+          "<leader>fg" = "live_grep";
+        };
+      };
+      web-devicons.enable = true;
 
       comment.enable = true;
       treesitter.enable = true;
