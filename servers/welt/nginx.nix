@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, inputs, ... }:
 let
   ports = config.ports.ports.ports;
   ips = config.ips.ips.ips.default;
@@ -16,9 +16,11 @@ let
         enableACME = !local;
         forceSSL = !local;
         listenAddresses = lib.mkIf local [ ips.welt.wg0 ];
-        locations."/" = {
-          proxyPass = "http${https_str}://${target_ip}${target_port_str}";
-          proxyWebsockets = true; # needed if you need to use WebSocket
+        locations = {
+          "/" = {
+            proxyPass = "http${https_str}://${target_ip}${target_port_str}";
+            proxyWebsockets = true; # needed if you need to use WebSocket
+          };
         } // custom_locations;
       } // custom_settings;
     } // (if (!local) then {
@@ -26,9 +28,7 @@ let
     } else
       { }));
 in {
-  networking.firewall = {
-    allowedTCPPorts = [ 80 443 ports.vertumnus.sshd ports.dea.minecraft ];
-  };
+  networking.firewall = { allowedTCPPorts = [ 80 443 ports.vertumnus.sshd ]; };
 } // lib.my.recursiveMerge [
   {
     services.nginx = {
@@ -72,6 +72,12 @@ in {
           };
         };
       };
+
+      #virtualHosts."mkhh.hannses.de" = {
+      #  forceSSL = true;
+      #  enableACME = true;
+      #  locations."/".root = inputs.website-mkhh.packages.x86_64-linux.default;
+      #};
     };
   }
   (create_simple_proxy_with_domain {
@@ -79,9 +85,6 @@ in {
     target_ip = "tabula";
     #target_ip = "${ips.tabula_3.wg0}
     #target_port = ports.tabula_3.web;
-    custom_locations = {
-      #extraConfig = "proxy_set_header Host hannses.de;"; # lfs
-    };
   })
   (create_simple_proxy_with_domain {
     fqdn = "git.hannses.de";
@@ -136,12 +139,23 @@ in {
   #  target_ip = ips.deus.wg0;
   #  target_port = config.ports.ports.ports.deus.kasmweb.gui;
   #})
-  (create_simple_proxy_with_domain {
-    fqdn = "mkhh.hannses.de";
-    target_ip = ips.tabula.wg0;
-  })
+  #(create_simple_proxy_with_domain {
+  #  fqdn = "mkhh.hannses.de";
+  #  target_ip = ips.tabula_mkhh.wg0;
+  #})
   (create_simple_proxy_with_domain {
     fqdn = "cloud.mkhh.hannses.de";
-    target_ip = ips.syncschlawiner_mkhh.wg0;
+    target_ip = ips.mkhh.wg0;
+  })
+  (create_simple_proxy_with_domain rec {
+    fqdn = "pad.mkhh.hannses.de";
+    target_ip = ips.mkhh.wg0;
+    target_port = ports.mkhh.hedgedoc;
+    #custom_locations = { "/socket.io" = {
+    #    proxyPass = "http://${target_ip}";
+    #    proxyWebsockets = true;
+    #    extraConfig = "proxy_ssl_server_name on;";
+    #  };
+    #};
   })
 ]

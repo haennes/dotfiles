@@ -1,7 +1,14 @@
 { specialArgs, lib, ... }:
 let
-  hostnames =
-    [ "tabula_1" "minerva" "vertumnus" "proserpina_1" "historia" "pales_1" ];
+  hostnames = [
+    "tabula_1"
+    "minerva"
+    "vertumnus"
+    "proserpina_1"
+    "historia"
+    "pales_1"
+    "mkhh"
+  ];
   inherit (lib) mkMerge listToAttrs map;
 in {
   imports = (map (hostname:
@@ -48,6 +55,12 @@ in {
     historia = {
       inherit specialArgs;
       config = ../../vms/singletons/historia;
+      pkgs = null;
+    };
+
+    mkhh = {
+      inherit specialArgs;
+      config = ../../vms/singletons/mkhh;
       pkgs = null;
     };
     #pales_1 = {
