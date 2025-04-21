@@ -5,7 +5,7 @@ let
   nix-serve-publicKey_raw = import ../../secrets/nix-serve/dea/pub.nix;
   nix-serve-publicKey = lib.last (lib.splitString ":" nix-serve-publicKey_raw);
   optionalIfNotDea = opt:
-    lib.optional (config.networking.hostName == "dea") opt;
+    lib.optional (config.networking.hostName != "dea") opt;
 in {
   nix = {
     package = pkgs.nix;
