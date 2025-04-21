@@ -24,6 +24,10 @@ in {
       connect-timeout = 5;
       log-lines = 25;
     };
+    daemonIOSchedPriority = 2;
+    daemonIOSchedClass = "idle";
+    daemonCPUSchedPolicy = "batch";
+
     registry.nixpkgs.flake = inputs.nixpkgs;
 
     nixPath = [
