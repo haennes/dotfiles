@@ -2,7 +2,7 @@
 let
   hports = config.ports.ports.curr_ports;
   proxmox_password = import ../../secrets/not_so_secret/proxmox_password.nix;
-  nc_password = import ../../secrets/not_so_secret/nc_password.nix;
+  nc_key = import ../../secrets/not_so_secret/nc_password.nix;
   link = import ../../secrets/not_so_secret/tt_link.nix;
   cfg = config.services.homepage-dashboard;
   auto_columns = name:
@@ -34,6 +34,7 @@ in {
     #fix for update breaking: https://github.com/NixOS/nixpkgs/issues/346016
     listenPort = hports.homepage-dashboard;
     enable = true;
+    allowedHosts = "localhost:${toString hports.homepage-dashboard},localhost";
     settings = {
       background = "http://cdn.localhost/bg.png";
       theme = "dark";
@@ -81,25 +82,20 @@ in {
       };
     };
     services = let tasks_md = config.services.tasks_md;
-    in [
-      (lib.optionalAttrs tasks_md.enable {
-        "Tasks" = map (item: {
-          "${item.title}" = rec {
-            icon = "mdi-check-#1CDC18";
-            href = "http://${item.domain}/${item.base_path}";
-            siteMonitor = href;
-          };
-        }) tasks_md.conf;
-      })
+    in (lib.optional tasks_md.enable {
+      "Tasks" = map (item: {
+        "${item.title}" = rec {
+          icon = "mdi-check-#1CDC18";
+          href = "http://${item.domain}/${item.base_path}";
+          siteMonitor = href;
+        };
+      }) tasks_md.conf;
+    }) ++ [
+
       {
         "Syncthing" = [
-          {
-            "syncschlawiner" = rec {
-              icon = "si-syncthing-#0891D1";
-              href = "http://s.sync.localhost";
-              siteMonitor = href;
-            };
-          }
+          #TODO consider adding more here / waiting for upstream syncthing support
+          #https://github.com/gethomepage/homepage/issues/812
           {
             "local" = rec {
               icon = "si-syncthing-#0891D1";
@@ -254,41 +250,20 @@ in {
         ];
       }
       {
-        "Server" = [
-          {
-            "PVE" = {
-              icon = "si-proxmox-#E57000";
-              href = "http://localhost:8006";
-              siteMonitor = "https://127.0.0.1:8006/";
-              statusStyle = "dot";
-
-              widget = {
-                type = "proxmox";
-                url =
-                  "https://127.0.0.1:${toString hports.ssh.pve.proxmox.gui}";
-                username = "dashboard-user-api@pam!hompage-token";
-                password = proxmox_password.password;
-                hideErrors = true;
-                fields = [ "vms" "resources.cpu" "resources.mem" ];
-              };
+        "Server" = [{
+          "nextcloud" = {
+            icon = "si-nextcloud-#0082C9";
+            href = "https://cloud.hannses.de/";
+            siteMonitor = "https://cloud.hannses.de/";
+            statusStyle = "dot";
+            widget = {
+              type = "nextcloud";
+              url = "https://cloud.hannses.de";
+              key = nc_key;
+              fields = [ "freespace" "activeusers" "numfiles" "numshares" ];
             };
-          }
-          {
-            "nextcloud" = {
-              icon = "si-nextcloud-#0082C9";
-              href = "https://cloud.hannses.de/";
-              siteMonitor = "https://cloud.hannses.de/";
-              statusStyle = "dot";
-              widget = {
-                type = "nextcloud";
-                url = "https://cloud.hannses.de";
-                username = "root";
-                password = nc_password.password;
-                fields = [ "freespace" "activeusers" "numfiles" "numshares" ];
-              };
-            };
-          }
-        ];
+          };
+        }];
       }
     ];
     widgets = [
