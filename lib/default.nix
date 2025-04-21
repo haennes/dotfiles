@@ -19,6 +19,11 @@
       (lib.lists.take 3 (lib.strings.splitString "." ip)));
   subnet_cidr = ip: let subnet = (__subnet ip); in "${subnet}.0/24";
 
+  postgres-ensureUsers = map (name: {
+    inherit name;
+    ensureDBOwnership = true;
+  });
+  postgres-ensureUser = name: postgres-ensureUsers [ name ];
   public_ip_ranges =
     [ # this gets suggested on wireguard android as soon as you type in 0.0.0.0/0
       "0.0.0.0/5"
