@@ -69,7 +69,7 @@
     diff-pdf
     shortwave
     anki
-    fritzing
+    #fritzing
     fontforge-gtk
     lapce
     #jetbrains.clion # fix debugging c in vim at some point
