@@ -41,5 +41,9 @@ in rec {
       file = ../../secrets/wifihotspot.age;
       owner = "hannses";
     };
+    "taskswarrior-extraConfig.age" = {
+      file = ../../secrets/taskwarrior-extraConfig.age;
+      owner = "hannses";
+    };
   };
 }

@@ -124,6 +124,11 @@
       #url = "git+file:///home/hannses/programming/nix/tasks?ref=four_working";
       url = "github:haennes/tasks_md.nix/four_working";
     };
+    waybar-taskwarrior = {
+      url = "git+https://code.ole.blue/ole/waybar-taskwarrior.rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     signal-whisper = {
       url = "github:haennes/signal-whisper";
       inputs.nixpkgs.follows = "nixpkgs";

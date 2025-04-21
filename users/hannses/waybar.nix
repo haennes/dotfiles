@@ -1,4 +1,4 @@
-{ pkgs, scripts, globals, theme, ... }:
+{ pkgs, scripts, globals, theme, inputs, ... }:
 let
   batteryScript = pkgs.writeShellScriptBin "batteryScript" ''
     cat /sys/class/power_supply/BAT0/capacity
@@ -11,7 +11,7 @@ let
     height = 32;
     position = "top";
 
-    modules-left = [ "custom/logo" "hyprland/workspaces" ];
+    modules-left = [ "custom/logo" "hyprland/workspaces" "custom/taskwarrior" ];
 
     modules-center = [ "clock" ];
 
@@ -121,6 +121,13 @@ let
       on-click = "swaync-client -t -sw";
       on-click-right = "swaync-client -d -sw";
       escape = true;
+    };
+    "custom/taskwarrior" = {
+      # format = "Most urgent task: {}";
+      exec =
+        "${inputs.waybar-taskwarrior.packages.x86_64-linux.default}/bin/waybar-taskwarrior";
+      interval = 10;
+      return-type = "json";
     };
 
     "custom/gpu-usage" = {

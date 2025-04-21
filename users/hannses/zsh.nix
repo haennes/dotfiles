@@ -100,6 +100,8 @@ in {
       gen_tests = "${joint-standalone.c_gen_tests}";
       run_tests = "${joint-standalone.c_run_tests}";
 
+      ttask = lib.getExe pkgs.taskwarrior-tui;
+
     } // lib.listToAttrs (lib.flatten (lib.lists.map (name: [
       {
         name = "${name}_bak";

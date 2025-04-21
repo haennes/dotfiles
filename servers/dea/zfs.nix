@@ -23,7 +23,15 @@ in {
       fsType = "zfs";
       neededForBoot = false;
     };
-  }) [ "data" "website" "ankisync" "kasmweb" "git" "persistant" ]));
+  }) [
+    "data"
+    "website"
+    "ankisync"
+    "kasmweb"
+    "git"
+    "persistant"
+    "taskw-tasks"
+  ]));
 
   environment.systemPackages = [ zfssnap ];
 

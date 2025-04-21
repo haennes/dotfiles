@@ -1334,18 +1334,14 @@
         "systems": "systems_10"
       },
       "locked": {
-        "lastModified": 1745103347,
-        "narHash": "sha256-h9MnaeOCbUvQbM+lfVGzPpfT7s9Rs/1IfrfRXJYMCZM=",
-        "owner": "lordkekz",
-        "repo": "nix-yazi-plugins",
-        "rev": "0f0beb06257b9d20ea6a07e38dede075a0e4fd06",
-        "type": "github"
+        "lastModified": 1745268602,
+        "narHash": "sha256-Zu2PVlnT8c38/kqddNsONrBQQxRjJ8LbLC6aTMm1Qik=",
+        "path": "/home/hannses/programming/nix/nix-yazi-plugins",
+        "type": "path"
       },
       "original": {
-        "owner": "lordkekz",
-        "ref": "pull/29/head",
-        "repo": "nix-yazi-plugins",
-        "type": "github"
+        "path": "/home/hannses/programming/nix/nix-yazi-plugins",
+        "type": "path"
       }
     },
     "nixlib": {
@@ -1961,6 +1957,7 @@
         "syncthing-wrapper": "syncthing-wrapper",
         "tasks_md": "tasks_md",
         "watcher": "watcher",
+        "waybar-taskwarrior": "waybar-taskwarrior",
         "wg-friendly-peer-names": "wg-friendly-peer-names",
         "wireguard-wrapper": "wireguard-wrapper"
       }
@@ -2587,6 +2584,26 @@
       "original": {
         "type": "git",
         "url": "file:///home/hannses/programming/nix/watcher.nix"
+      }
+    },
+    "waybar-taskwarrior": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1741281997,
+        "narHash": "sha256-Ej4+gg9wS4SS4oainsQOlz4FGq9S3sLB4AkiHwfbZFI=",
+        "ref": "refs/heads/main",
+        "rev": "7325436792ce45c74ae1b224fae5de8fd23952cc",
+        "revCount": 14,
+        "type": "git",
+        "url": "https://code.ole.blue/ole/waybar-taskwarrior.rs"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://code.ole.blue/ole/waybar-taskwarrior.rs"
       }
     },
     "wg-friendly-peer-names": {
