@@ -4,7 +4,7 @@
     settings = {
       default = {
         duration = "5m";
-        # mode = "center";
+        mode = "stretch"; # TODO ix for rotated monitors
         path = config.home.homeDirectory + "/.wallpapers";
       };
     };
