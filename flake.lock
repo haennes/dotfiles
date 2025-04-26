@@ -2593,17 +2593,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1741281997,
-        "narHash": "sha256-Ej4+gg9wS4SS4oainsQOlz4FGq9S3sLB4AkiHwfbZFI=",
-        "ref": "refs/heads/main",
-        "rev": "7325436792ce45c74ae1b224fae5de8fd23952cc",
-        "revCount": 14,
-        "type": "git",
-        "url": "https://code.ole.blue/ole/waybar-taskwarrior.rs"
+        "lastModified": 1745484275,
+        "narHash": "sha256-Pr49IbbMm6Gy0y9woLOsOuAYX533j0cPek08hVidXAg=",
+        "owner": "haennes",
+        "repo": "waybar-taskwarrior.rs",
+        "rev": "9e6d6eb2d58a58c518fb83bc54149e0620f9b951",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "https://code.ole.blue/ole/waybar-taskwarrior.rs"
+        "owner": "haennes",
+        "repo": "waybar-taskwarrior.rs",
+        "type": "github"
       }
     },
     "wg-friendly-peer-names": {
