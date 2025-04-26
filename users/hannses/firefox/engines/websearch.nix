@@ -27,7 +27,8 @@
     inherit updateInterval;
   };
 
-  "DuckDuckGo" = {
+  "ddg" = {
+    name = "DuckDuckGo";
     urls = [{
       template = "https://duckduckgo.com";
       params = [
