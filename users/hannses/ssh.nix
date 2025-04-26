@@ -116,6 +116,11 @@ in {
         hostname = "ole.blue";
         port = 2222;
       };
+      "fs_bak_jmp" = {
+        user = "hannes";
+        hostname = "10.24.1.2";
+        proxyJump = "fs_main_jmp";
+      };
       "welt" = {
         user = "root";
         port = ports.welt.sshd;
