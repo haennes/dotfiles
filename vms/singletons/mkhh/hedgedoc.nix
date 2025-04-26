@@ -39,21 +39,15 @@ in {
       inherit domain;
       port = hports.hedgedoc;
       host = config.ips.ips.ips.default.mkhh.wg0;
-      #protocolUseSSL = true;
-      #hsts.enable = true;
+      protocolUseSSL = true;
+      hsts.enable = true;
       allowOrigin = [ domain host ];
-      #csp = {
-      #  enable = true;
-      #  upgradeInsecureRequest = "auto";
-      #  addDefaults = true;
-      #};
-
-      db = {
-        dialect = "sqlite";
-        host = "/run/postgresql";
-        username = owner;
-        database = owner;
+      csp = {
+        enable = true;
+        upgradeInsecureRequest = "auto";
+        addDefaults = true;
       };
+
       inherit uploadsPath;
 
       allowAnonymous = true;
