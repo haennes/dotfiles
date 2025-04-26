@@ -123,7 +123,6 @@ let
       escape = true;
     };
     "custom/taskwarrior" = {
-      # format = "Most urgent task: {}";
       exec =
         "${inputs.waybar-taskwarrior.packages.x86_64-linux.default}/bin/waybar-taskwarrior";
       interval = 10;
