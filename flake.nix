@@ -4,13 +4,18 @@
   inputs = {
     nixpkgs-stable.url = "nixpkgs/nixos-24.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nix-joint-venture.url = "github:nix-joint-venture/nix-joint-venture";
+    nix-joint-venture = {
+      url = "github:nix-joint-venture/nix-joint-venture";
+      #url = "/home/hannses/programming/nix/nix-joint-venture";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-alien.url = "github:thiagokokada/nix-alien";
     #nixpkgs.url = "git+file:///home/hannses/programming/nix/nixpkgs?ref=master_dotfiles";
     futils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     watcher = {
-      url = "github:haennes/watcher.nix";
+      #url = "github:haennes/watcher.nix";
+      url = "git+file:///home/hannses/programming/nix/watcher.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dns = {
@@ -90,8 +95,10 @@
 
     nix-yazi-plugins = {
       #url = "github:Mcrtin/nix-yazi-plugins?ref=open-with-cmd+bookmarks";
-      url = "github:lordkekz/nix-yazi-plugins?ref=pull/27/head";
-      #url = "/home/hannses/programming/nix/nix-yazi-plugins?ref=pr_27";
+      #url = "github:lordkekz/nix-yazi-plugins?ref=pull/27/head";
+      #url = "github:lordkekz/nix-yazi-plugins?ref=pull/29/head";
+      #url = "github:haennes/nix-yazi-plugins?ref=use-upstream-pkgs";
+      url = "/home/hannses/programming/nix/nix-yazi-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -125,7 +132,8 @@
       url = "github:haennes/tasks_md.nix/four_working";
     };
     waybar-taskwarrior = {
-      url = "git+https://code.ole.blue/ole/waybar-taskwarrior.rs";
+      #url = "git+https://code.ole.blue/ole/waybar-taskwarrior.rs";
+      url = "github:haennes/waybar-taskwarrior.rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -136,6 +144,11 @@
     nix-topology.url = "github:oddlama/nix-topology";
     #esw-machines.url = "git+file:///home/hannses/programming/esw-machines";
     esw-machines.url = "github:haennes/esw-machines";
+    simple-nixos-mailserver = {
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
 
