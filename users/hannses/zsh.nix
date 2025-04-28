@@ -116,7 +116,7 @@ in {
         value = "${scripts.deutschland_ticket_firefox}";
       }
     ]) aliases));
-    initExtra = ''
+    initContent = ''
       nix() {
         if [[ $1 == "develop" ]]; then
           shift
