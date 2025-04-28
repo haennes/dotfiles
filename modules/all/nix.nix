@@ -24,7 +24,7 @@ in {
       connect-timeout = 5;
       log-lines = 25;
     };
-    daemonIOSchedPriority = 2;
+    daemonIOSchedPriority = 7;
     daemonIOSchedClass = "idle";
     daemonCPUSchedPolicy = "batch";
 
