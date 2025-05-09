@@ -16,6 +16,7 @@ in {
         keepassxc-browser
         darkreader
         ipfs-companion
+        passbolt
       ];
       settings = {
         "browser.link.open_newwindow.restriction" = 0;
