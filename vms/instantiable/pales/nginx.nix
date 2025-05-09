@@ -11,7 +11,7 @@ in {
       "storage.actions.local.hannses.de" = {
         # https disabled because it is only used internally
         root = filesDir;
-        listenAddresses = [ config.ips.ips.ips.${hostname}.wg0 ];
+        listenAddresses = [ config.ips.ips.ips.default.${hostname}.wg0 ];
       };
     };
   };
