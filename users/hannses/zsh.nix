@@ -1,8 +1,5 @@
-{ config, pkgs, lib, scripts, globals, inputs, ... }:
-let
-  home = config.home.homeDirectory;
-  joint-standalone =
-    inputs.nix-joint-venture.packages.x86_64-linux.scripts.standalone;
+{ config, pkgs, lib, scripts, globals, joint-standalone, ... }:
+let home = config.home.homeDirectory;
 in {
   home.packages = with pkgs; [ nix-output-monitor eza tokei ];
   programs.zsh = {
