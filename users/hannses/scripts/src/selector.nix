@@ -1,4 +1,5 @@
-{ pkgs, scripts, globals, hm-config, lib, ... }:
+{ pkgs, scripts, globals, hm-config, lib, joint-standalone, joint-non_standalone
+, ... }:
 let
   firefox_profiles = hm-config.programs.firefox.profiles;
   firefox_profiles_attr_names = with lib; (attrNames firefox_profiles);
@@ -33,7 +34,7 @@ in ''
   bitwarden
   keepassxc
   office
-  xournal++
+  xournalpp
   zathura
   camera
   file manager
@@ -131,11 +132,11 @@ in ''
   "office")
       ${pkgs.libreoffice}/bin/libreoffice
       ;;
-  "xournal++")
-      ${pkgs.xournalpp}/bin/xournalpp
+  "xournalpp")
+      ${joint-non_standalone.last_xournalpp}
       ;;
   "zathura")
-      ${pkgs.zathura}/bin/zathura
+      ${joint-non_standalone.last_zathura}
       ;;
   "camera")
       ${pkgs.webcamoid}/bin/webcamoid
