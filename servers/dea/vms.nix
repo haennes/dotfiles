@@ -63,12 +63,12 @@ in {
       config = ../../vms/singletons/mkhh;
       pkgs = null;
     };
-    #pales_1 = {
-    #  inherit specialArgs;
-    #  config = ../../vms/instances/pales_1.nix;
-    #  pkgs = null;
-    #};
 
+    pales_1 = {
+      inherit specialArgs;
+      config = ../../vms/instances/pales_1.nix;
+      pkgs = null;
+    };
   };
 
   #microvm.vms = lib.my.mkVMS {
