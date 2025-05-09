@@ -5,7 +5,7 @@ git add --intent-to-add .
 #sudo nixos-rebuild switch --flake path://$(pwd)# --show-trace --builders ""
 sudo -v
 #sudo nixos-rebuild switch --flake .?submodules=1# --show-trace --builders "" --log-format internal-json -v |& nom --json
-nh os switch -a .?submodules=1
+nh os switch -a .?submodules=1 -- --show-trace
 #sudo nixos-rebuild switch --flake .?submodules=1# --show-trace --log-format internal-json -v |& nom --json
 #sudo nixos-rebuild switch --flake path://$(pwd)# --show-trace --builders "" --log-format internal-json -v
 #sudo nixos-rebuild switch --flake path://$(pwd)# --show-trace
