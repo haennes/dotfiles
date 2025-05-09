@@ -33,5 +33,6 @@ in {
     hydra = host ips.welt.wg0 null;
     nix-serve = host ips.welt.wg0 null;
     task = host ips.dea.wg0 null;
+    zock = host "172.20.0.41" null;
   };
 }
