@@ -8,7 +8,7 @@ let
     lib.optional (config.networking.hostName != "dea") opt;
 in {
   nix = {
-    package = pkgs.nix;
+    package = pkgs.lix;
     settings = {
       substituters =
         [ "https://hyprland.cachix.org" "https://nix-community.cachix.org" ]

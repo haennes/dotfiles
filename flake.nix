@@ -4,6 +4,10 @@
   inputs = {
     nixpkgs-stable.url = "nixpkgs/nixos-24.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    lix = {
+      url = "git+https://git.lix.systems/lix-project/nixos-module?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-joint-venture = {
       url = "github:nix-joint-venture/nix-joint-venture";
       #url = "/home/hannses/programming/nix/nix-joint-venture";
@@ -179,6 +183,7 @@
         ./secrets/ports.nix
         wireguard-wrapper.nixosModules.wireguard-wrapper
         syncthing-wrapper.nixosModules.syncthing-wrapper
+        inputs.lix.nixosModules.default
         #nur.nixosModules.nur
         IPorts.nixosModules.default # adds ips, macs and ports
         nix-topology.nixosModules.default
