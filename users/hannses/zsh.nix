@@ -16,6 +16,8 @@ in {
       dbui = "${scripts.dbui_fzf}";
       gcpp = "${scripts.gcpp}";
 
+      fix_hid = "${scripts.fix_hid}";
+
       loc = "${pkgs.tokei}/bin/tokei";
       bc = "${pkgs.fend}/bin/fend";
 
