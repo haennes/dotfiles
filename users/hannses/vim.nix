@@ -43,6 +43,7 @@
         enable = true;
         settings.open_for_directories = true;
       };
+      flash = { enable = true; };
       typst-vim = {
         enable = true;
         settings.pdf_viewer = "${pkgs.zathura}/bin/zathura";
@@ -94,9 +95,32 @@
             enable = true;
           };
         };
+        keymaps = {
+          silent = true;
+          lspBuf = {
+            gd = {
+              action = "definition";
+              desc = "[G]oto [D]definition";
+            };
+            gr = {
+              action = "references";
+              desc = "[G]oto [R]eferences";
+            };
+            gD = {
+              action = "declaration";
+              desc = "[G]oto [D]eclaration";
+            };
+            "<leader>gI" = {
+              action = "implementation";
+              desc = "[G]oto [I]mplementation";
+            };
+          };
+        };
       };
       lsp-format.enable = true;
+      lspsaga = { enable = true; };
     };
+
     colorschemes.gruvbox.enable = true;
     globals.mapleader = " ";
     keymaps = [
