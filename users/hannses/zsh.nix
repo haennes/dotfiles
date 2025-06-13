@@ -16,6 +16,7 @@ in {
       dbui = "${scripts.dbui_fzf}";
       gcpp = "${scripts.gcpp}";
 
+      ns = "${scripts.nix-search}";
       fix_hid = "${scripts.fix_hid}";
 
       loc = "${pkgs.tokei}/bin/tokei";
