@@ -113,7 +113,7 @@
 
   # Environment
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "hx";
     BROWSER = "firefox";
     TERMINAL = "alacritty";
   };

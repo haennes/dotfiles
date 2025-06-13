@@ -14,13 +14,24 @@
     '';
   in {
     enable = true;
-    #defaultEditor = true; # leave nvim for now
+    defaultEditor = true; # leave nvim for now
+    extraPackages = with pkgs; [
+      rust-analyzer
+      nil
+      ruff
+      clang-tools
+      nix
+      lldb
+      tinymist
+      bash-language-server
+
+    ];
     languages = {
       language-server = {
         rust-analyzer = {
           config.check.command = "clippy";
           command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-          cargo = { allFeatures = true; };
+          config.cargo = { allFeatures = true; };
         };
         nil = {
           command = "${pkgs.nil}/bin/nil";
@@ -30,6 +41,7 @@
               autoEvalInputs = true;
             };
           };
+
         };
         ruff-lsp.command = "${pkgs.ruff}/bin/ruff";
       };
@@ -44,10 +56,14 @@
         }
         {
           name = "nix";
-          formatter.command = "nix fmt -- --";
+          formatter.command =
+            "${pkgs.writeShellScript "nix-fmt-file" "nix fmt -- --"}";
           auto-format = true;
         }
-        { name = "cpp"; }
+        {
+          name = "cpp";
+          auto-format = true;
+        }
         {
           name = "python";
           language-servers = [ "ruff-lsp" ];
@@ -72,9 +88,19 @@
           insert = "bar";
           select = "block";
         };
+        line-number = "relative";
+
+        mouse = false;
       };
       keys.normal = {
         space.t.y = ":sh ${typst-watch-script} %{buffer_name} 2>/dev/null &";
+        space.y.z = [
+          ":sh rm -f /tmp/unique-file"
+          ":insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file"
+          '':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty''
+          ":open %sh{cat /tmp/unique-file}"
+          ":redraw"
+        ];
       };
     };
   };
