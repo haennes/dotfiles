@@ -15,6 +15,7 @@
     zellij # terminal multiplexer
     tmux # backrground terminals
     pv # util
+    dig # dns lookup
 
     tldr # man alternative
     usbutils
