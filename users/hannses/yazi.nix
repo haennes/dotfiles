@@ -30,12 +30,20 @@
         enable = true;
         keys.toggle.on = [ "F" ];
       };
-      bookmarks = {
-        persist = "all";
+      #bookmarks = {
+      #  persist = "all";
+      #  enable = true;
+      #};
+      yamb = {
         enable = true;
+        bookmarks = [{
+          tag = "Downloads";
+          path = "$HOME/Downloads";
+          key = "d";
+        }];
       };
       open-with-cmd.enable = true;
-      max-preview.enable = true;
+      #max-preview.enable = true;
       smart-filter.enable = true;
       relative-motions = {
         enable = true;
