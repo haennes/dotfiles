@@ -34,7 +34,7 @@ in {
   # official test: https://github.com/NixOS/nixpkgs/blob/master/nixos/tests/freshrss-pgsql.nix
   services.freshrss = {
     enable = true;
-    baseUrl = "http://${ips.fons.br0}";
+    baseUrl = "http://rss.local.hannses.de";
     # api access: https://freshrss.github.io/FreshRSS/en/users/06_Mobile_access.html#enable-the-api-in-freshrss
     passwordFile = config.age.secrets."freshrss/password_hannses.age".path;
     defaultUser = "hannses";
