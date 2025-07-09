@@ -1,14 +1,14 @@
 { pkgs, lib, config, ... }:
 with lib; {
-  config = mkIf config.services.xserver.desktopManager.gnome.enable {
+  config = mkIf config.services.desktopManager.gnome.enable {
     services.xserver = {
       enable = true;
       xkb = {
         layout = "de";
         variant = "nodeadkeys";
       };
-      displayManager.gdm.enable = true;
     };
+    services.displayManager.gdm.enable = true;
     environment.gnome.excludePackages = with pkgs; [
       gnome-photos
       gnome-tour

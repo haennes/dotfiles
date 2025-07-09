@@ -1,5 +1,5 @@
 { osConfig, pkgs, lib, ... }: {
-  config = lib.mkIf osConfig.services.xserver.desktopManager.gnome.enable {
+  config = lib.mkIf osConfig.services.desktopManager.gnome.enable {
 
     home.packages = with pkgs; [
       gnomeExtensions.dash-to-dock
