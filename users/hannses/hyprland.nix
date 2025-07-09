@@ -31,6 +31,8 @@ in {
   ];
 
   programs.hyprcursor-phinger.enable = true;
+  home.sessionVariables.SPICE_NOGRAB =
+    "1"; # make spice / virtual-machine-manager not grab os level shorcuts
 
   wayland.windowManager.hyprland = {
     enable = true;
