@@ -26,7 +26,7 @@
   ];
   programs.neovim = {
     enable = true;
-    defaultEditor = true;
+    defaultEditor = false;
     #  dont set default editor here as we may want to use helix
   };
 }

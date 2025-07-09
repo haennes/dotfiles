@@ -32,6 +32,7 @@
           config.check.command = "clippy";
           command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
           config.cargo = { allFeatures = true; };
+          formatting.command = [ "${pkgs.rustfmt}/bin/rustfmt" ];
         };
         nil = {
           command = "${pkgs.nil}/bin/nil";
@@ -75,6 +76,7 @@
           };
           auto-format = true;
         }
+        { name = "diff"; }
       ];
     };
 
