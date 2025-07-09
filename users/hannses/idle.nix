@@ -11,6 +11,7 @@ in {
 
         before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "hyprctl dispatch dpms on";
+
       };
 
       listener = [
@@ -22,7 +23,10 @@ in {
         {
           timeout = 140;
           on-timeout = ''
-            ${pkgs.libnotify}/bin/notify-send -u critical -e -t 10000 "about to go to lock"'';
+            ${pkgs.libnotify}/bin/notify-send -u critical -e -t 10000  -p "about to go to lock" > /tmp/lock_notification'';
+          on-resume = ''
+            ${pkgs.libnotify}/bin/notify-send -r $(cat /tmp/lock_notification) -t 1 ""
+          '';
         }
         {
           timeout = 150;
