@@ -8,9 +8,13 @@
       url = "git+https://git.lix.systems/lix-project/nixos-module?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noogle-cli = {
+      url = "github:juliamertz/noogle-cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-joint-venture = {
-      url = "github:nix-joint-venture/nix-joint-venture";
-      #url = "/home/hannses/programming/nix/nix-joint-venture";
+      #url = "github:nix-joint-venture/nix-joint-venture";
+      url = "/home/hannses/programming/nix/nix-joint-venture";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-alien.url = "github:thiagokokada/nix-alien";
@@ -95,10 +99,10 @@
 
     nix-yazi-plugins = {
       #url = "github:Mcrtin/nix-yazi-plugins?ref=open-with-cmd+bookmarks";
-      #url = "github:lordkekz/nix-yazi-plugins?ref=pull/27/head";
+      url = "github:lordkekz/nix-yazi-plugins";
       #url = "github:lordkekz/nix-yazi-plugins?ref=pull/29/head";
       #url = "github:haennes/nix-yazi-plugins?ref=use-upstream-pkgs";
-      url = "/home/hannses/programming/nix/nix-yazi-plugins";
+      # url = "/home/hannses/programming/nix/nix-yazi-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -142,8 +146,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-topology.url = "github:oddlama/nix-topology";
-    #esw-machines.url = "git+file:///home/hannses/programming/esw-machines";
-    esw-machines.url = "github:haennes/esw-machines";
+    esw-machines = {
+      url = "git+file:///home/hannses/programming/esw-machines";
+      #url = "github:haennes/esw-machines";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     simple-nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -278,7 +285,7 @@
         deployrs = {
           input = nixpkgs;
           overlaysBuilder = channels: [
-            deploy-rs.overlay
+            deploy-rs.overlays.default
             (self: super: {
               deploy-rs = {
                 inherit (channels.nixpkgs.pkgs) deploy-rs;
