@@ -7,7 +7,7 @@
     # This script is copied from https://github.com/GeorgiChalakov01/wifi-control
     # and has been edited to work for me
 
-    case $(echo -e "CONNECT\nDISCONNECT\nHOTSPOT\nWIFI ON\nWIFI OFF" | DMENU "WIFI Options: ";) in
+    case $(echo -e "CONNECT\nDISCONNECT\nHOTSPOT\nWIFI ON\nWIFI OFF\nRESCAN" | DMENU "WIFI Options: ";) in
         CONNECT)
             wifiname=$(nmcli d wifi list | DMENU "Select WIFI" | cut -d' ' -f9);
             if [ -n "$wifiname" ]; then
@@ -42,6 +42,9 @@
             ;;
         "WIFI OFF")
             nmcli radio wifi off;
+            ;;
+        "RESCAN"
+            nmcli device wifi rescan
             ;;
         *)
             echo "idk what happend. terminating..." && exit 0
