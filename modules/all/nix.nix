@@ -8,10 +8,11 @@ let
     lib.optional (config.networking.hostName != "dea") opt;
 in {
   nix = {
-    package = if (pkgs.stdenv.hostPlatform.system != "aarch64-linux") then
-      pkgs.lix
-    else
-      pkgs.nix;
+    #package =
+    #if (pkgs.stdenv.hostPlatform.system != "aarch64-linux") then
+    #  pkgs.lix
+    #else
+    #  pkgs.nix;
     settings = {
       substituters =
         [ "https://hyprland.cachix.org" "https://nix-community.cachix.org" ]
