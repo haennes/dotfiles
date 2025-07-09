@@ -8,6 +8,7 @@ let
     "historia"
     "pales_1"
     "mkhh"
+    "fons"
   ];
   inherit (lib) mkMerge listToAttrs map;
 in {
@@ -64,6 +65,11 @@ in {
       pkgs = null;
     };
 
+    fons = {
+      inherit specialArgs;
+      config = ../../vms/singletons/fons;
+      pkgs = null;
+    };
     pales_1 = {
       inherit specialArgs;
       config = ../../vms/instances/pales_1.nix;
