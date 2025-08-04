@@ -24,7 +24,7 @@ in {
           timeout = 140;
           on-timeout = ''
             ${pkgs.libnotify}/bin/notify-send -u critical -e -t 10000  -p "about to go to lock" > /tmp/lock_notification'';
-          on-resume = ''
+          on-restore = ''
             ${pkgs.libnotify}/bin/notify-send -r $(cat /tmp/lock_notification) -t 1 ""
           '';
         }
