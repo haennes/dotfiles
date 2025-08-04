@@ -11,7 +11,7 @@ in rec {
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = rec {
-      inherit (inputs) nixvim;
+      inherit (inputs) nixvim menu-calc;
       inherit inputs sshkeys system;
       #TODO this is dumb, import them at a user level or make them user bound and move them here
       theme = import ../../users/hannses/theme.nix;
