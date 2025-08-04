@@ -43,7 +43,7 @@
         "WIFI OFF")
             nmcli radio wifi off;
             ;;
-        "RESCAN"
+        "RESCAN")
             nmcli device wifi rescan
             ;;
         *)
