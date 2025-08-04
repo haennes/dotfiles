@@ -17,8 +17,8 @@ in {
       gcpp = "${scripts.gcpp}";
 
       ns = "${scripts.nix-search}";
-      fix_hid = "${scripts.fix_hid}";
 
+      wwhich = "${scripts.wwhich}";
       loc = "${pkgs.tokei}/bin/tokei";
       bc = "${pkgs.fend}/bin/fend";
 
