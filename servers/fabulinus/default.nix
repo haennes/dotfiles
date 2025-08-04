@@ -1,5 +1,5 @@
 { pkgs, config, inputs, ... }: {
-  imports = [ inputs.esw-machines.nixosModules.default ];
+  imports = [ inputs.esw-machines.nixosModules.default ./wifi.nix ];
   users.users.root.initialPassword = "root";
   networking = {
     hostName = "fabulinus";
@@ -9,6 +9,7 @@
       eth0.useDHCP = true;
     };
   };
+  networking.networkmanager.enable = true;
   raspberry-pi-nix.board = "bcm2711";
   hardware = {
     raspberry-pi = {
