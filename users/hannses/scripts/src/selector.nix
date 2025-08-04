@@ -47,6 +47,7 @@ in ''
   disturb
   silent
   clear-clipboard
+  calc
   screenshot
   sccpa
   ports
@@ -242,6 +243,9 @@ in ''
       ;;
   "allow-lock")
       systemctl start --user hypridle
+      ;;
+  "calc")
+      ${scripts.calc}
       ;;
   *)
       echo "ERROR: choice not in list"
