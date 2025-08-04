@@ -7,7 +7,7 @@
     ./hardware-configuration.nix
     ./zfs.nix
     #./kasm.nix
-    ./hydra.nix
+    # ./hydra.nix
     #./services/backup.nix
   ];
 
@@ -32,5 +32,6 @@
   services.wireguard-wrapper.enable = true;
 
   networking.hostName = "deus"; # Define your hostname.
+
 
 }
