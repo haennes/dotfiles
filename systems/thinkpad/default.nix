@@ -11,4 +11,6 @@
   virtualisation.docker.enable = true;
   networking.hostName = "thinkpad";
   services.wireguard-wrapper.enable = true;
+  users.users.syncthing.uid = 237;
+  users.groups.syncthing.gid = 237;
 }
