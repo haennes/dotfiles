@@ -19,6 +19,7 @@
     ./minecraft.nix
     #./vms.nix
     #./microvms.nix
+    ./battery.nix
   ];
 
   options = { nextcloud_max_size = lib.mkOption { }; };
