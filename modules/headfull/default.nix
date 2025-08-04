@@ -22,6 +22,7 @@
     ./printing.nix
     ./xdg.nix
     ./dll.nix
+    ./fix_hid.nix
   ];
 
 }
