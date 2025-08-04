@@ -23,6 +23,7 @@
     sshfs
     deploy-rs
     wireguard-tools
+    btop # process and system monitor
   ];
   programs.neovim = {
     enable = true;
