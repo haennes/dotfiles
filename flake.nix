@@ -2,10 +2,11 @@
   description = "System Config";
 
   inputs = {
-    nixpkgs-stable.url = "nixpkgs/nixos-24.05";
+    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     lix = {
-      url = "git+https://git.lix.systems/lix-project/nixos-module?ref=main";
+      url =
+        "https://git.lix.systems/lix-project/nixos-module/archive/2.93.2-1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noogle-cli = {
@@ -162,13 +163,23 @@
       # Optional but recommended to limit the size of your system closure.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nh = {
+      # url = "github:unixpariah/nh";
+      url = "github:haennes/nh";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    menu-calc = {
+      url = "github:haennes/menu-calc";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, home-manager-option-search
     , deploy-rs, rust-overlay, nur, nix-yazi-plugins, futils, wireguard-wrapper
     , wg-friendly-peer-names, syncthing-wrapper, tasks_md, nix-update-inputs
-    , signal-whisper, IPorts, nix-topology, raspberry-pi-nix, helix, watcher
-    , ... }:
+    , signal-whisper, IPorts, nix-topology, raspberry-pi-nix, helix, watcher, nh
+    , menu-calc, ... }:
     let
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
       lib = nixpkgs.lib.extend (self: super: {
@@ -186,7 +197,7 @@
         ./secrets/ports.nix
         wireguard-wrapper.nixosModules.wireguard-wrapper
         syncthing-wrapper.nixosModules.syncthing-wrapper
-        inputs.lix.nixosModules.default
+        # inputs.lix.nixosModules.default
         #nur.nixosModules.nur
         IPorts.nixosModules.default # adds ips, macs and ports
         nix-topology.nixosModules.default
@@ -218,6 +229,8 @@
         config.is_client = true;
         imports = [ ./systems/${hostname} ] ++ client_modules;
       };
+      laptop = hostname: (client hostname) // { config.is_laptop = true; };
+
       microvm_host = {
         config.is_microvm_host = true;
         imports = microvm_modules_host;
@@ -249,6 +262,7 @@
         signal-whisper.overlays.default
         helix.overlays.default
         inputs.nix-alien.overlays.default
+        nh.overlays.default
 
       ];
       nix = {
@@ -345,7 +359,7 @@
         #hermes = { modules = [ (server "hermes") ]; };
         #fons = { modules = [ (microvm "fons") ]; };
         #grapheum = { modules = [ (server "grapheum") ]; };
-        yoga = { modules = [ (client "yoga") microvm_host ]; };
+        yoga = { modules = [ (laptop "yoga") microvm_host ]; };
         fabulinus = {
           system = "aarch64-linux";
           modules = [
@@ -363,8 +377,8 @@
         #    ./servers/matemate
         #  ];
         #};
-        thinkpad = { modules = [ (client "thinkpad") ]; };
-        thinknew = { modules = [ (client "thinknew") ]; };
+        thinkpad = { modules = [ (laptop "thinkpad") ]; };
+        thinknew = { modules = [ (laptop "thinknew") ]; };
       };
       hydraJobs = {
         system-builds = let
