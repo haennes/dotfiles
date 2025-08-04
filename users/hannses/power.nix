@@ -1,6 +1,6 @@
-{ ... }: {
+{ lib, osConfig, ... }: {
   services.batsignal = {
-    enable = true;
+    enable = osConfig.has_battery;
     extraArgs = [
       # warning levels
       "-w"
