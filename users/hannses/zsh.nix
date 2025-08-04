@@ -161,8 +161,4 @@ in {
     nix-direnv = { enable = true; };
   };
 
-  programs.thefuck = {
-    enable = true;
-    enableZshIntegration = true;
-  };
 }
