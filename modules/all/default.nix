@@ -20,6 +20,7 @@
     #./vms.nix
     #./microvms.nix
     ./battery.nix
+    ./watchers
     ./graphics.nix
   ];
 
