@@ -8,11 +8,10 @@ let
     lib.optional (config.networking.hostName != "dea") opt;
 in {
   nix = {
-    #package =
-    #if (pkgs.stdenv.hostPlatform.system != "aarch64-linux") then
-    #  pkgs.lix
-    #else
-    #  pkgs.nix;
+    package = if (pkgs.stdenv.hostPlatform.system != "aarch64-linux") then
+      pkgs.lix
+    else
+      pkgs.nix;
     settings = {
       substituters =
         [ "https://hyprland.cachix.org" "https://nix-community.cachix.org" ]
@@ -43,6 +42,7 @@ in {
     [ "L+ ${channelPath}     - - - - ${inputs.nixpkgs}" ];
   programs.nh = {
     enable = true;
+    flake = "/home/hannses/.dotfiles";
     clean = {
       enable = true;
       extraArgs = "--keep-since 4d";

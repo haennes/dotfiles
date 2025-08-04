@@ -17,7 +17,6 @@ in {
     #./services/backup.nix
   ];
 
-  lix.enable = false;
   # Bootloader.
   boot.loader.grub = {
     enable = true;
