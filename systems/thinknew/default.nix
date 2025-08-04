@@ -32,6 +32,7 @@
     #    ini_set( 'error_log', '/var/lib/wordpress/localhost/debug.log' );
     #'';
   };
+  has_battery = false;
   nixpkgs.overlays = [
     (self: super: {
       wordpress = super.wordpress.overrideAttrs (oldAttrs: rec {
