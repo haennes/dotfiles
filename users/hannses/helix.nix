@@ -96,7 +96,7 @@
       };
       keys.normal = {
         space.t.y = ":sh ${typst-watch-script} %{buffer_name} 2>/dev/null &";
-        space.y.z = [
+        space.z.y = [
           ":sh rm -f /tmp/unique-file"
           ":insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file"
           '':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty''
