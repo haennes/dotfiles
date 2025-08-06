@@ -19,6 +19,7 @@ in {
       ns = "${scripts.nix-search}";
 
       wwhich = "${scripts.wwhich}";
+
       loc = "${pkgs.tokei}/bin/tokei";
       bc = "${pkgs.fend}/bin/fend";
 
@@ -138,11 +139,21 @@ in {
           gcc "$1" &&
           ./a.out
         }
+
+
     '';
+    # # Yank to the system clipboard
+    # function vi-yank-wlcopy {
+    #     zle vi-yank
+    #    echo "$CUTBUFFER" | wl-copy
+    # }
+
+    # zle -N vi-yank-wlcopy
+    # bindkey -M vicmd 'y' vi-yank-wlcopy
 
     autocd = true;
     autosuggestion.enable = true;
-    defaultKeymap = "vicmd";
+    defaultKeymap = "viins";
     history = {
       expireDuplicatesFirst = true;
       ignoreDups = true;
