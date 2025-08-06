@@ -138,7 +138,8 @@
     };
     waybar-taskwarrior = {
       #url = "git+https://code.ole.blue/ole/waybar-taskwarrior.rs";
-      url = "github:haennes/waybar-taskwarrior.rs";
+      # url = "github:haennes/waybar-taskwarrior.rs";
+      url = "github:haennes/waybar-taskwarrior.rs/formatting-rewrite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

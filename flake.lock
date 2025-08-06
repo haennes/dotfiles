@@ -1428,11 +1428,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1749149985,
-        "narHash": "sha256-Hu4KNCDzBafU4uZEJTZuye2DfaMzy5hkC/IEUjUnDE0=",
+        "lastModified": 1754344785,
+        "narHash": "sha256-Vt4tJvayto21XVgJNzoi9Pw0ea4xGhGq3QLVk9dru88=",
         "owner": "haennes",
         "repo": "nh",
-        "rev": "231fc31f116b5d87b3acc1b2d3517fd38e04638a",
+        "rev": "ab4f6bdf49f2f30f886daaa644048bb5cd571a91",
         "type": "github"
       },
       "original": {
@@ -3082,15 +3082,16 @@
         "rust-overlay": "rust-overlay_6"
       },
       "locked": {
-        "lastModified": 1754257519,
+        "lastModified": 1754257365,
         "narHash": "sha256-zsBYzKN4yxrg8f6KjkS68jMK1aAPO4oCF28cNFD6VlQ=",
         "owner": "haennes",
         "repo": "waybar-taskwarrior.rs",
-        "rev": "45e800673e59d74c57616132b53aee28446a8684",
+        "rev": "476d5172943450941a9821a29f6e5c6745c599f1",
         "type": "github"
       },
       "original": {
         "owner": "haennes",
+        "ref": "formatting-rewrite",
         "repo": "waybar-taskwarrior.rs",
         "type": "github"
       }
