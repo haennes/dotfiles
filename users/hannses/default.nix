@@ -30,7 +30,6 @@
     ./git.nix
     ./gpg.nix
     ./virtualization.nix
-    ./manix.nix
     ./noogle-cli.nix
     ./kitty.nix
     ./nix.nix
