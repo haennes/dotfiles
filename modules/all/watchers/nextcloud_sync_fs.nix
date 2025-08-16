@@ -10,7 +10,7 @@ in {
   services.fs-watcher = {
     enable = true;
     directories = {
-      "${config.services.syncthing.dataDir}/hannses__Documents/Studium/FSIM/BarcodeHalter" =
+      "${config.services.syncthing.dataDir}/hannses__3d_printing/BarcodeHalter" =
         [{
           inherit user;
           match.include = "*";
