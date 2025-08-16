@@ -2,7 +2,8 @@
 pushd ~/.dotfiles || echo "Failed to change directory" || exit
 git add --intent-to-add .
 sudo -v
-nh os switch -a .?submodules=1 -- $@ -j0 --show-trace
-# nh os switch -a .?submodules=1 -- $@ --builders "" --show-trace
+# nh os switch -a .?submodules=1 -- $@ -j0 --show-trace
+# nh os switch -a .?submodules=1 -- $@ --show-trace
+nh os switch -a .?submodules=1 -- $@ --builders "" --show-trace
 #hyprctl reload
 popd || exit
