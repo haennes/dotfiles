@@ -23,6 +23,7 @@
     ./xdg.nix
     ./dll.nix
     ./fix_hid.nix
+    ./keyring.nix
   ];
 
 }
