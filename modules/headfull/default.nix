@@ -9,7 +9,7 @@
     ./local_nginx.nix
     ./mail.nix
     ./minecraft.nix
-    #./oth_files.nix
+    ./oth_files.nix
     ./steam.nix
     ./pkgs.nix
     ./power.nix
