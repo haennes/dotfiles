@@ -21,7 +21,6 @@ in {
       wwhich = "${scripts.wwhich}";
 
       loc = "${pkgs.tokei}/bin/tokei";
-      bc = "${pkgs.fend}/bin/fend";
 
       dpdf = "${pkgs.diff-pdf}/bin/diff-pdf --view";
 
