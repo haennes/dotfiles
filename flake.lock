@@ -2133,8 +2133,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1755371486,
-        "narHash": "sha256-UN8ek0+Ci8Q67dM84JRf1r8h+5FqEL2ruM7BNi+Gs/4=",
+        "lastModified": 1755374553,
+        "narHash": "sha256-Z8HkTo0KJLzrrvWsMKEGkKA7cyCrVWXuBhiUQqVOOBU=",
         "path": "/home/hannses/programming/keepass-pinentry/other_solutions/pinentry-keepassxc",
         "type": "path"
       },
