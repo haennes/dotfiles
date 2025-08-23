@@ -174,13 +174,21 @@
       url = "github:haennes/menu-calc";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    pinentry-keepassxc = {
+      url = "github:amnore/pinentry-keepassxc";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        rust-overlay.follows = "rust-overlay";
+      };
+
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, home-manager-option-search
     , deploy-rs, rust-overlay, nur, nix-yazi-plugins, futils, wireguard-wrapper
     , wg-friendly-peer-names, syncthing-wrapper, tasks_md, nix-update-inputs
     , signal-whisper, IPorts, nix-topology, raspberry-pi-nix, helix, watcher, nh
-    , menu-calc, ... }:
+    , menu-calc, pinentry-keepassxc, ... }:
     let
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
       lib = nixpkgs.lib.extend (self: super: {
