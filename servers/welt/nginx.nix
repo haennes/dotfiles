@@ -2,6 +2,10 @@
 let
   ports = config.ports.ports.ports;
   ips = config.ips.ips.ips.default;
+  create_redirect = { sources, target }:
+    lib.my.recursiveMerge (map (source: {
+      services.nginx.virtualHosts.${source}.globalRedirect = target;
+    }) sources);
   create_simple_proxy_with_domain = { fqdn, target_ip, custom_settings ? { }
     , custom_locations ? { }, target_port ? null, https ? false, local ? false
     }:
@@ -131,6 +135,10 @@ in {
     target_port = ports.dea.nix-serve;
     local = true;
     #https = true;
+  })
+  (create_redirect {
+    sources = [ "mkhh-ev.de" "www.mkhh-ev.de" ];
+    target = "musikkapelle-holzhausen.de";
   })
   #only accessible through wg
   #(create_simple_proxy_with_domain {
