@@ -173,6 +173,16 @@
       };
 
     };
+    nix-search-tv = {
+      # url = "github:3timeslazy/nix-search-tv";
+      url =
+        "git+file:///home/hannses/programming/nix/nix-search-tv?ref=nixpkgs-sh-module";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        noogle-cli.follows = "noogle-cli";
+      };
+    };
+
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, home-manager-option-search
