@@ -24,6 +24,7 @@
       lldb
       tinymist
       bash-language-server
+      typstyle
 
     ];
     languages = {
@@ -53,6 +54,7 @@
         }
         {
           name = "typst";
+          formatter.command = "typstyle";
           auto-format = true;
         }
         {
