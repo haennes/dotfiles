@@ -4,11 +4,6 @@
   inputs = {
     nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    lix = {
-      url =
-        "https://git.lix.systems/lix-project/nixos-module/archive/2.93.2-1.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     noogle-cli = {
       url = "github:juliamertz/noogle-cli";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,10 +38,6 @@
       url = "github:nix-community/home-manager";
       #url = "git+file:///home/hannses/programming/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    manix = {
-      url = "github:haennes/manix?ref=fix/hm-options-with-flakes";
-      #url = "github:zvolin/manix/c532d14b0b59d92c4fab156fc8acd0565a0836af";
     };
     hyprcursor-phinger = {
       url = "github:jappie3/hyprcursor-phinger";
@@ -206,7 +197,6 @@
         ./secrets/ports.nix
         wireguard-wrapper.nixosModules.wireguard-wrapper
         syncthing-wrapper.nixosModules.syncthing-wrapper
-        # inputs.lix.nixosModules.default
         #nur.nixosModules.nur
         IPorts.nixosModules.default # adds ips, macs and ports
         nix-topology.nixosModules.default
