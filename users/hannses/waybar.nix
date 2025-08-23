@@ -19,10 +19,10 @@ let
       #"hyprland/language"
       "network"
       "bluetooth"
+      "custom/notification"
       "pulseaudio"
       "pulseaudio#microphone"
       "cpu"
-      #"custom/notification"
       "memory"
       "disk"
       "battery"
@@ -104,22 +104,10 @@ let
 
     "custom/notification" = {
       tooltip = false;
-      format = "{icon}";
-      format-icons = {
-        notification = "<span foreground='red'><sup></sup></span>";
-        none = "";
-        dnd-notification = "<span foreground='red'><sup></sup></span>";
-        dnd-none = "";
-        inhibited-notification = "<span foreground='red'><sup></sup></span>";
-        inhibited-none = "";
-        dnd-inhibited-notification =
-          "<span foreground='red'><sup></sup></span>";
-        dnd-inhibited-none = "";
-      };
-      return-type = "json";
-      exec = "swaync-client -swb";
-      on-click = "swaync-client -t -sw";
-      on-click-right = "swaync-client -d -sw";
+      format = "{}";
+      exec = "${scripts.notification-info}";
+      on-click = "${pkgs.dunst}/bin/dunstctl set-paused toggle";
+      interval = 1;
       escape = true;
     };
     "custom/taskwarrior" = {
