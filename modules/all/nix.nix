@@ -13,10 +13,11 @@ in {
     else
       pkgs.nix;
     settings = {
-      substituters =
-        [ "https://hyprland.cachix.org" "https://nix-community.cachix.org" ]
-        ++ (optionalIfNotDea
-          "http://nix-serve.local.hannses.de"); # http is fine, since it is inside the wg0 network
+      substituters = [
+        "https://hyprland.cachix.org?priority=10"
+        "https://nix-community.cachix.org?priority=5"
+      ] ++ (optionalIfNotDea
+        "http://nix-serve.local.hannses.de?priority=20"); # http is fine, since it is inside the wg0 network
       trusted-public-keys = [
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
