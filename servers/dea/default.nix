@@ -42,4 +42,9 @@ in {
 
   networking.hostName = "dea"; # Define your hostname.
 
+  fs-watchers = {
+    w.typst = true;
+    w.xournalpp = true;
+  };
+
 }

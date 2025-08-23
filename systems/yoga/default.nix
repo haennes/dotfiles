@@ -36,6 +36,11 @@ in {
     #user = "hannses";
   };
 
+  fs-watchers = {
+    w.typst = true;
+    w.xournalpp = true;
+    w.nc-sync = true;
+  };
   services.wireguard-wrapper.enable =
     true; # currently wg0 forwarind all traffic is broken
   networking.networkmanager.unmanaged = [ "wg0" ];
@@ -45,6 +50,10 @@ in {
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  services.fs-watcher = {
+    enable = true;
+    user = config.services.syncthing.user;
+  };
   microvm.vms = {
     hesperos_1 = {
       inherit specialArgs;
