@@ -12,11 +12,8 @@ in {
       semester3 = "${studium}/Semester3";
 
     in rec {
-      #manix and its aliases are configured in ./manix.nix
       dbui = "${scripts.dbui_fzf}";
       gcpp = "${scripts.gcpp}";
-
-      ns = "${scripts.nix-search}";
 
       wwhich = "${scripts.wwhich}";
 
