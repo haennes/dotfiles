@@ -109,6 +109,7 @@
     ripdrag
 
     fend
+    glow
   ];
 
   # Environment
