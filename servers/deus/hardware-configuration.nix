@@ -15,17 +15,18 @@
   #zfs filesystem is mounted in ./zfs.nix
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/098b8a6e-9817-4ca1-a4b3-4a9aecd95f19";
+    device = "/dev/disk/by-uuid/16aa56ef-0182-4867-b43f-0b58afea2260";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/D332-4245";
+    device = "/dev/disk/by-uuid/12CE-A600";
     fsType = "vfat";
+    options = [ "fmask=0077" "dmask=0077" ];
   };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/f356684a-4ee6-412e-82fb-ad3b31d7991b"; }];
+    [{ device = "/dev/disk/by-uuid/14e2617d-8168-41ca-8da2-9b32ebf39d76"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
