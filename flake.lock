@@ -3071,11 +3071,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731173524,
-        "narHash": "sha256-9g6Q+/VozAmscSO/njV9j8LglsBCCVLJu1NRPUGsx9o=",
+        "lastModified": 1756476255,
+        "narHash": "sha256-ylWE7BP9L0QLPmYwn+ShAz85GDBi8TXOL2pP4yFkBSw=",
         "owner": "haennes",
         "repo": "wg-friendly-peer-names",
-        "rev": "bf748c713b80fcb4472b34725ad107013e76e4ca",
+        "rev": "55334f83f73ea625778bf1bf217df56210d8d2e2",
         "type": "github"
       },
       "original": {
