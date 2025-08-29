@@ -35,5 +35,6 @@ in {
     task = host ips.dea.wg0 null;
     rss = host  ips.fons.wg0 null;
     zock = host "172.20.0.41" null;
+    ftb = host ips.ludus.wg1 null;
   };
 }
