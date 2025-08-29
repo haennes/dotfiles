@@ -1,7 +1,7 @@
 {
   age_obtain_wireguard_priv = { hostname, interface ? "wg0", ... }: {
 
-    age.secrets.${"wireguard_${hostname}_${interface}_private"} = {
+    secrets.${"wireguard_${hostname}_${interface}_private"} = {
       file = ../${"secrets/wireguard/${hostname}/${interface}/priv.age"};
       owner = "root";
       group = "root";
