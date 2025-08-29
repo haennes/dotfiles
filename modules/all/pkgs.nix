@@ -16,6 +16,7 @@
     tmux # backrground terminals
     pv # util
     dig # dns lookup
+    tcpdump
 
     tldr # man alternative
     usbutils
