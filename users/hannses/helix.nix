@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, lib, ... }: {
   programs.helix = let
     typst-watch-script = pkgs.writeShellScript "watch-typst.sh" ''
       dir=$(${pkgs.mktemp}/bin/mktemp -d)
@@ -27,6 +27,7 @@
       typstyle
       yazi
       lazygit
+      config.programs.nix-search-tv-script.outputPackage
 
     ];
     languages = {
@@ -109,6 +110,14 @@
         ];
         space.l.g =
           [ ":new" ":insert-output lazygit" ":buffer-close!" ":redraw" ];
+        space.s.n = [
+          ":new"
+          ":insert-output ${
+            lib.getExe config.programs.nix-search-tv-script.outputPackage
+          }"
+          ":buffer-close!"
+          ":redraw"
+        ];
       };
     };
   };
