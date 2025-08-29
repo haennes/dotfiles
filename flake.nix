@@ -104,8 +104,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     wireguard-wrapper = {
-      #url = "git+file:///home/hannses/programming/nix/wireguard-wrapper";
-      url = "github:haennes/wireguard-wrapper.nix";
+      url = "git+file:///home/hannses/programming/nix/wireguard-wrapper";
+      # url = "github:haennes/wireguard-wrapper.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     wg-friendly-peer-names = {
@@ -182,6 +182,10 @@
         noogle-cli.follows = "noogle-cli";
       };
     };
+    nix-minecraft = {
+      url = "github:Infinidoge/nix-minecraft";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
@@ -189,7 +193,7 @@
     , deploy-rs, rust-overlay, nur, nix-yazi-plugins, futils, wireguard-wrapper
     , wg-friendly-peer-names, syncthing-wrapper, tasks_md, nix-update-inputs
     , signal-whisper, IPorts, nix-topology, raspberry-pi-nix, helix, watcher, nh
-    , menu-calc, pinentry-keepassxc, ... }:
+    , menu-calc, pinentry-keepassxc, nix-minecraft, ... }:
     let
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
       lib = nixpkgs.lib.extend (self: super: {

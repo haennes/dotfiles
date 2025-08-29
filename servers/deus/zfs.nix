@@ -23,9 +23,9 @@ in {
       fsType = "zfs";
       neededForBoot = false;
     };
-  }) [ "data" "website" "ankisync" "kasmweb" "git" ]) // {
-    "persistance" = {
-      device = "main_pool/persistant";
+  }) [ "data" "website" "ankisync" "kasmweb" "git" "minecraft" ]) // {
+    "/persistant" = {
+      device = "main_pool/persistance";
       fsType = "zfs";
     };
   });
