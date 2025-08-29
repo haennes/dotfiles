@@ -17,6 +17,7 @@
       push.autoSetupRemote = true;
     };
   };
+  programs.lazygit.enable = true;
   programs.zsh.shellAliases = {
     gitcpr = "${pkgs.writeShellScript "gitcpr" (''
       pr=$1
