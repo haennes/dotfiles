@@ -2,7 +2,7 @@
 #TODO use ${}
 let home = hm-config.home.homeDirectory;
 in {
-  term = "alacritty";
+  term = "wezterm";
   dmenu = "rofi -dmenu -i";
   app_runner = "rofi -show drun";
   browser = "firefox";

@@ -36,6 +36,7 @@
     ./tmux.nix
     ./tasks.nix
     ./television.nix
+    ./wezterm.nix
     ./nix-search.nix
   ];
   # Home Manager needs a bit of information about you and the
@@ -116,7 +117,7 @@
   home.sessionVariables = {
     EDITOR = "hx";
     BROWSER = "firefox";
-    TERMINAL = "alacritty";
+    TERMINAL = "wezterm";
   };
 
   #programs.gitui.enable = true; #conflicts with following line
