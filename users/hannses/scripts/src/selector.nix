@@ -60,7 +60,6 @@ in ''
   monitor setup
   monitor setup gui
   nightlight
-  nix
   lock
   sleep
   shutdown
@@ -224,9 +223,6 @@ in ''
       ;;
   "keyboard layout")
       ${scripts.keyboard_layout}
-      ;;
-  "nix")
-      ${scripts.nix-selector}
       ;;
   "color-picker")
       ${pkgs.wl-color-picker}/bin/wl-color-picker clipboard
