@@ -25,6 +25,8 @@
       tinymist
       bash-language-server
       typstyle
+      yazi
+      lazygit
 
     ];
     languages = {
@@ -105,6 +107,8 @@
           ":open %sh{cat /tmp/unique-file}"
           ":redraw"
         ];
+        space.l.g =
+          [ ":new" ":insert-output lazygit" ":buffer-close!" ":redraw" ];
       };
     };
   };
