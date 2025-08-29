@@ -31,22 +31,6 @@ in rec {
   };
 
   age.secrets = {
-    "atuin/key.age" = {
-      file = ../../secrets/atuin/key.age;
-      name = "key";
-      symlink = false;
-      owner = "hannses";
-      path = config.home-manager.users.hannses.home.homeDirectory
-        + "/.local/share/atuin/key";
-    };
-    "atuin/session.age" = {
-      file = ../../secrets/atuin/session.age;
-      name = "session";
-      owner = "hannses";
-      symlink = false;
-      path = config.home-manager.users.hannses.home.homeDirectory
-        + "/.local/share/atuin/session";
-    };
     "wifihotspot.age" = {
       file = ../../secrets/wifihotspot.age;
       owner = "hannses";
