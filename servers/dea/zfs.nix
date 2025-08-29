@@ -33,6 +33,13 @@ in {
     "taskw-tasks"
   ]));
 
+  services.zfs = {
+    autoSnapshot = {
+      enable = true;
+      monthly = 5;
+    };
+  };
+
   environment.systemPackages = [ zfssnap ];
 
   services.syncthing-wrapper = {

@@ -31,4 +31,10 @@ in {
   });
 
   environment.systemPackages = [ zfssnap ];
+  services.zfs = {
+    autoSnapshot = {
+      enable = true;
+      monthly = 5;
+    };
+  };
 }
