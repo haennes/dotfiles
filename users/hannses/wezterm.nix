@@ -46,14 +46,24 @@
               action = act.SpawnTab 'CurrentPaneDomain',
             },
             {
-              key = "p",
+              key = "P",
               mods = "LEADER",
               action = act.MoveTabRelative(-1),
             },
             {
-              key = "n",
+              key = "N",
               mods = "LEADER",
               action = act.MoveTabRelative(1),
+            },
+            {
+              key = "p",
+              mods = "LEADER",
+              action = act.ActivateTabRelative(-1),
+            },
+            {
+              key = "n",
+              mods = "LEADER",
+              action = act.ActivateTabRelative(1),
             },
           },
         }
