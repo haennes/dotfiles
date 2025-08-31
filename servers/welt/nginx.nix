@@ -5,6 +5,7 @@ let
   create_redirect = { sources, target }:
     lib.my.recursiveMerge (map (source: {
       services.nginx.virtualHosts.${source}.globalRedirect = target;
+      security.acme.certs.${source}.inheritDefaults = true;
     }) sources);
   create_simple_proxy_with_domain = { fqdn, target_ip, custom_settings ? { }
     , custom_locations ? { }, target_port ? null, https ? false, local ? false
