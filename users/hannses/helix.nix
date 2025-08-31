@@ -118,6 +118,15 @@
           ":buffer-close!"
           ":redraw"
         ];
+        space.t.t  = [
+          ":new"
+          ":insert-output ${
+              lib.getExe pkgs.taskwarrior-tui
+            }"
+            ":buffer-close!"
+            ":redraw"
+
+        ];
       };
     };
   };
