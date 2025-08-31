@@ -142,7 +142,7 @@ in ''
       ${pkgs.webcamoid}/bin/webcamoid
       ;;
   "file manager")
-      # TODO
+      ${scripts.file_manager}
       ;;
   "wifi")
       ${scripts.wifi}
