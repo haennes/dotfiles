@@ -4,6 +4,7 @@ let
   favicon = domain: "https://${domain}/favicon.ico"; # TODO use this instead
   updateInterval = 24 * 60 * 60 * 1000; # every day
   engines_inputs = hm_inputs // { inherit favicon updateInterval; };
+  settings = import ./settings.nix hm_inputs;
 in {
   programs.firefox = {
     enable = true;
@@ -18,10 +19,7 @@ in {
         ipfs-companion
         passbolt
       ];
-      settings = {
-        "browser.link.open_newwindow.restriction" = 0;
-        "signon.rememberSignons" = false;
-      };
+      settings = settings.default;
       search = {
         force = true;
         default = "ecosia";
