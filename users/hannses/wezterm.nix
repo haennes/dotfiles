@@ -46,6 +46,11 @@
               action = act.SpawnTab 'CurrentPaneDomain',
             },
             {
+              key = "d"
+              modes = 'LEADER',
+              action = wezterm.action.CloseCurrentTab { confirm = true },
+            },
+            {
               key = "P",
               mods = "LEADER",
               action = act.MoveTabRelative(-1),
