@@ -10,9 +10,9 @@ in {
       config.boot.zfs.package.latestCompatibleLinuxPackages
     else
       pkgs.linuxPackages;
-  services.logind = {
-    powerKey = "suspend";
-    lidSwitch = "lock";
+  services.logind.settings.Login = {
+    HandlePowerKey = "suspend";
+    HandleLidSwitch = "suspend";
   };
 
   services.udisks2.enable = true;
