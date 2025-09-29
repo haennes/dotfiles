@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 let hostname = config.networking.hostName;
 in {
 
@@ -20,6 +20,7 @@ in {
       secretKeyFile = config.age.secrets."nix-serve/${hostname}/priv.age".path;
       port = config.ports.ports.curr_ports.nix-serve;
       bindAddress = config.ips.ips.ips.default.${hostname}.wg0;
+      package = pkgs.nix-serve-ng;
     };
     networking.firewall.interfaces.wg0.allowedTCPPorts =
       [ config.ports.ports.curr_ports.nix-serve ];
