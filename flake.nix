@@ -1,6 +1,18 @@
 {
   description = "System Config";
 
+  nixConfig = {
+    abort-on-warn = true;
+    extra-experimental-features = [ "pipe-operators" ];
+    # allow-import-from-derivation = false; #FIXME remove this, these are ifds
+
+    extra-substituters =
+      [ "https://nix-community.cachix.org/" "https://numtide.cachix.org/" ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+    ];
+  };
   inputs = {
     nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -9,8 +21,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-joint-venture = {
-      #url = "github:nix-joint-venture/nix-joint-venture";
-      url = "/home/hannses/programming/nix/nix-joint-venture";
+      url =
+        "github:nix-joint-venture/nix-joint-venture?ref=recenct_files_zath_xour";
+      # url = "/home/hannses/programming/nix/nix-joint-venture";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-alien.url = "github:thiagokokada/nix-alien";
@@ -18,8 +31,8 @@
     futils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     watcher = {
-      #url = "github:haennes/watcher.nix";
-      url = "git+file:///home/hannses/programming/nix/watcher.nix";
+      url = "github:haennes/watcher.nix";
+      # url = "git+file:///home/hannses/programming/nix/watcher.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dns = {
@@ -41,10 +54,6 @@
     };
     hyprcursor-phinger = {
       url = "github:jappie3/hyprcursor-phinger";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    helix = {
-      url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -104,13 +113,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     wireguard-wrapper = {
-      url = "git+file:///home/hannses/programming/nix/wireguard-wrapper";
-      # url = "github:haennes/wireguard-wrapper.nix";
+      # url = "git+file:///home/hannses/programming/nix/wireguard-wrapper";
+      url = "github:haennes/wireguard-wrapper.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     wg-friendly-peer-names = {
-      #url = "git+file:///home/hannses/programming/wg-friendly-peer-names";
-      url = "github:haennes/wg-friendly-peer-names";
+      url = "git+file:///home/hannses/programming/wg-friendly-peer-names";
+      # url = "github:haennes/wg-friendly-peer-names";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     syncthing-wrapper = {
@@ -140,8 +149,8 @@
     };
     nix-topology.url = "github:oddlama/nix-topology";
     esw-machines = {
-      url = "git+file:///home/hannses/programming/esw-machines";
-      #url = "github:haennes/esw-machines";
+      # url = "git+file:///home/hannses/programming/esw-machines";
+      url = "github:haennes/esw-machines";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     simple-nixos-mailserver = {
@@ -175,8 +184,8 @@
     };
     nix-search-tv = {
       # url = "github:3timeslazy/nix-search-tv";
-      url =
-        "git+file:///home/hannses/programming/nix/nix-search-tv?ref=nixpkgs-sh-module";
+      url = "github:haennes/nix-search-tv?ref=nixpkgs-sh-module";
+      # url = "git+file:///home/hannses/programming/nix/nix-search-tv?ref=nixpkgs-sh-module";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         noogle-cli.follows = "noogle-cli";
@@ -192,7 +201,7 @@
   outputs = inputs@{ self, nixpkgs, home-manager, home-manager-option-search
     , deploy-rs, rust-overlay, nur, nix-yazi-plugins, futils, wireguard-wrapper
     , wg-friendly-peer-names, syncthing-wrapper, tasks_md, nix-update-inputs
-    , signal-whisper, IPorts, nix-topology, raspberry-pi-nix, helix, watcher, nh
+    , signal-whisper, IPorts, nix-topology, raspberry-pi-nix, watcher, nh
     , menu-calc, pinentry-keepassxc, nix-minecraft, ... }:
     let
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
@@ -273,7 +282,6 @@
         nix-yazi-plugins.overlays.default
         nix-update-inputs.overlays.default
         signal-whisper.overlays.default
-        helix.overlays.default
         inputs.nix-alien.overlays.default
         nh.overlays.default
 
