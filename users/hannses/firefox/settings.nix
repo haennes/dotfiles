@@ -19,7 +19,7 @@
     # Quieter Fox
     "extensions.getAddons.showPane" = false;
     "extensions.htmlaboutaddons.recommendations.enabled" = false;
-    "browser.discovery.enabled" = false;
+    "browser.discovery.enabled" = true;
     "browser.shopping.experience2023.enabled" = false;
 
     # Telemetry
@@ -60,12 +60,12 @@
     "browser.safebrowsing.downloads.remote.enabled" = false;
 
     # Block implicit outbound
-    "network.prefetch-next" = false;
+    "network.prefetch-next" = true;
     "network.dns.disablePrefetch" = true;
-    "network.predictor.enabled" = false;
-    "network.predictor.enable-prefetch" = false;
-    "network.http.speculative-parallel-limit" = 0;
-    "browser.places.speculativeConnect.enabled" = false;
+    "network.predictor.enabled" = true;
+    "network.predictor.enable-prefetch" = true;
+    "network.http.speculative-parallel-limit" = 10;
+    "browser.places.speculativeConnect.enabled" = true;
 
     # DNS / DoH / PROXY / SOCKS
     "network.proxy.socks_remote_dns" = true;
@@ -73,15 +73,15 @@
     "network.gio.supported-protocols" = "";
 
     # LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
-    "browser.urlbar.speculativeConnect.enabled" = false;
+    "browser.urlbar.speculativeConnect.enabled" = true;
     "browser.urlbar.trending.featureGate" = false;
     "browser.urlbar.addons.featureGate" = false;
     "browser.urlbar.pocket.featureGate" = false;
     "browser.urlbar.weather.featureGate" = false;
-    "browser.formfill.enable" = false;
+    "browser.formfill.enable" = true;
     "browser.search.separatePrivateDefault" = false; # CHANGED
     "browser.search.separatePrivateDefault.ui.enabled" = true;
-    "places.history.enabled" = false;
+    "places.history.enabled" = true;
 
     # Passwords
     "signon.autofillForms" = false;
@@ -121,7 +121,7 @@
     "media.peerconnection.ice.default_address_only" = true;
 
     # DOM
-    "dom.disable_window_move_resize" = true;
+    # "dom.disable_window_move_resize" = true;
 
     # Misc
     "browser.download.start_downloads_in_tmp_dir" = true;
@@ -138,15 +138,15 @@
     # Downloads
     "browser.download.useDownloadDir" = false;
     "browser.download.alwaysOpenPanel" = false;
-    "browser.download.manager.addToRecentDocs" = false;
+    "browser.download.manager.addToRecentDocs" = true;
     "browser.download.always_ask_before_handling_new_types" = true;
 
     # Enhanced Tracking Protection
     "browser.contentblocking.category" = "strict";
 
     # Sanitize on Shutdown
-    "privacy.sanitize.sanitizeOnShutdown" = true;
-    "privacy.clearOnShutdown.cache" = true;
+    "privacy.sanitize.sanitizeOnShutdown" = false;
+    "privacy.clearOnShutdown.cache" = false;
 
     # Ignore "ALLOW" site exception
     "privacy.cpd.cache" = false; # CHANGED
@@ -163,11 +163,11 @@
     #"privacy.window.maxInnerHeight" = 900; # CHANGED
     "privacy.resistFingerprinting.block_mozAddonManager" = true;
     "privacy.resistFingerprinting.letterboxing" = true;
-    "browser.display.use_system_colors" = false;
+    "browser.display.use_system_colors" = true;
     "widget.non-native-theme.enabled" = true;
     "browser.link.open_newwindow" = 3;
     "browser.link.open_newwindow.restriction" = 0;
-    "webgl.disabled" = true; # false if Netflix/Streaming is needed
+    "webgl.disabled" = false; # false if Netflix/Streaming is needed
 
     # Don't touch
     "extensions.blocklist.enabled" = true;
@@ -185,6 +185,6 @@
     "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" =
       false;
     "browser.messaging-system.whatsNewPanel.enabled" = false;
-    "browser.urlbar.showSearchTerms.enabled" = false;
+    "browser.urlbar.showSearchTerms.enabled" = true;
   };
 }
