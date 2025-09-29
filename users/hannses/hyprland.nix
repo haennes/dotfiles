@@ -157,6 +157,7 @@ in {
       misc = {
         force_default_wallpaper =
           -1; # 0 or 1 to disable anime mascot wallpapers
+        enable_anr_dialog = false;
       };
 
       "$mod" = "SUPER";
