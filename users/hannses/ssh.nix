@@ -104,9 +104,9 @@ let
 in {
   services.ssh-agent.enable = true;
   programs.ssh = {
-    addKeysToAgent = "1h";
     enable = true;
     matchBlocks = rec {
+      "*".addKeysToAgent = "1h";
       "fs_main" = {
         user = "hoh47200";
         hostname = "cloud.fsim-ev.de";
