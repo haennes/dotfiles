@@ -119,7 +119,7 @@ in {
         "hannses__Downloads".devices = all_pcs_minimal // servers;
         "hannses__Music".devices = all_pcs // servers;
         "Pictures" = {
-          devices = servers // all_pcs;
+          devices = servers;
           pseudoGroups = [ "family" ];
         };
         "hannses__Templates".devices = all_pcs_minimal // servers;
