@@ -59,7 +59,7 @@
     comma
     kdePackages.kcachegrind
     update-apply-cycle
-    signal-whisper-large-v3-q5_0
+    # signal-whisper-large-v3-q5_0
     vim
     gdb
     nix-diff
@@ -86,7 +86,7 @@
     feh # for dticket cmd
     iamb
     element-desktop
-    openai-whisper-cpp
+    # openai-whisper-cpp
     ffmpeg
 
     # doesnt work atm
