@@ -14,6 +14,6 @@ in lib.mapAttrs (name: value: importNixScript name value) (hlib.load {
   src = ./src;
   loader = hlib.loaders.default;
   inputs = scripts_input;
-}) // importShellScript "switchmonitor" // {
+}) // {
   startup = import ./startup.nix scripts_input;
 } # isnt actually a shell-script
