@@ -1,3 +1,3 @@
-{ globals, config, ... }: ''
-  ${globals.term} -e ${config.programs.yazi.package}
+{ globals, config, lib, ... }: ''
+  ${globals.term} -e ${lib.getExe config.programs.yazi.package}
 ''
