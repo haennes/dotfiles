@@ -27,6 +27,8 @@ in {
       experimental-features = [ "nix-command" "flakes" ];
       connect-timeout = 5;
       log-lines = 25;
+
+      trusted-users = [ "forward" "hannses" ];
     };
     daemonIOSchedPriority = 7;
     daemonIOSchedClass = "idle";
