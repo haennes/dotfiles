@@ -38,6 +38,7 @@
     ./television.nix
     ./wezterm.nix
     ./nix-search.nix
+    ./zoxide.nix
   ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
