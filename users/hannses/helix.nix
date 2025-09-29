@@ -14,7 +14,7 @@
     '';
   in {
     enable = true;
-    defaultEditor = true; # leave nvim for now
+    defaultEditor = true;
     extraPackages = with pkgs; [
       rust-analyzer
       nil
@@ -110,7 +110,7 @@
         ];
         space.l.g =
           [ ":new" ":insert-output lazygit" ":buffer-close!" ":redraw" ];
-        space.s.n = [
+        space.n.s = [
           ":new"
           ":insert-output ${
             lib.getExe config.programs.nix-search-tv-script.outputPackage
@@ -118,13 +118,11 @@
           ":buffer-close!"
           ":redraw"
         ];
-        space.t.t  = [
+        space.t.w = [
           ":new"
-          ":insert-output ${
-              lib.getExe pkgs.taskwarrior-tui
-            }"
-            ":buffer-close!"
-            ":redraw"
+          ":insert-output ${lib.getExe pkgs.taskwarrior-tui}"
+          ":buffer-close!"
+          ":redraw"
 
         ];
       };
