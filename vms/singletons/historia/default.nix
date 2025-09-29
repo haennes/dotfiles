@@ -8,6 +8,7 @@ in {
 
   networking.firewall.interfaces.wg0.allowedTCPPorts =
     [ config.ports.ports.curr_ports.atuin ];
+  networking.firewall.allowedTCPPorts = [ config.ports.ports.curr_ports.atuin ];
   networking.hostName = "historia";
 
   system.activationScripts.ensure-dirs-exist.text =
