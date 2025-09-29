@@ -122,10 +122,10 @@
   };
 
   #programs.gitui.enable = true; #conflicts with following line
-  home.file.".config/gitui/key_bindings.ron".text =
-    builtins.readFile ../../ext_configs/gitui_keybindings.ron;
-  home.file.".config/iamb/config.json".text =
-    builtins.readFile ../../ext_configs/iamb/config.json;
+  home.file.".config/gitui/key_bindings.ron".source =
+    ../../ext_configs/gitui_keybindings.ron;
+  home.file.".config/iamb/config.json".source =
+    ../../ext_configs/iamb/config.json;
 
   xdg.desktopEntries.zellij = {
     name = "ZelliJ";
