@@ -399,7 +399,7 @@
         #  ];
         #};
         thinkpad = { modules = [ (laptop "thinkpad") ]; };
-        thinknew = { modules = [ (laptop "thinknew") ]; };
+        thinknew = { modules = [ (laptop "thinknew") microvm_host ]; };
       };
       hydraJobs = {
         system-builds = let

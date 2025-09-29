@@ -1,11 +1,12 @@
 { pkgs, ... }: {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ ./hardware-configuration.nix ./vms.nix ];
   networking.hostName = "thinknew"; # Define your hostname.
 
   services.syncthing-wrapper = { enable = true; };
   services.syncthing = { dataDir = "/syncthing"; };
   virtualisation.docker.enable = true;
   services.wireguard-wrapper.enable = true;
+  microvmHost.extInterface = "wlp1s0";
 
   services.wordpress.sites."localhost" = {
     languages = [ pkgs.wordpressPackages.languages.de_DE ];
