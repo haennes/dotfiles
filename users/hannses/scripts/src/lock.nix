@@ -1,5 +1,5 @@
-{ theme, pkgs, ... }: ''
-    ${pkgs.swaylock-effects}/bin/swaylock \
+{ theme, pkgs, lib, ... }: ''
+    ${lib.getExe pkgs.swaylock-effects} \
   --ignore-empty-password \
   --screenshots \
   --clock \
