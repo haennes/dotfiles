@@ -302,15 +302,15 @@
       "locked": {
         "lastModified": 1755291026,
         "narHash": "sha256-b3op3FrwvGTnrEwNzIx+88jUXby2L+7QJVkakC4+Vn8=",
-        "ref": "refs/heads/main",
+        "owner": "haennes",
+        "repo": "esw-machines",
         "rev": "41c013d504dec676fbfa42dbedef0d1ef6f349d9",
-        "revCount": 31,
-        "type": "git",
-        "url": "file:///home/hannses/programming/esw-machines"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/hannses/programming/esw-machines"
+        "owner": "haennes",
+        "repo": "esw-machines",
+        "type": "github"
       }
     },
     "flake-compat": {
@@ -1072,27 +1072,6 @@
         "type": "github"
       }
     },
-    "helix": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "rust-overlay": "rust-overlay"
-      },
-      "locked": {
-        "lastModified": 1756994900,
-        "narHash": "sha256-a4tw3IzSNbpI6k5nAkowMiiUiyRu2c4PqWBHzLTfb9E=",
-        "owner": "helix-editor",
-        "repo": "helix",
-        "rev": "f59dc9e48f3b372f5577b6846a73edd94a602493",
-        "type": "github"
-      },
-      "original": {
-        "owner": "helix-editor",
-        "repo": "helix",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -1211,7 +1190,7 @@
           "nixpkgs"
         ],
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
-        "rust-overlay": "rust-overlay_2"
+        "rust-overlay": "rust-overlay"
       },
       "locked": {
         "lastModified": 1737639419,
@@ -1331,7 +1310,7 @@
           "nixpkgs"
         ],
         "parts": "parts",
-        "rust-overlay": "rust-overlay_3",
+        "rust-overlay": "rust-overlay_2",
         "treefmt": "treefmt"
       },
       "locked": {
@@ -1439,15 +1418,16 @@
       "locked": {
         "lastModified": 1745913626,
         "narHash": "sha256-YiY1Dgf39E40OoMAkU7K4S9eR5Xin2JvJXu6oCHO1uA=",
-        "ref": "refs/heads/recenct_files_zath_xour",
+        "owner": "nix-joint-venture",
+        "repo": "nix-joint-venture",
         "rev": "31205d7ad25ecec982a42487bc9d924f22c4ee55",
-        "revCount": 9,
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/nix-joint-venture"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/nix-joint-venture"
+        "owner": "nix-joint-venture",
+        "ref": "recenct_files_zath_xour",
+        "repo": "nix-joint-venture",
+        "type": "github"
       }
     },
     "nix-master": {
@@ -1509,16 +1489,16 @@
       "locked": {
         "lastModified": 1755417671,
         "narHash": "sha256-OodZigCsk4iOJOzdkZlTh2Th0CHcrDuHksYxFmGQvIc=",
-        "ref": "nixpkgs-sh-module",
+        "owner": "haennes",
+        "repo": "nix-search-tv",
         "rev": "3b692ce58d64808d72132f668ded62bea8c144e1",
-        "revCount": 117,
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/nix-search-tv"
+        "type": "github"
       },
       "original": {
+        "owner": "haennes",
         "ref": "nixpkgs-sh-module",
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/nix-search-tv"
+        "repo": "nix-search-tv",
+        "type": "github"
       }
     },
     "nix-topology": {
@@ -2010,7 +1990,7 @@
         ],
         "nixpkgs-master": "nixpkgs-master",
         "noogle": "noogle",
-        "rust-overlay": "rust-overlay_4",
+        "rust-overlay": "rust-overlay_3",
         "systems": "systems_16"
       },
       "locked": {
@@ -2296,7 +2276,6 @@
         "esw-machines": "esw-machines",
         "futils": "futils",
         "haumea": "haumea",
-        "helix": "helix",
         "home-manager": "home-manager_2",
         "home-manager-option-search": "home-manager-option-search",
         "hyprcursor-phinger": "hyprcursor-phinger",
@@ -2321,7 +2300,7 @@
         "nur": "nur",
         "pinentry-keepassxc": "pinentry-keepassxc",
         "raspberry-pi-nix": "raspberry-pi-nix",
-        "rust-overlay": "rust-overlay_5",
+        "rust-overlay": "rust-overlay_4",
         "signal-whisper": "signal-whisper",
         "simple-nixos-mailserver": "simple-nixos-mailserver",
         "syncthing-wrapper": "syncthing-wrapper",
@@ -2454,27 +2433,6 @@
     "rust-overlay": {
       "inputs": {
         "nixpkgs": [
-          "helix",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1740623427,
-        "narHash": "sha256-3SdPQrZoa4odlScFDUHd4CUPQ/R1gtH4Mq9u8CBiK8M=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "d342e8b5fd88421ff982f383c853f0fc78a847ab",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "rust-overlay_2": {
-      "inputs": {
-        "nixpkgs": [
           "lanzaboote",
           "nixpkgs"
         ]
@@ -2493,7 +2451,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_3": {
+    "rust-overlay_2": {
       "inputs": {
         "nixpkgs": [
           "nix-inspect",
@@ -2515,7 +2473,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_4": {
+    "rust-overlay_3": {
       "inputs": {
         "nixpkgs": [
           "noogle-cli",
@@ -2536,7 +2494,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_5": {
+    "rust-overlay_4": {
       "inputs": {
         "nixpkgs": "nixpkgs_10"
       },
@@ -2554,7 +2512,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_6": {
+    "rust-overlay_5": {
       "inputs": {
         "nixpkgs": [
           "waybar-taskwarrior",
@@ -3031,15 +2989,15 @@
       "locked": {
         "lastModified": 1754852139,
         "narHash": "sha256-o/Fh5156uTWxODyc9m/Yeu1jY4O4JLDmEoafSPeqqfM=",
-        "ref": "refs/heads/main",
+        "owner": "haennes",
+        "repo": "watcher.nix",
         "rev": "23890c8c37bc4301f3eb4739f5f708c5e7682ba3",
-        "revCount": 19,
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/watcher.nix"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/watcher.nix"
+        "owner": "haennes",
+        "repo": "watcher.nix",
+        "type": "github"
       }
     },
     "waybar-taskwarrior": {
@@ -3047,7 +3005,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay_6"
+        "rust-overlay": "rust-overlay_5"
       },
       "locked": {
         "lastModified": 1755442026,
@@ -3071,10 +3029,10 @@
         ]
       },
       "locked": {
-        "dirtyRev": "55334f83f73ea625778bf1bf217df56210d8d2e2-dirty",
-        "dirtyShortRev": "55334f8-dirty",
-        "lastModified": 1756476255,
-        "narHash": "sha256-a/nrAwfLvtHyIri43M/V4Ye+MEvvwnY/sIqXmKJJ9nI=",
+        "dirtyRev": "a13f13fe93b41c570a2694d3e9dabdcd97a8ca6d-dirty",
+        "dirtyShortRev": "a13f13f-dirty",
+        "lastModified": 1757078691,
+        "narHash": "sha256-E4zYEyRny1PjVvsPP4w2+dQAqgiqQKX5g+AwvbawzLE=",
         "type": "git",
         "url": "file:///home/hannses/programming/wg-friendly-peer-names"
       },
@@ -3092,15 +3050,15 @@
       "locked": {
         "lastModified": 1756413499,
         "narHash": "sha256-lTnYejrts4J8pYDKoyJIlA2e3yLWufOxj7nXoNEgdJA=",
-        "ref": "refs/heads/main",
+        "owner": "haennes",
+        "repo": "wireguard-wrapper.nix",
         "rev": "2a6f77207152812eb8725dabc552d13aa7af7e3b",
-        "revCount": 12,
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/wireguard-wrapper"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/wireguard-wrapper"
+        "owner": "haennes",
+        "repo": "wireguard-wrapper.nix",
+        "type": "github"
       }
     }
   },
