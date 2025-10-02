@@ -2,7 +2,7 @@
   description = "System Config";
 
   nixConfig = {
-    abort-on-warn = true;
+    # abort-on-warn = true;
     extra-experimental-features = [ "pipe-operators" ];
     # allow-import-from-derivation = false; #FIXME remove this, these are ifds
 
