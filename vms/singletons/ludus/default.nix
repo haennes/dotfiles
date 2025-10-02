@@ -27,8 +27,8 @@ in {
     tag = "git-${config.networking.hostName}";
     proto = "virtiofs";
   }];
-  microvm.mem = 9000;
-  microvm.vcpu = 4;
+  microvm.mem = 6000;
+  microvm.vcpu = 2;
   services.minecraft-servers = {
     enable = true;
     eula = true;
@@ -42,7 +42,7 @@ in {
           exec "${pkgs.jre8}/bin/java" -jar -Dlog4j.configurationFile=.patches/log4j2_17-111.xml forge-1.7.10-10.13.4.1614-1.7.10-universal.jar \$@ nogui
         '';
       };
-      jvmOpts = "-Xmx8G -Xms8G";
+      jvmOpts = "-Xmx5G -Xms5G";
       managementSystem.tmux.enable = true;
     };
   };
