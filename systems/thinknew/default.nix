@@ -6,7 +6,7 @@
   services.syncthing = { dataDir = "/syncthing"; };
   virtualisation.docker.enable = true;
   services.wireguard-wrapper.enable = true;
-  microvmHost.extInterface = "wlp1s0";
+  microvmHost.extInterface = "enp0s25";
 
   services.wordpress.sites."localhost" = {
     languages = [ pkgs.wordpressPackages.languages.de_DE ];
