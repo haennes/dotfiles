@@ -20,10 +20,10 @@ in {
       };
     }) hostnames);
   microvm.vms = {
-    ludus = {
-      inherit specialArgs;
-      config = ../../vms/singletons/ludus;
-      pkgs = null;
-    };
+    # ludus = {
+    #   inherit specialArgs;
+    #   config = ../../vms/singletons/ludus;
+    #   pkgs = null;
+    # };
   };
 }
