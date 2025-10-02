@@ -21,14 +21,13 @@
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/e815668b-5fec-452e-aeb3-23a65dc042a3";
-    fsType = "ext4"; 
-};
+    fsType = "ext4";
+  };
 
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
-
+  # boot.loader.grub.useOSProber = true;
 
   swapDevices =
     [{ device = "/dev/disk/by-uuid/4add6969-6a99-45fe-830b-dbd3369eebe0"; }];
