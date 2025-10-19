@@ -5,11 +5,12 @@ in {
   programs.zsh = {
     enable = true;
     shellAliases = let
-      aliases = [ "dticket" "ticket" "db" ];
+      aliases = [ "dticket" "ticket" ];
       studium = "${home}/Documents/Studium";
       semester1 = "${studium}/Semester1";
       semester2 = "${studium}/Semester2";
       semester3 = "${studium}/Semester3";
+      semester4 = "${studium}/Semester4";
 
     in rec {
       dbui = "${scripts.dbui_fzf}";
@@ -39,7 +40,7 @@ in {
       dotfiles = "cd ${globals.dotfiles_path}";
       dotf = dotfiles;
 
-      oth = semester3;
+      oth = semester4;
       down = "cd ${home}/Downloads";
 
       pro = "cd ${home}/programming";
@@ -65,7 +66,12 @@ in {
       se = "${semester3}/SE";
       st = "${semester3}/ST";
       zock = "${semester3}/ZOCK/group";
-      tt = "${semester3}/TTPG1";
+
+      ks = "${semester4}/KS";
+      os = "${semester4}/OS";
+      DD = "${semester4}/DD";
+      db = "${semester4}/DB";
+      tt = "${semester4}/TTPG2";
 
       "..." = "cd  ../../"; # dont want to enable prezto
       "...." = "cd  ../../../"; # dont want to enable prezto
