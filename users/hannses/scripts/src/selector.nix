@@ -73,6 +73,7 @@ in ''
   fix
   keyboard layout
   rescue sh alacritty
+  ftb
   rescue sh kitty\
   "
 
@@ -242,6 +243,9 @@ in ''
       ;;
   "calc")
       ${scripts.calc}
+      ;;
+  "ftb")
+      ${scripts.ftb}
       ;;
   *)
       echo "ERROR: choice not in list"
