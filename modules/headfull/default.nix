@@ -24,6 +24,7 @@
     ./dll.nix
     ./fix_hid.nix
     ./keyring.nix
+    ./wireshark.nix
   ];
 
 }
