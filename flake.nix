@@ -29,7 +29,6 @@
     nix-alien.url = "github:thiagokokada/nix-alien";
     #nixpkgs.url = "git+file:///home/hannses/programming/nix/nixpkgs?ref=master_dotfiles";
     futils.url = "github:gytis-ivaskevicius/flake-utils-plus";
-    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     watcher = {
       url = "github:haennes/watcher.nix";
       # url = "git+file:///home/hannses/programming/nix/watcher.nix";
@@ -195,14 +194,15 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, home-manager-option-search
     , deploy-rs, rust-overlay, nur, nix-yazi-plugins, futils, wireguard-wrapper
     , wg-friendly-peer-names, syncthing-wrapper, tasks_md, nix-update-inputs
-    , signal-whisper, IPorts, nix-topology, raspberry-pi-nix, watcher, nh
-    , menu-calc, pinentry-keepassxc, nix-minecraft, ... }:
+    , signal-whisper, IPorts, nix-topology, watcher, nh, menu-calc
+    , pinentry-keepassxc, nix-minecraft, nixos-hardware, ... }:
     let
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
       lib = nixpkgs.lib.extend (self: super: {
@@ -330,6 +330,7 @@
           ];
         };
         pi = { input = nixpkgs; };
+
       };
 
       hostDefaults = rec {
@@ -383,21 +384,10 @@
         yoga = { modules = [ (laptop "yoga") microvm_host ]; };
         fabulinus = {
           system = "aarch64-linux";
-          modules = [
-            raspberry-pi-nix.nixosModules.raspberry-pi
-            raspberry-pi-nix.nixosModules.sd-image
-            (server "fabulinus")
-          ];
+          modules =
+            [ (server "fabulinus") nixos-hardware.nixosModules.raspberry-pi-4 ];
         };
 
-        #matemate = { # deutch englisch
-        #  system = "aarch64-linux";
-        #  modules = [
-        #    raspberry-pi-nix.nixosModules.raspberry-pi
-        #    raspberry-pi-nix.nixosModules.sd-image
-        #    ./servers/matemate
-        #  ];
-        #};
         thinkpad = { modules = [ (laptop "thinkpad") ]; };
         thinknew = { modules = [ (laptop "thinknew") microvm_host ]; };
       };

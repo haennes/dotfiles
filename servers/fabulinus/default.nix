@@ -1,5 +1,9 @@
 { pkgs, config, inputs, ... }: {
-  imports = [ inputs.esw-machines.nixosModules.default ./wifi.nix ];
+  imports = [
+    inputs.esw-machines.nixosModules.default
+    ./wifi.nix
+    ./hardware-configuration.nix
+  ];
   users.users.root.initialPassword = "root";
   networking = {
     hostName = "fabulinus";
@@ -9,33 +13,9 @@
       eth0.useDHCP = true;
     };
   };
+  boot.initrd.availableKernelModules =
+    [ "nvme" "pcie-brcmstb" "usbhid" "usb_storage" "vc4" ];
   networking.networkmanager.enable = true;
-  raspberry-pi-nix.board = "bcm2711";
-  hardware = {
-    raspberry-pi = {
-      config = {
-        all = {
-          base-dt-params = {
-            BOOT_UART = {
-              value = 1;
-              enable = true;
-            };
-            uart_2ndstage = {
-              value = 1;
-              enable = true;
-            };
-          };
-          dt-overlays = {
-            disable-bt = {
-              enable = true;
-              params = { };
-            };
-          };
-        };
-      };
-    };
-  };
-  #hardware.raspberry-pi."4".fkms-3d.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -48,16 +28,15 @@
 
   users.users.${config.services.cage.user}.isNormalUser = true;
 
-  services.cage = {
-    enable = true;
-    program = "${pkgs.firefox}/bin/firefox --kiosk http://ecosia.org";
-    #program = "${pkgs.alacritty}/bin/alacritty";
-    user = "fabulinus";
-  };
+  # services.cage = {
+  #   enable = true;
+  #   program = "${pkgs.firefox}/bin/firefox --kiosk http://ecosia.org";
+  #   user = "fabulinus";
+  # };
 
   # wait for network and DNS
-  systemd.services."cage-tty1".after =
-    [ "network-online.target" "systemd-resolved.service" ];
+  # systemd.services."cage-tty1".after =
+  #   [ "network-online.target" "systemd-resolved.service" ];
 
   networking.firewall.allowedTCPPorts = [ config.ports.ports.curr_ports.esw ];
 
