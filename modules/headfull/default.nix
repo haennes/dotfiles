@@ -25,6 +25,7 @@
     ./fix_hid.nix
     ./keyring.nix
     ./wireshark.nix
+    ./plantuml.nix
   ];
 
 }
