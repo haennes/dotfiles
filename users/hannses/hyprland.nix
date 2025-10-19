@@ -147,12 +147,7 @@ in {
 
       #master = { new_is_master = true; };
 
-      gestures = {
-        workspace_swipe = true;
-        workspace_swipe_forever = true;
-        #workspace_swipe_numbered = true;
-        workspace_swipe_cancel_ratio = 0.15;
-      };
+      gesture = "3, horizontal, workspace";
 
       misc = {
         force_default_wallpaper =
