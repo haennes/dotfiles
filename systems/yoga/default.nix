@@ -60,11 +60,11 @@ in {
     #      config = ../../vms/instances/hesperos_1.nix;
     #      pkgs = null;
     #    };
-    tabula_3 = {
-      inherit specialArgs;
-      config = ../../vms/instances/tabula_3.nix;
-      pkgs = null;
-    };
+    # tabula_3 = {
+    #   inherit specialArgs;
+    #   config = ../../vms/instances/tabula_3.nix;
+    #   pkgs = null;
+    # };
 
   };
 
