@@ -31,17 +31,21 @@ in {
     file = ../../../secrets/vsftpd/${hostname}/cert.age;
   };
 
-  users.users.nginx.hashedPasswordFile =
-    config.age.secrets."user_passwords/nginx.age".path;
+  users.users.nginx = {
+    extraGroups = [ "vsftpd" ];
+    hashedPasswordFile = config.age.secrets."user_passwords/nginx.age".path;
+  };
 
   age.secrets."user_passwords/nginx.age".file =
     ../../../secrets/vsftpd/${hostname}/cert.age;
 
-  system.activationScripts.filesDirExists = ''
-    mkdir -p ${filesDir}
-    chown -R ${filesUser} ${filesDir}
-  '';
-
-  networking.firewall = { allowedTCPPorts = [ 80 ]; };
+  systemd.tmpfiles.rules = [ "d ${filesDir} 2770 vsftpd vsftpd - -" ];
+  networking.firewall = {
+    allowedTCPPorts = [ 80 21 20 ];
+    allowedTCPPortRanges = [{
+      from = 51000;
+      to = 51999;
+    }];
+  };
 
 }

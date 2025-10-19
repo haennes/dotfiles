@@ -29,6 +29,8 @@
 - vertumnus: **gitea**
 - proserpina: **esw machines**
 - pales: **github, gitea runners, nginx file host**
+- Terminus: **Calendar**
+- Janus: **sftp-server**
 
 ## inaktiv:
 - deus: **HOST FÜR ALLE ANDEREN**
@@ -38,4 +40,3 @@
 - merkur: mail
 - grapheum: **OnlyOffice - Server** bis jetzt Proxmox VM (evtl: -> microvm)
 - speilunke: **pterodactyl** bis jetzt Proxmox VM (evtl: -> microvm)
-- Terminus: **Calendar**

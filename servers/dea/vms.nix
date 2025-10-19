@@ -9,6 +9,7 @@ let
     "pales_1"
     "mkhh"
     "fons"
+    "terminus"
   ];
   inherit (lib) mkMerge listToAttrs map;
 in {
@@ -74,6 +75,14 @@ in {
       inherit specialArgs;
       config = ../../vms/instances/pales_1.nix;
       pkgs = null;
+    };
+    terminus = {
+      inherit specialArgs;
+      config = ../../vms/singletons/terminus;
+    };
+    janus = {
+      inherit specialArgs;
+      config = ../../vms/instances/janus_1.nix;
     };
   };
 

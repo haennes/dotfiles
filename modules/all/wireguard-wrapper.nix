@@ -70,7 +70,8 @@ in {
         [ "yoga%wg1" "welt%wg1" ]
         [ "joni%wg1" "welt%wg1" ]
         [ "felix%wg1" "welt%wg1" ]
-
+        [ "terminus%wg0" "welt%wg0" ]
+        [ "janus_1%wg0" "welt%wg0" ]
       ];
       nodes = lib.mkMerge [
         {
@@ -131,6 +132,8 @@ in {
           "yoga%wg1"
           "joni%wg1"
           "felix%wg1"
+          "terminus%wg0"
+          "janus_1%wg0"
         ])
       ];
       publicKeyFunc = { nodeName, ifName }:

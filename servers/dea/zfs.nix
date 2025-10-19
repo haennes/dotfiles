@@ -31,6 +31,7 @@ in {
     "git"
     "persistant"
     "taskw-tasks"
+    "cal"
   ]));
 
   services.zfs = {
