@@ -4,7 +4,10 @@ let
   ips = config.ips.ips.ips.default;
   create_redirect = { sources, target }:
     lib.my.recursiveMerge (map (source: {
-      services.nginx.virtualHosts.${source}.globalRedirect = target;
+      services.nginx.virtualHosts.${source} = {
+        enableACME = true;
+        globalRedirect = target;
+      };
       security.acme.certs.${source}.inheritDefaults = true;
     }) sources);
   create_simple_proxy_with_domain = { fqdn, target_ip, custom_settings ? { }
