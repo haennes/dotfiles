@@ -121,6 +121,11 @@ in {
         hostname = "10.24.1.2";
         proxyJump = "fs_main_jmp";
       };
+      "fs_apollo_jmp" = {
+        user = "hoh47200";
+        hostname = "apollo";
+        proxyJump = "fs_bak_jmp";
+      };
       "welt" = {
         user = "root";
         port = ports.welt.sshd;
