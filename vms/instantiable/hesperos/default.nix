@@ -14,8 +14,13 @@ hostname:
   #  };
   #};
 
+  services.openssh.settings = {
+    GatewayPorts = "yes";
+    AllowTcpForwarding = "yes";
+  };
   microvm.mem = 256;
   networking.hostName = hostname;
+  services.wireguard-wrapper.enable = true;
 
   system.stateVersion = "23.11";
 

@@ -38,7 +38,8 @@ in {
       enable = true;
     };
 
-    networking.firewall.allowedTCPPorts = [ 51821 51822 ];
+    networking.firewall.allowedTCPPorts =
+      [ 51821 51822 ]; # TODO this should use port config
     services.wireguard-wrapper = {
       # RestartOnFailure.enable = true;
       kind = lib.mkDefault "wireguard"; # use "normal" backend by default
@@ -72,6 +73,7 @@ in {
         [ "felix%wg1" "welt%wg1" ]
         [ "terminus%wg0" "welt%wg0" ]
         [ "janus_1%wg0" "welt%wg0" ]
+        [ "hesperos_1%wg0" "welt%wg0" ]
       ];
       nodes = lib.mkMerge [
         {
@@ -134,6 +136,7 @@ in {
           "felix%wg1"
           "terminus%wg0"
           "janus_1%wg0"
+          "hesperos_1%wg0"
         ])
       ];
       publicKeyFunc = { nodeName, ifName }:
