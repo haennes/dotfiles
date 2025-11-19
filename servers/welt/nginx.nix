@@ -12,13 +12,17 @@ let
     }) sources);
   create_simple_proxy_with_domain = { fqdn, target_ip, custom_settings ? { }
     , custom_locations ? { }, target_port ? null, https ? false, local ? false
-    }:
+    , set_header ? false }:
     let
       target_port_str = (if target_port == null then
         ""
       else
         ":${builtins.toString target_port}");
       https_str = (if https then "s" else "");
+      _custom_settings = {
+        extraConfig =
+          lib.optionalString set_header "proxy_set_header Host ${target_ip};";
+      } // custom_settings;
     in ({
       services.nginx.virtualHosts."${fqdn}" = {
         enableACME = !local;
@@ -28,9 +32,14 @@ let
           "/" = {
             proxyPass = "http${https_str}://${target_ip}${target_port_str}";
             proxyWebsockets = true; # needed if you need to use WebSocket
-          };
+            extraConfig = lib.optionalString set_header
+              "proxy_set_header Host ${target_ip};";
+          } // (if set_header then {
+            recommendedProxySettings = false;
+          } else
+            { });
         } // custom_locations;
-      } // custom_settings;
+      } // _custom_settings;
     } // (if (!local) then {
       security.acme.certs.${fqdn}.inheritDefaults = true;
     } else
@@ -139,6 +148,11 @@ in {
     target_port = ports.dea.nix-serve;
     local = true;
     #https = true;
+  })
+  (create_simple_proxy_with_domain {
+    fqdn = "tt.hannses.de";
+    target_ip = "svigling.bplaced.net";
+    set_header = true;
   })
   (create_redirect {
     sources = [ "mkhh-ev.de" "www.mkhh-ev.de" ];
