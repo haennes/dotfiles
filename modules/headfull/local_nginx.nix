@@ -58,9 +58,9 @@ in {
 
     #"ho.localhost".root = "${config.home-manager-option-search.target-package}";
 
-    "net.topo.localhost".locations."/".root =
-      nginx_file_serve_topology "network.svg";
-    "topo.localhost".locations."/".root = nginx_file_serve_topology "main.svg";
+    # "net.topo.localhost".locations."/".root =
+    #   nginx_file_serve_topology "network.svg";
+    # "topo.localhost".locations."/".root = nginx_file_serve_topology "main.svg";
   } // (lib.mapAttrs' (name: value:
     let
       ip = head value;
