@@ -13,7 +13,7 @@
 
     #modelling
     freecad
-    openscad-unstable
+    openscad
     prusa-slicer
     #kicad #cad for pcbs
 
