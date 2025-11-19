@@ -16,7 +16,11 @@ in {
   imports = [ ../../../modules/microvm_guest.nix ];
 
   services.wireguard-wrapper.enable = true;
-  age.secrets.radicale_pw.file = ../../../secrets/radicale/passwords.age;
+  age.secrets.radicale_pw = {
+    file = ../../../secrets/radicale/passwords.age;
+    group = "radicale";
+    owner = "radicale";
+  };
   # services.syncthing = {
   #   dataDir = "/persist";
   #   user = config.services.freshrss.user;
