@@ -10,6 +10,7 @@ let
     "mkhh"
     "fons"
     "terminus"
+    "hesperos_1"
   ];
   inherit (lib) mkMerge listToAttrs map;
 in {
@@ -83,6 +84,11 @@ in {
     janus = {
       inherit specialArgs;
       config = ../../vms/instances/janus_1.nix;
+    };
+    hesperos_1 = {
+      inherit specialArgs;
+      config = ../../vms/instances/hesperos_1.nix;
+      pkgs = null;
     };
   };
 
