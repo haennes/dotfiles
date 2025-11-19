@@ -2,6 +2,7 @@
 let
   hostnames = [
     "tabula_1"
+    "janus_1"
     "minerva"
     "vertumnus"
     "proserpina_1"
@@ -81,7 +82,7 @@ in {
       inherit specialArgs;
       config = ../../vms/singletons/terminus;
     };
-    janus = {
+    janus_1 = {
       inherit specialArgs;
       config = ../../vms/instances/janus_1.nix;
     };
