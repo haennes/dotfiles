@@ -2,9 +2,12 @@
   imports = [ ./hardware-configuration.nix ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.grub = {
+    enable = true;
+    device = "/dev/sda";
+    useOSProber = true;
+    default = "1";
+  };
 
   services.syncthing-wrapper = { enable = true; };
   services.syncthing = { dataDir = "/syncthing"; };
