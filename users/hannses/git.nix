@@ -6,18 +6,21 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "haennes";
-    userEmail = "hannes.hofmuth@gmail.com";
     signing = {
       key = null;
       signByDefault = true;
     };
-    extraConfig = {
+    settings = {
+      user.name = "haennes";
+      user.email = "hannes.hofmuth@gmail.com";
       init = { defaultBranch = "main"; };
       push.autoSetupRemote = true;
     };
   };
-  programs.lazygit.enable = true;
+  programs.lazygit = {
+    enable = true;
+    settings = { git.overrideGpg = true; };
+  };
   programs.zsh.shellAliases = {
     gitcpr = "${pkgs.writeShellScript "gitcpr" (''
       pr=$1
