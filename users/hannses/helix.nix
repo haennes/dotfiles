@@ -19,6 +19,7 @@
       rust-analyzer
       nil
       ruff
+      black
       clang-tools
       nix
       lldb
