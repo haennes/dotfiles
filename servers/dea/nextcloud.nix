@@ -15,6 +15,12 @@ in {
     };
   };
 
+  users.users."nextcloud" = {
+    isSystemUser = true;
+    group = "nextcloud";
+    uid = 994;
+  };
+  users.groups."nextcloud" = { gid = 993; };
   boot.kernel.sysctl = { "fs.inotify.max_user_watches" = 204800; };
   services.syncthing = rec {
     user = "nextcloud";
