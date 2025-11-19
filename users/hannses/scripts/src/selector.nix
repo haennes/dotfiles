@@ -74,6 +74,7 @@ in ''
   keyboard layout
   rescue sh alacritty
   ftb
+  waybar
   rescue sh kitty\
   "
 
@@ -246,6 +247,9 @@ in ''
       ;;
   "ftb")
       ${scripts.ftb}
+      ;;
+  "waybar")
+      ${scripts.waybar}
       ;;
   *)
       echo "ERROR: choice not in list"
