@@ -8,7 +8,7 @@ let
     "proserpina_1"
     "historia"
     "pales_1"
-    "mkhh"
+    # "mkhh"
     "fons"
     "terminus"
     "hesperos_1"
@@ -62,11 +62,11 @@ in {
       pkgs = null;
     };
 
-    mkhh = {
-      inherit specialArgs;
-      config = ../../vms/singletons/mkhh;
-      pkgs = null;
-    };
+    # mkhh = {
+    #   inherit specialArgs;
+    #   config = ../../vms/singletons/mkhh;
+    #   pkgs = null;
+    # };
 
     fons = {
       inherit specialArgs;

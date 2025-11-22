@@ -8,7 +8,7 @@ name=$1
 shift
 # deploy .?submodules=1#$name --remote-build -s $@ -- --show-trace --no-warn-dirty -j 0  --log-format internal-json -v |& nom --json
 # deploy .?submodules=1#$name --remote-build -s $@ -- --show-trace --no-warn-dirty -j 0 
-deploy .?submodules=1#$name -s --ssh-user "hannses" --interactive-sudo true -- --show-trace --no-warn-dirty  --impure $@ 
+deploy .?submodules=1#$name -s $@ -- --show-trace --no-warn-dirty -j 0 --impure 
 # deploy .?submodules=1#$name -s $@ -- --show-trace --no-warn-dirty -j 0  --log-format internal-json -v |& nom --json
 # deploy .?submodules=1#$1 -s  -- --show-trace --no-warn-dirty
 popd

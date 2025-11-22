@@ -2,7 +2,7 @@
 pushd ~/.dotfiles || echo "Failed to change directory" || exit
 git add --intent-to-add .
 sudo -v
-nh os switch --build-host m_dea -a .?submodules=1 -- $@ --show-trace --accept-flake-config
+nh os switch --build-host m_dea -a .?submodules=1 -- $@ --show-trace --accept-flake-config -j1
 #--option substituters "https://cache.nixos.org"
 # --option extra-substituters https://install.determinate.systems 
 # --option extra-trusted-public-keys cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM= 

@@ -6,8 +6,11 @@
     extra-experimental-features = [ "pipe-operators" ];
     # allow-import-from-derivation = false; #FIXME remove this, these are ifds
 
-    extra-substituters =
-      [ "https://nix-community.cachix.org/" "https://numtide.cachix.org/" "https://microvm.cachix.org"];
+    extra-substituters = [
+      "https://nix-community.cachix.org/"
+      "https://numtide.cachix.org/"
+      "https://microvm.cachix.org"
+    ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
@@ -354,8 +357,9 @@
         confirmTimeout = 120;
         nodes = (lib.my.mkDeploy {
           inherit (inputs) self;
-          exclude = [ "welt" ];
-        }) // (lib.my.genNodeSimple self "welt");
+          exclude = [ "welt" "pons" ];
+        }) // (lib.my.genNodeSimple self "welt")
+          // (lib.my.genNodeSimple self "pons");
       };
       formatter =
         forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-classic);
@@ -375,6 +379,9 @@
         dea = { modules = [ (server "dea") microvm_host ]; };
         welt = {
           modules = [ (server "welt") inputs.nixos-dns.nixosModules.dns ];
+        };
+        pons = {
+          modules = [ (server "pons") inputs.nixos-dns.nixosModules.dns ];
         };
         #porta = { modules = [ (server "porta") ]; };
         #syncschlawiner = { modules = [ (server "syncschlawiner") ]; };

@@ -131,6 +131,12 @@ in {
         port = ports.welt.sshd;
         hostname = "hannses.de";
       };
+      "pons" = {
+        user = "root";
+        port = ports.pons.sshd;
+        hostname = ips.pons.ens6;
+        # hostname = "hannses.de";
+      };
       "forward_welt" = {
         user = "forward";
         hostname = "hannses.de";
@@ -169,6 +175,7 @@ in {
           }]) curr_ports.ssh.${name})));
       })
 
-    ) (attrsToList (removeAttrs ips [ "welt" "porta" "handy_hannses" ]))));
+    ) (attrsToList
+      (removeAttrs ips [ "welt" "pons" "porta" "handy_hannses" ]))));
   };
 }

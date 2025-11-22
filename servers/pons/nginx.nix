@@ -1,0 +1,182 @@
+{ lib, config, inputs, ... }:
+let
+  ports = config.ports.ports.ports;
+  ips = config.ips.ips.ips.default;
+  create_redirect = { sources, target }:
+    lib.my.recursiveMerge (map (source: {
+      services.nginx.virtualHosts.${source} = {
+        enableACME = true;
+        globalRedirect = target;
+      };
+      security.acme.certs.${source}.inheritDefaults = true;
+    }) sources);
+  create_simple_proxy_with_domain = { fqdn, target_ip, custom_settings ? { }
+    , custom_locations ? { }, target_port ? null, https ? false, local ? false
+    , set_header ? false }:
+    let
+      target_port_str = (if target_port == null then
+        ""
+      else
+        ":${builtins.toString target_port}");
+      https_str = (if https then "s" else "");
+      _custom_settings = {
+        extraConfig =
+          lib.optionalString set_header "proxy_set_header Host ${target_ip};";
+      } // custom_settings;
+    in ({
+      services.nginx.virtualHosts."${fqdn}" = {
+        enableACME = !local;
+        forceSSL = !local;
+        listenAddresses = lib.mkIf local [ ips.welt.wg0 ];
+        locations = {
+          "/" = {
+            proxyPass = "http${https_str}://${target_ip}${target_port_str}";
+            proxyWebsockets = true; # needed if you need to use WebSocket
+            extraConfig = lib.optionalString set_header
+              "proxy_set_header Host ${target_ip};";
+          } // (if set_header then {
+            recommendedProxySettings = false;
+          } else
+            { });
+        } // custom_locations;
+      } // _custom_settings;
+    } // (if (!local) then {
+      security.acme.certs.${fqdn}.inheritDefaults = true;
+    } else
+      { }));
+in {
+  networking.firewall = { allowedTCPPorts = [ 80 443 ports.vertumnus.sshd ]; };
+} // lib.my.recursiveMerge [
+  {
+    services.nginx = {
+      enable = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
+      streamConfig = let port = toString ports.vertumnus.sshd;
+      in ''
+        upstream ssh-gitea {
+            server ${ips.vertumnus.wg0}:${port};
+        }
+
+        server {
+            listen ${port};
+            proxy_pass ssh-gitea;
+        }
+      '';
+      upstreams = {
+        tabula = {
+          servers = {
+            "${ips.tabula_1.wg0}:${toString ports.tabula_1.web}" = { };
+            #"${ips.tabula_2.wg0}:${toString ports.tabula_2.web}" = { };
+            "${ips.tabula_3.wg0}:${toString ports.tabula_3.web}" = { };
+          };
+        };
+        esw = {
+          servers = {
+            "${ips.fabulinus.wg0}:${toString ports.fabulinus.esw}" = {
+              # backup = true;
+            };
+            "${ips.proserpina_1.wg0}:${toString ports.proserpina_1.esw}" = { };
+          };
+        };
+      };
+
+      #virtualHosts."mkhh.hannses.de" = {
+      #  forceSSL = true;
+      #  enableACME = true;
+      #  locations."/".root = inputs.website-mkhh.packages.x86_64-linux.default;
+      #};
+    };
+  }
+  (create_simple_proxy_with_domain {
+    fqdn = "hannses.de";
+    target_ip = "tabula";
+    #target_ip = "${ips.tabula_3.wg0}
+    #target_port = ports.tabula_3.web;
+  })
+  # (create_simple_proxy_with_domain {
+  #   fqdn = "git.hannses.de";
+  #   target_ip = ips.vertumnus.wg0;
+  #   target_port = ports.vertumnus.gitea.web;
+  #   custom_settings = {
+  #     extraConfig = "client_max_body_size 20G;"; # lfs
+  #   };
+  # })
+  (create_simple_proxy_with_domain {
+    fqdn = "esw.hannses.de";
+    target_ip = "esw";
+  })
+  (create_simple_proxy_with_domain {
+    fqdn = "esw.borbitter.eu";
+    target_ip = "esw";
+  })
+  (create_simple_proxy_with_domain {
+    fqdn = "ha1.esw.hannses.de";
+    target_ip = ips.proserpina_1.wg0;
+    target_port = ports.proserpina_1.esw;
+  })
+  (create_simple_proxy_with_domain {
+    fqdn = "ha2.esw.hannses.de";
+    target_ip = ips.fabulinus.wg0;
+    target_port = ports.fabulinus.esw;
+  })
+
+  (create_simple_proxy_with_domain {
+    fqdn = "cloud.hannses.de";
+    target_ip = ips.dea.wg0;
+    #https = true;
+    custom_settings = {
+      extraConfig = "client_max_body_size ${config.nextcloud_max_size};";
+    };
+  })
+
+  # (create_simple_proxy_with_domain {
+  #   fqdn = "hyrda.local.hannses.de";
+  #   target_ip = ips.dea.wg0;
+  #   target_port = ports.dea.hydra;
+  #   local = true;
+  #   #https = true;
+  # })
+  # (create_simple_proxy_with_domain {
+  #   fqdn = "nix-serve.local.hannses.de";
+  #   target_ip = ips.dea.wg0;
+  #   target_port = ports.dea.nix-serve;
+  #   local = true;
+  #   #https = true;
+  # })
+  # (create_simple_proxy_with_domain {
+  #   fqdn = "tt.hannses.de";
+  #   target_ip = "svigling.bplaced.net";
+  #   set_header = true;
+  # })
+  # (create_redirect {
+  #   sources = [ "mkhh-ev.de" "www.mkhh-ev.de" ];
+  #   target = "musikkapelle-holzhausen.de";
+  # })
+  #only accessible through wg
+  #(create_simple_proxy_with_domain {
+  #  fqdn = "kasmweb.hannses.de";
+  #  https = true;
+  #  target_ip = ips.deus.wg0;
+  #  target_port = config.ports.ports.ports.deus.kasmweb.gui;
+  #})
+  #(create_simple_proxy_with_domain {
+  #  fqdn = "mkhh.hannses.de";
+  #  target_ip = ips.tabula_mkhh.wg0;
+  #})
+  # (create_simple_proxy_with_domain {
+  #   fqdn = "cloud.mkhh.hannses.de";
+  #   target_ip = ips.mkhh.wg0;
+  # })
+  # (create_simple_proxy_with_domain rec {
+  #   fqdn = "pad.mkhh.hannses.de";
+  #   target_ip = ips.mkhh.wg0;
+  #   target_port = ports.mkhh.hedgedoc;
+  #   #custom_locations = { "/socket.io" = {
+  #   #    proxyPass = "http://${target_ip}";
+  #   #    proxyWebsockets = true;
+  #   #    extraConfig = "proxy_ssl_server_name on;";
+  #   #  };
+  #   #};
+  # })
+]
