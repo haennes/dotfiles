@@ -162,6 +162,10 @@ in {
         identitiesOnly = true;
         identityFile = [ sshkeys.forward_path ];
       };
+      "l_thinkpad" = {
+        user = "root";
+        hostname = "thinkpad.fritz.box";
+      };
     } // listToAttrs (flatten (map (tuple:
       attrsToList (local_global rec {
         inherit (tuple) name;
