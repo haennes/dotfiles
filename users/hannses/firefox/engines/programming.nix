@@ -14,6 +14,16 @@
     definedAliases = [ "<cr" ];
   };
 
+  "clippy" = {
+    urls = [{
+      template =
+        "https://rust-lang.github.io/rust-clippy/master/index.html?search={searchTerms}";
+    }];
+    icon = "https://crates.io/assets/cargo.png";
+    inherit updateInterval;
+    definedAliases = [ "<clip" ];
+  };
+
   "Pip / PyPi" = {
     urls = [{ template = "https://pypi.org/search/?q={searchTerms}"; }];
     icon = "https://www.python.org/static/opengraph-icon-200x200.png";
