@@ -27,7 +27,7 @@ let
       services.nginx.virtualHosts."${fqdn}" = {
         enableACME = !local;
         forceSSL = !local;
-        listenAddresses = lib.mkIf local [ ips.welt.wg0 ];
+        listenAddresses = lib.mkIf local [ ips.pons.wg0 ];
         locations = {
           "/" = {
             proxyPass = "http${https_str}://${target_ip}${target_port_str}";

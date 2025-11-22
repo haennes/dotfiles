@@ -29,8 +29,8 @@ let
 
   # l = local ip
   # w = directly using wireguard
-  # m = welt -> server only do this if we have a wg ip
-  # g  = welt -> porta -> server
+  # m = pons -> server only do this if we have a wg ip
+  # g  = pons -> porta -> server
   local_global = inputs@{ default_ports ? true, user ? "root", name
     , hostname ? name, localForwards ? [ ], forward_user ? false
     , extraArgs ? { } }:
@@ -58,7 +58,7 @@ let
         hostname = wg_ip;
       } // ports_noports {
         inherit default_ports user localForwards base_name extraArgs;
-        proxyJump = "welt";
+        proxyJump = "pons";
         name = "m_${name}";
         hostname = wg_ip;
       }));
@@ -137,10 +137,10 @@ in {
         hostname = ips.pons.ens6;
         # hostname = "hannses.de";
       };
-      "forward_welt" = {
+      "forward_pons" = {
         user = "forward";
         hostname = "hannses.de";
-        port = ports.welt.sshd;
+        port = ports.pons.sshd;
         identitiesOnly = true;
         identityFile = [ sshkeys.forward_path ];
       };
@@ -153,12 +153,12 @@ in {
       "porta" = {
         user = "root";
         hostname = ips.porta.wg0;
-        proxyJump = "welt";
+        proxyJump = "pons";
       };
       "forward_porta" = {
         user = "forward";
         hostname = ips.porta.wg0;
-        proxyJump = "forward_welt";
+        proxyJump = "forward_pons";
         identitiesOnly = true;
         identityFile = [ sshkeys.forward_path ];
       };

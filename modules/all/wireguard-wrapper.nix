@@ -118,14 +118,14 @@ in {
             ifs = {
               wg0 = {
                 ip = ips.pons.wg0;
-                allowedIPs = [ (subnet_cidr ips.welt.wg0) ];
+                allowedIPs = [ (subnet_cidr ips.pons.wg0) ];
                 endpoint = "${ips.pons.ens6}:${
                     builtins.toString config.ports.ports.ports.pons.wg0
                   }";
               };
               wg1 = {
                 ip = ips.pons.wg1;
-                allowedIPs = [ (subnet_cidr ips.welt.wg1) ];
+                allowedIPs = [ (subnet_cidr ips.pons.wg1) ];
                 endpoint = "${ips.pons.ens6}:${
                     builtins.toString config.ports.ports.ports.pons.wg1
                   }";
