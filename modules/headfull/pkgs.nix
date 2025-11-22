@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     sbctl # secure boot
+    ripgrep-all # ripgrep but for more formats
 
     #browser
     firefox

@@ -4,7 +4,6 @@
     nixfmt-classic # formatting nix files
     neofetch # display system information
     restic
-    ripgrep-all # ripgrep but for more formats
     fd # better version of find
     eza
     lf # tui file manager
