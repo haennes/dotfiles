@@ -10,7 +10,7 @@ let
   */
   mkCname = target: { CNAME = [ target ]; };
 
-  nameserver = "ns.hannses.de";
+  nameserver = "ns.hannses.de.";
 in {
   TTL = 1800; # 30 minutes
 
