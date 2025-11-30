@@ -97,6 +97,12 @@ in {
     #target_ip = "${ips.tabula_3.wg0}
     #target_port = ports.tabula_3.web;
   })
+  (create_simple_proxy_with_domain {
+    fqdn = "borbitter.eu";
+    target_ip = "tabula";
+    #target_ip = "${ips.tabula_3.wg0}
+    #target_port = ports.tabula_3.web;
+  })
   # (create_simple_proxy_with_domain {
   #   fqdn = "git.hannses.de";
   #   target_ip = ips.vertumnus.wg0;
