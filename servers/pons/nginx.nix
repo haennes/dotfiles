@@ -6,6 +6,7 @@ let
     lib.my.recursiveMerge (map (source: {
       services.nginx.virtualHosts.${source} = {
         enableACME = true;
+        forceSSL = true;
         globalRedirect = target;
       };
       security.acme.certs.${source}.inheritDefaults = true;
