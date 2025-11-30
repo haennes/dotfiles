@@ -74,9 +74,12 @@ in {
         esw = {
           servers = {
             "${ips.fabulinus.wg0}:${toString ports.fabulinus.esw}" = {
-              # backup = true;
+              backup = true;
             };
-            "${ips.proserpina_1.wg0}:${toString ports.proserpina_1.esw}" = { };
+            "${ips.proserpina_1.wg0}:${toString ports.proserpina_1.esw}" = {
+              fail_timeout = "3s";
+              max_fails = 1;
+            };
           };
         };
       };
