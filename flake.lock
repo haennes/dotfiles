@@ -1766,6 +1766,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_12": {
+      "locked": {
+        "lastModified": 1744536153,
+        "narHash": "sha256-awS2zRgF4uTwrOKwwiJcByDzDOdo3Q1rPZbiHQg/N38=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "18dd725c29603f582cf1900e0d25f9f1063dbf11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1746576598,
@@ -2353,6 +2369,24 @@
         "type": "github"
       }
     },
+    "rust-overlay_6": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_12"
+      },
+      "locked": {
+        "lastModified": 1763952169,
+        "narHash": "sha256-+PeDBD8P+NKauH+w7eO/QWCIp8Cx4mCfWnh9sJmy9CM=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "ab726555a9a72e6dc80649809147823a813fa95b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
     "signal-whisper": {
       "inputs": {
         "nixpkgs": [
@@ -2846,20 +2880,20 @@
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "rust-overlay": "rust-overlay_6"
       },
       "locked": {
-        "lastModified": 1759147619,
-        "narHash": "sha256-E4zYEyRny1PjVvsPP4w2+dQAqgiqQKX5g+AwvbawzLE=",
-        "owner": "haennes",
-        "repo": "wg-friendly-peer-names",
-        "rev": "69d245545f5e2b4c5c77a403d1f9a58b33c808d0",
-        "type": "github"
+        "dirtyRev": "d3bc3caaf26f5be87a871df0b5991d3946278c66-dirty",
+        "dirtyShortRev": "d3bc3ca-dirty",
+        "lastModified": 1764337697,
+        "narHash": "sha256-6QfbACBqiz2x4gsHbSm2hjHdJqLLkUtP/UuwWUYwLrQ=",
+        "type": "git",
+        "url": "file:///home/hannses/programming/wg-friendly-peer-names"
       },
       "original": {
-        "owner": "haennes",
-        "repo": "wg-friendly-peer-names",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/hannses/programming/wg-friendly-peer-names"
       }
     },
     "wireguard-wrapper": {
