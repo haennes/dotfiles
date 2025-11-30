@@ -28,7 +28,14 @@
     urls = [{ template = "https://pypi.org/search/?q={searchTerms}"; }];
     icon = "https://www.python.org/static/opengraph-icon-200x200.png";
     inherit updateInterval;
-    definedAliases = [ "<pip" "<py" ];
+    definedAliases = [ "<pip" ];
+  };
+  "pydocs" = {
+    urls =
+      [{ template = "https://docs.python.org/3/search.html?q={searchTerms}"; }];
+    icon = "https://www.python.org/static/opengraph-icon-200x200.png";
+    inherit updateInterval;
+    definedAliases = [ "<py" ];
   };
   "ascii" = {
     urls =
