@@ -122,7 +122,8 @@
     };
     wg-friendly-peer-names = {
       # url = "git+file:///home/hannses/programming/wg-friendly-peer-names";
-      url = "github:haennes/wg-friendly-peer-names";
+      # url = "github:haennes/wg-friendly-peer-names";
+      url = "git+file:///home/hannses/programming/wg-friendly-peer-names";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     syncthing-wrapper = {
@@ -315,6 +316,7 @@
                 "vista-fonts" # ksp
                 "clion"
                 "minecraft-server"
+                "canon-cups-ufr2"
               ];
           };
           overlaysBuilder = channels:

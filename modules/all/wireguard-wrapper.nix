@@ -31,10 +31,7 @@ let
 in {
   config = lib.mkIf config.services.wireguard-wrapper.enable ({
     wg-friendly-peer-names = {
-      wggn = {
-        enable = true;
-        enableSUID = true;
-      };
+      enableSUID = true;
       enable = true;
     };
 
