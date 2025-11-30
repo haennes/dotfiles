@@ -113,8 +113,8 @@
     "network.http.referer.XOriginTrimmingPolicy" = 2;
 
     # Containers
-    "privacy.userContext.enabled" = true;
-    "privacy.userContext.ui.enabled" = true;
+    # "privacy.userContext.enabled" = true;
+    # "privacy.userContext.ui.enabled" = true;
 
     # Plugins / Media / WebRTC
     "media.peerconnection.ice.proxy_only_if_behind_proxy" = true;
@@ -158,12 +158,12 @@
     "privacy.sanitize.timeSpan" = 0;
 
     # FPP
-    "privacy.resistFingerprinting" = true;
+    "privacy.resistFingerprinting" = false; # CHANGED
     #"privacy.window.maxInnerWidth" = 1600; # CHANGED
     #"privacy.window.maxInnerHeight" = 900; # CHANGED
-    "privacy.resistFingerprinting.block_mozAddonManager" = true;
-    "privacy.resistFingerprinting.letterboxing" = true;
-    "browser.display.use_system_colors" = true;
+    "privacy.resistFingerprinting.block_mozAddonManager" = false;
+    "privacy.resistFingerprinting.letterboxing" = false;
+    "browser.display.use_system_colors" = false;
     "widget.non-native-theme.enabled" = true;
     "browser.link.open_newwindow" = 3;
     "browser.link.open_newwindow.restriction" = 0;
