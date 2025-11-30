@@ -139,20 +139,20 @@ in {
     };
   })
 
-  # (create_simple_proxy_with_domain {
-  #   fqdn = "hyrda.local.hannses.de";
-  #   target_ip = ips.dea.wg0;
-  #   target_port = ports.dea.hydra;
-  #   local = true;
-  #   #https = true;
-  # })
-  # (create_simple_proxy_with_domain {
-  #   fqdn = "nix-serve.local.hannses.de";
-  #   target_ip = ips.dea.wg0;
-  #   target_port = ports.dea.nix-serve;
-  #   local = true;
-  #   #https = true;
-  # })
+  (create_simple_proxy_with_domain {
+    fqdn = "hyrda.local.hannses.de";
+    target_ip = ips.dea.wg0;
+    target_port = ports.dea.hydra;
+    local = true;
+    #https = true;
+  })
+  (create_simple_proxy_with_domain {
+    fqdn = "nix-serve.local.hannses.de";
+    target_ip = ips.dea.wg0;
+    target_port = ports.dea.nix-serve;
+    local = true;
+    #https = true;
+  })
   # (create_simple_proxy_with_domain {
   #   fqdn = "tt.hannses.de";
   #   target_ip = "svigling.bplaced.net";
