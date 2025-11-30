@@ -158,10 +158,10 @@ in {
   #   target_ip = "svigling.bplaced.net";
   #   set_header = true;
   # })
-  # (create_redirect {
-  #   sources = [ "mkhh-ev.de" "www.mkhh-ev.de" ];
-  #   target = "musikkapelle-holzhausen.de";
-  # })
+  (create_redirect {
+    sources = [ "mkhh-ev.de" "www.mkhh-ev.de" ];
+    target = "musikkapelle-holzhausen.de";
+  })
   #only accessible through wg
   #(create_simple_proxy_with_domain {
   #  fqdn = "kasmweb.hannses.de";
