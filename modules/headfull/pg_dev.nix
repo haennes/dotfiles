@@ -2,14 +2,19 @@
   services.postgresql = {
     enable = true;
     enableTCPIP = true;
-    ensureUsers = [{
-      name = "strichliste-rs";
-      ensureDBOwnership = true;
-      ensureClauses.login = true;
-    }];
-    ensureDatabases = [ "strichliste-rs" ];
+    ensureUsers = [
+      {
+        name = "strichliste-rs";
+        ensureDBOwnership = true;
+        ensureClauses.login = true;
+      }
+      { name = "hannses"; }
+    ];
+    ensureDatabases = [ "strichliste-rs" "uni" "playground" ];
 
     initialScript = pkgs.writeText "postgresql-password" ''
+      GRANT ALL PRIVILEGES ON database uni TO hannses 
+      GRANT ALL PRIVILEGES ON database playground TO hannses
       CREATE ROLE strichliste-rs WITH LOGIN PASSWORD 'secret' CREATEDB;
     '';
     authentication = pkgs.lib.mkOverride 10 ''
