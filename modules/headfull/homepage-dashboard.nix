@@ -10,23 +10,6 @@ let
       (lib.findFirst (item: (lib.attrNames item) == [ name ]) { "" = [ ]; }
         cfg.services)) 0);
 in {
-  services.autossh.sessions = let aports = hports.autossh-monitoring;
-  in [
-    {
-      user = "hannses";
-      name = "pve";
-      monitoringPort = aports.pve;
-      extraArguments = ''
-        -v -A -N -o "IdentitiesOnly=yes" -i ${sshkeys.forward_path} g_forward_pve'';
-    }
-    {
-      user = "hannses";
-      name = "syncschlawiner";
-      monitoringPort = aports.syncschlawiner;
-      extraArguments = ''
-        -v -A -N -o "IdentitiesOnly=yes" -i ${sshkeys.forward_path} g_forward_syncschlawiner'';
-    }
-  ];
   services.nginx.virtualHosts."cdn.localhost".locations."/" = {
     root = "/local_cdn";
   };
