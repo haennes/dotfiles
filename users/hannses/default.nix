@@ -88,6 +88,7 @@
     element-desktop
     # openai-whisper-cpp
     ffmpeg
+    sqlite
 
     # doesnt work atm
     #sweet
