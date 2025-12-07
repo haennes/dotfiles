@@ -40,3 +40,6 @@
 - merkur: mail
 - grapheum: **OnlyOffice - Server** bis jetzt Proxmox VM (evtl: -> microvm)
 - speilunke: **pterodactyl** bis jetzt Proxmox VM (evtl: -> microvm)
+
+
+powerdns
