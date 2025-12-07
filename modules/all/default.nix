@@ -22,6 +22,7 @@
     ./battery.nix
     ./watchers
     ./graphics.nix
+    ./sudo.nix
   ];
 
   options = { nextcloud_max_size = lib.mkOption { }; };
