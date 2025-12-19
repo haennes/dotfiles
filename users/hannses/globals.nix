@@ -1,10 +1,14 @@
-{ hm-config, ... }:
+{ hm-config, lib, pkgs, ... }:
 #TODO use ${}
-let home = hm-config.home.homeDirectory;
-in {
-  term = "wezterm";
-  dmenu = "rofi -dmenu -i";
-  app_runner = "rofi -show drun";
+let
+  home = hm-config.home.homeDirectory;
+  inherit (lib) getExe;
+  inherit (pkgs) wezterm rofi;
+in rec {
+  execute_term = "${term} start";
+  term = "${getExe wezterm}";
+  dmenu = "${getExe rofi} -dmenu -i";
+  app_runner = "${getExe rofi} -show drun";
   browser = "firefox";
   image = "pqiv";
   video = "mpv";
