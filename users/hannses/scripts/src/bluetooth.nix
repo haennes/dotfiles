@@ -304,7 +304,7 @@
   # dmenu command to pipe into. Extra arguments to dmenu-bluetooth are passed through to dmenu. This
   # allows the user to set fonts, sizes, colours, etc.
     run_dmenu() {
-    dmenu "''${original_args[@]}" -i -p "$1"
+    $DMENU "''${original_args[@]}" -i -p "$1"
     }
 
     case "$1" in
