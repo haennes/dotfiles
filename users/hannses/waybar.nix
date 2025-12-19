@@ -165,7 +165,7 @@ let
     };
 
     network = {
-      on-click = "${globals.term} nmtui";
+      on-click = "${globals.term} start nmtui";
       format-disconnected = " ";
       format-ethernet = "󱘖 ";
       format-linked = "󱘖 -";
