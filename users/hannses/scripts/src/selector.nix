@@ -17,7 +17,7 @@ let
   #TOOD change to use globals
 in ''
   DMENU="${globals.dmenu}"
-  CMD="/usr/bin/env bash -c $1"
+  CMD="${lib.getExe pkgs.bash} -c $1"
   APPS="${globals.app_runner}"
 
   menu="\
