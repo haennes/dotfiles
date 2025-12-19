@@ -1,7 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   home.packages = with pkgs; [
     gitui # switch to neogit
     git-crypt # should be obsolete
+    inputs.git-vbranch.packages.x86_64-linux.default
   ];
   programs.git = {
     enable = true;
