@@ -31,7 +31,6 @@ in ''
   iamb
   tuta
   dbui
-  bitwarden
   keepassxc
   office
   xournalpp
@@ -92,7 +91,7 @@ in ''
       ;;
   ${executor_str}
   "tor browser")
-      ${pkgs.tor-browser-bundle-bin}/bin/tor-browser
+      ${pkgs.tor-browser}/bin/tor-browser
       ;;
   "alacritty")
       ${pkgs.alacritty}/bin/alacritty
@@ -113,9 +112,6 @@ in ''
   "tuta")
       # TODO
       ;;
-  "bitwarden")
-     ${pkgs.bitwarden}/bin/bitwarden --enable-features=UseOzonePlatform --ozone-platform=wayland
-     ;;
   "dbui")
      ${scripts.dbui_dmenu}
      ;;

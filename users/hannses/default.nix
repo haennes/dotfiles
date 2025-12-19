@@ -70,7 +70,7 @@
     scli # signal tui FIXME replace with gurk-rs as soon as upstream fixed
     signal-cli
     dconf-editor
-    poppler_utils
+    poppler-utils
     pdftk
     diff-pdf
     shortwave

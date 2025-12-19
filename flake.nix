@@ -22,7 +22,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     noogle-cli = {
       url = "github:juliamertz/noogle-cli";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        rust-overlay.follows = "rust-overlay";
+      };
     };
     nix-joint-venture = {
       url =
@@ -87,7 +90,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     deploy-rs.url = "github:serokell/deploy-rs";
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -103,10 +109,14 @@
 
     nix-yazi-plugins = {
       #url = "github:Mcrtin/nix-yazi-plugins?ref=open-with-cmd+bookmarks";
-      url = "github:lordkekz/nix-yazi-plugins";
+      # url = "github:lordkekz/nix-yazi-plugins";
       #url = "github:lordkekz/nix-yazi-plugins?ref=pull/29/head";
       #url = "github:haennes/nix-yazi-plugins?ref=use-upstream-pkgs";
-      # url = "/home/hannses/programming/nix/nix-yazi-plugins";
+      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    git-vbranch = {
+      url = "github:haennes/git-vbranch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -166,7 +176,10 @@
       url = "github:nix-community/lanzaboote/v0.4.2";
 
       # Optional but recommended to limit the size of your system closure.
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        rust-overlay.follows = "rust-overlay";
+      };
     };
 
     nh = {
@@ -200,7 +213,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    # shell-aliases = { };
+
+    fs-bookmarks = {
+      url = "github:haennes/fs-bookmarks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
