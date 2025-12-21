@@ -112,7 +112,9 @@
       # url = "github:lordkekz/nix-yazi-plugins";
       #url = "github:lordkekz/nix-yazi-plugins?ref=pull/29/head";
       #url = "github:haennes/nix-yazi-plugins?ref=use-upstream-pkgs";
-      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins";
+      url =
+        "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=package-whoosh";
+      # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     git-vbranch = {
@@ -165,7 +167,7 @@
     esw-machines = {
       # url = "git+file:///home/hannses/programming/esw-machines";
       url = "github:haennes/esw-machines";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     simple-nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
@@ -215,7 +217,8 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     fs-bookmarks = {
-      url = "github:haennes/fs-bookmarks.nix";
+      # url = "github:haennes/fs-bookmarks.nix";
+      url = "git+file:///home/hannses/programming/nix/fs-bookmars.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
