@@ -85,6 +85,14 @@ in lib.mapAttrs
 
     definedAliases = [ "<npkgs" "<ghnpgks" "<ghnp" ];
   };
+  "github nixpkgs issues" = {
+    urls = [{
+      template =
+        "https://github.com/search?q=repo%3ANixOS%2Fnixpkgs+{searchTerms}&type=issues";
+    }];
+
+    definedAliases = [ "<npkgsi" "<ghnpgksi" "<ghnpi" ];
+  };
   "NixOS Wiki" = {
     urls = [{
       template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";
