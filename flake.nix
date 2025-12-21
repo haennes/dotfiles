@@ -3,7 +3,7 @@
 
   nixConfig = {
     # abort-on-warn = true;
-    extra-experimental-features = [ "pipe-operators" ];
+    extra-experimental-features = [ "pipe-operators" "flake-self-attrs" ];
     # allow-import-from-derivation = false; #FIXME remove this, these are ifds
 
     extra-substituters = [
@@ -17,6 +17,7 @@
       "microvm.cachix.org-1:oXnBc6hRE3eX5rSYdRyMYXnfzcCxC7yKPTbZXALsqys="
     ];
   };
+  # inputs.self.submodules = true; #FIXME this is an upstream bug
   inputs = {
     nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -167,7 +168,7 @@
     esw-machines = {
       # url = "git+file:///home/hannses/programming/esw-machines";
       url = "github:haennes/esw-machines";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     simple-nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
@@ -399,9 +400,9 @@
       hosts = {
         deus = { modules = [ (server "deus") microvm_host ]; };
         dea = { modules = [ (server "dea") microvm_host ]; };
-        welt = {
-          modules = [ (server "welt") inputs.nixos-dns.nixosModules.dns ];
-        };
+        # welt = {
+        #   modules = [ (server "welt") inputs.nixos-dns.nixosModules.dns ];
+        # };
         pons = {
           modules = [ (server "pons") inputs.nixos-dns.nixosModules.dns ];
         };
