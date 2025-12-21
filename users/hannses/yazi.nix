@@ -30,17 +30,13 @@
         enable = true;
         keys.toggle.on = [ "F" ];
       };
-      #bookmarks = {
-      #  persist = "all";
-      #  enable = true;
-      #};
-      yamb = {
+      whoosh = {
+        #bookmarks configured in bookmarks.nix
+        hotkeys = {
+          jump_by_key.on = [ "g" ];
+          jump_by_fzf.on = [ "ö" ];
+        };
         enable = true;
-        bookmarks = [{
-          tag = "Downloads";
-          path = "$HOME/Downloads";
-          key = "d";
-        }];
       };
       open-with-cmd.enable = true;
       #max-preview.enable = true;
