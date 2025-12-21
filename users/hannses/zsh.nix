@@ -37,42 +37,6 @@ in {
 
       df = "${pkgs.duf}/bin/duf";
       # path cds
-      dotfiles = "cd ${globals.dotfiles_path}";
-      dotf = dotfiles;
-
-      oth = semester4;
-      down = "cd ${home}/Downloads";
-
-      pro = "cd ${home}/programming";
-
-      fsim = "${studium}/FSIM";
-      # Semester 1
-      pg1 = "${semester1}/PG1";
-      ma1 = "${semester1}/MA1";
-      ph = "${semester1}/PH1";
-      ti = "${semester1}/TI1";
-      uws = "${semester1}/Umweltschutz_Einfuehrung";
-
-      # Semester 2
-      cs = "${semester2}/CS";
-      ma = "${semester2}/MA2";
-      rb = "${semester2}/RB";
-      ge = "${semester2}/GE";
-      pg = "${semester2}/PG2";
-
-      # Semester 3
-      ad = "${semester3}/AD";
-      em = "${semester3}/EM";
-      se = "${semester3}/SE";
-      st = "${semester3}/ST";
-      zock = "${semester3}/ZOCK/group";
-
-      ks = "${semester4}/KS";
-      os = "${semester4}/OS";
-      DD = "${semester4}/DD";
-      db = "${semester4}/DB";
-      tt = "${semester4}/TTPG2";
-
       "..." = "cd  ../../"; # dont want to enable prezto
       "...." = "cd  ../../../"; # dont want to enable prezto
       "....." = "cd  ../../../../"; # dont want to enable prezto
