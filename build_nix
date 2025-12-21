@@ -1,3 +1,0 @@
-#!/bin/sh
-nom build .?submodules=1#nixosConfigurations.yoga.config.system.build.toplevel -j 0
- #--substituters "https://cache.nixos.org" --builders ""
