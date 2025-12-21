@@ -29,6 +29,7 @@
       yazi
       lazygit
       config.programs.nix-search-tv-script.outputPackage
+      xdg-utils
 
     ];
     languages = {
@@ -49,7 +50,19 @@
           };
 
         };
-        ruff-lsp.command = "${pkgs.ruff}/bin/ruff";
+        ruff-lsp = {
+          command = "${pkgs.ruff}/bin/ruff";
+          args = [ "server" ];
+          environment = { "RUFF_TRACE" = "messages"; };
+
+        };
+        tinymist = {
+          command = "${lib.getExe pkgs.tinymist}";
+          config = {
+            exportPdf = "onType";
+            showExportFileIn = "systemDefault"; # auto open still broken
+          };
+        };
       };
       language = [
         {
@@ -59,6 +72,7 @@
         {
           name = "typst";
           formatter.command = "typstyle";
+          language-servers = [ "tinymist" ];
           auto-format = true;
         }
         {
