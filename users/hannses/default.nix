@@ -39,6 +39,7 @@
     ./wezterm.nix
     ./nix-search.nix
     ./zoxide.nix
+    ./bookmarks.nix
   ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
