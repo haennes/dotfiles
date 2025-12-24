@@ -23,6 +23,7 @@
     ./watchers
     ./graphics.nix
     ./sudo.nix
+    ./networkmanager-networks.nix
   ];
 
   options = { nextcloud_max_size = lib.mkOption { }; };
