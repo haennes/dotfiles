@@ -195,7 +195,15 @@ def main():
         sel = sel[0]
         type = fzf.prompt(["build", "boot", "switch"])
         if len(type):
-            rebuild(hosts, sel, None, [], "/home/hannses/.dotfiles", type[0], [])
+            rebuild(
+                hosts,
+                sel,
+                None,
+                [],
+                "/home/hannses/.dotfiles",
+                type[0],
+                hosts[sel].get("extra_args_applyer", []),
+            )
 
 
 main()
