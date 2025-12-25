@@ -102,7 +102,7 @@ def call_deploy_ssh_stratergy(
 ):
     fzf = FzfPrompt()
     ssh_endpoints_names = []
-    hostnames = hosts[hostname].at("hostnames", hostname)
+    hostnames = hosts[hostname].get("hostnames", hostname)
     sel = []
     if len(hostnames) > 1:
         for h in hostnames:
