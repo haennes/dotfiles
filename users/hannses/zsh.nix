@@ -4,13 +4,7 @@ in {
   home.packages = with pkgs; [ nix-output-monitor eza tokei ];
   programs.zsh = {
     enable = true;
-    shellAliases = let
-      aliases = [ "dticket" "ticket" ];
-      studium = "${home}/Documents/Studium";
-      semester1 = "${studium}/Semester1";
-      semester2 = "${studium}/Semester2";
-      semester3 = "${studium}/Semester3";
-      semester4 = "${studium}/Semester4";
+    shellAliases = let aliases = [ "dticket" "ticket" ];
 
     in rec {
       dbui = "${scripts.dbui_fzf}";
