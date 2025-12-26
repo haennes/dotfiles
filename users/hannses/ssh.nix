@@ -126,11 +126,6 @@ in {
         hostname = "apollo";
         proxyJump = "fs_bak_jmp";
       };
-      "welt" = {
-        user = "root";
-        port = ports.welt.sshd;
-        hostname = "hannses.de";
-      };
       "pons" = {
         user = "root";
         port = ports.pons.sshd;
@@ -180,6 +175,6 @@ in {
       })
 
     ) (attrsToList
-      (removeAttrs ips [ "welt" "pons" "porta" "handy_hannses" ]))));
+      (removeAttrs ips [  "pons" "porta" "handy_hannses" ]))));
   };
 }
