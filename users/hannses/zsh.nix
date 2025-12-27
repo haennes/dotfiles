@@ -53,10 +53,4 @@ in {
     export FZF_DEFAULT_COMMAND="rg --files"
   ''; # respect gitignore
 
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-    nix-direnv = { enable = true; };
-  };
-
 }
