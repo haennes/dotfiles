@@ -9,20 +9,21 @@
 
   services.wireguard-wrapper.enable = true;
   networking.nat.enable = true;
-  networking.wireguard.interfaces.wg0 =
-    let net = lib.my.subnet_cidr config.ips.ips.ips.default.pons.wg0;
-    in {
-      # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
-      # For this to work you have to set the dnsserver IP of your router (or dnsserver of choice) in your clients
-      postSetup = ''
-        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s ${net} -o ens3 -j MASQUERADE
-      '';
+  networking.wireguard.interfaces.wg0 = let
+    net = lib.my.subnet_cidr config.ips.ips.ips.default.pons.wg0;
+    ifn = "ens6";
+  in {
+    # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
+    # For this to work you have to set the dnsserver IP of your router (or dnsserver of choice) in your clients
+    postSetup = ''
+      ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s ${net} -o ${ifn} -j MASQUERADE
+    '';
 
-      # This undoes the above command
-      postShutdown = ''
-        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s ${net} -o ens3 -j MASQUERADE
-      '';
-    };
+    # This undoes the above command
+    postShutdown = ''
+      ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s ${net} -o ${ifn} -j MASQUERADE
+    '';
+  };
 
   system.stateVersion = "23.11";
 }
