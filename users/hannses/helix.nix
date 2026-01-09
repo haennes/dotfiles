@@ -1,4 +1,16 @@
 { pkgs, config, lib, ... }: {
+  home.file.".config/clangd/config.yaml".text = ''
+    CompileFlags:                                                                                                                                                                                          
+      Add: [                                                                                                                                                                                               
+        "-isystem", "${pkgs.gcc.cc}/include/c++/${pkgs.gcc.version}",                                                                                                                                      
+        "-isystem", "${pkgs.gcc.cc}/include/c++/${pkgs.gcc.version}/${pkgs.stdenv.hostPlatform.config}",                                                                                                   
+        "-isystem", "${pkgs.gcc.cc}/lib/gcc/${pkgs.stdenv.hostPlatform.config}/${pkgs.gcc.version}/include",                                                                                               
+        "-isystem", "${pkgs.glibc.dev}/include",                                                                                                                                                           
+        "-L${pkgs.gcc.cc}/lib",                                                                                                                                                                            
+        "-Wno-unknown-attributes",                                                                                                                                                                         
+        "-fno-ms-extensions"                                                                                                                                                                               
+      ]                                                                                                                                                                                                    
+  '';
   programs.helix = let
     typst-watch-script = pkgs.writeShellScript "watch-typst.sh" ''
       dir=$(${pkgs.mktemp}/bin/mktemp -d)
@@ -19,10 +31,12 @@
       rust-analyzer
       nil
       ruff
+      pyright
       black
       clang-tools
-      nix
+      gcc
       lldb
+      nix
       tinymist
       bash-language-server
       typstyle
@@ -34,11 +48,19 @@
     ];
     languages = {
       language-server = {
+        pyright = {
+          command = "pyright-langserver";
+          args = [ "--stdio" ];
+        };
         rust-analyzer = {
           config.check.command = "clippy";
           command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
           config.cargo = { allFeatures = true; };
           formatting.command = [ "${pkgs.rustfmt}/bin/rustfmt" ];
+        };
+        clangd1 = {
+          command = "clangd";
+          args = [ "--background-index" "--fallback-style=llvm" ];
         };
         nil = {
           command = "${pkgs.nil}/bin/nil";
@@ -84,10 +106,11 @@
         {
           name = "cpp";
           auto-format = true;
+          language-servers = [ "clangd1" ];
         }
         {
           name = "python";
-          language-servers = [ "ruff-lsp" ];
+          language-servers = [ "pyright" "ruff-lsp" ];
 
           # In case you'd like to use ruff alongside black for code formatting:
           formatter = {
