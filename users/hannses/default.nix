@@ -79,6 +79,7 @@
     diff-pdf
     shortwave
     anki
+    license-cli # license texts on the command line
     #fritzing
     fontforge-gtk
     lapce
