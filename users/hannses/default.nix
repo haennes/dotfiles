@@ -79,6 +79,7 @@
     diff-pdf
     shortwave
     anki
+    inputs.typ2anki.packages.${system}.default
     license-cli # license texts on the command line
     #fritzing
     fontforge-gtk
