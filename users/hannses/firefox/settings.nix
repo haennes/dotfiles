@@ -1,5 +1,11 @@
-{ ... }: {
-  default = {
+{ ... }: rec {
+  all = {
+    #always open popups in new tabs
+    "browser.link.open_newwindow" = 3;
+    "browser.link.open_newwindow.restriction" = 0;
+
+  };
+  default = all // {
     # These settings are an alternation from arkenfox
     # https://github.com/arkenfox/user.js/blob/master/user.js
 
@@ -165,8 +171,6 @@
     "privacy.resistFingerprinting.letterboxing" = false;
     "browser.display.use_system_colors" = false;
     "widget.non-native-theme.enabled" = true;
-    "browser.link.open_newwindow" = 3;
-    "browser.link.open_newwindow.restriction" = 0;
     "webgl.disabled" = false; # false if Netflix/Streaming is needed
 
     # Don't touch
@@ -187,7 +191,7 @@
     "browser.messaging-system.whatsNewPanel.enabled" = false;
     "browser.urlbar.showSearchTerms.enabled" = true;
   };
-  spotify = {
+  spotify = all // {
     "browser.startup.page" = 1;
     "browser.startup.homepage" = "open.spotify.com";
   };
