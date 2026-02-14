@@ -15,7 +15,14 @@
       #"systemctl suspend"
       # enable battery full level
       "-f"
-      "95"
+      "80"
+
+      "-p" # show message when changing charging state
+      "-P"
+      "charging"
+
+      "-m"
+      "+1"
     ];
   };
 }
