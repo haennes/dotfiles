@@ -1,4 +1,1 @@
-{ pkgs, ... }: {
-  programs.adb.enable = true;
-  users.users.hannses.extraGroups = [ "adbusers" "kvm" ];
-}
+{ ... }: { users.users.hannses.extraGroups = [ "adbusers" "kvm" ]; }
