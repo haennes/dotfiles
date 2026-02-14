@@ -2,15 +2,16 @@
   current_monitor=$(hyprctl activeworkspace | head -n 1 | awk '{print $7}')
 
   # remove ":" from string
-  current_monitor=\$\{current_monitor//:}
+  current_monitor=''${current_monitor//:}
+
 
   monitors=($(hyprctl monitors | grep "Monitor" | awk '{print $2}'))
 
-  monitor_amount=\$\{#monitors[@]}
+  monitor_amount=''${#monitors[@]}
 
-  for i in "\$\{!monitors[@]}"; do
-      if [[ "\$\{monitors[$i]}" = "\$\{current_monitor}" ]]; then
-          current_monitor_index=\$\{i};
+  for i in "''${!monitors[@]}"; do
+      if [[ "''${monitors[$i]}" = "''${current_monitor}" ]]; then
+          current_monitor_index=''${i};
       fi
   done
 
@@ -31,12 +32,12 @@
   fi
 
   getopts "np" flag
-  case "\$\{flag}" in
+  case "''${flag}" in
       n)
-          hyprctl dispatch focusmonitor \$\{monitors[$next_index]}
+          hyprctl dispatch focusmonitor ''${monitors[$next_index]}
           ;;
       p)
-          hyprctl dispatch focusmonitor \$\{monitors[$prev_index]}
+          hyprctl dispatch focusmonitor ''${monitors[$prev_index]}
           ;;
   esac
 ''
