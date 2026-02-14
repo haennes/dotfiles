@@ -72,7 +72,8 @@
     };
 
   recursiveMerge = listOfAttrsets:
-    lib.fold (attrset: acc: lib.recursiveUpdate attrset acc) { } listOfAttrsets;
+    lib.foldr (attrset: acc: lib.recursiveUpdate attrset acc) { }
+    listOfAttrsets;
 
   genNodeSimple = self: name: {
     ${name} = genNode self.nixosConfigurations.${name} name;
