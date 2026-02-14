@@ -4,8 +4,6 @@
 from pyfzf.pyfzf import FzfPrompt
 import subprocess
 
-from os import getcwd
-
 use_submodules = True
 
 
@@ -27,12 +25,37 @@ def _build_flake_ref(
     return r
 
 
+def call_nh(
+    hosts,
+    hostname: str,
+    extra_args_nix: list[str],
+    nom: list[str] | None,
+    flake_dir: str,
+    kind: str,
+    extra_args_rebuild: list[str],
+    submodules: bool = use_submodules,
+    checks: bool = True,
+):
+    args = [
+        "nh",
+        "os",
+        kind,
+        _build_flake_ref(flake_dir, hostname, submodules),
+    ] + extra_args_rebuild
+    if nom is None:
+        args += ["--no-nom"]
+    if len(extra_args_nix) > 0:
+        args += ["--"] + extra_args_nix
+    args = list(filter(lambda x: x.strip() != "", args))
+    subprocess.run(args, text=True)
+
+
 # if nom == None -> dont use nom, otherwise pass the specified arguemnts to nom, --json will always be passed
 def call_rebuild(
     hosts,
     hostname: str,
     extra_args_nix: list[str],
-    nom: list[str],
+    nom: list[str] | None,
     flake_dir: str,
     kind: str,
     extra_args_rebuild: list[str],
@@ -51,20 +74,19 @@ def call_rebuild(
     )
     if nom is not None:
         args += ["--log-format", "internal-json", "-v"]
-        args = filter(lambda x: x.strip() != "", args)
+        args = list(filter(lambda x: x.strip() != "", args))
         ps = subprocess.Popen(args=args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         _pipe_to_nom(ps, nom)
     else:
-        args = filter(lambda x: x.strip() != "", args)
-        ps = subprocess.run(args, text=True)
-        ps.wait()
+        args = list(filter(lambda x: x.strip() != "", args))
+        subprocess.run(args, text=True)
 
 
 def call_deploy(
     hosts,
     hostname: str,
     extra_args_nix: list[str],
-    nom: list[str],
+    nom: list[str] | None,
     flake_dir: str,
     kind: str,
     extra_args_deploy_rs: list[str],
@@ -81,11 +103,11 @@ def call_deploy(
     )
     if nom is not None:
         args += ["--log-format", "internal-json", "-v"]
-        args = filter(lambda x: x.strip() != "", args)
+        args = list(filter(lambda x: x.strip() != "", args))
         ps = subprocess.Popen(args=args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         _pipe_to_nom(ps, nom)
     else:
-        args = filter(lambda x: x.strip() != "", args)
+        args = list(filter(lambda x: x.strip() != "", args))
         ps = subprocess.Popen(args=args)
 
 
@@ -102,14 +124,14 @@ def call_deploy_ssh_stratergy(
 ):
     fzf = FzfPrompt()
     ssh_endpoints_names = []
-    hostnames = hosts[hostname].get("hostnames", hostname)
+    hostnames = hosts[hostname].get("hostnames", [])
     sel = []
-    if len(hostnames) > 1:
+    if len(hostnames) > 0:
         for h in hostnames:
             ssh_endpoints_names.append(h)
         sel = fzf.prompt(ssh_endpoints_names)
     else:
-        sel = hostnames[0]
+        sel = [hostname]
     if len(sel) == 1:
         sel = sel[0]
         call_deploy(
@@ -139,9 +161,11 @@ def rebuild(
     curr_host = hosts[hostname]
     if extra_args_nix is None:
         extra_args_nix = curr_host.get("extra_args_nix", [""])
-    if len(nom) == 0:
+    if nom is None:
+        nom = []
+    elif len(nom) == 0:
         nom = curr_host.get("nom", [])
-    if len(extra_args_applyer) == 0:
+    if extra_args_applyer is None or len(extra_args_applyer) == 0:
         extra_args_applyer = curr_host.get("extra_args_applyer", [])
     curr_host["lambda"](
         hosts,
@@ -157,6 +181,7 @@ def rebuild(
 
 
 def main():
+    DEFAULT_NIX_ARGS = ["--accept-flake-config"]
     hosts = {
         "dea": {
             "lambda": call_deploy_ssh_stratergy,
@@ -175,7 +200,8 @@ def main():
         },
         "pons": {
             "lambda": call_deploy_ssh_stratergy,
-            "hostnames": ["m_pons", "l_pons", "w_pons"],
+            # "nom": None,
+            # "hostnames": ["m_pons", "l_pons", "w_pons"],
         },
         "thinkpad": {
             "lambda": call_deploy_ssh_stratergy,
@@ -195,14 +221,16 @@ def main():
         sel = sel[0]
         type = fzf.prompt(["build", "boot", "switch"])
         if len(type):
+            nom = hosts[sel].get("nom", [])
             rebuild(
                 hosts,
                 sel,
-                None,
-                [],
+                DEFAULT_NIX_ARGS,
+                # [] + DEFAULT_NIX_ARGS,
+                nom,
                 "/home/hannses/.dotfiles",
                 type[0],
-                hosts[sel].get("extra_args_applyer", []),
+                None,
             )
 
 
