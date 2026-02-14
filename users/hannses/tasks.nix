@@ -37,6 +37,11 @@ in {
           filter =
             "status:pending and ${concatStringsSep " and " vls_projects_not}";
         };
+        noproj = {
+          inherit columns labels sort;
+          description = "tasks without project";
+          filter = "status:pending and project: ";
+        };
       };
       context = { } // mapAttrs (_: v: {
         read = v.filter;
