@@ -64,6 +64,7 @@
       DD = { dir = "${semester."4"}/DD"; };
       db = { dir = "${semester."4"}/DB"; };
       tt = { dir = "${semester."4"}/TTPG2"; };
+      natu = { dir = "${semester."4"}/NATU"; };
     };
   };
 }
