@@ -3,7 +3,10 @@
 
   nixConfig = {
     # abort-on-warn = true;
-    extra-experimental-features = [ "pipe-operators" "flake-self-attrs" ];
+    extra-experimental-features = [
+      "pipe-operators"
+      "flake-self-attrs"
+    ];
     # allow-import-from-derivation = false; #FIXME remove this, these are ifds
 
     extra-substituters = [
@@ -29,8 +32,7 @@
       };
     };
     nix-joint-venture = {
-      url =
-        "github:nix-joint-venture/nix-joint-venture?ref=recenct_files_zath_xour";
+      url = "github:nix-joint-venture/nix-joint-venture?ref=recenct_files_zath_xour";
       # url = "/home/hannses/programming/nix/nix-joint-venture";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -113,8 +115,7 @@
       # url = "github:lordkekz/nix-yazi-plugins";
       #url = "github:lordkekz/nix-yazi-plugins?ref=pull/29/head";
       #url = "github:haennes/nix-yazi-plugins?ref=use-upstream-pkgs";
-      url =
-        "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=package-whoosh";
+      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=package-whoosh";
       # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -168,7 +169,7 @@
     esw-machines = {
       # url = "git+file:///home/hannses/programming/esw-machines";
       url = "github:haennes/esw-machines";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     simple-nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
@@ -222,22 +223,64 @@
       url = "git+file:///home/hannses/programming/nix/fs-bookmars.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    typ2anki = {
+      type = "git";
+      url = "https://code.ole.blue/typ2anki/typ2anki.git?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
+      # inputs.flake-utils.follows = "flake-utils";
+      # inputs.crane.follows = "crane";
+      # inputs.treefmt-nix.follows = "treefmt-nix";
+      # submodules = true;
+    };
+    nuscht-search = {
+      url = "github:NuschtOS/search";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    vicinae-extensions.url = "github:vicinaehq/extensions";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, home-manager-option-search
-    , deploy-rs, rust-overlay, nur, nix-yazi-plugins, futils, wireguard-wrapper
-    , wg-friendly-peer-names, syncthing-wrapper, tasks_md, nix-update-inputs
-    , signal-whisper, IPorts, nix-topology, watcher, nh, menu-calc
-    , pinentry-keepassxc, nix-minecraft, nixos-hardware, ... }:
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      home-manager-option-search,
+      deploy-rs,
+      rust-overlay,
+      nur,
+      nix-yazi-plugins,
+      futils,
+      wireguard-wrapper,
+      wg-friendly-peer-names,
+      syncthing-wrapper,
+      tasks_md,
+      nix-update-inputs,
+      signal-whisper,
+      IPorts,
+      nix-topology,
+      watcher,
+      nh,
+      menu-calc,
+      pinentry-keepassxc,
+      nix-minecraft,
+      nixos-hardware,
+      nuscht-search,
+      ...
+    }:
     let
-      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
-      lib = nixpkgs.lib.extend (self: super: {
-        my = import ./lib {
-          inherit inputs;
-          lib = self;
-        };
-      });
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+      lib = nixpkgs.lib.extend (
+        self: super: {
+          my = import ./lib {
+            inherit inputs;
+            lib = self;
+          };
+        }
+      );
       all_modules = [
         ./modules/all
         ./modules/age.nix
@@ -263,8 +306,10 @@
         ./modules/headfull
       ];
       server_modules = [ ./modules/headless ];
-      microvm_modules_host =
-        [ inputs.microvm.nixosModules.host ./modules/microvm_host.nix ];
+      microvm_modules_host = [
+        inputs.microvm.nixosModules.host
+        ./modules/microvm_host.nix
+      ];
       microvm_modules_guest = [ ];
       # ./modules/microvm_guest.nix is not included as it includes these modules when using declarative configuration
       # inputs.microvm.nixosModules.microvm is not included as it automatically gets when using declarative configuration
@@ -290,7 +335,8 @@
           (server hostname)
           ./modules/microvm_guest.nix
           inputs.microvm.nixosModules.microvm
-        ] ++ microvm_modules_guest;
+        ]
+        ++ microvm_modules_guest;
       };
       sshkeys = import ./secrets/sshkeys.nix;
 
@@ -299,9 +345,13 @@
         overlays = [ nix-topology.overlays.default ];
       };
 
-    in futils.lib.mkFlake {
+    in
+    futils.lib.mkFlake {
       inherit self inputs;
-      supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
+      supportedSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
 
       sharedOverlays = [
         nur.overlays.default
@@ -320,11 +370,13 @@
       };
 
       channels = {
-        unstable = { # lets us explicitly declare that something is unfree
+        unstable = {
+          # lets us explicitly declare that something is unfree
           input = nixpkgs;
           #config.allowUnfree = true;
           config = {
-            allowUnfreePredicate = pkg:
+            allowUnfreePredicate =
+              pkg:
               builtins.elem (lib.getName pkg) [
                 "obsidian"
                 "lutris"
@@ -340,8 +392,7 @@
                 "canon-cups-ufr2"
               ];
           };
-          overlaysBuilder = channels:
-            [ (final: prev: { inherit (channels.nixpkgs-stable) firefox; }) ];
+          overlaysBuilder = channels: [ (final: prev: { inherit (channels.nixpkgs-stable) firefox; }) ];
         };
         insecure = {
           input = nixpkgs;
@@ -359,7 +410,9 @@
             })
           ];
         };
-        pi = { input = nixpkgs; };
+        pi = {
+          input = nixpkgs;
+        };
 
       };
 
@@ -368,8 +421,17 @@
         modules = all_modules;
         channelName = "unstable";
         specialArgs = {
-          inherit inputs sshkeys lib all_modules client_modules server_modules
-            microvm_modules_host microvm_modules_guest system;
+          inherit
+            inputs
+            sshkeys
+            lib
+            all_modules
+            client_modules
+            server_modules
+            microvm_modules_host
+            microvm_modules_guest
+            system
+            ;
           inherit (self) topology;
         };
         extraArgs = { inherit sshkeys system; };
@@ -378,18 +440,21 @@
       deploy = {
         activationTimeout = 600;
         confirmTimeout = 120;
-        nodes = (lib.my.mkDeploy {
-          inherit (inputs) self;
-          exclude = [ "welt" "pons" ];
-        }) // (lib.my.genNodeSimple self "welt")
+        nodes =
+          (lib.my.mkDeploy {
+            inherit (inputs) self;
+            exclude = [
+              "welt"
+              "pons"
+            ];
+          })
+          // (lib.my.genNodeSimple self "welt")
           // (lib.my.genNodeSimple self "pons");
       };
-      formatter =
-        forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-classic);
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
 
       topology.x86_64-linux = import nix-topology {
-        pkgs =
-          topology_pkgs; # Only this package set must include nix-topology.overlays.default
+        pkgs = topology_pkgs; # Only this package set must include nix-topology.overlays.default
         modules = [
           # Your own file to define global topology. Works in principle like a nixos module but uses different options.
           #./topology.nix
@@ -398,13 +463,26 @@
         ];
       };
       hosts = {
-        deus = { modules = [ (server "deus") microvm_host ]; };
-        dea = { modules = [ (server "dea") microvm_host ]; };
+        deus = {
+          modules = [
+            (server "deus")
+            microvm_host
+          ];
+        };
+        dea = {
+          modules = [
+            (server "dea")
+            microvm_host
+          ];
+        };
         # welt = {
         #   modules = [ (server "welt") inputs.nixos-dns.nixosModules.dns ];
         # };
         pons = {
-          modules = [ (server "pons") inputs.nixos-dns.nixosModules.dns ];
+          modules = [
+            (server "pons")
+            inputs.nixos-dns.nixosModules.dns
+          ];
         };
         #porta = { modules = [ (server "porta") ]; };
         #syncschlawiner = { modules = [ (server "syncschlawiner") ]; };
@@ -415,25 +493,43 @@
         #hermes = { modules = [ (server "hermes") ]; };
         #fons = { modules = [ (microvm "fons") ]; };
         #grapheum = { modules = [ (server "grapheum") ]; };
-        yoga = { modules = [ (laptop "yoga") microvm_host ]; };
+        yoga = {
+          modules = [
+            (laptop "yoga")
+            microvm_host
+          ];
+        };
         fabulinus = {
           system = "aarch64-linux";
-          modules =
-            [ (server "fabulinus") nixos-hardware.nixosModules.raspberry-pi-4 ];
+          modules = [
+            (server "fabulinus")
+            nixos-hardware.nixosModules.raspberry-pi-4
+          ];
         };
 
-        thinkpad = { modules = [ (laptop "thinkpad") ]; };
-        thinknew = { modules = [ (laptop "thinknew") microvm_host ]; };
+        thinkpad = {
+          modules = [ (laptop "thinkpad") ];
+        };
+        thinknew = {
+          modules = [
+            (laptop "thinknew")
+            microvm_host
+          ];
+        };
       };
       hydraJobs = {
-        system-builds = let
-          makeConfigurations = configurations:
-            builtins.listToAttrs (map (configuration: {
-              name = configuration;
-              value =
-                self.nixosConfigurations.${configuration}.config.system.build.toplevel;
-            }) configurations);
-        in makeConfigurations [ "dea" ];
+        system-builds =
+          let
+            makeConfigurations =
+              configurations:
+              builtins.listToAttrs (
+                map (configuration: {
+                  name = configuration;
+                  value = self.nixosConfigurations.${configuration}.config.system.build.toplevel;
+                }) configurations
+              );
+          in
+          makeConfigurations [ "dea" ];
       };
     };
 }

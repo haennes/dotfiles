@@ -14,15 +14,17 @@ in {
     userlist = [ printer_user ];
     extraConfig = ''
       pasv_enable = true
-      pasv_min_port=${pasv_port_range.from}
-      pasv_max_port=${pasv_port_range.to}
+      pasv_min_port=${builtins.toString pasv_port_range.from}
+      pasv_max_port=${builtins.toString pasv_port_range.to}
     '';
     localUsers = true;
     chrootlocalUser = true;
   };
 
-  users.users.${printer_user}.home =
-    config.services.syncthing.settings.folders.${folder_name}.path;
+  users.users.${printer_user} = {
+    home = config.services.syncthing.settings.folders.${folder_name}.path;
+    isNormalUser = true;
+  };
   networking.firewall.allowedTCPPortRanges = [ pasv_port_range ];
   networking.firewall.allowedTCPPorts = [ 21 ];
 }

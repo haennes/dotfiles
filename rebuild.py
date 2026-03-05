@@ -1,8 +1,10 @@
 #! /usr/bin/env nix-shell
 #! nix-shell -i python3 -p fzf bash nix-output-monitor deploy-rs python3 python313Packages.pyfzf
 
+from os import cpu_count
 from pyfzf.pyfzf import FzfPrompt
 import subprocess
+import multiprocessing
 
 use_submodules = True
 
@@ -36,6 +38,7 @@ def call_nh(
     submodules: bool = use_submodules,
     checks: bool = True,
 ):
+    print(f"nh called {submodules}")
     args = [
         "nh",
         "os",
@@ -47,6 +50,8 @@ def call_nh(
     if len(extra_args_nix) > 0:
         args += ["--"] + extra_args_nix
     args = list(filter(lambda x: x.strip() != "", args))
+    print(args)
+    exit()
     subprocess.run(args, text=True)
 
 
@@ -93,6 +98,22 @@ def call_deploy(
     submodules: bool = use_submodules,
     checks: bool = True,
 ):
+    if kind == "build":
+        call_rebuild(
+            hosts,
+            hostname,
+            extra_args_nix,
+            nom,
+            flake_dir,
+            kind,
+            extra_args_deploy_rs,
+            submodules,
+            checks,
+        )
+        return
+    if kind == "boot":
+        extra_args_deploy_rs += ["--boot"]
+
     if not checks:
         extra_args_deploy_rs.append("-s")
     args = (
@@ -181,35 +202,54 @@ def rebuild(
 
 
 def main():
-    DEFAULT_NIX_ARGS = ["--accept-flake-config"]
+    DEFAULT_NIX_ARGS = [
+        "--accept-flake-config",
+        "-j" + str(multiprocessing.cpu_count()),
+    ]
     hosts = {
         "dea": {
             "lambda": call_deploy_ssh_stratergy,
             "hostnames": ["m_dea", "l_dea", "w_dea"],
+            "extra_args_nix": DEFAULT_NIX_ARGS,
+            "extra_args_applyer": ["--remote-build"],
         },
         "deus": {
             "lambda": call_deploy_ssh_stratergy,
             "hostnames": ["m_deus", "l_deus", "w_deus"],
+            "extra_args_nix": DEFAULT_NIX_ARGS,
+            "extra_args_applyer": ["--remote-build"],
         },
         "yoga": {
             "lambda": call_rebuild,
+            "extra_args_nix": DEFAULT_NIX_ARGS,
         },
         "fabulinus": {
             "lambda": call_deploy_ssh_stratergy,
             "hostnames": ["m_fabulinus", "l_fabulinus", "w_fabulinus"],
+            "extra_args_applyer": [
+                "--remote-build",
+                "--magic-rollback",
+                "false",
+                "--auto-rollback",
+                "false",
+            ],
+            "extra_args_nix": DEFAULT_NIX_ARGS,
         },
         "pons": {
             "lambda": call_deploy_ssh_stratergy,
+            "extra_args_nix": DEFAULT_NIX_ARGS,
             # "nom": None,
             # "hostnames": ["m_pons", "l_pons", "w_pons"],
         },
         "thinkpad": {
             "lambda": call_deploy_ssh_stratergy,
             "hostnames": ["m_thinkpad", "l_thinkpad", "w_thinkpad"],
+            "extra_args_nix": DEFAULT_NIX_ARGS,
         },
         "thinknew": {
             "lambda": call_deploy_ssh_stratergy,
             "hostnames": ["m_thinknew", "l_thinknew", "w_thinknew"],
+            "extra_args_nix": DEFAULT_NIX_ARGS,
         },
     }
     fzf = FzfPrompt()
@@ -225,7 +265,7 @@ def main():
             rebuild(
                 hosts,
                 sel,
-                DEFAULT_NIX_ARGS,
+                None,
                 # [] + DEFAULT_NIX_ARGS,
                 nom,
                 "/home/hannses/.dotfiles",

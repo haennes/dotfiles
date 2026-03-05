@@ -23,14 +23,15 @@ in {
 
   system.activationScripts.ensure-dirs-exist.text = ''
     mkdir -p ${dataDir}
-    chown  ${config.services.gitea.user}:${config.services.gitea.group} -R ${dataDir}
+    chown  ${config.services.forgejo.user}:${config.services.forgejo.group} -R ${dataDir}
     mkdir -p ${pg}
     chown postgres:postgres -R ${pg}
   '';
-  services.gitea = rec {
+  services.forgejo = {
     enable = true;
     lfs.enable = true;
     stateDir = dataDir;
+    package = pkgs.forgejo;
     settings = {
       server = rec {
         DOMAIN = "git.hannses.de";
@@ -45,9 +46,9 @@ in {
 
   services.postgresql = {
     enable = true;
-    ensureDatabases = [ config.services.gitea.database.name ];
+    ensureDatabases = [ config.services.forgejo.database.name ];
     ensureUsers = [{
-      name = config.services.gitea.database.user;
+      name = config.services.forgejo.database.user;
       ensureDBOwnership = true;
       ensureClauses = {
         createdb = true;
