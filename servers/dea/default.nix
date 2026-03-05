@@ -14,6 +14,7 @@ in {
     ./ipfs.nix
     ./nextcloud.nix
     ./vms.nix
+    ./optionsearch.nix
     #./services/backup.nix
   ];
 
