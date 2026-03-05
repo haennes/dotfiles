@@ -1,4 +1,5 @@
-{ lib, ... }: {
+{ lib, ... }:
+{
   imports = [
     ./acme.nix
     ./base.nix
@@ -19,14 +20,15 @@
     ./minecraft.nix
     #./vms.nix
     #./microvms.nix
-    ./battery.nix
     ./watchers
     ./graphics.nix
     ./sudo.nix
     ./networkmanager-networks.nix
   ];
 
-  options = { nextcloud_max_size = lib.mkOption { }; };
+  options = {
+    nextcloud_max_size = lib.mkOption { };
+  };
 
   config = {
     nextcloud_max_size = "4G";
