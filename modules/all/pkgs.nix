@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     nix-output-monitor # better visualization of nix-shell and nix-build
-    nixfmt-classic # formatting nix files
+    nixfmt # formatting nix files
     neofetch # display system information
     restic
     fd # better version of find
