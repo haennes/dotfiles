@@ -1,5 +1,14 @@
-{ inputs, theme, globals, scripts, ... }:
+{
+  inputs,
+  config,
+  theme,
+  globals,
+  scripts,
+  lib,
+  ...
+}:
 let
+  launch_vicinae = cmd: "${lib.getExe config.programs.vicinae.package} vicinae://${cmd}";
   monitors_laptop = {
     builtin = "eDP-1";
     hh = {
@@ -10,29 +19,25 @@ let
     };
     fsim = {
       table-right = {
-        left =
-          "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000844";
-        right =
-          "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000852";
+        left = "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000844";
+        right = "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000852";
       };
 
       table-left = {
-        left =
-          "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000850";
-        right =
-          "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000842";
+        left = "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000850";
+        right = "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000842";
       };
     };
   };
-in {
+in
+{
   imports = [
     inputs.hyprcursor-phinger.homeManagerModules.hyprcursor-phinger
     ./nightlight.nix
   ];
 
   programs.hyprcursor-phinger.enable = true;
-  home.sessionVariables.SPICE_NOGRAB =
-    "1"; # make spice / virtual-machine-manager not grab os level shorcuts
+  home.sessionVariables.SPICE_NOGRAB = "1"; # make spice / virtual-machine-manager not grab os level shorcuts
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -55,7 +60,9 @@ in {
 
       exec-once = scripts.startup;
 
-      ecosystem = { no_update_news = true; };
+      ecosystem = {
+        no_update_news = true;
+      };
       monitor = [
         #"${monitors_laptop.builtin}, preferred,auto,1"
 
@@ -89,15 +96,16 @@ in {
         tablet.output = monitors_laptop.builtin;
       };
 
-      env =
-        [ "HYPRCURSOR_THEME,phinger-cursors-hyprcursor" "HYPRCURSOR_SIZE,24" ];
+      env = [
+        "HYPRCURSOR_THEME,phinger-cursors-hyprcursor"
+        "HYPRCURSOR_SIZE,24"
+      ];
 
       general = {
         gaps_in = 5;
         gaps_out = 10;
         border_size = 2;
-        "col.active_border" =
-          "rgba(${theme.color_first}ee) rgba(${theme.color_second}ee) 45deg";
+        "col.active_border" = "rgba(${theme.color_first}ee) rgba(${theme.color_second}ee) 45deg";
         "col.inactive_border" = "rgba(${theme.background}aa)";
 
         layout = "dwindle";
@@ -105,7 +113,19 @@ in {
         allow_tearing = false;
       };
 
-      layerrule = [ "blur" "ignorezero" ];
+      layerrule = [
+        {
+          name = "vicinae-blur";
+          blur = "on";
+          ignore_alpha = 0;
+          "match:namespace" = "vicinae";
+        }
+        {
+          name = "vicinae-no-animation";
+          no_anim = "on";
+          "match:namespace" = "vicinae";
+        }
+      ];
 
       decoration = {
         rounding = 10;
@@ -150,8 +170,8 @@ in {
       gesture = "3, horizontal, workspace";
 
       misc = {
-        force_default_wallpaper =
-          -1; # 0 or 1 to disable anime mascot wallpapers
+        force_default_wallpaper = -1; # 0 or 1 to disable anime mascot wallpapers
+        focus_on_activate = true;
         enable_anr_dialog = false;
       };
 
@@ -161,6 +181,7 @@ in {
         # apps
         "$mod, return, exec, $terminal"
         "CTRL, space, exec, $runprompt"
+        "$mod, D, exec, ${launch_vicinae "toggle"}"
         "$mod SHIFT, L, exec, ${scripts.lock}"
         "$mod, V, exec, ${scripts.clipboard}"
 
@@ -204,7 +225,8 @@ in {
         #"$mod, 8, split-workspace, 8"
         #"$mod, 9, split-workspace, 9"
 
-        "$mod, space, togglespecialworkspace, special:scratch"
+        "$mod, space, togglespecialworkspace, scratch"
+        "$mod, b, togglespecialworkspace, browser"
         "$mod, period, exec, ${scripts.switchmonitor} -n"
         "$mod, comma, exec, ${scripts.switchmonitor} -p"
 
@@ -232,7 +254,8 @@ in {
         "$mod SHIFT, 8, movetoworkspacesilent, 8"
         "$mod SHIFT, 9, movetoworkspacesilent, 9"
         "$mod SHIFT, 0, movetoworkspacesilent, 10"
-        "$mod SHIFT, space, movetoworkspacesilent, special:scratch"
+        "$mod SHIFT, space, movetoworkspacesilent, scratch"
+        "$mod SHIFT, b, movetoworkspacesilent, scratch"
 
         #move workspace to differen monitor
         "$mod, code:112, focusmonitor, +1"
@@ -273,7 +296,10 @@ in {
       ];
 
       # mouse
-      bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
+      bindm = [
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
+      ];
 
       # activate even when locked, hold = repeat
       bindle = [
