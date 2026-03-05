@@ -1,17 +1,20 @@
-{ inputs, pkgs, lib, config, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   channelPath = "/nix/var/nix/profiles/per-user/root/channels";
   #"/etc/nixpkgs/channel/nixpkgs";
   nix-serve-publicKey_raw = import ../../secrets/nix-serve/dea/pub.nix;
   nix-serve-publicKey = lib.last (lib.splitString ":" nix-serve-publicKey_raw);
-  optionalIfNotDea = opt:
-    lib.optional (config.networking.hostName != "dea") opt;
-in {
+  optionalIfNotDea = opt: lib.optional (config.networking.hostName != "dea") opt;
+in
+{
   nix = {
-    package = if (pkgs.stdenv.hostPlatform.system != "aarch64-linux") then
-      pkgs.lix
-    else
-      pkgs.nix;
+    package = if (pkgs.stdenv.hostPlatform.system != "aarch64-linux") then pkgs.lix else pkgs.nix;
     settings = {
       substituters = [
         "https://hyprland.cachix.org?priority=10"
@@ -27,11 +30,17 @@ in {
         "nix-serve.local.hannses.de:${nix-serve-publicKey}"
       ];
       # Make ready for nix flakes
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       connect-timeout = 5;
       log-lines = 25;
 
-      trusted-users = [ "forward" "hannses" ];
+      trusted-users = [
+        "forward"
+        "hannses"
+      ];
     };
     daemonIOSchedPriority = 7;
     daemonIOSchedClass = "idle";
@@ -44,11 +53,10 @@ in {
       #"/nix/var/nix/profiles/per-user/root/channels"
     ];
   };
-  systemd.tmpfiles.rules =
-    [ "L+ ${channelPath}     - - - - ${inputs.nixpkgs}" ];
+  systemd.tmpfiles.rules = [ "L+ ${channelPath}     - - - - ${inputs.nixpkgs}" ];
   programs.nh = {
     enable = true;
-    flake = "/home/hannses/.dotfiles";
+    flake = "/home/hannses/.dotfiles?submodules=1";
     clean = {
       enable = true;
       extraArgs = "--keep-since 4d";
