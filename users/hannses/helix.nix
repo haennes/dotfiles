@@ -120,11 +120,6 @@
             auto-format = true;
           }
           {
-            name = "nix";
-            formatter.command = "${pkgs.writeShellScript "nix-fmt-file" "nix fmt -- --"}";
-            auto-format = true;
-          }
-          {
             name = "cpp";
             auto-format = true;
             language-servers = [ "clangd1" ];
