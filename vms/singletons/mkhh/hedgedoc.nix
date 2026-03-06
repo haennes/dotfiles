@@ -1,22 +1,34 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   domain = "pad.mkhh.hannses.de";
   hports = config.ports.ports.curr_ports;
   uploadsPath = "/persist/hedgedoc";
   owner = "hedgedoc";
   group = "hedgedoc";
-in {
+in
+{
 
   system.activationScripts.ensure-hedgedoc-dirs-exist = {
-    deps = [ "users" "groups" ];
+    deps = [
+      "users"
+      "groups"
+    ];
     text = ''
       mkdir -p ${uploadsPath}
-      chown -R ${owner}:${group} ${uploadsPath}
+      chown ${owner}:${group} ${uploadsPath}
     '';
   };
 
-  networking.firewall.allowedTCPPorts =
-    [ config.ports.ports.curr_ports.hedgedoc 80 443 ];
+  networking.firewall.allowedTCPPorts = [
+    config.ports.ports.curr_ports.hedgedoc
+    80
+    443
+  ];
 
   services.postgresql = {
     enable = true;
@@ -41,7 +53,10 @@ in {
       host = config.ips.ips.ips.default.mkhh.wg0;
       protocolUseSSL = true;
       hsts.enable = true;
-      allowOrigin = [ domain host ];
+      allowOrigin = [
+        domain
+        host
+      ];
       csp = {
         enable = true;
         upgradeInsecureRequest = "auto";

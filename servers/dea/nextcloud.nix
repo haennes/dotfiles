@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   owner = config.services.syncthing.user;
   group = config.services.syncthing.group;
@@ -6,7 +11,8 @@ let
   PGdataDir = "/data/pg";
   SCdataDir = config.services.syncthing.dataDir;
   IPFSdataDir = config.services.kubo.dataDir;
-in {
+in
+{
 
   age.secrets = {
     nextcloud_adminpass = {
@@ -20,8 +26,12 @@ in {
     group = "nextcloud";
     uid = 994;
   };
-  users.groups."nextcloud" = { gid = 993; };
-  boot.kernel.sysctl = { "fs.inotify.max_user_watches" = 204800; };
+  users.groups."nextcloud" = {
+    gid = 993;
+  };
+  boot.kernel.sysctl = {
+    "fs.inotify.max_user_watches" = 204800;
+  };
   services.syncthing = rec {
     user = "nextcloud";
     group = user;
@@ -29,33 +39,39 @@ in {
   systemd.services."nextcloud-setup".requires = [ "syncthing.service" ];
   systemd.services."nextcloud-setup".after = [ "syncthing.service" ];
 
-  #system.activationScripts.ensure-syncthing-dir-ownership.deps =
-  #  [ "users" "groups" ];
-  #system.activationScripts.ensure-syncthing-dir-permissions.deps =
-  #  [ "users" "groups" ];
+  system.activationScripts.ensure-syncthing-dir-ownership.deps = [
+    "users"
+    "groups"
+  ];
+  system.activationScripts.ensure-syncthing-dir-permissions.deps = [
+    "users"
+    "groups"
+  ];
   system.activationScripts.ensure-dirs-exist = {
-    deps = [ "users" "groups" ];
+    deps = [
+      "users"
+      "groups"
+    ];
     text = ''
       mkdir -p ${NCdataDir}
-      chown -R ${owner}:${group} ${NCdataDir} --quiet
+      chown ${owner}:${group} ${NCdataDir} --quiet
       mkdir -p ${SCdataDir}
-      chown -R ${owner}:${group} ${SCdataDir} --quiet
+      chown ${owner}:${group} ${SCdataDir} --quiet
       mkdir -p ${IPFSdataDir}
-      chown -R ${owner}:${group} ${IPFSdataDir} --quiet
+      chown ${owner}:${group} ${IPFSdataDir} --quiet
     '';
   };
   #mkdir -p ${PGdataDir}
   #chown postgres:postgres ${PGdataDir}
 
-  networking.firewall.allowedTCPPorts =
-    [ config.ports.ports.curr_ports.nextcloud.web ];
+  networking.firewall.allowedTCPPorts = [ config.ports.ports.curr_ports.nextcloud.web ];
 
   #services.postgresql.dataDir = PGdataDir;
   #services.onlyoffice.enable = true;
   services.nextcloud = {
     enable = true;
     hostName = "cloud.hannses.de";
-    package = pkgs.nextcloud31;
+    package = pkgs.nextcloud32;
     https = true;
     configureRedis = true;
     home = NCdataDir;
@@ -85,9 +101,17 @@ in {
 
     maxUploadSize = config.nextcloud_max_size;
     extraApps = with config.services.nextcloud.package.packages.apps; {
-      inherit contacts calendar
+      inherit
+        contacts
+        calendar
         #maps
-        deck groupfolders bookmarks cospend notes polls;
+        deck
+        groupfolders
+        bookmarks
+        cospend
+        notes
+        polls
+        ;
     };
   };
 }

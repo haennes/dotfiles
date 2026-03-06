@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   owner = config.services.syncthing.user;
   group = config.services.syncthing.group;
@@ -6,7 +11,8 @@ let
   PGdataDir = "/data/pg";
   SCdataDir = "/data/syncthing";
   IPFSdataDir = config.services.kubo.dataDir;
-in {
+in
+{
 
   age.secrets = {
     nextcloud_adminpass = {
@@ -15,7 +21,9 @@ in {
     };
   };
 
-  boot.kernel.sysctl = { "fs.inotify.max_user_watches" = 204800; };
+  boot.kernel.sysctl = {
+    "fs.inotify.max_user_watches" = 204800;
+  };
   services.syncthing = rec {
     dataDir = SCdataDir;
     user = "nextcloud";
@@ -30,21 +38,23 @@ in {
   #system.activationScripts.ensure-syncthing-dir-permissions.deps =
   #  [ "users" "groups" ];
   system.activationScripts.ensure-dirs-exist = {
-    deps = [ "users" "groups" ];
+    deps = [
+      "users"
+      "groups"
+    ];
     text = ''
       mkdir -p ${NCdataDir}
-      chown -R ${owner}:${group} ${NCdataDir}
+      chown  ${owner}:${group} ${NCdataDir}
       mkdir -p ${SCdataDir}
-      chown -R ${owner}:${group} ${SCdataDir}
+      chown  ${owner}:${group} ${SCdataDir}
       mkdir -p ${IPFSdataDir}
-      chown -R ${owner}:${group} ${IPFSdataDir}
+      chown  ${owner}:${group} ${IPFSdataDir}
     '';
   };
   #mkdir -p ${PGdataDir}
   #chown postgres:postgres ${PGdataDir}
 
-  networking.firewall.allowedTCPPorts =
-    [ config.ports.ports.curr_ports.nextcloud.web ];
+  networking.firewall.allowedTCPPorts = [ config.ports.ports.curr_ports.nextcloud.web ];
 
   #services.postgresql.dataDir = PGdataDir;
   #services.onlyoffice.enable = true;
@@ -81,10 +91,17 @@ in {
 
     maxUploadSize = config.nextcloud_max_size;
     extraApps = with config.services.nextcloud.package.packages.apps; {
-      inherit contacts
+      inherit
+        contacts
         #calendar
         #maps
-        deck groupfolders bookmarks cospend notes polls;
+        deck
+        groupfolders
+        bookmarks
+        cospend
+        notes
+        polls
+        ;
     };
   };
 }

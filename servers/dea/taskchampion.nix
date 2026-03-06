@@ -8,13 +8,17 @@ let
   dataDir = "/taskw-tasks";
   cfg = config.services.taskchampion-sync-server;
   inherit (cfg) group user;
-in {
+in
+{
 
   system.activationScripts.taskw-ensure-ownership = {
-    deps = [ "users" "groups" ];
+    deps = [
+      "users"
+      "groups"
+    ];
     text = ''
       mkdir -p ${dataDir}
-      chown -R ${user}:${group} ${dataDir} --quiet
+      chown ${user}:${group} ${dataDir} --quiet
     '';
   };
   networking.firewall.interfaces.wg0.allowedTCPPorts = [ port ];

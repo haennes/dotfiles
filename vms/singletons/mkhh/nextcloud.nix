@@ -3,7 +3,8 @@ let
   group = "nexctloud";
   owner = "nexctloud";
   NCdataDir = "/persist/data";
-in {
+in
+{
   age.secrets = {
     nextcloud_adminpass = {
       file = ../../../secrets/nextcloud_mkhh/adminpass.age;
@@ -12,15 +13,17 @@ in {
   };
 
   system.activationScripts.ensure-dirs-exist = {
-    deps = [ "users" "groups" ];
+    deps = [
+      "users"
+      "groups"
+    ];
     text = ''
       mkdir -p ${NCdataDir}
-      chown -R ${owner}:${group} ${NCdataDir}
+      chown ${owner}:${group} ${NCdataDir}
     '';
   };
 
-  networking.firewall.allowedTCPPorts =
-    [ config.ports.ports.curr_ports.nextcloud.web ];
+  networking.firewall.allowedTCPPorts = [ config.ports.ports.curr_ports.nextcloud.web ];
 
   services.nextcloud = {
     enable = true;
@@ -55,9 +58,17 @@ in {
 
     maxUploadSize = config.nextcloud_max_size;
     extraApps = with config.services.nextcloud.package.packages.apps; {
-      inherit contacts calendar
+      inherit
+        contacts
+        calendar
         #maps
-        deck groupfolders bookmarks cospend notes polls;
+        deck
+        groupfolders
+        bookmarks
+        cospend
+        notes
+        polls
+        ;
     };
   };
 }
