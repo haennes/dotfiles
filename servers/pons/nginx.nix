@@ -104,14 +104,14 @@ in {
     #target_ip = "${ips.tabula_3.wg0}
     #target_port = ports.tabula_3.web;
   })
-  # (create_simple_proxy_with_domain {
-  #   fqdn = "git.hannses.de";
-  #   target_ip = ips.vertumnus.wg0;
-  #   target_port = ports.vertumnus.gitea.web;
-  #   custom_settings = {
-  #     extraConfig = "client_max_body_size 20G;"; # lfs
-  #   };
-  # })
+  (create_simple_proxy_with_domain {
+    fqdn = "git.hannses.de";
+    target_ip = ips.vertumnus.wg0;
+    target_port = ports.vertumnus.gitea.web;
+    custom_settings = {
+      extraConfig = "client_max_body_size 20G;"; # lfs
+    };
+  })
   (create_simple_proxy_with_domain {
     fqdn = "esw.hannses.de";
     target_ip = "esw";
@@ -153,6 +153,11 @@ in {
     target_port = ports.dea.nix-serve;
     local = true;
     #https = true;
+  })
+  (create_simple_proxy_with_domain {
+    fqdn = "options.hannses.de";
+    target_ip = ips.dea.wg0;
+    target_port = ports.dea."nuescht-options";
   })
   # (create_simple_proxy_with_domain {
   #   fqdn = "tt.hannses.de";
