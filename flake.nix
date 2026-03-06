@@ -238,6 +238,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vicinae-extensions.url = "github:vicinaehq/extensions";
+
+    strichliste-rs = {
+      url = "git+https://code.ole.blue/strichliste-rs/strichliste-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
