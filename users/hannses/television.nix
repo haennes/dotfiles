@@ -2,23 +2,20 @@
 let
   inherit (lib) getExe mapAttrs;
   nix-search-tv = getExe pkgs.nix-search-tv;
-in {
+in
+{
   programs.television = {
     enable = true;
     enableZshIntegration = true;
     channels = mapAttrs (n: v: v // { metadata.name = n; }) {
 
       "git-log" = {
-        source.command = ''
-          git log --oneline --date=short --pretty="format:%h %s %an %cd" "$@"'';
-        preview.command =
-          "git show -p --stat --pretty=fuller --color=always {0}";
+        source.command = ''git log --oneline --date=short --pretty="format:%h %s %an %cd" "$@"'';
+        preview.command = "git show -p --stat --pretty=fuller --color=always {0}";
       };
       "git-branch" = {
-        source.command =
-          ''git --no-pager branch --all --format="%(refname:short)"'';
-        preview.command =
-          "git show -p --stat --pretty=fuller --color=always {0}";
+        source.command = ''git --no-pager branch --all --format="%(refname:short)"'';
+        preview.command = "git show -p --stat --pretty=fuller --color=always {0}";
       };
       "git-diff" = {
         source.command = "git diff --name-only";
@@ -30,8 +27,7 @@ in {
       };
       "git-reflog" = {
         source.command = "git reflog";
-        preview.command =
-          "git show -p --stat --pretty=fuller --color=always {0}";
+        preview.command = "git show -p --stat --pretty=fuller --color=always {0}";
       };
       "nixpkgs" = {
         source.command = "${nix-search-tv} print";
@@ -40,10 +36,20 @@ in {
     };
     settings = {
       shell_integration.channel_triggers = {
-        "env" = [ "export" "unset" ];
-        "dirs" = [ "cd" "ls" "rmdir" ];
+        "env" = [
+          "export"
+          "unset"
+        ];
+        "dirs" = [
+          "cd"
+          "ls"
+          "rmdir"
+        ];
         # "files" = [ "mv" "cp" "vim" ];
-        "git-branch" = [ "git checkout" "git log" ];
+        "git-branch" = [
+          "git checkout"
+          "git log"
+        ];
       };
     };
 

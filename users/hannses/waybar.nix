@@ -1,4 +1,11 @@
-{ pkgs, scripts, globals, theme, inputs, ... }:
+{
+  pkgs,
+  scripts,
+  globals,
+  theme,
+  inputs,
+  ...
+}:
 let
   batteryScript = pkgs.writeShellScriptBin "batteryScript" ''
     cat /sys/class/power_supply/BAT0/capacity
@@ -11,7 +18,11 @@ let
     height = 32;
     position = "top";
 
-    modules-left = [ "custom/logo" "hyprland/workspaces" "custom/taskwarrior" ];
+    modules-left = [
+      "custom/logo"
+      "hyprland/workspaces"
+      "custom/taskwarrior"
+    ];
 
     modules-center = [ "clock" ];
 
@@ -72,7 +83,16 @@ let
     cpu = {
       format = "󰍛 {usage}%";
       format-alt = "{icon0}{icon1}{icon2}{icon3}";
-      format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+      format-icons = [
+        "▁"
+        "▂"
+        "▃"
+        "▄"
+        "▅"
+        "▆"
+        "▇"
+        "█"
+      ];
       interval = 10;
     };
 
@@ -98,7 +118,13 @@ let
       format = "{icon} {capacity}%";
       format-icons = {
         charging = "󱐋";
-        default = [ " " " " " " " " " " ];
+        default = [
+          " "
+          " "
+          " "
+          " "
+          " "
+        ];
       };
     };
 
@@ -111,15 +137,13 @@ let
       escape = true;
     };
     "custom/taskwarrior" = {
-      exec =
-        "${inputs.waybar-taskwarrior.packages.x86_64-linux.default}/bin/waybar-taskwarrior";
+      exec = "${inputs.waybar-taskwarrior.packages.x86_64-linux.default}/bin/waybar-taskwarrior";
       interval = 10;
       return-type = "json";
     };
 
     "custom/gpu-usage" = {
-      exec =
-        "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits";
+      exec = "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits";
       format = "{}";
       interval = 10;
     };
@@ -172,15 +196,18 @@ let
       format-wifi = "󰤨 ";
       interval = 5;
       max-length = 30;
-      tooltip-format =
-        "󱘖 {essid} {ifname} {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}";
+      tooltip-format = "󱘖 {essid} {ifname} {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}";
     };
 
     pulseaudio = {
       format = "{icon} {volume}%";
       format-icons = {
         car = " ";
-        default = [ "" "" "" ];
+        default = [
+          ""
+          ""
+          ""
+        ];
         hands-free = " ";
         headphone = " ";
         headset = " ";
@@ -383,7 +410,8 @@ let
       padding-right: 4px;
     }
   '';
-in {
+in
+{
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.overrideAttrs (oldAttrs: {
@@ -391,6 +419,8 @@ in {
     });
     systemd.enable = true;
     style = css;
-    settings = { mainBar = mainWaybarConfig; };
+    settings = {
+      mainBar = mainWaybarConfig;
+    };
   };
 }

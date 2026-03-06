@@ -1,4 +1,10 @@
-{ config, lib, specialArgs, inputs, ... }:
+{
+  config,
+  lib,
+  specialArgs,
+  inputs,
+  ...
+}:
 { }
 #{
 #imports = [ inputs.microvm.nixosModules.host ];

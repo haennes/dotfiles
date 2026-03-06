@@ -1,4 +1,5 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
   imports = [ inputs.nix-search-tv.homeManagerModules.nixpkgs-sh ];
   programs.nix-search-tv = {
     enable = true;
@@ -12,7 +13,9 @@
           "nixpkgs" = "ctrl-j";
           "home-manager" = "ctrl-h";
         };
-        pseudo = { "all" = "ctrl-a"; };
+        pseudo = {
+          "all" = "ctrl-a";
+        };
       };
       keys = {
         searchSnippet = "ctrl-g";

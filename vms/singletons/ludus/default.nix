@@ -1,10 +1,19 @@
-{ inputs, pkgs, lib, config, sshkeys, all_modules, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  sshkeys,
+  all_modules,
+  ...
+}:
 let
   hports = config.ports.ports.curr_ports;
   ips = config.ips.ips.ips.default;
   user_group = config.services.freshrss.user;
   dataDir = "/persist/minecraft";
-in {
+in
+{
 
   imports = [
     ../../../modules/microvm_guest.nix
@@ -15,18 +24,23 @@ in {
 
   networking.hostName = "ludus";
 
-  networking.firewall.allowedTCPPorts = [ 443 80 ];
+  networking.firewall.allowedTCPPorts = [
+    443
+    80
+  ];
   networking.firewall.interfaces.wg1.allowedTCPPorts = [ 25565 ];
   networking.firewall.interfaces.wg1.allowedUDPPorts = [ 25565 ];
   networking.firewall.interfaces.wg0.allowedTCPPorts = [ 25565 ];
   networking.firewall.interfaces.wg0.allowedUDPPorts = [ 25565 ];
 
-  microvm.shares = [{
-    source = "/minecraft";
-    mountPoint = dataDir;
-    tag = "git-${config.networking.hostName}";
-    proto = "virtiofs";
-  }];
+  microvm.shares = [
+    {
+      source = "/minecraft";
+      mountPoint = dataDir;
+      tag = "git-${config.networking.hostName}";
+      proto = "virtiofs";
+    }
+  ];
   microvm.mem = 6000;
   microvm.vcpu = 2;
   services.minecraft-servers = {

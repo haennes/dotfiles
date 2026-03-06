@@ -1,12 +1,15 @@
 hostname:
-{ config, ... }: {
+{ config, ... }:
+{
   imports = [
     #../proxmox.nix
     ../../../modules/microvm_guest.nix
     ./nginx.nix
   ];
 
-  services.syncthing-wrapper = { enable = true; };
+  services.syncthing-wrapper = {
+    enable = true;
+  };
   services.syncthing = {
     dataDir = "/persist";
     user = "nginx";

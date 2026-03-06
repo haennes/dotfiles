@@ -1,5 +1,11 @@
-{ pkgs, config, lib, ... }:
-with lib; {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib;
+{
 
   age.secrets.nextcloud_adminpass = {
     file = ../../../secrets/nextcloud/adminpass.age;
@@ -7,8 +13,10 @@ with lib; {
     group = "nextcloud";
   };
   system.activationScripts.ensure-nextcloud-dir.text =
-    let dir = config.services.nextcloud.home;
-    in "mkdir -p ${dir} && chown nextcloud ${dir}";
+    let
+      dir = config.services.nextcloud.home;
+    in
+    "mkdir -p ${dir} && chown nextcloud ${dir}";
   networking.firewall.allowedTCPPorts = [ 80 ];
 
   #services.onlyoffice.enable = true;
@@ -20,7 +28,9 @@ with lib; {
 
     home = "/data/nextcloud";
 
-    config = { adminpassFile = config.age.secrets.nextcloud_adminpass.path; };
+    config = {
+      adminpassFile = config.age.secrets.nextcloud_adminpass.path;
+    };
     settings = {
       default_phone_region = "DE";
       trusted_domains = [ "*" ];
@@ -47,11 +57,17 @@ with lib; {
     #extraOptions.trusted_domains = [ "*.local" ];
     extraApps = with config.services.nextcloud.package.packages.apps; {
 
-      inherit contacts
+      inherit
+        contacts
         #calendar
-        deck groupfolders
+        deck
+        groupfolders
         #maps
-        bookmarks cospend notes polls;
+        bookmarks
+        cospend
+        notes
+        polls
+        ;
     };
     # extraAppsEnable = true;
     #notify_push.enable = true;

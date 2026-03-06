@@ -1,4 +1,5 @@
-{ scripts, globals, ... }: ''
+{ scripts, globals, ... }:
+''
     DMENU="${globals.dmenu}"
     startingDir="$HOME/.wallpapers"
 

@@ -1,4 +1,5 @@
-{ config, modulesPath, ... }: {
+{ config, modulesPath, ... }:
+{
 
   imports = [ (modulesPath + "/virtualisation/proxmox-image.nix") ];
 
@@ -19,4 +20,3 @@
 
   };
 }
-

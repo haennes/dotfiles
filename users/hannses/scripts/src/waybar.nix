@@ -1,7 +1,11 @@
-{ globals, lib, ... }: ''
+{ globals, lib, ... }:
+''
   DMENU="${globals.dmenu}"
   case "$( echo -e '${
-    lib.concatStringsSep "\\n" [ "start" "stop" ]
+    lib.concatStringsSep "\\n" [
+      "start"
+      "stop"
+    ]
   }' | $DMENU)" in
     "start")
       systemctl --user start waybar

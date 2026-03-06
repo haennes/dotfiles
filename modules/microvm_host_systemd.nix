@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
   config = lib.mkIf config.microvmHost.systemd {
     systemd.network.enable = true;
     systemd.network = {
@@ -13,11 +14,12 @@
           #  DHCPServer = true;
           #  IPv6SendRA = false;
           #};
-          addresses = [{
-            Address = "${config.ips.ips.ips.default."vm-host".br0}/24";
-          }
-          #{ Address = "fd12:3456:789a::1/64"; }
-            ];
+          addresses = [
+            {
+              Address = "${config.ips.ips.ips.default."vm-host".br0}/24";
+            }
+            #{ Address = "fd12:3456:789a::1/64"; }
+          ];
           #ipv6Prefixes = [{ ipv6PrefixConfig.Prefix = "fd12:3456:789a::/64"; }];
         };
 

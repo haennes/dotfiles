@@ -1,4 +1,10 @@
-{ globals, hm-config, lib, ... }: ''
+{
+  globals,
+  hm-config,
+  lib,
+  ...
+}:
+''
   DMENU="${globals.dmenu}"
   screenshot_dir="$HOME/.screenshots"  #TODO globals
   mkdir "$screenshot_dir"
@@ -52,4 +58,3 @@
     fi
   ''}
 ''
-

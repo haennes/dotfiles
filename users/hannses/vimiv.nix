@@ -1,1 +1,4 @@
-{ pkgs, ... }: { home.packages = with pkgs; [ vimiv-qt ]; }
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [ vimiv-qt ];
+}

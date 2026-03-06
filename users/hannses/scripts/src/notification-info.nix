@@ -1,4 +1,5 @@
-{ pkgs, ... }: ''
+{ pkgs, ... }:
+''
   state=$(${pkgs.dunst}/bin/dunstctl is-paused)    
   case "$state" in
   "true")

@@ -6,7 +6,8 @@ let
   };
   printer_user = "printer";
   folder_name = "scan";
-in {
+in
+{
   services.vsftpd = {
     enable = true;
     writeEnable = true;

@@ -1,4 +1,5 @@
-{ lib, osConfig, ... }: {
+{ lib, osConfig, ... }:
+{
 
   config = lib.mkIf osConfig.programs.virt-manager.enable {
     dconf.settings = {

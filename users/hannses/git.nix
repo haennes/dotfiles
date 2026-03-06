@@ -1,4 +1,5 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
   home.packages = with pkgs; [
     gitui # switch to neogit
     git-crypt # should be obsolete
@@ -14,40 +15,50 @@
     settings = {
       user.name = "haennes";
       user.email = "hannes.hofmuth@gmail.com";
-      init = { defaultBranch = "main"; };
+      init = {
+        defaultBranch = "main";
+      };
       push.autoSetupRemote = true;
     };
   };
   programs.lazygit = {
     enable = true;
-    settings = { git.overrideGpg = true; };
+    settings = {
+      git.overrideGpg = true;
+    };
   };
   programs.zsh.shellAliases = {
-    gitcpr = "${pkgs.writeShellScript "gitcpr" (''
-      pr=$1
-      remote=$2
-      shift
-      if [ ! -z "$remote" ]; then
+    gitcpr = "${pkgs.writeShellScript "gitcpr" (
+      ''
+        pr=$1
+        remote=$2
         shift
-      fi
-      shift
-      set -x
-      git fetch $'' + ''
+        if [ ! -z "$remote" ]; then
+          shift
+        fi
+        shift
+        set -x
+        git fetch $''
+      + ''
         {remote:-origin} pull/$pr/head:pr_$pr
               git switch pr_$pr $@
-      '')}";
-    gitcmr = "${pkgs.writeShellScript "gitcmr" (''
-      mr=$1
-      remote=$2
-      shift
-      if [ ! -z "$remote" ]; then
+      ''
+    )}";
+    gitcmr = "${pkgs.writeShellScript "gitcmr" (
+      ''
+        mr=$1
+        remote=$2
         shift
-      fi
-      set -x
-      git fetch $'' + ''
+        if [ ! -z "$remote" ]; then
+          shift
+        fi
+        set -x
+        git fetch $''
+      + ''
         {remote:-origin} merge-requests/$mr/head:mr_$mr
                       git switch mr_$mr $@
-      '')}";
+      ''
+    )}";
     gitam = "git commit --amend --no-edit";
   };
 }

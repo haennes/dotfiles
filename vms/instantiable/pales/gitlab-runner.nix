@@ -1,4 +1,10 @@
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   age.secrets = {
     gitlab-runner-token-file = {
       file = ../../../secrets/gitlabrunners/pales_1/token.age;
@@ -14,8 +20,7 @@
       zock-1 = {
         # dockerImage = "nixos/nix";
         executor = "shell";
-        authenticationTokenConfigFile =
-          config.age.secrets.gitlab-runner-token-file.path;
+        authenticationTokenConfigFile = config.age.secrets.gitlab-runner-token-file.path;
       };
     };
 

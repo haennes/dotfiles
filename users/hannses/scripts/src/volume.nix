@@ -1,4 +1,5 @@
-{ globals, pkgs, ... }: ''
+{ globals, pkgs, ... }:
+''
         DMENU="${globals.dmenu}"
 
         outputs=$(${pkgs.pulseaudio}/bin/pactl list sinks | grep -E "device.profile.description|State" | sed 'N;s/\n/ /g' | sed 's/\s*State: \(\S*\)\s*device.* = "\(.*\)"/\2 (\1)/')

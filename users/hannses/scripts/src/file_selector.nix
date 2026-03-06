@@ -1,4 +1,5 @@
-{ globals, ... }: ''
+{ globals, ... }:
+''
   DMENU="${globals.dmenu}"
 
   getdir=false
@@ -58,4 +59,3 @@
     fi
   done
 ''
-

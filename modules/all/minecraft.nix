@@ -1,11 +1,12 @@
 { config, lib, ... }:
-let inherit (config.ports.ports) curr_ports;
-in {
+let
+  inherit (config.ports.ports) curr_ports;
+in
+{
   #if a more complex setup is needed use: https://github.com/Infinidoge/nix-minecraft
   services.minecraft-server = lib.mkIf config.services.minecraft-server.enable {
     #enable = true;
-    eula =
-      true; # set to true if you agree to Mojang's EULA: https://account.mojang.com/documents/minecraft_eula
+    eula = true; # set to true if you agree to Mojang's EULA: https://account.mojang.com/documents/minecraft_eula
     declarative = true;
 
     # see here for more info: https://minecraft.gamepedia.com/Server.properties#server.properties

@@ -1,28 +1,41 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 let
   inherit (lib)
-    mapAttrsToList concatStringsSep hasPrefix partition naturalSort reverseList
-    flatten;
+    mapAttrsToList
+    concatStringsSep
+    hasPrefix
+    partition
+    naturalSort
+    reverseList
+    flatten
+    ;
   _split_delim = "/";
   _ports = config.ports.ports;
-  ports_list = ports:
-    mapAttrsToList (n: v: "${n}${_split_delim}${toString v.port}") ports;
+  ports_list = ports: mapAttrsToList (n: v: "${n}${_split_delim}${toString v.port}") ports;
 
-  all_ports_flattened = flatten (mapAttrsToList
-    (hostname: portattrs: map (v: "${hostname}/${v}") (ports_sorted portattrs))
-    _ports.flattened);
+  all_ports_flattened = flatten (
+    mapAttrsToList (
+      hostname: portattrs: map (v: "${hostname}/${v}") (ports_sorted portattrs)
+    ) _ports.flattened
+  );
 
   ports_partition = ports: partition (v: hasPrefix "ssh." v) (ports_list ports);
 
-  ports_sorted = ports:
-    reverseList ((naturalSort (ports_partition ports).right)
-      ++ (naturalSort (ports_partition ports).wrong));
+  ports_sorted =
+    ports:
+    reverseList (
+      (naturalSort (ports_partition ports).right) ++ (naturalSort (ports_partition ports).wrong)
+    );
   all_ports_sorted = naturalSort all_ports_flattened;
   curr_ports_sorted = (ports_sorted _ports.curr_flattened);
 
-  ports_file = ports:
-    pkgs.writeText "ports_file" ((concatStringsSep "\n") ports);
+  ports_file = ports: pkgs.writeText "ports_file" ((concatStringsSep "\n") ports);
 
   common_ports_app_prelude = ports: ''
     ssh=0
@@ -63,7 +76,11 @@ let
       echo "$all" | column -s${_split_delim} -t --table-noheadings --table-columns HOST,SERVICE,PORT --table-right PORT | ${pkgs.fzf}/bin/fzf
     '';
   };
-in {
+in
+{
   # extract to IPorts.nix
-  environment.systemPackages = [ curr_ports_app all_ports_app ];
+  environment.systemPackages = [
+    curr_ports_app
+    all_ports_app
+  ];
 }

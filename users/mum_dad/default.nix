@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "mum_dad";
@@ -17,9 +18,12 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [ signal-desktop shortwave lorien ];
+  home.packages = with pkgs; [
+    signal-desktop
+    shortwave
+    lorien
+  ];
 
   imports = [ ./gnome_config.nix ];
 
 }
-

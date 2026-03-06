@@ -1,1 +1,7 @@
-{ ... }: { users.users.hannses.extraGroups = [ "adbusers" "kvm" ]; }
+{ ... }:
+{
+  users.users.hannses.extraGroups = [
+    "adbusers"
+    "kvm"
+  ];
+}

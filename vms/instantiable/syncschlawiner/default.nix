@@ -1,12 +1,20 @@
-{ config, ... }: {
+{ config, ... }:
+{
   system.stateVersion = "23.11";
-  imports = [ ./nextcloud.nix ./ipfs.nix ];
-  boot.kernel.sysctl = { "fs.inotify.max_user_watches" = 204800; };
+  imports = [
+    ./nextcloud.nix
+    ./ipfs.nix
+  ];
+  boot.kernel.sysctl = {
+    "fs.inotify.max_user_watches" = 204800;
+  };
   services.syncthing = {
     dataDir = "/data/syncthing";
     user = "nextcloud";
   };
-  services.syncthing_wrapper = { enable = true; };
+  services.syncthing_wrapper = {
+    enable = true;
+  };
 
   networking.hostName = "syncschlawiner"; # Define your hostname.
 

@@ -1,4 +1,11 @@
-{ name, script, user, interval, ... }: {
+{
+  name,
+  script,
+  user,
+  interval,
+  ...
+}:
+{
   systemd.timers."${name}" = {
     wantedBy = [ "timers.target" ];
     timerConfig = {

@@ -1,9 +1,15 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   user = config.services.syncthing.user;
   username = ((import ../../../secrets/not_so_secret/oth.nix).rzKennung);
   inherit (lib) mkEnableOption;
-in {
+in
+{
   options = {
     fs-watchers.w.nc-sync = (mkEnableOption "nc sync") // {
       default = config.fs-watchers.enable;
@@ -18,8 +24,8 @@ in {
     services.fs-watcher = {
       enable = true;
       directories = {
-        "${config.services.syncthing.dataDir}/hannses__3d_printing/BarcodeHalter" =
-          [{
+        "${config.services.syncthing.dataDir}/hannses__3d_printing/BarcodeHalter" = [
+          {
             inherit user;
             match.include = "*";
             command = "${pkgs.writeShellScript "n" ''
@@ -30,7 +36,8 @@ in {
             ifOutputOlder = "${pkgs.writeShellScript "n" ''
               echo $2 | sed 's/\.typ$/.pdf/'
             ''}";
-          }];
+          }
+        ];
       };
     };
   };

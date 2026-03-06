@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   programs.pqiv = {
     enable = true;
 

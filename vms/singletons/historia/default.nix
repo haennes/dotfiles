@@ -1,19 +1,30 @@
-{ inputs, pkgs, lib, config, sshkeys, all_modules, ... }:
-let ips = config.ips.ips.ips.default;
-in {
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  sshkeys,
+  all_modules,
+  ...
+}:
+let
+  ips = config.ips.ips.ips.default;
+in
+{
 
   imports = [ ../../../modules/microvm_guest.nix ];
 
   services.wireguard-wrapper.enable = true;
 
-  networking.firewall.interfaces.wg0.allowedTCPPorts =
-    [ config.ports.ports.curr_ports.atuin ];
+  networking.firewall.interfaces.wg0.allowedTCPPorts = [ config.ports.ports.curr_ports.atuin ];
   networking.firewall.allowedTCPPorts = [ config.ports.ports.curr_ports.atuin ];
   networking.hostName = "historia";
 
   system.activationScripts.ensure-dirs-exist.text =
-    let pg = config.services.postgresql.dataDir;
-    in ''
+    let
+      pg = config.services.postgresql.dataDir;
+    in
+    ''
       mkdir -p ${pg}
       chown postgres:postgres ${pg}
     '';

@@ -1,18 +1,28 @@
-{ config, lib, all_modules, server_modules, microvm_modules_guest, ... }:
+{
+  config,
+  lib,
+  all_modules,
+  server_modules,
+  microvm_modules_guest,
+  ...
+}:
 let
   ips = config.ips.ips.ips.default;
   hostname = config.networking.hostName;
-in {
+in
+{
   imports = all_modules ++ server_modules ++ microvm_modules_guest;
   is_microvm = true;
   is_client = false;
   microvm = {
     #...add additional MicroVM configuration here
-    interfaces = [{
-      type = "tap";
-      id = "vm-${hostname}";
-      mac = config.macs.macs.vm-host.${hostname}.eth0;
-    }];
+    interfaces = [
+      {
+        type = "tap";
+        id = "vm-${hostname}";
+        mac = config.macs.macs.vm-host.${hostname}.eth0;
+      }
+    ];
 
     shares = [
       {
@@ -50,14 +60,17 @@ in {
   systemd.network.enable = true;
   systemd.network.networks."20-lan" = {
     matchConfig.Type = "ether";
-    networkConfig = let ip = ips.${config.networking.hostName}.br0;
-    in {
-      Address = [ "${ip}/24" ];
-      Gateway = ips."vm-host".br0;
-      DNS = [ "1.1.1.1" ];
-      IPv6AcceptRA = true;
-      DHCP = "no";
-    };
+    networkConfig =
+      let
+        ip = ips.${config.networking.hostName}.br0;
+      in
+      {
+        Address = [ "${ip}/24" ];
+        Gateway = ips."vm-host".br0;
+        DNS = [ "1.1.1.1" ];
+        IPv6AcceptRA = true;
+        DHCP = "no";
+      };
   };
 
   networking.useDHCP = lib.mkForce false;

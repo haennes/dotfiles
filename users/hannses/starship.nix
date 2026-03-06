@@ -1,4 +1,5 @@
-{ lib, ... }: {
+{ lib, ... }:
+{
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
@@ -6,48 +7,52 @@
     settings = {
       # add_newline = true;
 
-      format = lib.concatStrings (lib.map (x: "$" + x) [
-        "username"
-        "directory"
+      format = lib.concatStrings (
+        lib.map (x: "$" + x) [
+          "username"
+          "directory"
 
-        "git_branch"
-        "git_commit"
-        "git_state"
-        "git_status"
+          "git_branch"
+          "git_commit"
+          "git_state"
+          "git_status"
 
-        "container"
-        "docker_context"
+          "container"
+          "docker_context"
 
-        "direnv"
-        "nix_shell"
+          "direnv"
+          "nix_shell"
 
-        "shlvl"
+          "shlvl"
 
-        "jobs"
+          "jobs"
 
-        "zig"
-        "typst"
-        "rlang"
-        "java"
-        "python"
-        "cpp"
-        "c"
-        "rust"
+          "zig"
+          "typst"
+          "rlang"
+          "java"
+          "python"
+          "cpp"
+          "c"
+          "rust"
 
-        "package"
+          "package"
 
-        "status"
-        "cmd_duration"
-        "character"
+          "status"
+          "cmd_duration"
+          "character"
 
-      ]);
+        ]
+      );
 
       nix_shell = {
         format = "[$symbol]($style) ";
         symbol = " ";
       };
 
-      python = { format = "[\\($virtualenv\\)]($style) "; };
+      python = {
+        format = "[\\($virtualenv\\)]($style) ";
+      };
 
       direnv.disabled = false;
 

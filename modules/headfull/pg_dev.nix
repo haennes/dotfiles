@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   services.postgresql = {
     enable = true;
     enableTCPIP = true;
@@ -10,7 +11,11 @@
       }
       { name = "hannses"; }
     ];
-    ensureDatabases = [ "strichliste-rs" "uni" "playground" ];
+    ensureDatabases = [
+      "strichliste-rs"
+      "uni"
+      "playground"
+    ];
 
     initialScript = pkgs.writeText "postgresql-password" ''
       GRANT ALL PRIVILEGES ON database uni TO hannses 

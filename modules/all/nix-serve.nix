@@ -1,6 +1,13 @@
-{ lib, config, pkgs, ... }:
-let hostname = config.networking.hostName;
-in {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+let
+  hostname = config.networking.hostName;
+in
+{
 
   config = lib.mkIf config.services.nix-serve.enable {
     nix.settings.allowed-users = [ "nix-serve" ];
@@ -22,17 +29,14 @@ in {
       bindAddress = config.ips.ips.ips.default.${hostname}.wg0;
       package = pkgs.nix-serve-ng;
     };
-    networking.firewall.interfaces.wg0.allowedTCPPorts =
-      [ config.ports.ports.curr_ports.nix-serve ];
+    networking.firewall.interfaces.wg0.allowedTCPPorts = [ config.ports.ports.curr_ports.nix-serve ];
     services.nginx = {
       enable = true;
       recommendedProxySettings = true;
       virtualHosts = {
         "nix-serve.local.hannses.de" = {
           locations."/".proxyPass =
-            "http://${config.services.nix-serve.bindAddress}:${
-              toString config.services.nix-serve.port
-            }";
+            "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
         };
       };
     };

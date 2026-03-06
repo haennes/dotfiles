@@ -1,4 +1,10 @@
-{ nixvim, pkgs, scripts, ... }: {
+{
+  nixvim,
+  pkgs,
+  scripts,
+  ...
+}:
+{
   imports = [ nixvim.homeModules.nixvim ];
 
   programs.nixvim = {
@@ -33,17 +39,25 @@
       # Enable spellcheck for some filetypes
       {
         event = "FileType";
-        pattern = [ "tex" "latex" "markdown" ];
+        pattern = [
+          "tex"
+          "latex"
+          "markdown"
+        ];
         command = "setlocal spell spelllang=en,de";
       }
     ];
     plugins = {
-      neogit = { enable = true; };
+      neogit = {
+        enable = true;
+      };
       yazi = {
         enable = true;
         settings.open_for_directories = true;
       };
-      flash = { enable = true; };
+      flash = {
+        enable = true;
+      };
       typst-vim = {
         enable = true;
         settings.pdf_viewer = "${pkgs.zathura}/bin/zathura";
@@ -70,7 +84,9 @@
         keymaps = {
           "<leader>gf" = {
             action = "git_files";
-            options = { desc = "Telescope Git Files"; };
+            options = {
+              desc = "Telescope Git Files";
+            };
           };
           "<leader>fg" = "live_grep";
         };
@@ -84,7 +100,12 @@
         servers = {
           nixd = {
             enable = true;
-            settings.formatting.command = [ "nix" "fmt" "--" "--" ];
+            settings.formatting.command = [
+              "nix"
+              "fmt"
+              "--"
+              "--"
+            ];
           };
           tinymist.enable = true;
 
@@ -118,7 +139,9 @@
         };
       };
       lsp-format.enable = true;
-      lspsaga = { enable = true; };
+      lspsaga = {
+        enable = true;
+      };
     };
 
     colorschemes.gruvbox.enable = true;

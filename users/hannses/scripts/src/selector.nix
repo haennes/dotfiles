@@ -1,21 +1,36 @@
-{ pkgs, scripts, globals, hm-config, lib, joint-standalone, joint-non_standalone
-, ... }:
+{
+  pkgs,
+  scripts,
+  globals,
+  hm-config,
+  lib,
+  joint-standalone,
+  joint-non_standalone,
+  ...
+}:
 let
   firefox_profiles = hm-config.programs.firefox.profiles;
   firefox_profiles_attr_names = with lib; (attrNames firefox_profiles);
-  selector_str = with lib;
-    concatStrings (map (x: ''
-      firefox ${x}
-    '') firefox_profiles_attr_names);
-  executor_str = with lib;
-    concatStrings (map (x: ''
-      "firefox ${x}")
-          ${pkgs.firefox}/bin/firefox -p "${x}"
-          ;;
-    '') firefox_profiles_attr_names);
+  selector_str =
+    with lib;
+    concatStrings (
+      map (x: ''
+        firefox ${x}
+      '') firefox_profiles_attr_names
+    );
+  executor_str =
+    with lib;
+    concatStrings (
+      map (x: ''
+        "firefox ${x}")
+            ${pkgs.firefox}/bin/firefox -p "${x}"
+            ;;
+      '') firefox_profiles_attr_names
+    );
 
   #TOOD change to use globals
-in ''
+in
+''
   DMENU="${globals.dmenu}"
   CMD="${lib.getExe pkgs.bash} -c $1"
   APPS="${globals.app_runner}"

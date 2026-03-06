@@ -1,4 +1,5 @@
-{ ... }: ''
+{ ... }:
+''
   current_monitor=$(hyprctl activeworkspace | head -n 1 | awk '{print $7}')
 
   # remove ":" from string

@@ -1,10 +1,16 @@
-{ hm-config, lib, pkgs, ... }:
+{
+  hm-config,
+  lib,
+  pkgs,
+  ...
+}:
 #TODO use ${}
 let
   home = hm-config.home.homeDirectory;
   inherit (lib) getExe;
   inherit (pkgs) wezterm rofi;
-in rec {
+in
+rec {
   execute_term = "${term} start";
   term = "${getExe wezterm}";
   dmenu = "${getExe rofi} -dmenu -i";

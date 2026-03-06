@@ -2,7 +2,8 @@
 let
   inherit (lib) mkOption mkEnableOption;
   inherit (lib.types) str;
-in {
+in
+{
   options.microvmHost = {
     extInterface = mkOption { type = str; };
     systemd = mkEnableOption "systemd networkd";
@@ -18,6 +19,9 @@ in {
       };
     };
   };
-  imports = [ ./microvm_host_stock.nix ./microvm_host_systemd.nix ];
+  imports = [
+    ./microvm_host_stock.nix
+    ./microvm_host_systemd.nix
+  ];
 
 }

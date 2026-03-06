@@ -2,8 +2,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ lib, config, ... }: {
-  imports = [ # Include the results of the hardware scan.
+{ lib, config, ... }:
+{
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./zfs.nix
     ./vms.nix
@@ -21,14 +23,16 @@
 
   services.syncthing-wrapper = {
     enable = true;
-    paths.system.pathFunc = { folderID, physicalPath, ... }:
+    paths.system.pathFunc =
+      { folderID, physicalPath, ... }:
       let
         cfg = config.services.syncthing-wrapper;
         cfg_s = config.services.syncthing;
         optionalUser = cfg.idToOptionalUserName folderID;
         middle = lib.optionalString (optionalUser != null) "/${optionalUser}";
         legacyID = cfg_s.settings.folders.${folderID}.id;
-      in "${physicalPath}${middle}/${legacyID}";
+      in
+      "${physicalPath}${middle}/${legacyID}";
   };
   services.syncthing = {
     dataDir = "/data/syncthing";

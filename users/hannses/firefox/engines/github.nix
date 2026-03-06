@@ -1,38 +1,47 @@
 { updateInterval, lib, ... }:
 let
-  gh_search = { type, alias, personal ? false, addAliases ? [ ]
-    , addSearchParams ? [ ]
-    , title ? "GitHub ${type}" + (if personal then " personal" else ""), ... }:
+  gh_search =
+    {
+      type,
+      alias,
+      personal ? false,
+      addAliases ? [ ],
+      addSearchParams ? [ ],
+      title ? "GitHub ${type}" + (if personal then " personal" else ""),
+      ...
+    }:
     let
       inherit (lib) concatMapStrings;
       additionalSearchParams = concatMapStrings (v: "${v}+") addSearchParams;
-    in {
+    in
+    {
       "${title}" = {
-        urls = [{
-          template = "https://github.com/search";
-          params = [
-            {
-              name = "q";
-              value = if personal then
-                "owner:haennes+${additionalSearchParams}{searchTerms}"
-              else
-                "${additionalSearchParams}{searchTerms}";
-            }
-            {
-              name = "type";
-              value = type;
-            }
-          ];
-        }];
-        definedAliases =
-          [ ("<gh" + (if personal then "p" else "") + "${alias}") ]
-          ++ addAliases;
-        icon =
-          "https://github.githubassets.com/assets/pinned-octocat-093da3e6fa40.svg";
+        urls = [
+          {
+            template = "https://github.com/search";
+            params = [
+              {
+                name = "q";
+                value =
+                  if personal then
+                    "owner:haennes+${additionalSearchParams}{searchTerms}"
+                  else
+                    "${additionalSearchParams}{searchTerms}";
+              }
+              {
+                name = "type";
+                value = type;
+              }
+            ];
+          }
+        ];
+        definedAliases = [ ("<gh" + (if personal then "p" else "") + "${alias}") ] ++ addAliases;
+        icon = "https://github.githubassets.com/assets/pinned-octocat-093da3e6fa40.svg";
         inherit updateInterval;
       };
     };
-in gh_search ({
+in
+gh_search ({
   type = "repositories";
   alias = "r";
   addAliases = [ "gh" ];

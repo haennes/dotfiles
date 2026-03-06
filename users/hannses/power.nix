@@ -1,4 +1,5 @@
-{ lib, osConfig, ... }: {
+{ lib, osConfig, ... }:
+{
   services.batsignal = {
     enable = osConfig.has_battery;
     extraArgs = [

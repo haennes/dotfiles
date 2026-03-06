@@ -1,9 +1,18 @@
-{ inputs, pkgs, lib, config, sshkeys, all_modules, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  sshkeys,
+  all_modules,
+  ...
+}:
 let
   hports = config.ports.ports.curr_ports;
   ips = config.ips.ips.ips.default;
   user_group = config.services.freshrss.user;
-in {
+in
+{
 
   imports = [ ../../../modules/microvm_guest.nix ];
 
@@ -20,17 +29,22 @@ in {
 
   networking.hostName = "fons";
 
-  networking.firewall.allowedTCPPorts = [ 443 80 ];
+  networking.firewall.allowedTCPPorts = [
+    443
+    80
+  ];
 
-  system.activationScripts.ensure-dirs-exist.text = let
-    rss = config.services.freshrss.dataDir;
-    pg = config.services.postgresql.dataDir;
-  in ''
-    mkdir -p ${rss}
-    chown ${user_group}:${user_group} ${rss}
-    mkdir -p ${pg}
-    chown postgres:postgres ${pg}
-  '';
+  system.activationScripts.ensure-dirs-exist.text =
+    let
+      rss = config.services.freshrss.dataDir;
+      pg = config.services.postgresql.dataDir;
+    in
+    ''
+      mkdir -p ${rss}
+      chown ${user_group}:${user_group} ${rss}
+      mkdir -p ${pg}
+      chown postgres:postgres ${pg}
+    '';
   # official test: https://github.com/NixOS/nixpkgs/blob/master/nixos/tests/freshrss-pgsql.nix
   services.freshrss = {
     enable = true;
@@ -52,10 +66,12 @@ in {
   services.postgresql = {
     enable = true;
     ensureDatabases = [ "freshrss" ];
-    ensureUsers = [{
-      name = "freshrss";
-      ensureDBOwnership = true;
-    }];
+    ensureUsers = [
+      {
+        name = "freshrss";
+        ensureDBOwnership = true;
+      }
+    ];
     dataDir = "/persist/pg";
     initialScript = pkgs.writeText "postgresql-password" ''
       CREATE ROLE freshrss WITH LOGIN PASSWORD 'db-secret' CREATEDB;

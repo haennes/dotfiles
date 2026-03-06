@@ -1,6 +1,8 @@
 { config, ... }:
-let hports = config.ports.ports.curr_ports;
-in {
+let
+  hports = config.ports.ports.curr_ports;
+in
+{
   networking.firewall.allowedTCPPorts = [ hports.ipfs.gateway ];
   services.kubo = {
     enable = false;
@@ -10,8 +12,7 @@ in {
     enableGC = true;
     settings.Addresses = {
       API = [ "/ip4/127.0.0.1/tcp/${builtins.toString hports.ipfs.api}" ];
-      Gateway =
-        [ "/ip4/127.0.0.1/tcp/${builtins.toString hports.ipfs.gateway}" ];
+      Gateway = [ "/ip4/127.0.0.1/tcp/${builtins.toString hports.ipfs.gateway}" ];
     };
 
     # the following might be a VFS, but still need to confirm

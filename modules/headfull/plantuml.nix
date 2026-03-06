@@ -1,1 +1,4 @@
-{ pkgs, ... }: { environment.systemPackages = with pkgs; [ plantuml-c4 ]; }
+{ pkgs, ... }:
+{
+  environment.systemPackages = with pkgs; [ plantuml-c4 ];
+}

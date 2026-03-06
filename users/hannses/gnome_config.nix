@@ -1,4 +1,10 @@
-{ osConfig, pkgs, lib, ... }: {
+{
+  osConfig,
+  pkgs,
+  lib,
+  ...
+}:
+{
   config = lib.mkIf osConfig.services.desktopManager.gnome.enable {
 
     home.packages = with pkgs; [
@@ -12,15 +18,20 @@
       };
 
       "org/gnome/desktop/input-sources" = {
-        xkb-options =
-          [ "terminate:ctrl_alt_bksp" "lv3:ralt_switch" "caps:escape" ];
+        xkb-options = [
+          "terminate:ctrl_alt_bksp"
+          "lv3:ralt_switch"
+          "caps:escape"
+        ];
       };
       "org/gnome/mutter" = {
         workspaces-only-on-primary = true;
         edge-tiling = true;
       };
 
-      "org/gnome/shell/app-swither" = { current-workspace-only = false; };
+      "org/gnome/shell/app-swither" = {
+        current-workspace-only = false;
+      };
 
       "org/gnome/shell" = {
         favorite-apps = [
@@ -71,7 +82,9 @@
         disable-overview-on-startup = false;
         apply-custom-theme = true;
       };
-      "org/gnome/shell/extensions/gsnap" = { show-tabs = false; };
+      "org/gnome/shell/extensions/gsnap" = {
+        show-tabs = false;
+      };
 
       "org/gnome/nautilus/preferences" = {
         show-create-link = true;
@@ -81,7 +94,13 @@
         click-policy = "double";
       };
 
-      "org/gnome/nautilus/icon-view" = { captions = [ "none" "none" "none" ]; };
+      "org/gnome/nautilus/icon-view" = {
+        captions = [
+          "none"
+          "none"
+          "none"
+        ];
+      };
 
       "org/gtk/gtk4/settings/file-chooser" = {
         show-hidden = true;

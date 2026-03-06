@@ -1,4 +1,10 @@
-{ theme, pkgs, lib, ... }: ''
+{
+  theme,
+  pkgs,
+  lib,
+  ...
+}:
+''
     ${lib.getExe pkgs.swaylock-effects} \
   --ignore-empty-password \
   --screenshots \
@@ -18,4 +24,3 @@
   --fade-in 0.3 $@
   # key-hl-color = indicator-color on clicked
 ''
-

@@ -1,5 +1,6 @@
 hostname:
-{ config, inputs, ... }: {
+{ config, inputs, ... }:
+{
   imports = [
     ../../../modules/microvm_guest.nix
     inputs.esw-machines.nixosModules.default
@@ -20,7 +21,9 @@ hostname:
     chown -R ${config.services.esw-machines.user}:${config.services.esw-machines.user} /persist/esw-machines
   '';
 
-  services.syncthing-wrapper = { enable = true; };
+  services.syncthing-wrapper = {
+    enable = true;
+  };
   services.syncthing = {
     dataDir = "/persist";
     user = config.services.esw-machines.user;

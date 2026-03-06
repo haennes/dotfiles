@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   system.stateVersion = "23.11";
 
   #imports = [ ../proxmox.nix ];

@@ -1,4 +1,5 @@
-{ globals, ... }: ''
+{ globals, ... }:
+''
   # has to be a function because "'...'" doesn't work
   DMENU() {
     ${globals.dmenu} -theme-str 'window { width: 75%; }'
@@ -12,4 +13,3 @@
       kill -9 $(echo -e "$choice" | awk -e '{print $1}')
   fi
 ''
-

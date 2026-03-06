@@ -1,6 +1,18 @@
-{ pkgs, scripts, lib, ... }: ''
+{
+  pkgs,
+  scripts,
+  lib,
+  ...
+}:
+''
   input=$( \
-    echo "${lib.concatLines [ "browser" "pdf" "screenshot" ]}" \
+    echo "${
+      lib.concatLines [
+        "browser"
+        "pdf"
+        "screenshot"
+      ]
+    }" \
     | ${pkgs.fzf}/bin/fzf)
   case $input in
     browser)

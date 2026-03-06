@@ -1,4 +1,5 @@
-{ flake, lib, ... }: {
+{ flake, lib, ... }:
+{
   programs.wezterm = {
     enable = true;
     # font = wezterm.font "Comic Code Ligatures",

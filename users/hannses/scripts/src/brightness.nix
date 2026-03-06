@@ -1,4 +1,5 @@
-{ pkgs, globals, ... }: ''
+{ pkgs, globals, ... }:
+''
   # the user has to be inside of the "video" group to not need sudo!
 
   DMENU="${globals.dmenu}"
@@ -45,4 +46,3 @@
   value=$(echo "$levels" | $DMENU " $current ")
   end
 ''
-

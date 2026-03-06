@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   age.secrets."openfortivpn.age" = {
     file = ../../secrets/openfortivpn.age;
     owner = "root";

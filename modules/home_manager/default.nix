@@ -1,12 +1,20 @@
-{ inputs, pkgs, system, config, nur, sshkeys, ... }@all_inputs:
+{
+  inputs,
+  pkgs,
+  system,
+  config,
+  nur,
+  sshkeys,
+  ...
+}@all_inputs:
 let
   build_user = name: { ${name} = import ../../users/${name}; };
   inputs_hm_imports = all_inputs // {
     hm-config = config.home-manager.users.hannses;
-    joint-standalone =
-      inputs.nix-joint-venture.packages.x86_64-linux.scripts.standalone;
+    joint-standalone = inputs.nix-joint-venture.packages.x86_64-linux.scripts.standalone;
   };
-in rec {
+in
+rec {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -16,15 +24,16 @@ in rec {
       #TODO this is dumb, import them at a user level or make them user bound and move them here
       theme = import ../../users/hannses/theme.nix;
       globals = import ../../users/hannses/globals.nix inputs_hm_imports;
-      scripts = import ../../users/hannses/scripts (inputs_hm_imports // {
-        inherit globals joint-non_standalone joint-standalone;
-      });
-      joint-non_standalone =
-        inputs.nix-joint-venture.packages.x86_64-linux.scripts.non_standalone {
-          inherit globals;
-        };
-      joint-standalone =
-        inputs.nix-joint-venture.packages.x86_64-linux.scripts.standalone;
+      scripts = import ../../users/hannses/scripts (
+        inputs_hm_imports
+        // {
+          inherit globals joint-non_standalone joint-standalone;
+        }
+      );
+      joint-non_standalone = inputs.nix-joint-venture.packages.x86_64-linux.scripts.non_standalone {
+        inherit globals;
+      };
+      joint-standalone = inputs.nix-joint-venture.packages.x86_64-linux.scripts.standalone;
     };
     users = build_user "hannses";
     #// build_user "mum_dad";

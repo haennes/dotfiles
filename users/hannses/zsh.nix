@@ -1,7 +1,21 @@
-{ config, pkgs, lib, scripts, globals, joint-standalone, ... }:
-let home = config.home.homeDirectory;
-in {
-  home.packages = with pkgs; [ nix-output-monitor eza tokei ];
+{
+  config,
+  pkgs,
+  lib,
+  scripts,
+  globals,
+  joint-standalone,
+  ...
+}:
+let
+  home = config.home.homeDirectory;
+in
+{
+  home.packages = with pkgs; [
+    nix-output-monitor
+    eza
+    tokei
+  ];
   programs.zsh = {
     enable = true;
     initContent = ''

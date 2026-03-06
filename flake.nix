@@ -456,7 +456,7 @@
           // (lib.my.genNodeSimple self "welt")
           // (lib.my.genNodeSimple self "pons");
       };
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
 
       topology.x86_64-linux = import nix-topology {
         pkgs = topology_pkgs; # Only this package set must include nix-topology.overlays.default

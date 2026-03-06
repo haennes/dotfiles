@@ -8,11 +8,12 @@ let
     thunderbird.profiles = [ mainProfile ];
   };
   rawMailboxes = import ../../secrets/not_so_secret/mail.nix inputs;
-  mailboxesWithThunderbird = mapAttrs
-    (n: v: (removeAttrs v [ "ldap_domain" ]) // enableThunderbirdForMailbox)
-    rawMailboxes;
+  mailboxesWithThunderbird = mapAttrs (
+    n: v: (removeAttrs v [ "ldap_domain" ]) // enableThunderbirdForMailbox
+  ) rawMailboxes;
   homeDir = config.home.homeDirectory;
-in {
+in
+{
   programs.thunderbird = {
     enable = true;
     profiles.${mainProfile}.isDefault = true;

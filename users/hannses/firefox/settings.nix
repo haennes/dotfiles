@@ -1,4 +1,5 @@
-{ ... }: rec {
+{ ... }:
+rec {
   all = {
     #always open popups in new tabs
     "browser.link.open_newwindow" = 3;
@@ -186,8 +187,7 @@
     # non-project related
     "browser.startup.homepage_override.mstone" = "ignore";
     "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
-    "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" =
-      false;
+    "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
     "browser.messaging-system.whatsNewPanel.enabled" = false;
     "browser.urlbar.showSearchTerms.enabled" = true;
   };

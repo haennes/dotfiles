@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   imports = [
     ../proxmox.nix
@@ -15,7 +16,11 @@
   networking.hostName = "tabula_mkhh";
   networking.firewall = {
     allowedUDPPorts = [ 51821 ];
-    allowedTCPPorts = [ 22 80 443 ];
+    allowedTCPPorts = [
+      22
+      80
+      443
+    ];
   };
 
   services.wireguard-wrapper.enable = true;

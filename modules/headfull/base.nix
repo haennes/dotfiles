@@ -1,7 +1,14 @@
-{ lib, config, pkgs, ... }:
-let hports = config.ports.ports.curr_ports;
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+let
+  hports = config.ports.ports.curr_ports;
 
-in {
+in
+{
   hardware.bluetooth.enable = true;
   networking.networkmanager.enable = true;
 
@@ -17,7 +24,6 @@ in {
 
   services.udisks2.enable = true;
 
-  services.postgresql.settings.port =
-    lib.mkIf (hports ? postresql) hports.postgresql;
+  services.postgresql.settings.port = lib.mkIf (hports ? postresql) hports.postgresql;
 
 }

@@ -1,8 +1,24 @@
-{ pkgs, globals, scripts, joint-standalone, lib, ... }:
+{
+  pkgs,
+  globals,
+  scripts,
+  joint-standalone,
+  lib,
+  ...
+}:
 let
-  inherit (lib) getExe listToAttrs flatten map;
-  aliases = [ "dticket" "ticket" ];
-in {
+  inherit (lib)
+    getExe
+    listToAttrs
+    flatten
+    map
+    ;
+  aliases = [
+    "dticket"
+    "ticket"
+  ];
+in
+{
   home.shellAliases = {
     dbui = "${scripts.dbui_fzf}";
     gcpp = "${scripts.gcpp}";
@@ -32,15 +48,18 @@ in {
 
     # config apply & build
     cfg_apply = "${globals.dotfiles_path}/apply";
-    cfg_update =
-      "pushd ${globals.dotfiles_path} && ${globals.dotfiles_path}/update && popd";
+    cfg_update = "pushd ${globals.dotfiles_path} && ${globals.dotfiles_path}/update && popd";
     fs_cfg_sync =
-      let path = "/home/hannses/Documents/Studium/FSIM/server-pedro";
-      in "rsync -r fs_main:/etc/nixos/ ${path}";
+      let
+        path = "/home/hannses/Documents/Studium/FSIM/server-pedro";
+      in
+      "rsync -r fs_main:/etc/nixos/ ${path}";
 
     fs_cfg_sync_jmp =
-      let path = "/home/hannses/Documents/Studium/FSIM/server-pedro";
-      in "rsync -r fs_main_jmp:/etc/nixos/ ${path}";
+      let
+        path = "/home/hannses/Documents/Studium/FSIM/server-pedro";
+      in
+      "rsync -r fs_main_jmp:/etc/nixos/ ${path}";
 
     # vim keybindings
     ":q" = "exit";
@@ -56,18 +75,23 @@ in {
 
     ttask = getExe pkgs.taskwarrior-tui;
 
-  } // listToAttrs (flatten (map (name: [
-    {
-      name = "${name}_bak";
-      value = "${scripts.deutschland_ticket_pdf}";
-    }
-    {
-      name = "${name}_bak_bak";
-      value = "${scripts.deutschland_ticket_screenshot}";
-    }
-    {
-      name = name;
-      value = "${scripts.deutschland_ticket_firefox}";
-    }
-  ]) aliases));
+  }
+  // listToAttrs (
+    flatten (
+      map (name: [
+        {
+          name = "${name}_bak";
+          value = "${scripts.deutschland_ticket_pdf}";
+        }
+        {
+          name = "${name}_bak_bak";
+          value = "${scripts.deutschland_ticket_screenshot}";
+        }
+        {
+          name = name;
+          value = "${scripts.deutschland_ticket_firefox}";
+        }
+      ]) aliases
+    )
+  );
 }

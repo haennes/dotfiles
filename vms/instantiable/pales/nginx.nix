@@ -3,7 +3,8 @@ let
   filesDir = "/persist/files";
   filesUser = config.services.nginx.user;
   hostname = config.networking.hostName;
-in {
+in
+{
   services.nginx = {
     enable = true;
     recommendedTlsSettings = true;
@@ -36,16 +37,21 @@ in {
     hashedPasswordFile = config.age.secrets."user_passwords/nginx.age".path;
   };
 
-  age.secrets."user_passwords/nginx.age".file =
-    ../../../secrets/vsftpd/${hostname}/cert.age;
+  age.secrets."user_passwords/nginx.age".file = ../../../secrets/vsftpd/${hostname}/cert.age;
 
   systemd.tmpfiles.rules = [ "d ${filesDir} 2770 vsftpd vsftpd - -" ];
   networking.firewall = {
-    allowedTCPPorts = [ 80 21 20 ];
-    allowedTCPPortRanges = [{
-      from = 51000;
-      to = 51999;
-    }];
+    allowedTCPPorts = [
+      80
+      21
+      20
+    ];
+    allowedTCPPortRanges = [
+      {
+        from = 51000;
+        to = 51999;
+      }
+    ];
   };
 
 }

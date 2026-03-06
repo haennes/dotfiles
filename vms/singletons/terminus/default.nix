@@ -1,15 +1,26 @@
-{ inputs, pkgs, lib, config, sshkeys, all_modules, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  sshkeys,
+  all_modules,
+  ...
+}:
 let
   hports = config.ports.ports.curr_ports;
   ips = config.ips.ips.ips.default;
   dataDir = "/persist/cal";
-in {
-  microvm.shares = [{
-    source = "/cal";
-    mountPoint = dataDir;
-    tag = "mc-${config.networking.hostName}";
-    proto = "virtiofs";
-  }];
+in
+{
+  microvm.shares = [
+    {
+      source = "/cal";
+      mountPoint = dataDir;
+      tag = "mc-${config.networking.hostName}";
+      proto = "virtiofs";
+    }
+  ];
   microvm.mem = 400;
   microvm.vcpu = 1;
 
@@ -37,7 +48,9 @@ in {
         htpasswd_filename = config.age.secrets.radicale_pw.path;
         htpasswd_encryption = "autodetect";
       };
-      storage = { filesystem_folder = dataDir; };
+      storage = {
+        filesystem_folder = dataDir;
+      };
     };
   };
   networking.firewall.interfaces.wg0.allowedTCPPorts = [ hports.radicale ];

@@ -1,4 +1,5 @@
-{ pkgs, globals, ... }: ''
+{ pkgs, globals, ... }:
+''
 
   DMENU="${globals.dmenu}"
   cliphist="${pkgs.cliphist}/bin/cliphist"
@@ -8,4 +9,3 @@
   echo "$sel" | $cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy
   echo "$sel" | $cliphist decode
 ''
-

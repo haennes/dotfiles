@@ -5,13 +5,15 @@ let
   zone = "local.hannses.de.";
   serial = 2025011701;
 
-  /* *
-     Creates a CNAME record
+  /*
+    *
+    Creates a CNAME record
   */
   mkCname = target: { CNAME = [ target ]; };
 
   nameserver = "ns.hannses.de.";
-in {
+in
+{
   TTL = 1800; # 30 minutes
 
   SOA = {

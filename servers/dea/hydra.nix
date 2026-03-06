@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
-let port = config.ports.ports.curr_ports.hydra;
-in {
-  age.secrets."hydra/users/hannses.age".file =
-    ../../secrets/hydra/users/hannses.age;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  port = config.ports.ports.curr_ports.hydra;
+in
+{
+  age.secrets."hydra/users/hannses.age".file = ../../secrets/hydra/users/hannses.age;
   networking.firewall.interfaces.wg0.allowedTCPPorts = [ port ];
   services.hydra = rec {
     enable = true;
@@ -29,15 +35,28 @@ in {
   #    deps = [ "agenixInstall" ];
   #  };
 
-  nix.buildMachines = [{
-    hostName = "localhost";
-    protocol = null;
-    systems = [ "x86_64-linux" ] ++ config.boot.binfmt.emulatedSystems;
-    supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
-    maxJobs = 16;
-  }];
+  nix.buildMachines = [
+    {
+      hostName = "localhost";
+      protocol = null;
+      systems = [ "x86_64-linux" ] ++ config.boot.binfmt.emulatedSystems;
+      supportedFeatures = [
+        "kvm"
+        "nixos-test"
+        "big-parallel"
+        "benchmark"
+      ];
+      maxJobs = 16;
+    }
+  ];
 
-  nix.settings.trusted-users = [ "forward" "hydra" ];
-  nix.settings.allowed-uris =
-    [ "github:" "git+https://github.com/" "git+ssh://github.com/" ];
+  nix.settings.trusted-users = [
+    "forward"
+    "hydra"
+  ];
+  nix.settings.allowed-uris = [
+    "github:"
+    "git+https://github.com/"
+    "git+ssh://github.com/"
+  ];
 }

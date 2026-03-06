@@ -1,8 +1,14 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.steam = {
     enable = true;
     package = pkgs.steam.override {
-      extraPkgs = (pkgs: [ pkgs.corefonts pkgs.vista-fonts ]);
+      extraPkgs = (
+        pkgs: [
+          pkgs.corefonts
+          pkgs.vista-fonts
+        ]
+      );
     };
   };
 }

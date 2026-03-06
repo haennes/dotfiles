@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   imports = [ ./hardware-configuration.nix ];
 
   # Bootloader.
@@ -9,8 +10,12 @@
     default = "1";
   };
 
-  services.syncthing-wrapper = { enable = true; };
-  services.syncthing = { dataDir = "/syncthing"; };
+  services.syncthing-wrapper = {
+    enable = true;
+  };
+  services.syncthing = {
+    dataDir = "/syncthing";
+  };
   virtualisation.docker.enable = true;
   networking.hostName = "thinkpad";
   services.wireguard-wrapper.enable = true;

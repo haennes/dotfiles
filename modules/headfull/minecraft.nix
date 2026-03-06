@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   environment = {
     systemPackages = with pkgs; [
@@ -7,6 +8,8 @@
       prismlauncher
     ];
 
-    etc = { "minecraft_deps/jre8".source = pkgs.jre8.outPath; };
+    etc = {
+      "minecraft_deps/jre8".source = pkgs.jre8.outPath;
+    };
   };
 }

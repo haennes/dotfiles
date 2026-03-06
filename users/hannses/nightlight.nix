@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   services.wlsunset = {
     enable = true;
     temperature = {

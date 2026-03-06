@@ -1,4 +1,5 @@
-{ pkgs, globals, ... }: ''
+{ pkgs, globals, ... }:
+''
   DMENU="${globals.dmenu}"
   getopts "mue" flag
   case "''${flag}" in

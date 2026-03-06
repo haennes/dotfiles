@@ -1,7 +1,17 @@
-{ globals, scripts, lib, ... }: ''
+{
+  globals,
+  scripts,
+  lib,
+  ...
+}:
+''
   DMENU="${globals.dmenu}"
   case "$( echo -e '${
-    lib.concatStringsSep "\\n" [ "browser" "pdf" "screenshot" ]
+    lib.concatStringsSep "\\n" [
+      "browser"
+      "pdf"
+      "screenshot"
+    ]
   }' | $DMENU)" in
     "browser")
       ${scripts.deutschland_ticket_firefox}

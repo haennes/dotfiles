@@ -2,7 +2,8 @@
 let
   inherit (lib) mkEnableOption mkOption;
   inherit (lib.types) bool;
-in {
+in
+{
   options = {
     is_server = mkOption {
       description = "Wether this is a server";
@@ -10,7 +11,9 @@ in {
       default = false;
       #default = config.is_microvm; #automatically set by the functions inside flake.nix
     };
-    is_client = mkEnableOption "Wether this is a client" // { default = true; };
+    is_client = mkEnableOption "Wether this is a client" // {
+      default = true;
+    };
     is_laptop = mkEnableOption "Wether this is a laptop" // {
       default = false;
     };

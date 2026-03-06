@@ -1,9 +1,17 @@
-{ pkgs, ... }: {
-  imports = [ ./hardware-configuration.nix ./vms.nix ];
+{ pkgs, ... }:
+{
+  imports = [
+    ./hardware-configuration.nix
+    ./vms.nix
+  ];
   networking.hostName = "thinknew"; # Define your hostname.
 
-  services.syncthing-wrapper = { enable = true; };
-  services.syncthing = { dataDir = "/syncthing"; };
+  services.syncthing-wrapper = {
+    enable = true;
+  };
+  services.syncthing = {
+    dataDir = "/syncthing";
+  };
   virtualisation.docker.enable = true;
   services.wireguard-wrapper.enable = true;
   microvmHost.extInterface = "enp0s25";
@@ -37,11 +45,14 @@
   nixpkgs.overlays = [
     (self: super: {
       wordpress = super.wordpress.overrideAttrs (oldAttrs: rec {
-        installPhase = oldAttrs.installPhase + ''
-          ln -s /var/lib/wordpress/localhost/webp-express $out/share/wordpress/wp-content/webp-express
-        '' + ''
-          ln -s /var/lib/wordpress/example.org/mmr $out/share/wordpress/wp-content/mmr
-        '';
+        installPhase =
+          oldAttrs.installPhase
+          + ''
+            ln -s /var/lib/wordpress/localhost/webp-express $out/share/wordpress/wp-content/webp-express
+          ''
+          + ''
+            ln -s /var/lib/wordpress/example.org/mmr $out/share/wordpress/wp-content/mmr
+          '';
       });
     })
   ];

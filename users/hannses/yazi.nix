@@ -1,4 +1,5 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
   imports = [
     (inputs.nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default)
   ];

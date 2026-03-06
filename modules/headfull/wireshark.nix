@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.wireshark = {
     dumpcap.enable = true;
     enable = true;

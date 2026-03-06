@@ -1,46 +1,48 @@
-{ favicon, updateInterval, ... }: {
+{ favicon, updateInterval, ... }:
+{
   "Rust Std" = {
-    urls =
-      [{ template = "https://doc.rust-lang.org/std/?search={searchTerms}"; }];
+    urls = [ { template = "https://doc.rust-lang.org/std/?search={searchTerms}"; } ];
     icon = "https://www.rust-lang.org/static/images/rust-logo-blk.svg";
     inherit updateInterval;
     definedAliases = [ "<rsd" ];
   };
 
   "Crates.io" = {
-    urls = [{ template = "https://crates.io/search?q={searchTerms}"; }];
+    urls = [ { template = "https://crates.io/search?q={searchTerms}"; } ];
     icon = "https://crates.io/assets/cargo.png";
     inherit updateInterval;
     definedAliases = [ "<cr" ];
   };
 
   "clippy" = {
-    urls = [{
-      template =
-        "https://rust-lang.github.io/rust-clippy/master/index.html?search={searchTerms}";
-    }];
+    urls = [
+      {
+        template = "https://rust-lang.github.io/rust-clippy/master/index.html?search={searchTerms}";
+      }
+    ];
     icon = "https://crates.io/assets/cargo.png";
     inherit updateInterval;
     definedAliases = [ "<clip" ];
   };
 
   "Pip / PyPi" = {
-    urls = [{ template = "https://pypi.org/search/?q={searchTerms}"; }];
+    urls = [ { template = "https://pypi.org/search/?q={searchTerms}"; } ];
     icon = "https://www.python.org/static/opengraph-icon-200x200.png";
     inherit updateInterval;
     definedAliases = [ "<pip" ];
   };
   "pydocs" = {
-    urls =
-      [{ template = "https://docs.python.org/3/search.html?q={searchTerms}"; }];
+    urls = [ { template = "https://docs.python.org/3/search.html?q={searchTerms}"; } ];
     icon = "https://www.python.org/static/opengraph-icon-200x200.png";
     inherit updateInterval;
     definedAliases = [ "<py" ];
   };
   "ascii" = {
-    urls =
-      [{ template = "https://typst.app/tools/ascii-table/#q={searchTerms}"; }];
-    definedAliases = [ "<ascii" "<char" ];
+    urls = [ { template = "https://typst.app/tools/ascii-table/#q={searchTerms}"; } ];
+    definedAliases = [
+      "<ascii"
+      "<char"
+    ];
     icon = favicon "typst.app";
     inherit updateInterval;
   };

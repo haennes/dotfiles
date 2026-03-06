@@ -1,5 +1,6 @@
 hostname:
-{ config, ... }: {
+{ config, ... }:
+{
   imports = [
     #../proxmox.nix
     ../../../modules/microvm_guest.nix
@@ -10,11 +11,13 @@ hostname:
     mem = 8193;
     writableStoreOverlay = "/nix/.rw-store";
   };
-  microvm.volumes = [{
-    image = "nix-store-overlay.img";
-    mountPoint = config.microvm.writableStoreOverlay;
-    size = 2048000;
-  }];
+  microvm.volumes = [
+    {
+      image = "nix-store-overlay.img";
+      mountPoint = config.microvm.writableStoreOverlay;
+      size = 2048000;
+    }
+  ];
   networking.hostName = hostname;
 
   services.wireguard-wrapper.enable = true;

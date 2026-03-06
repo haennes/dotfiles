@@ -1,4 +1,5 @@
-{ globals, config, ... }: ''
+{ globals, config, ... }:
+''
     # has to be a function because "'...'" doesn't work
     DMENU() {
       ${globals.dmenu} -theme-str 'window { width: 75%; }' -window-title "$1"
@@ -32,9 +33,7 @@
   	    fi
   	    nmcli con modify Hotspot 802-11-wireless.mode ap 802-11-wireless.band bg ipv4.method shared
   	    nmcli con modify Hotspot wifi-sec.key-mgmt wpa-psk
-  	    nmcli con modify Hotspot wifi-sec.psk $(cat ${
-         config.age.secrets."wifihotspot.age".path
-       })
+  	    nmcli con modify Hotspot wifi-sec.psk $(cat ${config.age.secrets."wifihotspot.age".path})
   	    nmcli con up Hotspot
   	    ;;
         "WIFI ON")
@@ -51,4 +50,3 @@
             ;;
     esac
 ''
-

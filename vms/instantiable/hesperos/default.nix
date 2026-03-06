@@ -1,5 +1,11 @@
 hostname:
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
   imports = [ ../../../modules/microvm_guest.nix ];
 
   #systemd.services."openfortivpn" = {

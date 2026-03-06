@@ -1,6 +1,8 @@
 { config, ... }:
-let gui_port = config.ports.ports.ports.deus.kasmweb.gui;
-in {
+let
+  gui_port = config.ports.ports.ports.deus.kasmweb.gui;
+in
+{
   services.kasmweb = {
     enable = true;
     #listenPort = gui_port;

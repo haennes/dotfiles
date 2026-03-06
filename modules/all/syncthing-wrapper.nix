@@ -1,13 +1,22 @@
 { config, lib, ... }:
 let
   inherit (lib)
-    mapAttrs attrNames head splitString tail optional concatStringsSep;
-  splitStringOnce = sep: str:
+    mapAttrs
+    attrNames
+    head
+    splitString
+    tail
+    optional
+    concatStringsSep
+    ;
+  splitStringOnce =
+    sep: str:
     let
       sp = (splitString sep str);
       first = head sp;
       second = (concatStringsSep sep (tail sp));
-    in [ first ] ++ optional (second != "") second;
+    in
+    [ first ] ++ optional (second != "") second;
   #TODO move to own lib
   ids = import ../../secrets/not_so_secret/syncthing.key.nix;
   ids_attrs = mapAttrs (_: v: { id = v; }) ids;
@@ -20,24 +29,41 @@ let
   #  { });
   devices = rec {
     all_pcs = { inherit (ids_attrs) mainpc yoga; };
-    all_pcs_minimal = all_pcs // { inherit (ids_attrs) thinknew thinkpad; };
-    all_handys = { inherit (ids_attrs) handyHannes handyMum handyDad tablet; };
+    all_pcs_minimal = all_pcs // {
+      inherit (ids_attrs) thinknew thinkpad;
+    };
+    all_handys = {
+      inherit (ids_attrs)
+        handyHannes
+        handyMum
+        handyDad
+        tablet
+        ;
+    };
     servers = { inherit (ids_attrs) dea deus; };
     all_servers = servers // {
-      inherit (ids_attrs) tabula tabula_1 tabula_3 proserpina_1 fons fabulinus;
+      inherit (ids_attrs)
+        tabula
+        tabula_1
+        tabula_3
+        proserpina_1
+        fons
+        fabulinus
+        ;
     };
 
     #uni = { inherit stefan_handy sebastian_s_mac sebastian_r_laptop; };
-  } // ids_attrs;
-in {
+  }
+  // ids_attrs;
+in
+{
   imports = [ ./syncthing_wrapper_secrets.nix ];
   services.syncthing-wrapper = {
     secrets = {
-      keyFunction = hostname:
-        config.age.secrets."syncthing_key_${hostname}".path;
-      certFunction = hostname:
-        lib.mkIf (config.services.syncthing.enable)
-        config.age.secrets."syncthing_cert_${hostname}".path;
+      keyFunction = hostname: config.age.secrets."syncthing_key_${hostname}".path;
+      certFunction =
+        hostname:
+        lib.mkIf (config.services.syncthing.enable) config.age.secrets."syncthing_cert_${hostname}".path;
     };
     defaultEnsure = lib.mkIf config.is_client {
       DirExists = true;
@@ -52,7 +78,11 @@ in {
     };
     defaultVersioning.simple.params.keep = 10;
     servers = attrNames devices.all_servers;
-    pseudoGroups."family" = [ "hannses" "mum" "dad" ];
+    pseudoGroups."family" = [
+      "hannses"
+      "mum"
+      "dad"
+    ];
     legacyIDMap = {
       "hannses__freshrss" = "freshrss";
       "hannses__AnkiBackup" = "AnkiBackup";
@@ -83,30 +113,40 @@ in {
     paths = {
       users = {
         userDirFolderMap = {
-          hannses.AnkiBackup =
-            "/home/hannses/.local/share/Anki2/User 1/backups";
+          hannses.AnkiBackup = "/home/hannses/.local/share/Anki2/User 1/backups";
         };
         defaultUserDir = "/home";
       };
     };
-    idToOptionalUserName = folderId:
+    idToOptionalUserName =
+      folderId:
       let
         v = head (splitStringOnce "__" folderId);
         cfg = config.services.syncthing-wrapper;
-      in if v == (cfg.idToTargetName folderId) then null else v;
-    folders = with devices;
+      in
+      if v == (cfg.idToTargetName folderId) then null else v;
+    folders =
+      with devices;
       with devices.all_handys;
       with devices.all_servers;
-      with devices.all_pcs; {
-        "hannses__freshrss".devices = { inherit fons; } // servers;
+      with devices.all_pcs;
+      {
+        "hannses__freshrss".devices = {
+          inherit fons;
+        }
+        // servers;
         "Family" = {
           devices = all_pcs // servers // { inherit thinkpad; };
           pseudoGroups = [ "family" ];
         };
         "Passwords" = {
-          devices = all_pcs_minimal // all_handys // servers // {
-            inherit thinkpad;
-          };
+          devices =
+            all_pcs_minimal
+            // all_handys
+            // servers
+            // {
+              inherit thinkpad;
+            };
           versioning.type.simple.params.keep = 100;
           pseudoGroups = [ "family" ];
         };
@@ -128,31 +168,55 @@ in {
         "hannses__programming".devices = all_pcs // servers;
         "hannses__AegisBak".devices = {
           inherit handyHannes;
-        } // all_pcs_minimal // servers;
+        }
+        // all_pcs_minimal
+        // servers;
         "hannses__AntennaBak".devices = {
           inherit handyHannes;
-        } // all_pcs_minimal // servers;
-        "hannses__SignalBackup".devices = { inherit handyHannes; } // servers;
+        }
+        // all_pcs_minimal
+        // servers;
+        "hannses__SignalBackup".devices = {
+          inherit handyHannes;
+        }
+        // servers;
         "hannses__DownloadHandy".devices = {
           inherit handyHannes;
-        } // all_pcs_minimal // servers;
+        }
+        // all_pcs_minimal
+        // servers;
         "hannses__Kamera".devices = {
           inherit handyHannes;
-        } // all_pcs // servers;
+        }
+        // all_pcs
+        // servers;
         "hannses__Galerie".devices = {
           inherit handyHannes;
-        } // all_pcs // servers;
-        "mum__WA".devices = { inherit handyMum yoga; } // servers;
-        "mum__Kamera".devices = { inherit handyMum; } // servers;
-        "mum__Galerie".devices = { inherit handyMum; } // servers;
+        }
+        // all_pcs
+        // servers;
+        "mum__WA".devices = {
+          inherit handyMum yoga;
+        }
+        // servers;
+        "mum__Kamera".devices = {
+          inherit handyMum;
+        }
+        // servers;
+        "mum__Galerie".devices = {
+          inherit handyMum;
+        }
+        // servers;
         "dad__Kamera".devices = servers;
         "dad__Galerie".devices = servers;
         "hannses__website".devices = {
           inherit tabula tabula_1 tabula_3;
-        } // all_pcs_minimal;
+        }
+        // all_pcs_minimal;
         "esw-machine__esw-machines".devices = {
           inherit fabulinus proserpina_1;
-        } // servers;
+        }
+        // servers;
       };
   };
 
@@ -163,7 +227,6 @@ in {
         relaysEnabled = true;
       };
     };
-    guiAddress =
-      "127.0.0.1:${toString config.ports.ports.curr_ports.syncthing.gui}";
+    guiAddress = "127.0.0.1:${toString config.ports.ports.curr_ports.syncthing.gui}";
   };
 }

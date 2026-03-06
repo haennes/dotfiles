@@ -1,4 +1,5 @@
-{ pkgs, globals, ... }: ''
+{ pkgs, globals, ... }:
+''
 
   DMENU="${globals.dmenu}"
   cliphist="${pkgs.cliphist}/bin/cliphist"

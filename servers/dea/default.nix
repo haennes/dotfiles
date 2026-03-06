@@ -3,9 +3,12 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { specialArgs, lib, ... }:
-let hostname = "tabula_1";
-in {
-  imports = [ # Include the results of the hardware scan.
+let
+  hostname = "tabula_1";
+in
+{
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./zfs.nix
     ./taskchampion.nix

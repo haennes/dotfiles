@@ -1,4 +1,8 @@
-{ ... }: {
-  imports = [ ./base.nix ./pkgs.nix ];
+{ ... }:
+{
+  imports = [
+    ./base.nix
+    ./pkgs.nix
+  ];
 
 }

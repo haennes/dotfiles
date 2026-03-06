@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   services.create_ap = {
     enable = true;
     settings = {
@@ -22,8 +23,7 @@
       IEEE80211N = "1";
       IEEE80211AC = "1";
       IEEE80211AX = "1";
-      HT_CAPAB =
-        "[HT40+][SHORT-GI-20][SHORT-GI-40][TX-STBC][RX-STBC12][NO-HT40-DSSS/CCK]";
+      HT_CAPAB = "[HT40+][SHORT-GI-20][SHORT-GI-40][TX-STBC][RX-STBC12][NO-HT40-DSSS/CCK]";
       #DRIVER = "nl80211";
       FREQ_BAND = "5";
       COUNTRY = "GERMANY";
