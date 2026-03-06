@@ -1,6 +1,13 @@
-{ config, osConfig, lib, pkgs, inputs, ... }: {
+{
+  lib,
+  pkgs,
+  inputs,
+  scripts,
+  ...
+}:
+{
   imports = [
-    ./wpaperd.nix
+    ./hyprpaper.nix
     ./fonts.nix
     ./gnome_config.nix
     ./hyprland.nix
@@ -17,6 +24,7 @@
     ./pqiv.nix # images
     ./udiskie.nix
     ./power.nix
+    ./starship.nix
     #update broke ./vimiv.nix # images
     ./codium.nix
     ./vim.nix
@@ -43,6 +51,7 @@
     ./btop.nix
     ./shell.nix
     ./direnv.nix
+    ./vicinae.nix
   ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -67,6 +76,7 @@
     vim
     gdb
     nix-diff
+    nix-tree
     icdiff
     inputs.nix-inspect.packages.${system}.default
     keepassxc
@@ -90,7 +100,6 @@
     platformio
     rust-analyzer
     feh # for dticket cmd
-    iamb
     element-desktop
     # openai-whisper-cpp
     ffmpeg
@@ -119,6 +128,8 @@
 
     fend
     glow
+    portfolio
+    scripts.disable_ext_monitors
   ];
 
   # Environment
@@ -129,10 +140,7 @@
   };
 
   #programs.gitui.enable = true; #conflicts with following line
-  home.file.".config/gitui/key_bindings.ron".source =
-    ../../ext_configs/gitui_keybindings.ron;
-  home.file.".config/iamb/config.json".source =
-    ../../ext_configs/iamb/config.json;
+  home.file.".config/gitui/key_bindings.ron".source = ../../ext_configs/gitui_keybindings.ron;
 
   xdg.desktopEntries.zellij = {
     name = "ZelliJ";
