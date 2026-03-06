@@ -27,7 +27,7 @@ lib.mapAttrs (name: value: importNixScript name value) (
 )
 // {
   startup = import ./startup.nix scripts_input; # isnt actually a shell-script
-  disable_ext_monitors = pkgs.writers.writeNu "disable_ext_monitors" ''
+  disable_ext_monitors = pkgs.writers.writeNuBin "disable_ext_monitors" ''
     def disable_ext_monitors [] {
       let monitors = hyprctl monitors -j
       let ext_monitors =  $monitors | from json | where { |e| $e.name != "eDP-1"}
