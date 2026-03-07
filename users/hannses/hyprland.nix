@@ -227,6 +227,8 @@ in
 
         "$mod, space, togglespecialworkspace, scratch"
         "$mod, b, togglespecialworkspace, browser"
+        "$mod, z, togglespecialworkspace, passwords"
+        "$mod, i, togglespecialworkspace, passwords"
         "$mod, period, exec, ${scripts.switchmonitor} -n"
         "$mod, comma, exec, ${scripts.switchmonitor} -p"
 
@@ -254,8 +256,8 @@ in
         "$mod SHIFT, 8, movetoworkspacesilent, 8"
         "$mod SHIFT, 9, movetoworkspacesilent, 9"
         "$mod SHIFT, 0, movetoworkspacesilent, 10"
-        "$mod SHIFT, space, movetoworkspacesilent, scratch"
-        "$mod SHIFT, b, movetoworkspacesilent, scratch"
+        "$mod SHIFT, space, movetoworkspacesilent, special:scratch"
+        "$mod SHIFT, b, movetoworkspacesilent, special:browser"
 
         #move workspace to differen monitor
         "$mod, code:112, focusmonitor, +1"
