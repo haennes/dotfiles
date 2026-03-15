@@ -57,8 +57,8 @@
     arduino
     arduinoOTA
     hugo # website
+    rust-bin.nightly.latest.default
     # cargo-generate
-    # rust-bin.nightly.latest.default
     python3
     ruff # python linter
     gcc # c compiler
