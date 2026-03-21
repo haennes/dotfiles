@@ -27,6 +27,7 @@
     ./keyring.nix
     ./wireshark.nix
     ./plantuml.nix
+    ./greeter.nix
   ];
 
 }
