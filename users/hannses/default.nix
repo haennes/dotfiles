@@ -38,7 +38,6 @@
     ./git.nix
     ./gpg.nix
     ./virtualization.nix
-    ./noogle-cli.nix
     ./kitty.nix
     ./nix.nix
     ./tmux.nix
