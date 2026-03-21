@@ -2,10 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ lib, config, ... }:
+{ lib, config, inputs, ... }:
 {
   imports = [
     # Include the results of the hardware scan.
+      inputs.esw-machines.nixosModules.default
     ./hardware-configuration.nix
     ./zfs.nix
     ./vms.nix
@@ -47,5 +48,13 @@
   services.wireguard-wrapper.enable = true;
 
   networking.hostName = "deus"; # Define your hostname.
+  services.esw-machines = {
+    enable = true;
+    port = config.ports.ports.curr_ports.esw;
+    domain = "0.0.0.0";
+    user = config.services.syncthing.user;
+    dataFilePath = "${config.services.syncthing.settings.folders."esw-machine__esw-machines".path}/esw";
+  };
+  networking.firewall.allowedTCPPorts = [ config.ports.ports.curr_ports.esw ];
 
 }

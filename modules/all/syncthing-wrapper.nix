@@ -214,7 +214,7 @@ in
         }
         // all_pcs_minimal;
         "esw-machine__esw-machines".devices = {
-          inherit fabulinus proserpina_1;
+          inherit fabulinus proserpina_1 deus;
         }
         // servers;
       };
