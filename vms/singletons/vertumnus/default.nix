@@ -45,11 +45,17 @@ in
     package = pkgs.forgejo;
     settings = {
       server = rec {
+        SSH_PORT = lib.head config.services.openssh.ports;
         DOMAIN = "git.hannses.de";
         HTTP_PORT = sports.web;
         SSH_DOMAIN = DOMAIN;
         ROOT_URL = "https://git.hannses.de";
       };
+      actions = {
+        ENABLED = true;
+        DEFAULT_ACTIONS_URL = "github";
+      };
+      service.DISABLE_REGISTRATION = true;
       "repository.pull-request".DEFAULT_MERGE_STYLE = "rebase";
     };
     database = {
