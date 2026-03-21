@@ -165,8 +165,8 @@ in
   })
   (create_simple_proxy_with_domain {
     fqdn = "ha2.esw.hannses.de";
-    target_ip = ips.fabulinus.wg0;
-    target_port = ports.fabulinus.esw;
+    target_ip = ips.deus.wg0;
+    target_port = ports.deus.esw;
   })
 
   (create_simple_proxy_with_domain {
@@ -201,7 +201,7 @@ in
   #   fqdn = "tt.hannses.de";
   #   target_ip = "svigling.bplaced.net";
   #   set_header = true;
-  # })
+ # })
   (create_redirect {
     sources = [
       "mkhh-ev.de"
