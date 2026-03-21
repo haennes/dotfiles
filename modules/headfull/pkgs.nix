@@ -55,7 +55,7 @@
     #programming
     tokei # count loc
     arduino
-    arduinoOTA
+    arduino-ota
     hugo # website
     rust-bin.nightly.latest.default
     # cargo-generate
