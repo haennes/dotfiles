@@ -39,14 +39,6 @@ in
   systemd.services."nextcloud-setup".requires = [ "syncthing.service" ];
   systemd.services."nextcloud-setup".after = [ "syncthing.service" ];
 
-  system.activationScripts.ensure-syncthing-dir-ownership.deps = [
-    "users"
-    "groups"
-  ];
-  system.activationScripts.ensure-syncthing-dir-permissions.deps = [
-    "users"
-    "groups"
-  ];
   system.activationScripts.ensure-dirs-exist = {
     deps = [
       "users"
