@@ -228,7 +228,7 @@ in
         "$mod, space, togglespecialworkspace, scratch"
         "$mod, b, togglespecialworkspace, browser"
         "$mod, z, togglespecialworkspace, passwords"
-        "$mod, i, togglespecialworkspace, passwords"
+        "$mod, i, togglespecialworkspace, music"
         "$mod, period, exec, ${scripts.switchmonitor} -n"
         "$mod, comma, exec, ${scripts.switchmonitor} -p"
 
