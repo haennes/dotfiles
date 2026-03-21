@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs; [
     nix-output-monitor # better visualization of nix-shell and nix-build
     nixfmt # formatting nix files
-    neofetch # display system information
+    fastfetch # display system information
     restic
     fd # better version of find
     eza
