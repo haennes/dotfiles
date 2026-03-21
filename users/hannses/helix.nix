@@ -58,6 +58,8 @@
         lazygit
         config.programs.nix-search-tv-script.outputPackage
         xdg-utils
+        dhall-lsp-server
+        dhall
 
       ];
       languages = {
@@ -142,6 +144,7 @@
             auto-format = true;
           }
           { name = "diff"; }
+          { name = "dhall"; }
         ];
       };
 
