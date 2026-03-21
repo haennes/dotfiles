@@ -13,8 +13,8 @@
       signByDefault = true;
     };
     settings = {
-      user.name = "haennes";
-      user.email = "hannes.hofmuth@gmail.com";
+      user.name = "borbitter";
+      user.email = "git@addy.hannses.de";
       init = {
         defaultBranch = "main";
       };
