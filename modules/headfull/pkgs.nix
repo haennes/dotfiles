@@ -68,7 +68,7 @@
     jq # pretty json
 
     #Gameing
-    wineWowPackages.waylandFull
+    wineWow64Packages.waylandFull
 
     zip
 
