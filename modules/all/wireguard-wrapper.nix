@@ -169,28 +169,6 @@ in
       ];
       nodes = lib.mkMerge [
         {
-          welt = {
-            ifs = {
-              wg0 = {
-                ip = ips.welt.wg0;
-                allowedIPs = [
-                  # (ip_cidr ips.welt.wg0) # ip of the interfaces
-                  (subnet_cidr ips.welt.wg0) # added to allowedIps of the peers connecting to it
-                  # welt configures nat seperately to work
-                ];
-                endpoint = "${ips.welt.ens3}:${builtins.toString config.ports.ports.ports.welt.wg0}";
-              };
-              wg1 = {
-                ip = ip_cidr ips.welt.wg1;
-                allowedIPs = [
-                  (subnet_cidr ips.welt.wg1) # added to allowedIps of the peers connecting to it
-
-                ];
-
-                endpoint = "${ips.welt.ens3}:${builtins.toString config.ports.ports.ports.welt.wg1}";
-              };
-            };
-          };
           pons = {
             ifs = {
               wg0 = {
