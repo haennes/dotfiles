@@ -37,14 +37,18 @@ in
   config = rec {
     vms_map = {
       tabula = [
+              # keep-sorted start
         "deus"
         "dea"
         "yoga"
+              # keep-sorted end
       ];
       #tabula = [ "dea" ];
       proserpina = [
+              # keep-sorted start
         "deus"
         "dea"
+              # keep-sorted end
       ];
       #porta = [ "deus" "dea" ];
       #concordia = [ "deus" "dea" ];

@@ -7,6 +7,7 @@
 }:
 {
   imports = [
+              # keep-sorted start
     ./hyprpaper.nix
     ./fonts.nix
     ./gnome_config.nix
@@ -51,6 +52,7 @@
     ./shell.nix
     ./direnv.nix
     ./vicinae.nix
+              # keep-sorted end
   ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

@@ -18,12 +18,14 @@ in
       isNormalUser = true;
       description = "hannses";
       extraGroups = [
+              # keep-sorted start
         "networkmanager"
         "wheel"
         "family"
         "video"
         "libvirtd"
         "docker"
+              # keep-sorted end
       ];
     };
   }
@@ -33,14 +35,18 @@ in
   users.extraGroups.vboxusers.members = [ "hannses" ];
   users.groups = {
     "family".members = [
+              # keep-sorted start
       "mum"
       "dad"
       "hannses"
+              # keep-sorted end
     ];
   };
 }
 // (obtain_user_passwords [
+              # keep-sorted start
   "hannses"
   "mum"
   "dad"
+              # keep-sorted end
 ])

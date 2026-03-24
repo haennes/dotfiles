@@ -31,6 +31,7 @@ in
     ns = mkCname "ns.hannses.de";
 
     # hosts:
+    # keep-sorted start
     anki = host ips.minerva.wg0 null;
     hydra = host ips.pons.wg0 null;
     nix-serve = host ips.pons.wg0 null;
@@ -39,5 +40,6 @@ in
     rss = host ips.fons.wg0 null;
     zock = host "172.20.0.41" null;
     ftb = host ips.ludus.wg1 null;
+    # keep-sorted end
   };
 }

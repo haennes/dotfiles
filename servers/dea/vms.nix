@@ -1,6 +1,7 @@
 { specialArgs, lib, ... }:
 let
   hostnames = [
+              # keep-sorted start
     "tabula_1"
     "janus_1"
     "minerva"
@@ -12,6 +13,7 @@ let
     "fons"
     "terminus"
     "hesperos_1"
+              # keep-sorted end
   ];
   inherit (lib) mkMerge listToAttrs map;
 in

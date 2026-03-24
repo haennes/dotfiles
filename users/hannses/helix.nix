@@ -42,6 +42,7 @@
       enable = true;
       defaultEditor = true;
       extraPackages = with pkgs; [
+              # keep-sorted start
         rust-analyzer
         nil
         ruff
@@ -60,6 +61,7 @@
         xdg-utils
         dhall-lsp-server
         dhall
+              # keep-sorted end
 
       ];
       languages = {

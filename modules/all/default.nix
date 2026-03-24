@@ -1,6 +1,7 @@
 { lib, ... }:
 {
   imports = [
+              # keep-sorted start
     ./acme.nix
     ./base.nix
     ./distributed_builds.nix
@@ -24,6 +25,7 @@
     ./graphics.nix
     ./sudo.nix
     ./networkmanager-networks.nix
+              # keep-sorted end
   ];
 
   options = {

@@ -8,8 +8,10 @@
 
   imports = [
     ./hardware-configuration.nix
+              # keep-sorted start
     ./nginx.nix
     ./dns.nix
+              # keep-sorted end
   ];
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;

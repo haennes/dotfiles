@@ -1,6 +1,7 @@
 { config, lib, ... }:
 {
   imports = [
+              # keep-sorted start
     ./adb.nix
     ./audio.nix
     ./base.nix
@@ -28,6 +29,7 @@
     ./wireshark.nix
     ./plantuml.nix
     ./greeter.nix
+              # keep-sorted end
   ];
 
 }

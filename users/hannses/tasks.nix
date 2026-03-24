@@ -17,10 +17,12 @@ in
     config =
       let
         vls = [
+              # keep-sorted start
           "ks"
           "os"
           "db"
           "dd"
+              # keep-sorted end
         ];
         vls_projects = map (e: "project:${e}") vls;
         vls_projects_not = map (e: "project.not:${e}") vls;

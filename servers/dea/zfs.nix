@@ -36,6 +36,7 @@ in
           };
         })
         [
+              # keep-sorted start
           "data"
           "website"
           "ankisync"
@@ -44,6 +45,7 @@ in
           "persistant"
           "taskw-tasks"
           "cal"
+              # keep-sorted end
         ]
     )
   );

@@ -25,6 +25,7 @@
     };
 
     extraPackages = with pkgs; [
+              # keep-sorted start
       screen
       catch2_3
       cmake
@@ -33,6 +34,7 @@
       valgrind
       doxygen
       gcc
+              # keep-sorted end
     ];
   };
   systemd.services.gitlab-runner.serviceConfig = {

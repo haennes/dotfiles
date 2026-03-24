@@ -35,6 +35,7 @@ with lib;
       default_phone_region = "DE";
       trusted_domains = [ "*" ];
       enabledPreviewProviders = [
+              # keep-sorted start
         "OC\\Preview\\BMP"
         "OC\\Preview\\GIF"
         "OC\\Preview\\JPEG"
@@ -46,6 +47,7 @@ with lib;
         "OC\\Preview\\TXT"
         "OC\\Preview\\XBitmap"
         "OC\\Preview\\HEIC"
+              # keep-sorted end
       ];
     };
 

@@ -2,9 +2,11 @@ hostname:
 { config, ... }:
 {
   imports = [
+              # keep-sorted start
     #../proxmox.nix
     ../../../modules/microvm_guest.nix
     ./nginx.nix
+              # keep-sorted end
   ];
 
   services.syncthing-wrapper = {

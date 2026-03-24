@@ -10,6 +10,7 @@ in
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+              # keep-sorted start
     ./zfs.nix
     ./taskchampion.nix
     #./kasm.nix
@@ -19,6 +20,7 @@ in
     ./vms.nix
     ./optionsearch.nix
     #./services/backup.nix
+              # keep-sorted end
   ];
 
   # Bootloader.

@@ -51,9 +51,11 @@ in
     };
 
     networking.firewall.allowedTCPPorts = with config.ports.ports.curr_ports; [
+              # keep-sorted start
       wg0
       wg1
       wg2
+              # keep-sorted end
     ];
     services.wireguard-wrapper = {
       # RestartOnFailure.enable = true;
@@ -186,6 +188,7 @@ in
           };
         }
         (simple_ips [
+              # keep-sorted start
           "porta%wg0"
           "syncschlawiner%wg0"
           "syncschlawiner_mkhh%wg0"
@@ -224,6 +227,7 @@ in
           "pons%wg2"
           "terminus%wg2"
           "minerva%wg2"
+              # keep-sorted end
 
         ])
       ];

@@ -7,8 +7,10 @@
       }
     ];
     definedAliases = [
+              # keep-sorted start
       "<addy"
       "<anon"
+              # keep-sorted end
     ];
     icon = favicon "addy.io";
     inherit updateInterval;

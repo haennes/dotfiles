@@ -2,9 +2,11 @@
 {
   system.stateVersion = "23.11";
   imports = [
+              # keep-sorted start
     ./nextcloud.nix
     ./ipfs.nix
     ../../../modules/microvm_guest.nix
+              # keep-sorted end
   ];
 
   microvm.mem = 4096;

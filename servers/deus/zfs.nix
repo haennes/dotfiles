@@ -36,12 +36,14 @@ in
           };
         })
         [
+              # keep-sorted start
           "data"
           "website"
           "ankisync"
           "kasmweb"
           "git"
           "minecraft"
+              # keep-sorted end
         ]
     )
     // {

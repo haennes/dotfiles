@@ -34,6 +34,7 @@ in
       default = {
         isDefault = true;
         extensions.packages = with addons; [
+              # keep-sorted start
           tridactyl
           ublock-origin
           floccus
@@ -42,6 +43,7 @@ in
           ipfs-companion
           passbolt
           clearurls
+              # keep-sorted end
         ];
         settings = settings.default;
         inherit search;

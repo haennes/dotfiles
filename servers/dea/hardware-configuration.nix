@@ -13,11 +13,13 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot.initrd.availableKernelModules = [
+              # keep-sorted start
     "xhci_pci"
     "ahci"
     "usbhid"
     "usb_storage"
     "sd_mod"
+              # keep-sorted end
   ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];

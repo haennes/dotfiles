@@ -79,11 +79,14 @@ in
     defaultVersioning.simple.params.keep = 10;
     servers = attrNames devices.all_servers;
     pseudoGroups."family" = [
+              # keep-sorted start
       "hannses"
       "mum"
       "dad"
+              # keep-sorted end
     ];
     legacyIDMap = {
+              # keep-sorted start
       "hannses__freshrss" = "freshrss";
       "hannses__AnkiBackup" = "AnkiBackup";
       "hannses__3d_printing" = "3d_printing";
@@ -109,6 +112,7 @@ in
       "dad__Galerie" = "ThomasGalerie";
       "hannses__website" = "website";
       "esw-machine__esw-machines" = "esw-machines";
+              # keep-sorted end
     };
     paths = {
       users = {
