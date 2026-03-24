@@ -468,6 +468,7 @@
             {
               programs = {
                 nixfmt.enable = true;
+                keep-sorted.enable = true;
               };
             };
           treeFmtEval = inputs.treefmt-nix.lib.evalModule pkgs formattingConfig;
