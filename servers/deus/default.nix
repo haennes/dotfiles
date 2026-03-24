@@ -2,11 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ lib, config, inputs, ... }:
+{
+  lib,
+  config,
+  inputs,
+  ...
+}:
 {
   imports = [
     # Include the results of the hardware scan.
-      inputs.esw-machines.nixosModules.default
+    inputs.esw-machines.nixosModules.default
     ./hardware-configuration.nix
     ./zfs.nix
     ./vms.nix

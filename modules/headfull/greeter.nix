@@ -1,4 +1,5 @@
-{config, ...}:  {
+{ config, ... }:
+{
   services.displayManager.ly = {
     enable = !config.services.desktopManager.gnome.enable;
     settings = {

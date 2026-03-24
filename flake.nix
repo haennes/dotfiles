@@ -459,19 +459,21 @@
           // (lib.my.genNodeSimple self "welt")
           // (lib.my.genNodeSimple self "pons");
       };
-      formatter =
-      forAllSystems (system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-        formattingConfig = {...}: {
+      formatter = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          formattingConfig =
+            { ... }:
+            {
               programs = {
                 nixfmt.enable = true;
               };
-        };
-        treeFmtEval = inputs.treefmt-nix.lib.evalModule pkgs formattingConfig;
+            };
+          treeFmtEval = inputs.treefmt-nix.lib.evalModule pkgs formattingConfig;
 
-      in
-       treeFmtEval.config.build.wrapper
+        in
+        treeFmtEval.config.build.wrapper
       );
 
       topology.x86_64-linux = import nix-topology {
