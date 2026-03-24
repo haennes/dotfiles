@@ -243,6 +243,8 @@
       url = "git+https://code.ole.blue/strichliste-rs/strichliste-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+
   };
 
   outputs =
@@ -271,6 +273,7 @@
       nix-minecraft,
       nixos-hardware,
       nuscht-search,
+      treefmt-nix,
       ...
     }:
     let
@@ -456,7 +459,20 @@
           // (lib.my.genNodeSimple self "welt")
           // (lib.my.genNodeSimple self "pons");
       };
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
+      formatter =
+      forAllSystems (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+        formattingConfig = {...}: {
+              programs = {
+                nixfmt.enable = true;
+              };
+        };
+        treeFmtEval = inputs.treefmt-nix.lib.evalModule pkgs formattingConfig;
+
+      in
+       treeFmtEval.config.build.wrapper
+      );
 
       topology.x86_64-linux = import nix-topology {
         pkgs = topology_pkgs; # Only this package set must include nix-topology.overlays.default
