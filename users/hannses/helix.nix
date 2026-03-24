@@ -42,26 +42,26 @@
       enable = true;
       defaultEditor = true;
       extraPackages = with pkgs; [
-              # keep-sorted start
-        rust-analyzer
-        nil
-        ruff
-        pyright
+        # keep-sorted start
+        bash-language-server
         black
         clang-tools
-        gcc
-        lldb
-        nix
-        tinymist
-        bash-language-server
-        typstyle
-        yazi
-        lazygit
         config.programs.nix-search-tv-script.outputPackage
-        xdg-utils
-        dhall-lsp-server
         dhall
-              # keep-sorted end
+        dhall-lsp-server
+        gcc
+        lazygit
+        lldb
+        nil
+        nix
+        pyright
+        ruff
+        rust-analyzer
+        tinymist
+        typstyle
+        xdg-utils
+        yazi
+        # keep-sorted end
 
       ];
       languages = {

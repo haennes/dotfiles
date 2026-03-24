@@ -33,13 +33,13 @@ in
     # hosts:
     # keep-sorted start
     anki = host ips.minerva.wg0 null;
+    cal = host ips.terminus.wg0 null;
+    ftb = host ips.ludus.wg1 null;
     hydra = host ips.pons.wg0 null;
     nix-serve = host ips.pons.wg0 null;
-    task = host ips.dea.wg0 null;
-    cal = host ips.terminus.wg0 null;
     rss = host ips.fons.wg0 null;
+    task = host ips.dea.wg0 null;
     zock = host "172.20.0.41" null;
-    ftb = host ips.ludus.wg1 null;
     # keep-sorted end
   };
 }

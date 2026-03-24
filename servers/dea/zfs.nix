@@ -36,16 +36,16 @@ in
           };
         })
         [
-              # keep-sorted start
-          "data"
-          "website"
+          # keep-sorted start
           "ankisync"
-          "kasmweb"
+          "cal"
+          "data"
           "git"
+          "kasmweb"
           "persistant"
           "taskw-tasks"
-          "cal"
-              # keep-sorted end
+          "website"
+          # keep-sorted end
         ]
     )
   );

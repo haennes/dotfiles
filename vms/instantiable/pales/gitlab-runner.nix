@@ -25,16 +25,16 @@
     };
 
     extraPackages = with pkgs; [
-              # keep-sorted start
-      screen
+      # keep-sorted start
       catch2_3
       cmake
-      gnumake
-      python3
-      valgrind
       doxygen
       gcc
-              # keep-sorted end
+      gnumake
+      python3
+      screen
+      valgrind
+      # keep-sorted end
     ];
   };
   systemd.services.gitlab-runner.serviceConfig = {

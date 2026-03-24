@@ -79,40 +79,40 @@ in
     defaultVersioning.simple.params.keep = 10;
     servers = attrNames devices.all_servers;
     pseudoGroups."family" = [
-              # keep-sorted start
+      # keep-sorted start
+      "dad"
       "hannses"
       "mum"
-      "dad"
-              # keep-sorted end
+      # keep-sorted end
     ];
     legacyIDMap = {
-              # keep-sorted start
-      "hannses__freshrss" = "freshrss";
-      "hannses__AnkiBackup" = "AnkiBackup";
+      # keep-sorted start
+      "dad__Galerie" = "ThomasGalerie";
+      "dad__Kamera" = "ThomasKamera";
+      "esw-machine__esw-machines" = "esw-machines";
       "hannses__3d_printing" = "3d_printing";
+      "hannses__AegisBak" = "AegisBak";
+      "hannses__AnkiBackup" = "AnkiBackup";
+      "hannses__AntennaBak" = "AntennaBak";
       "hannses__Documents" = "Documents";
-      "hannses__Notes" = "Notes";
-      "hannses__tasks" = "tasks";
+      "hannses__DownloadHandy" = "DownloadHandyH";
       "hannses__Downloads" = "Downloads";
+      "hannses__Galerie" = "HannesGalerie";
+      "hannses__Kamera" = "HannesKamera";
       "hannses__Music" = "Music";
+      "hannses__Notes" = "Notes";
+      "hannses__SignalBackup" = "SignalBackup";
       "hannses__Templates" = "Templates";
       "hannses__Videos" = "Videos";
+      "hannses__freshrss" = "freshrss";
       "hannses__game_servers" = "game_servers";
       "hannses__programming" = "programming";
-      "hannses__AegisBak" = "AegisBak";
-      "hannses__AntennaBak" = "AntennaBak";
-      "hannses__SignalBackup" = "SignalBackup";
-      "hannses__DownloadHandy" = "DownloadHandyH";
-      "hannses__Kamera" = "HannesKamera";
-      "hannses__Galerie" = "HannesGalerie";
-      "mum__WA" = "AlexandraWA";
-      "mum__Kamera" = "AlexandraKamera";
-      "mum__Galerie" = "AlexandraGalerie";
-      "dad__Kamera" = "ThomasKamera";
-      "dad__Galerie" = "ThomasGalerie";
+      "hannses__tasks" = "tasks";
       "hannses__website" = "website";
-      "esw-machine__esw-machines" = "esw-machines";
-              # keep-sorted end
+      "mum__Galerie" = "AlexandraGalerie";
+      "mum__Kamera" = "AlexandraKamera";
+      "mum__WA" = "AlexandraWA";
+      # keep-sorted end
     };
     paths = {
       users = {

@@ -18,10 +18,10 @@
             systems = [ "x86_64-linux" ] ++ config.boot.binfmt.emulatedSystems; # TODO this is somewhat a coincidence
             supportedFeatures = [
               # keep-sorted start
+              "benchmark"
+              "big-parallel"
               "kvm"
               "nixos-test"
-              "big-parallel"
-              "benchmark"
               # keep-sorted end
             ];
             maxJobs = 16;

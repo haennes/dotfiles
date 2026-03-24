@@ -1,9 +1,9 @@
 { ... }:
 {
   users.users.hannses.extraGroups = [
-              # keep-sorted start
+    # keep-sorted start
     "adbusers"
     "kvm"
-              # keep-sorted end
+    # keep-sorted end
   ];
 }

@@ -1,31 +1,31 @@
 { lib, ... }:
 {
   imports = [
-              # keep-sorted start
+    # keep-sorted start
     ./acme.nix
     ./base.nix
-    ./distributed_builds.nix
     ./crosscompile.nix
+    ./distributed_builds.nix
+    ./graphics.nix
     #./fwupd.nix
     ./i18n.nix
+    ./ips_cli.nix
+    ./minecraft.nix
+    ./networkmanager-networks.nix
+    ./nix-serve.nix
     ./nix.nix
     ./pkgs.nix
+    ./ports_cli.nix
     ./shell.nix
     ./ssh.nix
     ./store_optimize.nix
+    ./sudo.nix
     ./syncthing-wrapper.nix
-    ./wireguard-wrapper.nix
-    ./ports_cli.nix
-    ./ips_cli.nix
-    ./nix-serve.nix
-    ./minecraft.nix
     #./vms.nix
     #./microvms.nix
     ./watchers
-    ./graphics.nix
-    ./sudo.nix
-    ./networkmanager-networks.nix
-              # keep-sorted end
+    ./wireguard-wrapper.nix
+    # keep-sorted end
   ];
 
   options = {

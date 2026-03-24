@@ -7,13 +7,13 @@
       }
     ];
     definedAliases = [
-              # keep-sorted start
+      # keep-sorted start
+      "<ty"
+      "<typ"
       "<typs"
       "<typsym"
       "<tys"
-      "<ty"
-      "<typ"
-              # keep-sorted end
+      # keep-sorted end
     ];
     icon = favicon "typst.app";
     inherit updateInterval;
@@ -26,11 +26,11 @@
       }
     ];
     definedAliases = [
-              # keep-sorted start
+      # keep-sorted start
+      "<tye"
       "<type"
       "<typemoji"
-      "<tye"
-              # keep-sorted end
+      # keep-sorted end
     ];
     icon = favicon "typst.app";
     inherit updateInterval;
@@ -39,11 +39,11 @@
   "typst-universe" = {
     urls = [ { template = "https://typst.app/universe/search?q={searchTerms}"; } ];
     definedAliases = [
-              # keep-sorted start
+      # keep-sorted start
       "<typu"
       "<typuniverse"
       "<tyu"
-              # keep-sorted end
+      # keep-sorted end
     ];
     icon = favicon "typst.app";
     inherit updateInterval;

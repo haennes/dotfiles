@@ -97,11 +97,11 @@ lib.mapAttrs (_name: value: if value ? icon then value else value // { inherit i
     ];
 
     definedAliases = [
-              # keep-sorted start
-      "<npkgs"
-      "<ghnpgks"
+      # keep-sorted start
       "<ghnp"
-              # keep-sorted end
+      "<ghnpgks"
+      "<npkgs"
+      # keep-sorted end
     ];
   };
   "github nixpkgs issues" = {
@@ -112,11 +112,11 @@ lib.mapAttrs (_name: value: if value ? icon then value else value // { inherit i
     ];
 
     definedAliases = [
-              # keep-sorted start
-      "<npkgsi"
+      # keep-sorted start
       "<ghnpgksi"
       "<ghnpi"
-              # keep-sorted end
+      "<npkgsi"
+      # keep-sorted end
     ];
   };
   "NixOS Wiki" = {

@@ -2,12 +2,12 @@ hostname:
 { config, ... }:
 {
   imports = [
-              # keep-sorted start
+    # keep-sorted start
     #../proxmox.nix
     ../../../modules/microvm_guest.nix
-    ./nginx.nix
     ./gitlab-runner.nix
-              # keep-sorted end
+    ./nginx.nix
+    # keep-sorted end
   ];
   microvm = {
     mem = 8193;

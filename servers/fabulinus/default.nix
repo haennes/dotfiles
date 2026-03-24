@@ -6,11 +6,11 @@
 }:
 {
   imports = [
-              # keep-sorted start
-    inputs.esw-machines.nixosModules.default
-    ./wifi.nix
+    # keep-sorted start
     ./hardware-configuration.nix
-              # keep-sorted end
+    ./wifi.nix
+    inputs.esw-machines.nixosModules.default
+    # keep-sorted end
   ];
   users.users.root.initialPassword = "root";
   networking = {
@@ -22,13 +22,13 @@
     };
   };
   boot.initrd.availableKernelModules = [
-              # keep-sorted start
+    # keep-sorted start
     "nvme"
     "pcie-brcmstb"
-    "usbhid"
     "usb_storage"
+    "usbhid"
     "vc4"
-              # keep-sorted end
+    # keep-sorted end
   ];
   networking.networkmanager.enable = true;
   security.rtkit.enable = true;

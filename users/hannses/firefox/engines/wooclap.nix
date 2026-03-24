@@ -5,10 +5,10 @@
     urls = [ { template = "https://app.wooclap.com/{searchTerms}"; } ];
     icon = "https://wooclap-assets-production.wooclap.com/11.83.0-47c1c0efee233d790dc49acfc76f32f4f91ceba0/assets/favicon.ico";
     definedAliases = [
-              # keep-sorted start
-      "<woo"
+      # keep-sorted start
       "<clap"
-              # keep-sorted end
+      "<woo"
+      # keep-sorted end
     ];
     inherit updateInterval;
   };

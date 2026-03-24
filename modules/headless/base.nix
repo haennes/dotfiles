@@ -5,11 +5,11 @@
     group = "forward";
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
-              # keep-sorted start
+      # keep-sorted start
+      sshkeys.forward
       sshkeys.hannses
       sshkeys.root_pve
-      sshkeys.forward
-              # keep-sorted end
+      # keep-sorted end
     ];
   };
   users.groups.forward = { };

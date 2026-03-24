@@ -3,10 +3,10 @@
   "mdi-icons" = {
     urls = [ { template = "https://pictogrammers.com/library/mdi?q={searchTerms}"; } ];
     definedAliases = [
-              # keep-sorted start
-      "<mdi"
+      # keep-sorted start
       "<i1"
-              # keep-sorted end
+      "<mdi"
+      # keep-sorted end
     ];
     icon = favicon "pictogrammers.com";
     inherit updateInterval;
@@ -15,10 +15,10 @@
   "simpleicons" = {
     urls = [ { template = "https://simpleicons.org/?q={searchTerms}"; } ];
     definedAliases = [
-              # keep-sorted start
-      "<si"
+      # keep-sorted start
       "<i2"
-              # keep-sorted end
+      "<si"
+      # keep-sorted end
     ];
     icon = favicon "simpleicons.org/images";
     inherit updateInterval;

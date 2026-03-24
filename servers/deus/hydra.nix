@@ -39,12 +39,12 @@ in
       protocol = null;
       systems = [ "x86_64-linux" ] ++ config.boot.binfmt.emulatedSystems;
       supportedFeatures = [
-              # keep-sorted start
+        # keep-sorted start
+        "benchmark"
+        "big-parallel"
         "kvm"
         "nixos-test"
-        "big-parallel"
-        "benchmark"
-              # keep-sorted end
+        # keep-sorted end
       ];
       maxJobs = 16;
     }
@@ -52,10 +52,10 @@ in
 
   nix.settings.trusted-users = [ "forward" ];
   nix.settings.allowed-uris = [
-              # keep-sorted start
-    "github:"
+    # keep-sorted start
     "git+https://github.com/"
     "git+ssh://github.com/"
-              # keep-sorted end
+    "github:"
+    # keep-sorted end
   ];
 }

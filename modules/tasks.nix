@@ -25,12 +25,12 @@
           }
         )
         [
-              # keep-sorted start
-          (simple "uni")
+          # keep-sorted start
+          (simple "coding")
           (simple "haushalt")
           (simple "projekte")
-          (simple "coding")
-              # keep-sorted end
+          (simple "uni")
+          # keep-sorted end
         ];
   };
 }

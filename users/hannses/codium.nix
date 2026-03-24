@@ -4,16 +4,16 @@
     enable = true;
     package = pkgs.vscodium;
     profiles.default.extensions = with pkgs.vscode-extensions; [
-              # keep-sorted start
+      # keep-sorted start
+      asvetliakov.vscode-neovim
+      gruntfuggly.todo-tree
       mkhl.direnv
       #matklad.rust-analyzer
       #rust-lang.rust-analyzer
       serayuzgur.crates
       tamasfe.even-better-toml
       usernamehw.errorlens
-      gruntfuggly.todo-tree
-      asvetliakov.vscode-neovim
-              # keep-sorted end
+      # keep-sorted end
     ];
   };
 }

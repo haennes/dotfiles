@@ -7,52 +7,52 @@
 }:
 {
   imports = [
-              # keep-sorted start
-    ./hyprpaper.nix
-    ./fonts.nix
-    ./gnome_config.nix
-    ./hyprland.nix
-    ./idle.nix
-    ./gtk.nix # (hopefully) just dark mode
-    ./mime.nix # setup default programs
-    ./waybar.nix
-    ./cliphist.nix
-    ./zsh.nix
-    ./carapace.nix
+    # keep-sorted start
     ./atuin.nix
-    ./dunst.nix
-    ./rofi.nix
-    ./pqiv.nix # images
-    ./udiskie.nix
-    ./power.nix
-    ./starship.nix
-    #update broke ./vimiv.nix # images
-    ./codium.nix
-    ./vim.nix
-    ./helix.nix
-    ./yazi.nix
-    ./zathura.nix
-    ./firefox
-    ./rss.nix
-    ./mail.nix
-    ./ssh.nix
-    ./git.nix
-    ./gpg.nix
-    ./virtualization.nix
-    ./kitty.nix
-    ./nix.nix
-    ./tmux.nix
-    ./tasks.nix
-    ./television.nix
-    ./wezterm.nix
-    ./nix-search.nix
-    ./zoxide.nix
     ./bookmarks.nix
     ./btop.nix
-    ./shell.nix
+    ./carapace.nix
+    ./cliphist.nix
+    #update broke ./vimiv.nix # images
+    ./codium.nix
     ./direnv.nix
+    ./dunst.nix
+    ./firefox
+    ./fonts.nix
+    ./git.nix
+    ./gnome_config.nix
+    ./gpg.nix
+    ./gtk.nix # (hopefully) just dark mode
+    ./helix.nix
+    ./hyprland.nix
+    ./hyprpaper.nix
+    ./idle.nix
+    ./kitty.nix
+    ./mail.nix
+    ./mime.nix # setup default programs
+    ./nix-search.nix
+    ./nix.nix
+    ./power.nix
+    ./pqiv.nix # images
+    ./rofi.nix
+    ./rss.nix
+    ./shell.nix
+    ./ssh.nix
+    ./starship.nix
+    ./tasks.nix
+    ./television.nix
+    ./tmux.nix
+    ./udiskie.nix
     ./vicinae.nix
-              # keep-sorted end
+    ./vim.nix
+    ./virtualization.nix
+    ./waybar.nix
+    ./wezterm.nix
+    ./yazi.nix
+    ./zathura.nix
+    ./zoxide.nix
+    ./zsh.nix
+    # keep-sorted end
   ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

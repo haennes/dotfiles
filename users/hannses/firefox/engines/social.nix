@@ -5,10 +5,10 @@
     icon = "https://docs.invidious.io/images/invidious.png";
     inherit updateInterval;
     definedAliases = [
-              # keep-sorted start
-      "<yt"
+      # keep-sorted start
       "<inv"
-              # keep-sorted end
+      "<yt"
+      # keep-sorted end
     ];
   };
 

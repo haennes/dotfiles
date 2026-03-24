@@ -51,11 +51,11 @@ in
     };
 
     networking.firewall.allowedTCPPorts = with config.ports.ports.curr_ports; [
-              # keep-sorted start
+      # keep-sorted start
       wg0
       wg1
       wg2
-              # keep-sorted end
+      # keep-sorted end
     ];
     services.wireguard-wrapper = {
       # RestartOnFailure.enable = true;
@@ -188,46 +188,46 @@ in
           };
         }
         (simple_ips [
-              # keep-sorted start
+          # keep-sorted start
+
+          "concordia%wg0"
+          "dea%wg0"
+          "deus%wg0"
+          "fabulinus%wg0"
+          "felix%wg1"
+          "fons%wg0"
+          "fons%wg2"
+          "handy_hannses%wg0"
+          "hesperos_1%wg0"
+          "historia%wg0"
+          "historia%wg2"
+          "janus_1%wg0"
+          "janus_1%wg2"
+          "joni%wg1"
+          # "mkhh%wg0"
+          "ludus%wg0"
+          "ludus%wg1"
+          "ludus%wg2"
+          "minerva%wg0"
+          "minerva%wg2"
+          "pales_1%wg0"
+          "pons%wg2"
           "porta%wg0"
+          "proserpina_1%wg0"
+          "proserpina_2%wg0"
           "syncschlawiner%wg0"
           "syncschlawiner_mkhh%wg0"
           "tabula%wg0"
           "tabula_1%wg0"
           "tabula_3%wg0"
-          "fabulinus%wg0"
-          "historia%wg0"
-          "thinkpad%wg0"
-          "deus%wg0"
-          "dea%wg0"
-          "yoga%wg0"
-          "handy_hannses%wg0"
-          "fons%wg0"
-          "minerva%wg0"
-          "vertumnus%wg0"
-          "concordia%wg0"
-          "proserpina_1%wg0"
-          "proserpina_2%wg0"
-          "pales_1%wg0"
-          "thinknew%wg0"
-          # "mkhh%wg0"
-          "ludus%wg0"
-          "ludus%wg1"
-          "yoga%wg1"
-          "joni%wg1"
-          "felix%wg1"
           "terminus%wg0"
-          "janus_1%wg0"
-          "hesperos_1%wg0"
-
-          "fons%wg2"
-          "janus_1%wg2"
-          "historia%wg2"
-          "ludus%wg2"
-          "pons%wg2"
           "terminus%wg2"
-          "minerva%wg2"
-              # keep-sorted end
+          "thinknew%wg0"
+          "thinkpad%wg0"
+          "vertumnus%wg0"
+          "yoga%wg0"
+          "yoga%wg1"
+          # keep-sorted end
 
         ])
       ];

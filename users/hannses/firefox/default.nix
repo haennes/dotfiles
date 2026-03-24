@@ -34,16 +34,16 @@ in
       default = {
         isDefault = true;
         extensions.packages = with addons; [
-              # keep-sorted start
+          # keep-sorted start
+          clearurls
+          darkreader
+          floccus
+          ipfs-companion
+          keepassxc-browser
+          passbolt
           tridactyl
           ublock-origin
-          floccus
-          keepassxc-browser
-          darkreader
-          ipfs-companion
-          passbolt
-          clearurls
-              # keep-sorted end
+          # keep-sorted end
         ];
         settings = settings.default;
         inherit search;

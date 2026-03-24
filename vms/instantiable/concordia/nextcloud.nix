@@ -39,10 +39,10 @@ in
   #  [ "users" "groups" ];
   system.activationScripts.ensure-dirs-exist = {
     deps = [
-              # keep-sorted start
-      "users"
+      # keep-sorted start
       "groups"
-              # keep-sorted end
+      "users"
+      # keep-sorted end
     ];
     text = ''
       mkdir -p ${NCdataDir}
@@ -77,19 +77,19 @@ in
       default_phone_region = "DE";
       trusted_domains = [ "*" ]; # TODO set trusted domains here
       enabledPreviewProviders = [
-              # keep-sorted start
+        # keep-sorted start
         "OC\\Preview\\BMP"
         "OC\\Preview\\GIF"
+        "OC\\Preview\\HEIC"
         "OC\\Preview\\JPEG"
         "OC\\Preview\\Krita"
-        "OC\\Preview\\MarkDown"
         "OC\\Preview\\MP3"
+        "OC\\Preview\\MarkDown"
         "OC\\Preview\\OpenDocument"
         "OC\\Preview\\PNG"
         "OC\\Preview\\TXT"
         "OC\\Preview\\XBitmap"
-        "OC\\Preview\\HEIC"
-              # keep-sorted end
+        # keep-sorted end
       ];
     };
 

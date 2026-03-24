@@ -4,26 +4,26 @@
   nixConfig = {
     # abort-on-warn = true;
     extra-experimental-features = [
-              # keep-sorted start
-      "pipe-operators"
+      # keep-sorted start
       "flake-self-attrs"
-              # keep-sorted end
+      "pipe-operators"
+      # keep-sorted end
     ];
     # allow-import-from-derivation = false; #FIXME remove this, these are ifds
 
     extra-substituters = [
-              # keep-sorted start
+      # keep-sorted start
+      "https://microvm.cachix.org"
       "https://nix-community.cachix.org/"
       "https://numtide.cachix.org/"
-      "https://microvm.cachix.org"
-              # keep-sorted end
+      # keep-sorted end
     ];
     extra-trusted-public-keys = [
-              # keep-sorted start
+      # keep-sorted start
+      "microvm.cachix.org-1:oXnBc6hRE3eX5rSYdRyMYXnfzcCxC7yKPTbZXALsqys="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
-      "microvm.cachix.org-1:oXnBc6hRE3eX5rSYdRyMYXnfzcCxC7yKPTbZXALsqys="
-              # keep-sorted end
+      # keep-sorted end
     ];
   };
   # inputs.self.submodules = true; #FIXME this is an upstream bug
@@ -257,39 +257,39 @@
     inputs@{
       self,
       nixpkgs,
-              # keep-sorted start
+      # keep-sorted start
+      IPorts,
+      deploy-rs,
+      futils,
       home-manager,
       home-manager-option-search,
-      deploy-rs,
-      rust-overlay,
-      nur,
+      menu-calc,
+      nh,
+      nix-minecraft,
+      nix-topology,
+      nix-update-inputs,
       nix-yazi-plugins,
-      futils,
-      wireguard-wrapper,
-      wg-friendly-peer-names,
+      nixos-hardware,
+      nur,
+      nuscht-search,
+      pinentry-keepassxc,
+      rust-overlay,
+      signal-whisper,
       syncthing-wrapper,
       tasks_md,
-      nix-update-inputs,
-      signal-whisper,
-      IPorts,
-      nix-topology,
-      watcher,
-      nh,
-      menu-calc,
-      pinentry-keepassxc,
-      nix-minecraft,
-      nixos-hardware,
-      nuscht-search,
       treefmt-nix,
-              # keep-sorted end
+      watcher,
+      wg-friendly-peer-names,
+      wireguard-wrapper,
+      # keep-sorted end
       ...
     }:
     let
       forAllSystems = nixpkgs.lib.genAttrs [
-              # keep-sorted start
-        "x86_64-linux"
+        # keep-sorted start
         "aarch64-linux"
-              # keep-sorted end
+        "x86_64-linux"
+        # keep-sorted end
       ];
       lib = nixpkgs.lib.extend (
         self: super: {
@@ -300,39 +300,39 @@
         }
       );
       all_modules = [
-              # keep-sorted start
-        ./modules/all
+        # keep-sorted start
         ./modules/age.nix
+        ./modules/all
         ./modules/machine_properties.nix
-        ./secrets/macs.nix
         ./secrets/ips.nix
+        ./secrets/macs.nix
         ./secrets/ports.nix
-        wireguard-wrapper.nixosModules.wireguard-wrapper
-        syncthing-wrapper.nixosModules.syncthing-wrapper
         #nur.nixosModules.nur
         IPorts.nixosModules.default # adds ips, macs and ports
         nix-topology.nixosModules.default
+        syncthing-wrapper.nixosModules.syncthing-wrapper
         tasks_md.nixosModules.default
-        wg-friendly-peer-names.nixosModules.default
         watcher.nixosModules.default
-              # keep-sorted end
+        wg-friendly-peer-names.nixosModules.default
+        wireguard-wrapper.nixosModules.wireguard-wrapper
+        # keep-sorted end
       ];
       client_modules = [
         home-manager.nixosModules.home-manager
         #home-manager-option-search.nixosModules.default
         (import ./modules/home_manager)
-              # keep-sorted start
+        # keep-sorted start
         ./modules/gnome
         ./modules/gnome/specialisation.nix
         ./modules/headfull
-              # keep-sorted end
+        # keep-sorted end
       ];
       server_modules = [ ./modules/headless ];
       microvm_modules_host = [
-              # keep-sorted start
-        inputs.microvm.nixosModules.host
+        # keep-sorted start
         ./modules/microvm_host.nix
-              # keep-sorted end
+        inputs.microvm.nixosModules.host
+        # keep-sorted end
       ];
       microvm_modules_guest = [ ];
       # ./modules/microvm_guest.nix is not included as it includes these modules when using declarative configuration
@@ -373,22 +373,22 @@
     futils.lib.mkFlake {
       inherit self inputs;
       supportedSystems = [
-              # keep-sorted start
-        "x86_64-linux"
+        # keep-sorted start
         "aarch64-linux"
-              # keep-sorted end
+        "x86_64-linux"
+        # keep-sorted end
       ];
 
       sharedOverlays = [
-              # keep-sorted start
-        nur.overlays.default
-        rust-overlay.overlays.default
-        nix-yazi-plugins.overlays.default
-        nix-update-inputs.overlays.default
-        signal-whisper.overlays.default
+        # keep-sorted start
         inputs.nix-alien.overlays.default
         nh.overlays.default
-              # keep-sorted end
+        nix-update-inputs.overlays.default
+        nix-yazi-plugins.overlays.default
+        nur.overlays.default
+        rust-overlay.overlays.default
+        signal-whisper.overlays.default
+        # keep-sorted end
 
       ];
       nix = {

@@ -18,14 +18,14 @@ in
       isNormalUser = true;
       description = "hannses";
       extraGroups = [
-              # keep-sorted start
-        "networkmanager"
-        "wheel"
-        "family"
-        "video"
-        "libvirtd"
+        # keep-sorted start
         "docker"
-              # keep-sorted end
+        "family"
+        "libvirtd"
+        "networkmanager"
+        "video"
+        "wheel"
+        # keep-sorted end
       ];
     };
   }
@@ -35,18 +35,18 @@ in
   users.extraGroups.vboxusers.members = [ "hannses" ];
   users.groups = {
     "family".members = [
-              # keep-sorted start
-      "mum"
+      # keep-sorted start
       "dad"
       "hannses"
-              # keep-sorted end
+      "mum"
+      # keep-sorted end
     ];
   };
 }
 // (obtain_user_passwords [
-              # keep-sorted start
+  # keep-sorted start
+  "dad"
   "hannses"
   "mum"
-  "dad"
-              # keep-sorted end
+  # keep-sorted end
 ])

@@ -13,10 +13,10 @@ in
 
   system.activationScripts.taskw-ensure-ownership = {
     deps = [
-              # keep-sorted start
-      "users"
+      # keep-sorted start
       "groups"
-              # keep-sorted end
+      "users"
+      # keep-sorted end
     ];
     text = ''
       mkdir -p ${dataDir}

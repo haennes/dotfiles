@@ -14,9 +14,9 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-              # keep-sorted start
+    # keep-sorted start
     inputs.lanzaboote.nixosModules.lanzaboote
-              # keep-sorted end
+    # keep-sorted end
   ];
 
   # Bootloader.

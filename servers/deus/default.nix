@@ -12,14 +12,14 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-              # keep-sorted start
-    inputs.esw-machines.nixosModules.default
-    ./zfs.nix
+    # keep-sorted start
     ./vms.nix
+    ./zfs.nix
+    inputs.esw-machines.nixosModules.default
     #./kasm.nix
     # ./hydra.nix
     #./services/backup.nix
-              # keep-sorted end
+    # keep-sorted end
   ];
 
   boot.loader = {
