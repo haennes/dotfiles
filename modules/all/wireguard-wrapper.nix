@@ -50,10 +50,11 @@ in
       enable = true;
     };
 
-    networking.firewall.allowedTCPPorts = [
-      51821
-      51822
-    ]; # TODO this should use port config
+    networking.firewall.allowedTCPPorts = with config.ports.ports.curr_ports; [
+      wg0
+      wg1
+      wg2
+    ];
     services.wireguard-wrapper = {
       # RestartOnFailure.enable = true;
       kind = lib.mkDefault "wireguard"; # use "normal" backend by default
@@ -215,6 +216,15 @@ in
           "terminus%wg0"
           "janus_1%wg0"
           "hesperos_1%wg0"
+
+          "fons%wg2"
+          "janus_1%wg2"
+          "historia%wg2"
+          "ludus%wg2"
+          "pons%wg2"
+          "terminus%wg2"
+          "minerva%wg2"
+
         ])
       ];
       publicKeyFunc =
