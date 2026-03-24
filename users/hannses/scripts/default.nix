@@ -27,16 +27,16 @@ lib.mapAttrs (name: value: importNixScript name value) (
 )
 // {
   startup = import ./startup.nix scripts_input; # isnt actually a shell-script
-  disable_ext_monitors = pkgs.writers.writeNuBin "disable_ext_monitors" ''
-    def disable_ext_monitors [] {
-      let monitors = hyprctl monitors -j
-      let ext_monitors =  $monitors | from json | where { |e| $e.name != "eDP-1"}
-      for m in $ext_monitors {
-        echo "disabling monitor" $m.name
-        ^hyprctl keyword monitor $m.id,disable
+  disable_ext_monitors = pkgs.writers.writeNuBin "disable_ext_monitors" /* nu */ ''
+      def disable_ext_monitors [] {
+        let monitors = (hyprctl monitors -j)
+        print $monitors
+        let ext_monitors =  $monitors | from json | where { |e| $e.name != "eDP-1"}
+        for m in $ext_monitors {
+          print "disabling monitor" $m.name
+          run-external "hyprctl" "keyword" "monitor" $"($m.name),disable"
+        }
       }
-    }
-
-    disable_ext_monitors 
-  '';
+      disable_ext_monitors 
+    '';
 }
