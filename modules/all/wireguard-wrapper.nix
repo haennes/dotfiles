@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   inherit (lib.my) ip_cidr subnet_cidr;
-  inherit (lib) split mapAttrsToList;
+  inherit (lib) split mapAttrsToList splitString;
   ips = config.ips.ips.ips.default;
   hostname = config.networking.hostName;
 
@@ -39,7 +39,7 @@ let
           name_if = name_if_from_str node;
         in
         nodes.${name_if.name}.ifs.${name_if.interface}
-      ) connection
+      ) (splitString "-" connection)
     ) connections;
 
 in
@@ -61,114 +61,34 @@ in
       # RestartOnFailure.enable = true;
       kind = lib.mkDefault "wireguard"; # use "normal" backend by default
       connections = map_to_cfg_nodes_from_str cfg.nodes [
-        [
-          "tabula%wg0"
-          "pons%wg0"
-        ]
-        [
-          "tabula_1%wg0"
-          "pons%wg0"
-        ]
-        [
-          "tabula_3%wg0"
-          "pons%wg0"
-        ]
-        [
-          "porta%wg0"
-          "pons%wg0"
-        ]
-        # [ "syncschlawiner%wg0" "welt%wg0" ]
-        # [ "syncschlawiner_mkhh%wg0" "welt%wg0" ]
-        [
-          "handy_hannses%wg0"
-          "pons%wg0"
-        ]
-        [
-          "thinkpad%wg0"
-          "pons%wg0"
-        ]
-        [
-          "yoga%wg0"
-          "pons%wg0"
-        ]
-        [
-          "deus%wg0"
-          "pons%wg0"
-        ]
-        [
-          "dea%wg0"
-          "pons%wg0"
-        ]
-        [
-          "historia%wg0"
-          "pons%wg0"
-        ]
-        [
-          "fons%wg0"
-          "pons%wg0"
-        ]
-        [
-          "minerva%wg0"
-          "pons%wg0"
-        ]
-        [
-          "vertumnus%wg0"
-          "pons%wg0"
-        ]
-        # [ "concordia%wg0" "pons%wg0" ]
-        [
-          "proserpina_1%wg0"
-          "pons%wg0"
-        ]
-        [
-          "proserpina_2%wg0"
-          "pons%wg0"
-        ]
-        [
-          "pales_1%wg0"
-          "pons%wg0"
-        ]
-        [
-          "thinknew%wg0"
-          "pons%wg0"
-        ]
-        # [ "mkhh%wg0" "welt%wg0" ]
-        [
-          "ludus%wg0"
-          "pons%wg0"
-        ]
-        [
-          "ludus%wg1"
-          "pons%wg1"
-        ]
-        [
-          "yoga%wg1"
-          "pons%wg1"
-        ]
-        [
-          "joni%wg1"
-          "pons%wg1"
-        ]
-        [
-          "felix%wg1"
-          "pons%wg1"
-        ]
-        [
-          "terminus%wg0"
-          "pons%wg0"
-        ]
-        [
-          "janus_1%wg0"
-          "pons%wg0"
-        ]
-        [
-          "hesperos_1%wg0"
-          "pons%wg0"
-        ]
-        [
-          "fabulinus%wg0"
-          "pons%wg0"
-        ]
+        # keep-sorted start sticky_comments=no block=yes
+        "tabula%wg0-pons%wg0" 
+        "tabula_1%wg0-pons%wg0" 
+        "tabula_3%wg0-pons%wg0" 
+        "porta%wg0-pons%wg0" 
+        "handy_hannses%wg0-pons%wg0" 
+        "thinkpad%wg0-pons%wg0" 
+        "yoga%wg0-pons%wg0" 
+        "deus%wg0-pons%wg0" 
+        "dea%wg0-pons%wg0" 
+        "historia%wg0-pons%wg0" 
+        "fons%wg0-pons%wg0" 
+        "minerva%wg0-pons%wg0" 
+        "vertumnus%wg0-pons%wg0" 
+        "proserpina_1%wg0-pons%wg0" 
+        "proserpina_2%wg0-pons%wg0" 
+        "pales_1%wg0-pons%wg0" 
+        "thinknew%wg0-pons%wg0" 
+        "ludus%wg0-pons%wg0" 
+        "ludus%wg1-pons%wg1" 
+        "yoga%wg1-pons%wg1" 
+        "joni%wg1-pons%wg1" 
+        "felix%wg1-pons%wg1" 
+        "terminus%wg0-pons%wg0" 
+        "janus_1%wg0-pons%wg0" 
+        "hesperos_1%wg0-pons%wg0" 
+        "fabulinus%wg0-pons%wg0" 
+        # keep-sorted end
       ];
       nodes = lib.mkMerge [
         {
