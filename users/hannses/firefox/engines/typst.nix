@@ -7,7 +7,7 @@
       }
     ];
     definedAliases = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "<ty"
       "<typ"
       "<typs"
@@ -26,7 +26,7 @@
       }
     ];
     definedAliases = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "<tye"
       "<type"
       "<typemoji"
@@ -39,7 +39,7 @@
   "typst-universe" = {
     urls = [ { template = "https://typst.app/universe/search?q={searchTerms}"; } ];
     definedAliases = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "<typu"
       "<typuniverse"
       "<tyu"

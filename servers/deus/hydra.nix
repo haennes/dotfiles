@@ -39,7 +39,7 @@ in
       protocol = null;
       systems = [ "x86_64-linux" ] ++ config.boot.binfmt.emulatedSystems;
       supportedFeatures = [
-        # keep-sorted start
+        # keep-sorted start sticky_comments=no block=yes
         "benchmark"
         "big-parallel"
         "kvm"
@@ -52,7 +52,7 @@ in
 
   nix.settings.trusted-users = [ "forward" ];
   nix.settings.allowed-uris = [
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
     "git+https://github.com/"
     "git+ssh://github.com/"
     "github:"

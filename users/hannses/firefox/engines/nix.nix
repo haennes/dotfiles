@@ -97,7 +97,7 @@ lib.mapAttrs (_name: value: if value ? icon then value else value // { inherit i
     ];
 
     definedAliases = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "<ghnp"
       "<ghnpgks"
       "<npkgs"
@@ -112,7 +112,7 @@ lib.mapAttrs (_name: value: if value ? icon then value else value // { inherit i
     ];
 
     definedAliases = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "<ghnpgksi"
       "<ghnpi"
       "<npkgsi"

@@ -13,7 +13,7 @@ in
 
   system.activationScripts.taskw-ensure-ownership = {
     deps = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "groups"
       "users"
       # keep-sorted end

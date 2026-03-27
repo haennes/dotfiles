@@ -51,7 +51,7 @@ in
     };
 
     networking.firewall.allowedTCPPorts = with config.ports.ports.curr_ports; [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       wg0
       wg1
       wg2
@@ -188,7 +188,7 @@ in
           };
         }
         (simple_ips [
-          # keep-sorted start
+          # keep-sorted start sticky_comments=no block=yes
 
           "concordia%wg0"
           "dea%wg0"
@@ -204,7 +204,6 @@ in
           "janus_1%wg0"
           "janus_1%wg2"
           "joni%wg1"
-          # "mkhh%wg0"
           "ludus%wg0"
           "ludus%wg1"
           "ludus%wg2"
@@ -227,6 +226,7 @@ in
           "vertumnus%wg0"
           "yoga%wg0"
           "yoga%wg1"
+          # "mkhh%wg0"
           # keep-sorted end
 
         ])

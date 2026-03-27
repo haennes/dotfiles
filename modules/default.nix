@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
     ./adb.nix
     ./age.nix
     ./all

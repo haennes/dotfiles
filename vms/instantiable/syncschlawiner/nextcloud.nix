@@ -35,7 +35,7 @@ with lib;
       default_phone_region = "DE";
       trusted_domains = [ "*" ];
       enabledPreviewProviders = [
-        # keep-sorted start
+        # keep-sorted start sticky_comments=no block=yes
         "OC\\Preview\\BMP"
         "OC\\Preview\\GIF"
         "OC\\Preview\\HEIC"

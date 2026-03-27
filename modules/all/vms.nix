@@ -37,7 +37,7 @@ in
   config = rec {
     vms_map = {
       tabula = [
-        # keep-sorted start
+        # keep-sorted start sticky_comments=no block=yes
         "dea"
         "deus"
         "yoga"
@@ -45,7 +45,7 @@ in
       ];
       #tabula = [ "dea" ];
       proserpina = [
-        # keep-sorted start
+        # keep-sorted start sticky_comments=no block=yes
         "dea"
         "deus"
         # keep-sorted end

@@ -36,7 +36,7 @@ in
           };
         })
         [
-          # keep-sorted start
+          # keep-sorted start sticky_comments=no block=yes
           "ankisync"
           "data"
           "git"

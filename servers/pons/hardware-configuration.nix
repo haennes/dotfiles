@@ -3,7 +3,7 @@
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
   boot.loader.grub.device = "/dev/vda";
   boot.initrd.availableKernelModules = [
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
     "ata_piix"
     "uhci_hcd"
     "vmw_pvscsi"

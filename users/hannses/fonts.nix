@@ -2,7 +2,7 @@
 {
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
     liberation_ttf
     nerd-fonts.jetbrains-mono
     noto-fonts

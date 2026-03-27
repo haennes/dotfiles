@@ -12,13 +12,13 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
+    # ./hydra.nix
+    #./kasm.nix
+    #./services/backup.nix
     ./vms.nix
     ./zfs.nix
     inputs.esw-machines.nixosModules.default
-    #./kasm.nix
-    # ./hydra.nix
-    #./services/backup.nix
     # keep-sorted end
   ];
 

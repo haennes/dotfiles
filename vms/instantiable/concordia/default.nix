@@ -2,7 +2,7 @@
 {
   system.stateVersion = "23.11";
   imports = [
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
     ../../../modules/microvm_guest.nix
     ./ipfs.nix
     ./nextcloud.nix

@@ -18,7 +18,7 @@ in
       isNormalUser = true;
       description = "hannses";
       extraGroups = [
-        # keep-sorted start
+        # keep-sorted start sticky_comments=no block=yes
         "docker"
         "family"
         "libvirtd"
@@ -35,7 +35,7 @@ in
   users.extraGroups.vboxusers.members = [ "hannses" ];
   users.groups = {
     "family".members = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "dad"
       "hannses"
       "mum"
@@ -44,7 +44,7 @@ in
   };
 }
 // (obtain_user_passwords [
-  # keep-sorted start
+  # keep-sorted start sticky_comments=no block=yes
   "dad"
   "hannses"
   "mum"

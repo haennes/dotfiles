@@ -1,13 +1,15 @@
 { lib, ... }:
 {
   imports = [
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
+    #./fwupd.nix
+    #./microvms.nix
+    #./vms.nix
     ./acme.nix
     ./base.nix
     ./crosscompile.nix
     ./distributed_builds.nix
     ./graphics.nix
-    #./fwupd.nix
     ./i18n.nix
     ./ips_cli.nix
     ./minecraft.nix
@@ -21,8 +23,6 @@
     ./store_optimize.nix
     ./sudo.nix
     ./syncthing-wrapper.nix
-    #./vms.nix
-    #./microvms.nix
     ./watchers
     ./wireguard-wrapper.nix
     # keep-sorted end

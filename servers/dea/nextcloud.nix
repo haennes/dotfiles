@@ -41,7 +41,7 @@ in
 
   system.activationScripts.ensure-dirs-exist = {
     deps = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "groups"
       "users"
       # keep-sorted end
@@ -79,7 +79,7 @@ in
       default_phone_region = "DE";
       trusted_domains = [ "*" ]; # TODO set trusted domains here
       enabledPreviewProviders = [
-        # keep-sorted start
+        # keep-sorted start sticky_comments=no block=yes
         "OC\\Preview\\BMP"
         "OC\\Preview\\GIF"
         "OC\\Preview\\HEIC"

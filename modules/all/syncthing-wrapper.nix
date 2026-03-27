@@ -79,14 +79,14 @@ in
     defaultVersioning.simple.params.keep = 10;
     servers = attrNames devices.all_servers;
     pseudoGroups."family" = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "dad"
       "hannses"
       "mum"
       # keep-sorted end
     ];
     legacyIDMap = {
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "dad__Galerie" = "ThomasGalerie";
       "dad__Kamera" = "ThomasKamera";
       "esw-machine__esw-machines" = "esw-machines";
@@ -221,6 +221,14 @@ in
           inherit fabulinus proserpina_1 deus;
         }
         // servers;
+        "scan" = {
+          pseudoGroups = [ "family" ];
+          devices = {
+            inherit janus_1;
+          }
+          // all_pcs_minimal
+          // servers;
+        };
       };
   };
 

@@ -4,7 +4,7 @@
   nixConfig = {
     # abort-on-warn = true;
     extra-experimental-features = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "flake-self-attrs"
       "pipe-operators"
       # keep-sorted end
@@ -12,14 +12,14 @@
     # allow-import-from-derivation = false; #FIXME remove this, these are ifds
 
     extra-substituters = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "https://microvm.cachix.org"
       "https://nix-community.cachix.org/"
       "https://numtide.cachix.org/"
       # keep-sorted end
     ];
     extra-trusted-public-keys = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "microvm.cachix.org-1:oXnBc6hRE3eX5rSYdRyMYXnfzcCxC7yKPTbZXALsqys="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
@@ -257,7 +257,7 @@
     inputs@{
       self,
       nixpkgs,
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       IPorts,
       deploy-rs,
       futils,
@@ -286,7 +286,7 @@
     }:
     let
       forAllSystems = nixpkgs.lib.genAttrs [
-        # keep-sorted start
+        # keep-sorted start sticky_comments=no block=yes
         "aarch64-linux"
         "x86_64-linux"
         # keep-sorted end
@@ -300,14 +300,14 @@
         }
       );
       all_modules = [
-        # keep-sorted start
+        # keep-sorted start sticky_comments=no block=yes
+        #nur.nixosModules.nur
         ./modules/age.nix
         ./modules/all
         ./modules/machine_properties.nix
         ./secrets/ips.nix
         ./secrets/macs.nix
         ./secrets/ports.nix
-        #nur.nixosModules.nur
         IPorts.nixosModules.default # adds ips, macs and ports
         nix-topology.nixosModules.default
         syncthing-wrapper.nixosModules.syncthing-wrapper
@@ -321,7 +321,7 @@
         home-manager.nixosModules.home-manager
         #home-manager-option-search.nixosModules.default
         (import ./modules/home_manager)
-        # keep-sorted start
+        # keep-sorted start sticky_comments=no block=yes
         ./modules/gnome
         ./modules/gnome/specialisation.nix
         ./modules/headfull
@@ -329,7 +329,7 @@
       ];
       server_modules = [ ./modules/headless ];
       microvm_modules_host = [
-        # keep-sorted start
+        # keep-sorted start sticky_comments=no block=yes
         ./modules/microvm_host.nix
         inputs.microvm.nixosModules.host
         # keep-sorted end
@@ -373,14 +373,14 @@
     futils.lib.mkFlake {
       inherit self inputs;
       supportedSystems = [
-        # keep-sorted start
+        # keep-sorted start sticky_comments=no block=yes
         "aarch64-linux"
         "x86_64-linux"
         # keep-sorted end
       ];
 
       sharedOverlays = [
-        # keep-sorted start
+        # keep-sorted start sticky_comments=no block=yes
         inputs.nix-alien.overlays.default
         nh.overlays.default
         nix-update-inputs.overlays.default
@@ -472,7 +472,7 @@
           (lib.my.mkDeploy {
             inherit (inputs) self;
             exclude = [
-              # keep-sorted start
+              # keep-sorted start sticky_comments=no block=yes
               "pons"
               "welt"
               # keep-sorted end

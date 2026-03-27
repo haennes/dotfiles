@@ -3,7 +3,7 @@
   "mdi-icons" = {
     urls = [ { template = "https://pictogrammers.com/library/mdi?q={searchTerms}"; } ];
     definedAliases = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "<i1"
       "<mdi"
       # keep-sorted end
@@ -15,7 +15,7 @@
   "simpleicons" = {
     urls = [ { template = "https://simpleicons.org/?q={searchTerms}"; } ];
     definedAliases = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "<i2"
       "<si"
       # keep-sorted end

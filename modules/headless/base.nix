@@ -5,7 +5,7 @@
     group = "forward";
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       sshkeys.forward
       sshkeys.hannses
       sshkeys.root_pve

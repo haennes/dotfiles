@@ -42,7 +42,7 @@
       enable = true;
       defaultEditor = true;
       extraPackages = with pkgs; [
-        # keep-sorted start
+        # keep-sorted start sticky_comments=no block=yes
         bash-language-server
         black
         clang-tools

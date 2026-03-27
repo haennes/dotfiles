@@ -7,7 +7,7 @@
       }
     ];
     definedAliases = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "<addy"
       "<anon"
       # keep-sorted end

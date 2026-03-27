@@ -17,7 +17,7 @@ in
     config =
       let
         vls = [
-          # keep-sorted start
+          # keep-sorted start sticky_comments=no block=yes
           "db"
           "dd"
           "ks"

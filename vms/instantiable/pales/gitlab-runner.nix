@@ -25,7 +25,7 @@
     };
 
     extraPackages = with pkgs; [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       catch2_3
       cmake
       doxygen

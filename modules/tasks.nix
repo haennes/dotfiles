@@ -25,7 +25,7 @@
           }
         )
         [
-          # keep-sorted start
+          # keep-sorted start sticky_comments=no block=yes
           (simple "coding")
           (simple "haushalt")
           (simple "projekte")

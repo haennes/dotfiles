@@ -10,8 +10,9 @@ in
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
     #./kasm.nix
+    #./services/backup.nix
     ./hydra.nix
     ./ipfs.nix
     ./nextcloud.nix
@@ -19,7 +20,6 @@ in
     ./taskchampion.nix
     ./vms.nix
     ./zfs.nix
-    #./services/backup.nix
     # keep-sorted end
   ];
 

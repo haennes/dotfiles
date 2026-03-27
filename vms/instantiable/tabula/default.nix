@@ -2,7 +2,7 @@ hostname:
 { config, ... }:
 {
   imports = [
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
     #../proxmox.nix
     ../../../modules/microvm_guest.nix
     ./nginx.nix

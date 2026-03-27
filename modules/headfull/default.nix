@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   imports = [
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
     ../tasks.nix
     ./adb.nix
     ./audio.nix

@@ -7,13 +7,13 @@
 }:
 {
   imports = [
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
+    #update broke ./vimiv.nix # images
     ./atuin.nix
     ./bookmarks.nix
     ./btop.nix
     ./carapace.nix
     ./cliphist.nix
-    #update broke ./vimiv.nix # images
     ./codium.nix
     ./direnv.nix
     ./dunst.nix

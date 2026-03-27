@@ -8,7 +8,7 @@
 
   imports = [
     ./hardware-configuration.nix
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
     ./dns.nix
     ./nginx.nix
     # keep-sorted end

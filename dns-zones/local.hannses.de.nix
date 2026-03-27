@@ -31,7 +31,7 @@ in
     ns = mkCname "ns.hannses.de";
 
     # hosts:
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
     anki = host ips.minerva.wg0 null;
     cal = host ips.terminus.wg0 null;
     ftb = host ips.ludus.wg1 null;

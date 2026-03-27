@@ -5,7 +5,7 @@
     icon = "https://docs.invidious.io/images/invidious.png";
     inherit updateInterval;
     definedAliases = [
-      # keep-sorted start
+      # keep-sorted start sticky_comments=no block=yes
       "<inv"
       "<yt"
       # keep-sorted end

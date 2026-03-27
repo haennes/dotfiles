@@ -17,7 +17,7 @@
             sshKey = "/home/hannses/.ssh/id_ed25519_forward";
             systems = [ "x86_64-linux" ] ++ config.boot.binfmt.emulatedSystems; # TODO this is somewhat a coincidence
             supportedFeatures = [
-              # keep-sorted start
+              # keep-sorted start sticky_comments=no block=yes
               "benchmark"
               "big-parallel"
               "kvm"

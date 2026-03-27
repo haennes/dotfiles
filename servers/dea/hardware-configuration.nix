@@ -13,7 +13,7 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot.initrd.availableKernelModules = [
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
     "ahci"
     "sd_mod"
     "usb_storage"

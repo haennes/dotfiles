@@ -34,7 +34,7 @@ in
       default = {
         isDefault = true;
         extensions.packages = with addons; [
-          # keep-sorted start
+          # keep-sorted start sticky_comments=no block=yes
           clearurls
           darkreader
           floccus

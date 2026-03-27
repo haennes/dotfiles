@@ -6,7 +6,7 @@
 }:
 {
   imports = [
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
     ./hardware-configuration.nix
     ./wifi.nix
     inputs.esw-machines.nixosModules.default
@@ -22,7 +22,7 @@
     };
   };
   boot.initrd.availableKernelModules = [
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
     "nvme"
     "pcie-brcmstb"
     "usb_storage"

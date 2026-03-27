@@ -20,7 +20,7 @@ in
     };
   };
   imports = [
-    # keep-sorted start
+    # keep-sorted start sticky_comments=no block=yes
     ./microvm_host_stock.nix
     ./microvm_host_systemd.nix
     # keep-sorted end
