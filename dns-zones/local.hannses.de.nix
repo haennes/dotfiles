@@ -32,6 +32,9 @@ in
 
     # hosts:
     # keep-sorted start sticky_comments=no block=yes
+    actions = (host ips.pales_1.wg0 null) // {
+      subdomains.storage = (host ips.pales_1.wg0 null);
+    };
     anki = host ips.minerva.wg0 null;
     cal = host ips.terminus.wg0 null;
     ftb = host ips.ludus.wg1 null;
