@@ -62,32 +62,33 @@ in
       kind = lib.mkDefault "wireguard"; # use "normal" backend by default
       connections = map_to_cfg_nodes_from_str cfg.nodes [
         # keep-sorted start sticky_comments=no block=yes
-        "tabula%wg0-pons%wg0" 
-        "tabula_1%wg0-pons%wg0" 
-        "tabula_3%wg0-pons%wg0" 
-        "porta%wg0-pons%wg0" 
-        "handy_hannses%wg0-pons%wg0" 
-        "thinkpad%wg0-pons%wg0" 
-        "yoga%wg0-pons%wg0" 
-        "deus%wg0-pons%wg0" 
-        "dea%wg0-pons%wg0" 
-        "historia%wg0-pons%wg0" 
-        "fons%wg0-pons%wg0" 
-        "minerva%wg0-pons%wg0" 
-        "vertumnus%wg0-pons%wg0" 
-        "proserpina_1%wg0-pons%wg0" 
-        "proserpina_2%wg0-pons%wg0" 
-        "pales_1%wg0-pons%wg0" 
-        "thinknew%wg0-pons%wg0" 
-        "ludus%wg0-pons%wg0" 
-        "ludus%wg1-pons%wg1" 
-        "yoga%wg1-pons%wg1" 
-        "joni%wg1-pons%wg1" 
-        "felix%wg1-pons%wg1" 
-        "terminus%wg0-pons%wg0" 
-        "janus_1%wg0-pons%wg0" 
-        "hesperos_1%wg0-pons%wg0" 
-        "fabulinus%wg0-pons%wg0" 
+        "dea%wg0-pons%wg0"
+        "deus%wg0-pons%wg0"
+        "fabulinus%wg0-pons%wg0"
+        "felix%wg1-pons%wg1"
+        "fons%wg0-pons%wg0"
+        "handy_hannses%wg0-pons%wg0"
+        "hesperos_1%wg0-pons%wg0"
+        "historia%wg0-pons%wg0"
+        "janus_1%wg0-pons%wg0"
+        "joni%wg1-pons%wg1"
+        "ludus%wg0-pons%wg0"
+        "ludus%wg1-pons%wg1"
+        "minerva%wg0-pons%wg0"
+        "pales_1%wg0-pons%wg0"
+        "porta%wg0-pons%wg0"
+        "proserpina_1%wg0-pons%wg0"
+        "proserpina_2%wg0-pons%wg0"
+        "tabula%wg0-pons%wg0"
+        "tabula_1%wg0-pons%wg0"
+        "tabula_3%wg0-pons%wg0"
+        "terminus%wg0-pons%wg0"
+        "thinknew%wg0-pons%wg0"
+        "thinkpad%wg0-pons%wg0"
+        "vertumnus%wg0-pons%wg0"
+        "yoga%wg0-pons%wg0"
+        "yoga%wg1-pons%wg1"
+        "yoga%wg2-pons%wg2"
         # keep-sorted end
       ];
       nodes = lib.mkMerge [
@@ -103,6 +104,11 @@ in
                 ip = ips.pons.wg1;
                 allowedIPs = [ (subnet_cidr ips.pons.wg1) ];
                 endpoint = "${ips.pons.ens6}:${builtins.toString config.ports.ports.ports.pons.wg1}";
+              };
+              wg2 = {
+                ip = ips.pons.wg2;
+                allowedIPs = [ (subnet_cidr ips.pons.wg2) ];
+                endpoint = "${ips.pons.ens6}:${builtins.toString config.ports.ports.ports.pons.wg2}";
               };
             };
           };
@@ -146,6 +152,7 @@ in
           "vertumnus%wg0"
           "yoga%wg0"
           "yoga%wg1"
+          "yoga%wg2"
           # "mkhh%wg0"
           # keep-sorted end
 
