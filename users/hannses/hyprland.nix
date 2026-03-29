@@ -293,7 +293,7 @@ in
         #"$mod minus, resizeactive, -10 0"
         #"$mod CTRL, SHIFT, equal, resizeactive, 0 10"
         #"$mod CTRL, minus, resizeactive, 0 -10"
-        "$mod, P, togglesplit"
+        "$mod, P, layoutmsg, togglesplit"
         "$mod SHIFT, S, exec, $sccpa"
       ];
 

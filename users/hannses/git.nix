@@ -11,6 +11,7 @@
     signing = {
       key = null;
       signByDefault = true;
+      format = "openpgp";
     };
     settings = {
       user.name = "borbitter";

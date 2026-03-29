@@ -28,6 +28,9 @@
   };
   # inputs.self.submodules = true; #FIXME this is an upstream bug
   inputs = {
+    # TODO: Remove this once syncthing no longer crashes with current upstream version (also remove package override)
+    syncthing-nixpkgs.url = "github:NixOS/nixpkgs/b40629efe5d6ec48dd1efba650c797ddbd39ace0";
+
     nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     noogle-cli = {

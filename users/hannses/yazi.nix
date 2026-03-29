@@ -6,6 +6,7 @@
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
+    shellWrapperName = "yy";
     settings = {
       show_hidden = false;
       sort_dir_first = false;
