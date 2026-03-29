@@ -3,7 +3,6 @@
   imports = [
     # keep-sorted start sticky_comments=no block=yes
     #./fwupd.nix
-    #./microvms.nix
     #./vms.nix
     ./acme.nix
     ./base.nix
