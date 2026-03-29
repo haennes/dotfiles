@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let
   inherit (lib)
     mapAttrs
@@ -233,6 +233,8 @@ in
   };
 
   services.syncthing = {
+    # TODO: Remove this once syncthing no longer crashes with current upstream version (also remove input from flake.nix)
+    package = inputs.syncthing-nixpkgs.legacyPackages.${pkgs.system}.syncthing;
     settings = {
       options = {
         urAccepted = -1; # do not send reports

@@ -139,15 +139,4 @@
     BROWSER = "firefox";
     TERMINAL = "wezterm";
   };
-
-  #programs.gitui.enable = true; #conflicts with following line
-  home.file.".config/gitui/key_bindings.ron".source = ../../ext_configs/gitui_keybindings.ron;
-
-  xdg.desktopEntries.zellij = {
-    name = "ZelliJ";
-    genericName = "Terminal";
-    exec = "alacritty -e zellij";
-    icon = ../../ext_configs/icons/zellij.ico;
-    terminal = false;
-  };
 }
