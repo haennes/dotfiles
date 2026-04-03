@@ -28,6 +28,8 @@ in
     443
     80
   ];
+  networking.firewall.interfaces.wg2.allowedTCPPorts = [ 25565 ];
+  networking.firewall.interfaces.wg2.allowedUDPPorts = [ 25565 ];
   networking.firewall.interfaces.wg1.allowedTCPPorts = [ 25565 ];
   networking.firewall.interfaces.wg1.allowedUDPPorts = [ 25565 ];
   networking.firewall.interfaces.wg0.allowedTCPPorts = [ 25565 ];
