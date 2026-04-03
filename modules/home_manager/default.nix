@@ -48,5 +48,9 @@ rec {
       file = ../../secrets/taskwarrior-extraConfig.age;
       owner = "hannses";
     };
+    "anki-KeyFile.age" = {
+      file = ../../secrets/ankisync/keyFile.age;
+      owner = "hannses";
+    };
   };
 }

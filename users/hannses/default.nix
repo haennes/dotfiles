@@ -9,6 +9,7 @@
   imports = [
     # keep-sorted start sticky_comments=no block=yes
     #update broke ./vimiv.nix # images
+    ./anki.nix
     ./atuin.nix
     ./bookmarks.nix
     ./btop.nix
@@ -89,7 +90,6 @@
     pdftk
     diff-pdf
     shortwave
-    anki
     inputs.typ2anki.packages.${system}.default
     license-cli # license texts on the command line
     #fritzing
