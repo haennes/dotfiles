@@ -20,6 +20,7 @@ in
   services.wireguard-wrapper.enable = true;
 
   networking.firewall.interfaces.wg0.allowedTCPPorts = [ config.ports.ports.curr_ports.ankisync ];
+  networking.firewall.interfaces.wg2.allowedTCPPorts = [ config.ports.ports.curr_ports.ankisync ];
   networking.hostName = "minerva";
 
   system.activationScripts.ensure-dirs-exist.text = ''
@@ -27,7 +28,7 @@ in
   '';
   services.anki-sync-server = {
     enable = true;
-    address = ips.minerva.wg0;
+    address = ips.minerva.wg2;
     port = config.ports.ports.curr_ports.ankisync;
 
     users = [

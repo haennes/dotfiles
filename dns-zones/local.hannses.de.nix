@@ -35,7 +35,7 @@ in
     actions = (host ips.pales_1.wg0 null) // {
       subdomains.storage = (host ips.pales_1.wg0 null);
     };
-    anki = host ips.minerva.wg0 null;
+    anki = host ips.minerva.wg2 null;
     cal = host ips.terminus.wg0 null;
     ftb = host ips.ludus.wg1 null;
     hydra = host ips.pons.wg0 null;
