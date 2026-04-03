@@ -136,7 +136,6 @@ in
           "minerva%wg0"
           "minerva%wg2"
           "pales_1%wg0"
-          "pons%wg2"
           "porta%wg0"
           "proserpina_1%wg0"
           "proserpina_2%wg0"
