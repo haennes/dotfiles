@@ -8,7 +8,7 @@ in
 
     settings = {
       general = {
-        lock_cmd = "${scripts.lock} -f";
+        lock_cmd = "pidof swaylock || ${scripts.lock} -f";
         unlock_cmd = "pkill -USR1 swaylock";
 
         before_sleep_cmd = "loginctl lock-session";
