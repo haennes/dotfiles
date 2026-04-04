@@ -301,7 +301,6 @@
       lib = nixpkgs.lib.extend (
         self: super: {
           my = import ./lib {
-            inherit inputs;
             lib = self;
           };
         }
