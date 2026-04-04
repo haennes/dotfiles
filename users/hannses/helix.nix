@@ -38,6 +38,12 @@
 
         ${zathura} "''${file%.*}.pdf"
       '';
+      insert = str: ":insert-output echo -n \"${str}\"";
+      insert_nl = str: [
+        "open_below"
+        (insert str)
+        "normal_mode"
+      ];
     in
     {
       enable = true;
@@ -205,6 +211,14 @@
             ":redraw"
 
           ];
+          space.m =
+            let
+              ks = "# keep-sorted"; # HACK to not confuse keep-sort to sort the following
+            in
+            {
+              b = insert_nl "${ks} start sticky_comments=no block=yes";
+              e = insert_nl "${ks} end";
+            };
         };
       };
     };

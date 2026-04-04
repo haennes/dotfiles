@@ -12,7 +12,7 @@ in
   options.my.users.forward.enable = mkEnableOption "add user forward" // {
     default = config.is_server;
   };
-  config = mkIf config.my.headfull.users.forward.enable {
+  config = mkIf config.my.users.forward.enable {
     users.users.forward = {
       group = "forward";
       isNormalUser = true;
