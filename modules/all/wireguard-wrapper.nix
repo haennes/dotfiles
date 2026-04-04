@@ -75,6 +75,7 @@ in
         "ludus%wg0-pons%wg0"
         "ludus%wg1-pons%wg1"
         "minerva%wg0-pons%wg0"
+        "minerva%wg2-pons%wg2"
         "pales_1%wg0-pons%wg0"
         "porta%wg0-pons%wg0"
         "proserpina_1%wg0-pons%wg0"

@@ -25,6 +25,7 @@ in
     profiles.hannses =
     let
       port = osConfig.ports.ports.ports.minerva.ankisync;
+      ip = osConfig.ips.ips.ips.default.minerva.wg2;
     in
     {
       default = true;
@@ -33,7 +34,7 @@ in
         autoSyncMediaMinutes = 10;
         keyFile = osConfig.age.secrets."anki-KeyFile.age".path;
         syncMedia = true;
-        url = "http://anki.local.hannses.de:${toString port}";
+        url = "http://${ip}:${toString port}";
         username = "hannses";
       };
     };
