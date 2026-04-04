@@ -115,5 +115,5 @@ in
     value = {
       locations."/".proxyPass = "http://localhost:${toString value}";
     };
-  }) (lib.my.flatten_attrs config.ports.ports.curr_ports));
+  }) (lib.my.flattenAttrs config.ports.ports.curr_ports));
 }

@@ -1,16 +1,8 @@
 { lib, config, ... }:
 let
   inherit (lib) mergeAttrsList map;
-  inherit (lib.my) age_obtain_user_password;
-  obtain_user_passwords =
-    names: mergeAttrsList (map (name: age_obtain_user_password name config) names);
-  gen_user = name: {
-    "${name}" = {
-      isNormalUser = true;
-      description = name;
-      home = "/home/${name}";
-    };
-  };
+  inherit (lib.my) ageObtainUserPassword genUser;
+  obtain_user_passwords = names: mergeAttrsList (map (name: ageObtainUserPassword name config) names);
 in
 {
   users.users = {
@@ -29,8 +21,8 @@ in
       ];
     };
   }
-  // (gen_user "mum")
-  // (gen_user "dad");
+  // (genUser "mum")
+  // (genUser "dad");
 
   users.extraGroups.vboxusers.members = [ "hannses" ];
   users.groups = {

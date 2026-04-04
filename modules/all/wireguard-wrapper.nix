@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  inherit (lib.my) ip_cidr subnet_cidr;
+  inherit (lib.my) ipCIDR subnetCIDR;
   inherit (lib) split mapAttrsToList splitString;
   ips = config.ips.ips.ips.default;
   hostname = config.networking.hostName;
@@ -24,7 +24,7 @@ let
     in
     {
       ${name}.ifs.${interface} = {
-        ip = ip_cidr ips.${name}.${interface};
+        ip = ipCIDR ips.${name}.${interface};
       };
     };
   simple_ips = names: lib.mkMerge (map (v: simple_ip v) names);
@@ -98,17 +98,17 @@ in
             ifs = {
               wg0 = {
                 ip = ips.pons.wg0;
-                allowedIPs = [ (subnet_cidr ips.pons.wg0) ];
+                allowedIPs = [ (subnetCIDR ips.pons.wg0) ];
                 endpoint = "${ips.pons.ens6}:${builtins.toString config.ports.ports.ports.pons.wg0}";
               };
               wg1 = {
                 ip = ips.pons.wg1;
-                allowedIPs = [ (subnet_cidr ips.pons.wg1) ];
+                allowedIPs = [ (subnetCIDR ips.pons.wg1) ];
                 endpoint = "${ips.pons.ens6}:${builtins.toString config.ports.ports.ports.pons.wg1}";
               };
               wg2 = {
                 ip = ips.pons.wg2;
-                allowedIPs = [ (subnet_cidr ips.pons.wg2) ];
+                allowedIPs = [ (subnetCIDR ips.pons.wg2) ];
                 endpoint = "${ips.pons.ens6}:${builtins.toString config.ports.ports.ports.pons.wg2}";
               };
             };
@@ -160,7 +160,7 @@ in
       ];
       publicKeyFunc =
         { nodeName, ifName }:
-        ((lib.my.wireguard.obtain_wireguard_pub {
+        ((lib.my.obtainWireguardPub {
           hostname = nodeName;
           interface = ifName;
         }).key
@@ -178,7 +178,7 @@ in
       mapAttrsToList (
         interface: _:
 
-        lib.my.wireguard.age_obtain_wireguard_priv {
+        lib.my.ageWireguardPrivDef {
           inherit hostname interface;
         }
       ) cfg.nodes.${hostname}.ifs

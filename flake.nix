@@ -476,7 +476,11 @@
         activationTimeout = 600;
         confirmTimeout = 120;
         nodes =
+          let
+            genNodeSimple = lib.my.genNodeSimple inputs;
+          in
           (lib.my.mkDeploy {
+            inherit inputs;
             inherit (inputs) self;
             exclude = [
               # keep-sorted start sticky_comments=no block=yes
@@ -485,8 +489,8 @@
               # keep-sorted end
             ];
           })
-          // (lib.my.genNodeSimple self "welt")
-          // (lib.my.genNodeSimple self "pons");
+          // (genNodeSimple self "welt")
+          // (genNodeSimple self "pons");
       };
       formatter = forAllSystems (
         system:

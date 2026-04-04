@@ -20,11 +20,11 @@ let
     isList
     flatten
     ;
-  inherit (lib.my) flatten_attrs;
+  inherit (lib.my) flattenAttrs;
   inherit (config.ports.ports) curr_ports;
   _split_delim = "/";
-  curr_ports_no_ssh = flatten_attrs (removeAttrs curr_ports [ "ssh" ]);
-  curr_ssh_ports = mapAttrs (n: v: flatten_attrs v) curr_ports.ssh;
+  curr_ports_no_ssh = flattenAttrs (removeAttrs curr_ports [ "ssh" ]);
+  curr_ssh_ports = mapAttrs (n: v: flattenAttrs v) curr_ports.ssh;
 
   mapPortsToString = v: concatLines (mapAttrsToList (ni: vi: "${ni}${_split_delim}${toString vi}") v);
   curr_ports_no_ssh_file = pkgs.writeText "ports-nossh" (mapPortsToString curr_ports_no_ssh);
