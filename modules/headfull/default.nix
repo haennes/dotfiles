@@ -24,7 +24,6 @@
     ./power.nix
     ./printing.nix
     ./steam.nix
-    ./users.nix
     ./virtualization.nix
     ./wireshark.nix
     ./xdg.nix
