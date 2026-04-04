@@ -4,18 +4,7 @@ let
   inherit (lib.my) ageObtainUserPassword genUser;
   obtain_user_passwords = names: mergeAttrsList (map (name: ageObtainUserPassword name config) names);
 in
-{
-  users.groups = {
-    "family".members = [
-      # keep-sorted start sticky_comments=no block=yes
-      "dad"
-      "hannses"
-      "mum"
-      # keep-sorted end
-    ];
-  };
-}
-// (obtain_user_passwords [
+(obtain_user_passwords [
   # keep-sorted start sticky_comments=no block=yes
   "dad"
   "hannses"
