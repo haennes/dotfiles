@@ -65,7 +65,7 @@ in
   services.nextcloud = {
     enable = true;
     hostName = "cloud.hannses.de";
-    package = pkgs.nextcloud32;
+    package = pkgs.nextcloud33;
     https = true;
     configureRedis = true;
     home = NCdataDir;
