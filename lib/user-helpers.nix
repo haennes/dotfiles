@@ -1,6 +1,6 @@
 { ... }:
 {
-  ageObtainUserPassword = username: config: {
+  ageObtainUserPassword = username: {
     age.secrets.${username} = {
       file = ../secrets/user_passwords/${username}.age;
       owner = "root";
