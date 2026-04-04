@@ -5,7 +5,6 @@ let
   obtain_user_passwords = names: mergeAttrsList (map (name: ageObtainUserPassword name config) names);
 in
 {
-  users.extraGroups.vboxusers.members = [ "hannses" ];
   users.groups = {
     "family".members = [
       # keep-sorted start sticky_comments=no block=yes

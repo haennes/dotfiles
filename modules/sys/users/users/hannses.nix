@@ -16,6 +16,7 @@ in
         "family"
         "libvirtd"
         "networkmanager"
+        "vboxusers"
         "video"
         "wheel"
         # keep-sorted end
