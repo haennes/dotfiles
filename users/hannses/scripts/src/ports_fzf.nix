@@ -12,13 +12,7 @@ let
     attrNames
     mapAttrs
     concatLines
-    concatStringsSep
-    mapAttrsRecursive
     mapAttrsToList
-    listToAttrs
-    collect
-    isList
-    flatten
     ;
   inherit (lib.my) flattenAttrs;
   inherit (config.ports.ports) curr_ports;
