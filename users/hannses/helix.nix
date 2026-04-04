@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }:
 {
@@ -41,6 +42,7 @@
     {
       enable = true;
       defaultEditor = true;
+      package = inputs.helix.packages.x86_64-linux.helix;
       extraPackages = with pkgs; [
         # keep-sorted start sticky_comments=no block=yes
         bash-language-server

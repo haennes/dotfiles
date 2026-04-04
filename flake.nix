@@ -74,6 +74,10 @@
       url = "github:jappie3/hyprcursor-phinger";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    helix = {
+      url = "github:gj1118/helix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-update-inputs = {
       url = "github:haennes/nix-update-input/cycle";

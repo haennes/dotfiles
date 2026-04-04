@@ -1081,6 +1081,27 @@
         "type": "github"
       }
     },
+    "helix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1774930844,
+        "narHash": "sha256-u8dh6fMRJyQZcG9KL7MmKXt0ahY3PIeQTIlVuDsVlWY=",
+        "owner": "gj1118",
+        "repo": "helix",
+        "rev": "34645cb91aa523a734b3aa4443fbc990465638a8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gj1118",
+        "repo": "helix",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -1284,7 +1305,7 @@
           "nixpkgs"
         ],
         "parts": "parts",
-        "rust-overlay": "rust-overlay",
+        "rust-overlay": "rust-overlay_2",
         "treefmt": "treefmt"
       },
       "locked": {
@@ -1949,11 +1970,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1774386573,
-        "narHash": "sha256-4hAV26quOxdC6iyG7kYaZcM3VOskcPUrdCQd/nx8obc=",
+        "lastModified": 1775036866,
+        "narHash": "sha256-ZojAnPuCdy657PbTq5V0Y+AHKhZAIwSIT2cb8UgAz/U=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "46db2e09e1d3f113a13c0d7b81e2f221c63b8ce9",
+        "rev": "6201e203d09599479a3b3450ed24fa81537ebc4e",
         "type": "github"
       },
       "original": {
@@ -2291,6 +2312,7 @@
         "futils": "futils",
         "git-vbranch": "git-vbranch",
         "haumea": "haumea",
+        "helix": "helix",
         "home-manager": "home-manager_2",
         "home-manager-option-search": "home-manager-option-search",
         "hyprcursor-phinger": "hyprcursor-phinger",
@@ -2316,7 +2338,7 @@
         "nur": "nur",
         "nuscht-search": "nuscht-search",
         "pinentry-keepassxc": "pinentry-keepassxc",
-        "rust-overlay": "rust-overlay_2",
+        "rust-overlay": "rust-overlay_3",
         "signal-whisper": "signal-whisper",
         "simple-nixos-mailserver": "simple-nixos-mailserver",
         "strichliste-rs": "strichliste-rs",
@@ -2333,6 +2355,27 @@
       }
     },
     "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "helix",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1759631821,
+        "narHash": "sha256-V8A1L0FaU/aSXZ1QNJScxC12uP4hANeRBgI4YdhHeRM=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "1d7cbdaad90f8a5255a89a6eddd8af24dc89cafe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_2": {
       "inputs": {
         "nixpkgs": [
           "nix-inspect",
@@ -2354,7 +2397,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_2": {
+    "rust-overlay_3": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
@@ -2374,7 +2417,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_3": {
+    "rust-overlay_4": {
       "inputs": {
         "nixpkgs": "nixpkgs_10"
       },
@@ -2392,7 +2435,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_4": {
+    "rust-overlay_5": {
       "inputs": {
         "nixpkgs": [
           "waybar-taskwarrior",
@@ -2413,7 +2456,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_5": {
+    "rust-overlay_6": {
       "inputs": {
         "nixpkgs": "nixpkgs_17"
       },
@@ -2522,7 +2565,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay_3",
+        "rust-overlay": "rust-overlay_4",
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
@@ -3082,7 +3125,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay_4"
+        "rust-overlay": "rust-overlay_5"
       },
       "locked": {
         "lastModified": 1766123624,
@@ -3104,7 +3147,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay_5"
+        "rust-overlay": "rust-overlay_6"
       },
       "locked": {
         "dirtyRev": "d3bc3caaf26f5be87a871df0b5991d3946278c66-dirty",
