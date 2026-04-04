@@ -2,5 +2,6 @@
 {
   imports = [
     ./users
+    ./watchers
   ];
 }

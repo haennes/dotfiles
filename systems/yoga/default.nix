@@ -45,7 +45,7 @@
     #user = "hannses";
   };
 
-  fs-watchers = {
+  my.fs-watchers = {
     w.typst = true;
     w.xournalpp = true;
     w.nc-sync = true;

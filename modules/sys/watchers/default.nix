@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   options = {
-    fs-watchers.enable = lib.mkEnableOption "fs-watchers";
+    my.fs-watchers.enable = lib.mkEnableOption "fs-watchers";
   };
   imports = [
     # keep-sorted start sticky_comments=no block=yes

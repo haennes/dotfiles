@@ -11,11 +11,11 @@ let
 in
 {
   options = {
-    fs-watchers.w.nc-sync = (mkEnableOption "nc sync") // {
-      default = config.fs-watchers.enable;
+    my.fs-watchers.w.nc-sync = (mkEnableOption "nc sync") // {
+      default = config.my.fs-watchers.enable;
     };
   };
-  config = lib.mkIf config.fs-watchers.w.nc-sync {
+  config = lib.mkIf config.my.fs-watchers.w.nc-sync {
 
     age.secrets."oth/rz.age" = {
       owner = user;

@@ -22,7 +22,6 @@
     ./store_optimize.nix
     ./sudo.nix
     ./syncthing-wrapper.nix
-    ./watchers
     ./wireguard-wrapper.nix
     # keep-sorted end
   ];
