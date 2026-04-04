@@ -2,13 +2,7 @@
 {
   imports = [
     # keep-sorted start sticky_comments=no block=yes
-    ./adb.nix
-    ./age.nix
-    ./all
-    ./gnome
-    ./headfull
-    ./headless
-    ./home_manager
+    ./machine-properties.nix
     # keep-sorted end
   ];
 }

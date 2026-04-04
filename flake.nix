@@ -310,7 +310,7 @@
         #nur.nixosModules.nur
         ./modules/age.nix
         ./modules/all
-        ./modules/machine_properties.nix
+        ./opts/default.nix
         ./secrets/ips.nix
         ./secrets/macs.nix
         ./secrets/ports.nix
