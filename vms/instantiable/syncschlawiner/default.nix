@@ -1,6 +1,5 @@
 { config, ... }:
 {
-  system.stateVersion = "23.11";
   imports = [
     ./nextcloud.nix
     ./ipfs.nix

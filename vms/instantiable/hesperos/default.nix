@@ -28,8 +28,6 @@ hostname:
   networking.hostName = hostname;
   services.wireguard-wrapper.enable = true;
 
-  system.stateVersion = "23.11";
-
   age.secrets."openfortivpn.age" = {
     file = ../../../secrets/openfortivpn.age;
     owner = "root";

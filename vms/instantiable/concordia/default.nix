@@ -1,6 +1,5 @@
 { config, lib, ... }:
 {
-  system.stateVersion = "23.11";
   imports = [
     # keep-sorted start sticky_comments=no block=yes
     ../../../modules/microvm_guest.nix

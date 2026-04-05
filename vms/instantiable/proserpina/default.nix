@@ -11,8 +11,6 @@ hostname:
 
   services.wireguard-wrapper.enable = true;
 
-  system.stateVersion = "23.11";
-
   networking.firewall.allowedTCPPorts = [ config.ports.ports.curr_ports.esw ];
 
   system.activationScripts.ensure-syncthing-dir = ''
