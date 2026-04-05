@@ -8,5 +8,6 @@
     ./udisks.nix
     ./greeter.nix
     ./age.nix
+    ./tmp.nix
   ];
 }
