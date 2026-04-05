@@ -498,6 +498,7 @@
           formattingConfig =
             { ... }:
             {
+              projectRootFile = ".root";
               programs = {
                 nixfmt.enable = true;
                 keep-sorted.enable = true;
