@@ -1,0 +1,6 @@
+{ ... }:
+{
+  imports = [
+    ./homepage-dashboard.nix
+  ];
+}

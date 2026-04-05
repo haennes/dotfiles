@@ -3,6 +3,7 @@
   imports = [
     ./users
     ./watchers
+    ./services
     ./kernel.nix
     ./udisks.nix
     ./greeter.nix
