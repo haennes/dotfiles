@@ -308,7 +308,6 @@
       all_modules = [
         # keep-sorted start sticky_comments=no block=yes
         #nur.nixosModules.nur
-        ./modules/age.nix
         ./modules/all
         ./modules/sys/default.nix
         ./opts/default.nix

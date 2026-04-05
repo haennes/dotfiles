@@ -7,5 +7,6 @@
     ./kernel.nix
     ./udisks.nix
     ./greeter.nix
+    ./age.nix
   ];
 }
