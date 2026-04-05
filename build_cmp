@@ -1,2 +1,6 @@
-nixos-rebuild build --flake .?submodules=1#$2 --show-trace --log-format internal-json -v |& nom --json
-nix-diff result $1 --color=always | less
+set -xeu
+./fmt
+git add --intent-to-add .
+# nh os build .\?submodules=1# -j0 --accept-flake-config
+nh os build .\?submodules=1# --accept-flake-config
+nix-diff result /run/current-system
