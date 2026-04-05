@@ -10,7 +10,6 @@
     ./dll.nix
     ./fix_hid.nix
     ./fortivpn.nix
-    ./greeter.nix
     ./homepage-dashboard.nix
     ./hyprland.nix
     ./keyring.nix
