@@ -9,8 +9,7 @@ let
 in
 {
   options.my.graphics.enable = mkEnableOption "graphics" // {
-    # default = config.is_client;
-    default = true;
+    default = config.is_client;
   };
   config = mkIf config.my.graphics.enable {
     hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd ];
