@@ -10,5 +10,6 @@
     ./age.nix
     ./tmp.nix
     ./state-version.nix
+    ./graphics.nix
   ];
 }
