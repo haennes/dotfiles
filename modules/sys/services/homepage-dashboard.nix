@@ -26,7 +26,6 @@ in
       root = "/local_cdn";
     };
     services.homepage-dashboard = {
-      #fix for update breaking: https://github.com/NixOS/nixpkgs/issues/346016
       listenPort = hports.homepage-dashboard;
       enable = true;
       allowedHosts = "localhost:${toString hports.homepage-dashboard},localhost";
