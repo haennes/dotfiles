@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -xeuo pipefail
+pushd "${0%/*}" || exit
+
 # diffs
 dff=$(mktemp)
 git diff -a --submodule=diff > "$dff" || exit 1
@@ -22,3 +24,5 @@ pushd "$fmtdir" || exit 1
 popd || exit 1
 
 diff -r "$rawdir" "$fmtdir" || exit 1
+
+popd || exit
