@@ -1,0 +1,2 @@
+[keys.normal.space.n]
+f = [":sh ./fmt", ":rla"]
