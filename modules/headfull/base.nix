@@ -12,11 +12,6 @@ in
   hardware.bluetooth.enable = true;
   networking.networkmanager.enable = true;
 
-  boot.kernelPackages =
-    if (lib.any (v: v.fsType == "zfs") (lib.attrValues config.fileSystems)) then
-      config.boot.zfs.package.latestCompatibleLinuxPackages
-    else
-      pkgs.linuxPackages;
   services.logind.settings.Login = {
     HandlePowerKey = "suspend";
     HandleLidSwitch = "suspend";
