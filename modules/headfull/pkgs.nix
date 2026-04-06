@@ -41,8 +41,6 @@
     blackbox-terminal
 
     #tools
-    diff-pdf # pdf
-    pdfarranger # pdf
     btop # process and system monitor
     unzip
     cifs-utils

@@ -14,5 +14,6 @@
     ./i18n.nix
     ./networks
     ./virtualization
+    ./utils
   ];
 }

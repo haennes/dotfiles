@@ -1,0 +1,14 @@
+{ lib, config, ... }:
+let
+  inherit (lib) mkEnableOption;
+in
+{
+  imports = [
+    ./pdf.nix
+  ];
+
+  options.my.utils.enable = mkEnableOption "utils" // {
+    default = config.is_client;
+  };
+
+}
