@@ -61,7 +61,6 @@
     gnumake
     cmake
     valgrind # c heap debugging
-    jq # pretty json
 
     #Gameing
     wineWow64Packages.waylandFull

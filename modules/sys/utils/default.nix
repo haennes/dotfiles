@@ -6,6 +6,7 @@ in
   imports = [
     ./pdf.nix
     ./loc.nix
+    ./prettifiers.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
