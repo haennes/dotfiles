@@ -12,7 +12,6 @@
   services.syncthing = {
     dataDir = "/syncthing";
   };
-  virtualisation.docker.enable = true;
   services.wireguard-wrapper.enable = true;
   microvmHost.extInterface = "enp0s25";
 

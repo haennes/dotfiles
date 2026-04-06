@@ -13,5 +13,6 @@
     ./graphics.nix
     ./i18n.nix
     ./networks
+    ./virtualization
   ];
 }

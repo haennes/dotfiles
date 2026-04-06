@@ -50,7 +50,6 @@
 
     #tui
     bluetuith
-    docker
 
     #programming
     tokei # count loc

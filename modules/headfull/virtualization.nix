@@ -16,8 +16,6 @@
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
 
-  virtualisation.docker.enable = true;
-
   # dont build virtualbox
   virtualisation.virtualbox.host.enable = true;
 
