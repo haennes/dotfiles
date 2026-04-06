@@ -1,2 +1,2 @@
 [keys.normal.space.n]
-f = [":sh ./fmt", ":rla"]
+f = [":new",":insert-output ./fmt", ":buffer-close!", ":redraw", ":rla"]
