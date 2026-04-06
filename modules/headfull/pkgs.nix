@@ -50,7 +50,6 @@
     bluetuith
 
     #programming
-    tokei # count loc
     arduino
     arduino-ota
     hugo # website
