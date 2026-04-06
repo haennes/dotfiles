@@ -5,6 +5,9 @@ let
   hostname = config.networking.hostName;
 in
 {
+  is_server = true;
+  is_client = false;
+  is_microvm = true;
   services.nginx = {
     enable = true;
     recommendedTlsSettings = true;

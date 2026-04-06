@@ -4,11 +4,16 @@ hostname:
   imports = [
     # keep-sorted start sticky_comments=no block=yes
     #../proxmox.nix
-    ../../../modules/microvm_guest.nix
+    ../../../modules/sys
     ./gitlab-runner.nix
     ./nginx.nix
     # keep-sorted end
   ];
+
+  is_server = true;
+  is_client = false;
+  is_microvm = true;
+
   microvm = {
     mem = 8193;
     writableStoreOverlay = "/nix/.rw-store";

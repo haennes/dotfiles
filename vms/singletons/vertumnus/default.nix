@@ -16,7 +16,11 @@ let
 in
 {
 
-  imports = [ ../../../modules/microvm_guest.nix ];
+  imports = [ ../../../modules/sys ];
+
+  is_server = true;
+  is_client = false;
+  is_microvm = true;
 
   microvm.shares = [
     {

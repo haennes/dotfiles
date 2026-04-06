@@ -2,10 +2,12 @@ hostname:
 { config, lib, ... }:
 {
   imports = [
-    ../../../modules/microvm_guest.nix
     ./vsftpd.nix
   ];
 
+  is_server = true;
+  is_client = false;
+  is_microvm = true;
   services.syncthing-wrapper = {
     enable = true;
     paths.system.pathFunc =

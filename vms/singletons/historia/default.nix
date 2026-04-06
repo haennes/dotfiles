@@ -14,6 +14,10 @@ in
 
   imports = [ ../../../modules/microvm_guest.nix ];
 
+  is_server = true;
+  is_client = false;
+  is_microvm = true;
+
   services.wireguard-wrapper.enable = true;
 
   networking.firewall.interfaces.wg0.allowedTCPPorts = [ config.ports.ports.curr_ports.atuin ];

@@ -334,13 +334,6 @@
         # keep-sorted end
       ];
       server_modules = [ ./modules/headless ];
-      microvm_modules_host = [
-        # keep-sorted start sticky_comments=no block=yes
-        ./modules/microvm_host.nix
-        inputs.microvm.nixosModules.host
-        # keep-sorted end
-      ];
-      microvm_modules_guest = [ ];
       # ./modules/microvm_guest.nix is not included as it includes these modules when using declarative configuration
       # inputs.microvm.nixosModules.microvm is not included as it automatically gets when using declarative configuration
 
@@ -357,16 +350,13 @@
 
       microvm_host = {
         config.is_microvm_host = true;
-        imports = microvm_modules_host;
       };
       microvm = hostname: {
         config.is_microvm = true;
         imports = [
           (server hostname)
-          ./modules/microvm_guest.nix
           inputs.microvm.nixosModules.microvm
-        ]
-        ++ microvm_modules_guest;
+        ];
       };
       sshkeys = import ./secrets/sshkeys.nix;
 
@@ -462,8 +452,6 @@
             all_modules
             client_modules
             server_modules
-            microvm_modules_host
-            microvm_modules_guest
             system
             ;
           inherit (self) topology;

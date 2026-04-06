@@ -4,10 +4,14 @@ hostname:
   imports = [
     # keep-sorted start sticky_comments=no block=yes
     #../proxmox.nix
-    ../../../modules/microvm_guest.nix
+    ../../../modules/sys
     ./nginx.nix
     # keep-sorted end
   ];
+
+  is_server = true;
+  is_client = false;
+  is_microvm = true;
 
   services.syncthing-wrapper = {
     enable = true;

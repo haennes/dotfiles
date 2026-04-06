@@ -24,7 +24,11 @@ in
   microvm.mem = 400;
   microvm.vcpu = 1;
 
-  imports = [ ../../../modules/microvm_guest.nix ];
+  imports = [ ../../../modules/sys ];
+
+  is_server = true;
+  is_client = false;
+  is_microvm = true;
 
   services.wireguard-wrapper.enable = true;
   age.secrets.radicale_pw = {

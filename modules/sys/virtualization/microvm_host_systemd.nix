@@ -1,6 +1,6 @@
 { config, lib, ... }:
 {
-  config = lib.mkIf config.microvmHost.systemd {
+  config = lib.mkIf (config.microvmHost.systemd && config.is_microvm_host) {
     systemd.network.enable = true;
     systemd.network = {
       netdevs."10-microvm".netdevConfig = {

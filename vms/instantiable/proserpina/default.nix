@@ -2,11 +2,14 @@ hostname:
 { config, inputs, ... }:
 {
   imports = [
-    ../../../modules/microvm_guest.nix
+    ../../../modules/sys
     inputs.esw-machines.nixosModules.default
     #inputs.syncthing-wrapper.nixosModules.default
   ];
 
+  is_server = true;
+  is_client = false;
+  is_microvm = true;
   networking.hostName = hostname;
 
   services.wireguard-wrapper.enable = true;

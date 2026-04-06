@@ -14,7 +14,11 @@ let
 in
 {
 
-  imports = [ ../../../modules/microvm_guest.nix ];
+  imports = [ ../../../modules/sys ];
+
+  is_server = true;
+  is_client = false;
+  is_microvm = true;
 
   age.secrets."freshrss/password_hannses.age" = {
     file = ../../../secrets/freshrss/password_hannses.age;

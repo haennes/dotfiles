@@ -1,10 +1,11 @@
 { ... }:
 {
 
-  imports = [
-    #../proxmox.nix
-    #    ./nginx.nix
-  ];
+  imports = [ ../../../modules/sys ];
+
+  is_server = true;
+  is_client = false;
+  is_microvm = true;
 
   networking.hostName = "hermes";
   networking.firewall = {

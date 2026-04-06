@@ -1,9 +1,15 @@
 { config, ... }:
 {
   imports = [
+    ../../../modules/sys
     ./nextcloud.nix
     ./ipfs.nix
   ];
+
+  is_server = true;
+  is_client = false;
+  is_microvm = true;
+
   boot.kernel.sysctl = {
     "fs.inotify.max_user_watches" = 204800;
   };

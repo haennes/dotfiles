@@ -16,9 +16,13 @@ in
 {
 
   imports = [
-    ../../../modules/microvm_guest.nix
+    ../../../modules/sys
     inputs.nix-minecraft.nixosModules.minecraft-servers
   ];
+
+  is_server = true;
+  is_client = false;
+  is_microvm = true;
 
   services.wireguard-wrapper.enable = true;
 

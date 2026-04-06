@@ -15,7 +15,11 @@ in
   ];
 
   age.secrets."ankisync/pwhannses.age".file = ../../../secrets/ankisync/pwhannses.age;
-  imports = [ ../../../modules/microvm_guest.nix ];
+
+  imports = [ ../../../modules/sys ];
+  is_server = true;
+  is_client = false;
+  is_microvm = true;
 
   services.wireguard-wrapper.enable = true;
 

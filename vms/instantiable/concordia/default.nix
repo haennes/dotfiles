@@ -2,12 +2,15 @@
 {
   imports = [
     # keep-sorted start sticky_comments=no block=yes
-    ../../../modules/microvm_guest.nix
+    ../../../modules/sys
     ./ipfs.nix
     ./nextcloud.nix
     # keep-sorted end
   ];
 
+  is_server = true;
+  is_client = false;
+  is_microvm = true;
   microvm.mem = 4096;
   microvm.vcpu = 4;
 

@@ -1,6 +1,11 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  inputs,
+  ...
+}:
 let
-  inherit (lib) mkOption mkEnableOption;
+  inherit (lib) mkOption mkEnableOption mkIf;
   inherit (lib.types) str;
 in
 {
@@ -8,7 +13,7 @@ in
     extInterface = mkOption { type = str; };
     systemd = mkEnableOption "systemd networkd";
   };
-  config = {
+  config = mkIf config.is_microvm_host {
     networking = {
       nat = {
         enable = true;
@@ -20,10 +25,6 @@ in
     };
   };
   imports = [
-    # keep-sorted start sticky_comments=no block=yes
-    ./microvm_host_stock.nix
-    ./microvm_host_systemd.nix
-    # keep-sorted end
+    inputs.microvm.nixosModules.host
   ];
-
 }
