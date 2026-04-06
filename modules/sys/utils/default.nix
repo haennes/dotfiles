@@ -7,6 +7,7 @@ in
     ./pdf.nix
     ./loc.nix
     ./prettifiers.nix
+    ./archive.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {

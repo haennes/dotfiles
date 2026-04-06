@@ -42,7 +42,6 @@
 
     #tools
     btop # process and system monitor
-    unzip
     cifs-utils
     wl-clipboard # clipboard
 
@@ -64,8 +63,6 @@
 
     #Gameing
     wineWow64Packages.waylandFull
-
-    zip
 
   ];
 }
