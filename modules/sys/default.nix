@@ -11,5 +11,6 @@
     ./tmp.nix
     ./state-version.nix
     ./graphics.nix
+    ./i18n.nix
   ];
 }

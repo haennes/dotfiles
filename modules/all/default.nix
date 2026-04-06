@@ -8,7 +8,6 @@
     ./base.nix
     ./crosscompile.nix
     ./distributed_builds.nix
-    ./i18n.nix
     ./ips_cli.nix
     ./minecraft.nix
     ./networkmanager-networks.nix
