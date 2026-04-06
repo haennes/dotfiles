@@ -9,6 +9,7 @@ in
     ./prettifiers.nix
     ./archive.nix
     ./clipboard.nix
+    ./fix_hid.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {

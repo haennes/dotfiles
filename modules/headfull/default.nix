@@ -8,7 +8,6 @@
     ./base.nix
     ./chromecast.nix
     ./dll.nix
-    ./fix_hid.nix
     ./fortivpn.nix
     ./hyprland.nix
     ./keyring.nix
