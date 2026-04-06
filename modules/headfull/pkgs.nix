@@ -43,7 +43,6 @@
     #tools
     btop # process and system monitor
     cifs-utils
-    wl-clipboard # clipboard
 
     #tui
     bluetuith

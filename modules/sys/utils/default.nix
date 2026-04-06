@@ -8,6 +8,7 @@ in
     ./loc.nix
     ./prettifiers.nix
     ./archive.nix
+    ./clipboard.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
