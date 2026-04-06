@@ -10,7 +10,6 @@
     ./distributed_builds.nix
     ./ips_cli.nix
     ./minecraft.nix
-    ./networkmanager-networks.nix
     ./nix-serve.nix
     ./nix.nix
     ./pkgs.nix
