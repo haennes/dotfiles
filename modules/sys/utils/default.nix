@@ -10,6 +10,7 @@ in
     ./archive.nix
     ./clipboard.nix
     ./fix_hid.nix
+    ./ips_cli.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {

@@ -8,7 +8,6 @@
     ./base.nix
     ./crosscompile.nix
     ./distributed_builds.nix
-    ./ips_cli.nix
     ./minecraft.nix
     ./nix-serve.nix
     ./nix.nix
