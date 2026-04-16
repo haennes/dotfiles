@@ -209,11 +209,11 @@ in
       ${scripts.mount} -e
       ;;
   "lock")
-      ${scripts.lock}
+      hyprlock
       ;;
   "sleep")
       systemctl suspend
-      ${scripts.lock}
+      hyprlock
       ;;
   "shutdown")
       if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then poweroff; fi

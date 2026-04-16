@@ -182,7 +182,7 @@ in
         "$mod, return, exec, $terminal"
         "CTRL, space, exec, $runprompt"
         "$mod, D, exec, ${launch_vicinae "toggle"}"
-        "$mod SHIFT, L, exec, ${scripts.lock}"
+        "$mod SHIFT, L, exec, hyprlock"
         "$mod, V, exec, ${scripts.clipboard}"
 
         # kill window

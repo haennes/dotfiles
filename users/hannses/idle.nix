@@ -1,5 +1,6 @@
 { pkgs, scripts, ... }:
 let
+  locker = "hyprlock";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
 in
 {
@@ -8,8 +9,8 @@ in
 
     settings = {
       general = {
-        lock_cmd = "pidof swaylock || ${scripts.lock} -f";
-        unlock_cmd = "pkill -USR1 swaylock";
+        lock_cmd = "pidof ${locker} || ${locker}";
+        unlock_cmd = "pkill -USR1 ${locker}";
 
         before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "hyprctl dispatch dpms on";

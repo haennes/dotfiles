@@ -29,6 +29,7 @@
     ./hyprpaper.nix
     ./idle.nix
     ./kitty.nix
+    ./lock.nix
     ./mail.nix
     ./mime.nix # setup default programs
     ./nix-search.nix
@@ -122,7 +123,6 @@
     swww
     wlr-randr
     wdisplays # gui display positioning
-    swaylock-effects
     #swaynotificationcenter
     #lemurs # TODO fix
     ripdrag
