@@ -17,7 +17,7 @@ let
     ;
   secret_files = (
     haumea.load {
-      src = ../../secrets/networks/secrets;
+      src = ../../../secrets/networks/secrets;
       loader = haumea.loaders.verbatim;
     }
   );
@@ -32,7 +32,7 @@ in
     networking.networkmanager.ensureProfiles = {
       profiles = filterAttrs (n: _: n != "secrets") (
         haumea.load {
-          src = ../../secrets/networks;
+          src = ../../../secrets/networks;
           loader = haumea.loaders.default;
         }
       );
@@ -70,7 +70,7 @@ in
         {
           name = pathName;
           value = {
-            file = ../../secrets/networks/secrets/${pathName}.age;
+            file = ../../../secrets/networks/secrets/${pathName}.age;
           };
         }
       ) secret_files;
