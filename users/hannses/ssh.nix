@@ -205,6 +205,7 @@ in
       "fs_main" = {
         user = "hoh47200";
         hostname = "cloud.fsim-ev.de";
+        port = 8081;
       };
       "fs_main_jmp" = {
         user = "hoh47200";
