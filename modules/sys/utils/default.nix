@@ -11,6 +11,7 @@ in
     ./clipboard.nix
     ./fix_hid.nix
     ./ips_cli.nix
+    ./ports_cli.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {

@@ -12,7 +12,6 @@
     ./nix-serve.nix
     ./nix.nix
     ./pkgs.nix
-    ./ports_cli.nix
     ./shell.nix
     ./ssh.nix
     ./store_optimize.nix
