@@ -24,7 +24,4 @@ in
       };
     };
   };
-  imports = [
-    inputs.microvm.nixosModules.host
-  ];
 }

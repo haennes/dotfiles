@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  inputs,
+  ...
+}:
 let
   inherit (lib) mkEnableOption;
 in
@@ -9,9 +14,15 @@ in
     ./microvm_host.nix
     ./microvm_host_stock.nix
     ./microvm_host_systemd.nix
+    inputs.microvm.nixosModules.microvm
+    inputs.microvm.nixosModules.host
   ];
 
   options.my.virtualization.enable = mkEnableOption "virtualization" // {
     default = !config.is_microvm;
+  };
+  config.microvm = {
+    guest.enable = config.is_microvm;
+    host.enable = config.is_microvm_host;
   };
 }
