@@ -1,38 +1,71 @@
-{ pkgs, osConfig, ... }:
+{ osConfig, ... }:
 {
-  services.batsignal = {
+  services.bato = {
     enable = osConfig.has_battery;
-    package = pkgs.batsignal.overrideAttrs {
-      src = pkgs.fetchFromGitHub {
-        owner = "Bootjewolf";
-        repo = "batsignal";
-        rev = "23f9d9b8c061b55501e21d6e89fa4c523254f73a";
-        hash = "sha256-kGj5FVfZJPX/TCsCT2X+gplz1YAg0GlmGDMjCCxtZZw=";
+    settings = {
+      # The tick rate, in second, at which battery info is polled
+      # default: 2
+      tick_rate = 2;
+
+      # The battery to monitor, located in `/sys/class/power_supply/<BAT_NAME>/`
+      # If not provided, bato will try to find one
+      # bat_name = "BAT0"
+
+      # The critical level of the battery, as a percentage
+      # default 5
+      critical_level = 5;
+
+      # The low level of the battery, as a percentage
+      # default 20
+      low_level = 20;
+
+      # Whether the current level is calculated based on the full design value
+      # default true
+      full_design = false;
+
+      # At which point to consider charging state to jitter due to on/off switching of Powersupply
+      jitter_threshold = 90;
+
+      # # # # #
+      # Notifications settings
+      # If you omit one, the corresponding notification is disabled
+      # They take the following properties:
+      # `summary` main notification text, oneline (required)
+      # `body` optional multiline text
+      # `icon` optional icon name (from a freedesktop.org-compliant icon theme)
+      # `urgencey` optional urgency level, low | normal | critical
+
+      charging = {
+        summary = "Battery";
+        body = "Charging";
+        icon = "battery-good-charging";
       };
+
+      discharging = {
+        summary = "Battery";
+        body = "Discharging";
+        icon = "battery-good";
+      };
+
+      full = {
+        summary = "Battery";
+        body = "Full";
+        icon = "battery-full";
+      };
+
+      low = {
+        summary = "Battery";
+        body = "Low";
+        icon = "battery-low";
+      };
+
+      critical = {
+        summary = "Battery";
+        body = "Critical!";
+        icon = "battery-caution";
+        urgency = "critical";
+      };
+
     };
-    extraArgs = [
-      # warning levels
-      "-w"
-      "25"
-      #"-W" "WARNING: Battery below 25%"
-      "-c"
-      "15"
-      #"-C" "CRITICAL: Battery below 20%"
-      "-d"
-      "5"
-      #"-D"
-      #"systemctl suspend"
-      # enable battery full level
-      "-f"
-      "80"
-
-      "-p" # show message when changing charging state
-      "-q" # show message only once
-      "-P"
-      "charging"
-
-      "-m"
-      "+1"
-    ];
   };
 }

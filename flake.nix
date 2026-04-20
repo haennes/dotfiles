@@ -66,8 +66,8 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
-      #url = "git+file:///home/hannses/programming/home-manager";
+      # url = "github:nix-community/home-manager";
+      url = "git+file:///home/hannses/programming/nix/home-manager?ref=module-bato";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprcursor-phinger = {

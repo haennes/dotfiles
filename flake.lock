@@ -1150,17 +1150,18 @@
         ]
       },
       "locked": {
-        "lastModified": 1774647770,
-        "narHash": "sha256-UNNi14XiqRWWjO8ykbFwA5wRwx7EscsC+GItOVpuGjc=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "02371c05a04a2876cf92e2d67a259e8f87399068",
-        "type": "github"
+        "lastModified": 1776722745,
+        "narHash": "sha256-ECIIVmsQrB98UHAxsqetBbXxZSOlWY8ywzxwf/k6ZNw=",
+        "ref": "module-bato",
+        "rev": "a5b234047cb0cded2798d8488cb41f4febd6fbe0",
+        "revCount": 6550,
+        "type": "git",
+        "url": "file:///home/hannses/programming/nix/home-manager"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
+        "ref": "module-bato",
+        "type": "git",
+        "url": "file:///home/hannses/programming/nix/home-manager"
       }
     },
     "hyprcursor-phinger": {
