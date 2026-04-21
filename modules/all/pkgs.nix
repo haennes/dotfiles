@@ -6,7 +6,6 @@
     fastfetch # display system information
     restic
     fd # better version of find
-    eza
 
     ncdu # disk usage
     nmap

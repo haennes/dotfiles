@@ -13,6 +13,7 @@ in
     ./ips_cli.nix
     ./ports_cli.nix
     ./ripgrep.nix
+    ./eza.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
