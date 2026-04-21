@@ -12,6 +12,7 @@ in
     ./fix_hid.nix
     ./ips_cli.nix
     ./ports_cli.nix
+    ./ripgrep.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
