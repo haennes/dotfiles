@@ -8,7 +8,6 @@
     fd # better version of find
 
     nmap
-    lsof # list open files (I use it for local port monitoring)
     wget
     zellij # terminal multiplexer
     tmux # backrground terminals

@@ -15,6 +15,7 @@ in
     ./ripgrep.nix
     ./eza.nix
     ./ncdu.nix
+    ./lsof.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
