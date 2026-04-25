@@ -1150,10 +1150,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1776722745,
-        "narHash": "sha256-ECIIVmsQrB98UHAxsqetBbXxZSOlWY8ywzxwf/k6ZNw=",
+        "lastModified": 1776724086,
+        "narHash": "sha256-inLBdjddlHbvR942d/gfTa7CMWl+PJKAoq0nlCS5zfE=",
         "ref": "module-bato",
-        "rev": "a5b234047cb0cded2798d8488cb41f4febd6fbe0",
+        "rev": "96fe6ff03a3c670a38d894a9d228d79a264229e1",
         "revCount": 6550,
         "type": "git",
         "url": "file:///home/hannses/programming/nix/home-manager"
