@@ -61,6 +61,9 @@ in
       };
       service.DISABLE_REGISTRATION = true;
       "repository.pull-request".DEFAULT_MERGE_STYLE = "rebase";
+      repository = {
+        GO_GET_CLONE_URL_PROTOCOL = "ssh";
+      };
     };
     database = {
       type = "postgres";
