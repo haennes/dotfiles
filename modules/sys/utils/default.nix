@@ -17,6 +17,7 @@ in
     ./ncdu.nix
     ./lsof.nix
     ./networking.nix
+    ./tldr.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
