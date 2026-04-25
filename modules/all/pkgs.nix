@@ -7,20 +7,10 @@
     restic
     fd # better version of find
 
-    nmap
-    wget
     zellij # terminal multiplexer
     tmux # backrground terminals
     pv # util
-    dig # dns lookup
-    tcpdump
 
-    tldr # man alternative
-    usbutils
-    git
-    sshfs
-    deploy-rs
-    wireguard-tools
     btop # process and system monitor
   ];
   programs.neovim = {
