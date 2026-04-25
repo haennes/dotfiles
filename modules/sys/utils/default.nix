@@ -21,6 +21,7 @@ in
     ./usbutils.nix
     ./git.nix
     ./sshfs.nix
+    ./deploy-rs.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
