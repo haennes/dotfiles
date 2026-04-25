@@ -1,7 +1,51 @@
-{ osConfig, ... }:
+{ osConfig, pkgs, ... }:
+let
+  package = pkgs.callPackage (
+    {
+      lib,
+      pkg-config,
+      cmake,
+      libnotify,
+      rustPlatform,
+      fetchFromGitHub,
+    }:
+
+    rustPlatform.buildRustPackage (finalAttrs: {
+      pname = "bato";
+      version = "0.2.1";
+
+      src = fetchFromGitHub {
+        owner = "doums";
+        repo = "bato";
+        rev = "master";
+        hash = "sha256-lmrqIka1v71KyE86k2ARk2615JlM1V0LnW50yVGI8NU=";
+      };
+
+      cargoHash = "sha256-nk5NtUElByy652xX47vK8Fdzzsk29J1aEx7Y3ABk3Rc=";
+
+      nativeBuildInputs = [
+        pkg-config
+        cmake
+      ];
+
+      buildInputs = [ libnotify ];
+
+      meta = {
+        description = "Small program to send battery notifications";
+        homepage = "https://github.com/doums/bato";
+        changelog = "https://github.com/doums/bato/releases/tag/v${finalAttrs.version}";
+        license = lib.licenses.mpl20;
+        maintainers = with lib.maintainers; [ HaskellHegemonie ];
+        platforms = lib.platforms.linux;
+        mainProgram = "bato";
+      };
+    })
+  ) { };
+in
 {
   services.bato = {
     enable = osConfig.has_battery;
+    inherit package; # remove on upstream update
     settings = {
       # The tick rate, in second, at which battery info is polled
       # default: 2
@@ -22,9 +66,6 @@
       # Whether the current level is calculated based on the full design value
       # default true
       full_design = false;
-
-      # At which point to consider charging state to jitter due to on/off switching of Powersupply
-      jitter_threshold = 90;
 
       # # # # #
       # Notifications settings
