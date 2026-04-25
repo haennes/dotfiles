@@ -22,7 +22,7 @@ hostname:
     {
       image = "nix-store-overlay.img";
       mountPoint = config.microvm.writableStoreOverlay;
-      size = 2048000;
+      size = 20480;
     }
   ];
   networking.hostName = hostname;
