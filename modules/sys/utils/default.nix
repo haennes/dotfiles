@@ -20,6 +20,7 @@ in
     ./tldr.nix
     ./usbutils.nix
     ./git.nix
+    ./sshfs.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
