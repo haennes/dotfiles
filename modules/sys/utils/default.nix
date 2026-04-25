@@ -23,6 +23,7 @@ in
     ./sshfs.nix
     ./deploy-rs.nix
     ./system-monitor.nix
+    ./nix.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
