@@ -18,6 +18,7 @@ in
     ./lsof.nix
     ./networking.nix
     ./tldr.nix
+    ./usbutils.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
