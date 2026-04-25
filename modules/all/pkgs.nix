@@ -7,7 +7,6 @@
     restic
     fd # better version of find
 
-    ncdu # disk usage
     nmap
     lsof # list open files (I use it for local port monitoring)
     wget

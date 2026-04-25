@@ -14,6 +14,7 @@ in
     ./ports_cli.nix
     ./ripgrep.nix
     ./eza.nix
+    ./ncdu.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
