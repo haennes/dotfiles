@@ -19,6 +19,7 @@ in
     ./networking.nix
     ./tldr.nix
     ./usbutils.nix
+    ./git.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
