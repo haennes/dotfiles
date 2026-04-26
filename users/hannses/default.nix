@@ -75,7 +75,6 @@
     # signal-whisper-large-v3-q5_0
     vim
     gdb
-    nix-diff
     nix-tree
     icdiff
     inputs.nix-inspect.packages.${system}.default
