@@ -101,7 +101,6 @@
     feh # for dticket cmd
     element-desktop
     # openai-whisper-cpp
-    ffmpeg
     sqlite
 
     # doesnt work atm
