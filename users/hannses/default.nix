@@ -13,7 +13,6 @@
     ./anki.nix
     ./atuin.nix
     ./bookmarks.nix
-    ./btop.nix
     ./carapace.nix
     ./cliphist.nix
     ./codium.nix
