@@ -29,7 +29,6 @@
     ./tmux.nix
     ./vim.nix
     ./virtualization.nix
-    ./wezterm.nix
     ./zathura.nix
     ./zoxide.nix
     ./zsh.nix
@@ -88,6 +87,5 @@
   home.sessionVariables = {
     EDITOR = "hx";
     BROWSER = "firefox";
-    TERMINAL = "wezterm";
   };
 }

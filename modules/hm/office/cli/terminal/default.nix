@@ -8,6 +8,7 @@ in
   };
   imports = [
     ./kitty.nix
+    ./wezterm.nix
   ];
 
   config.home.sessionVariables.TERMINAL = "wezterm";
