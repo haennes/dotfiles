@@ -4,7 +4,8 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkOption mkIf;
+  inherit (lib.types) str;
 in
 {
   options.my.desktop.lock = {

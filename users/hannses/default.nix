@@ -22,7 +22,6 @@
     ./git.nix
     ./gnome_config.nix
     ./helix.nix
-    ./idle.nix
     ./kitty.nix
     ./mail.nix
     ./mime.nix # setup default programs
