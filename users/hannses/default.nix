@@ -21,7 +21,6 @@
     ./fonts.nix
     ./git.nix
     ./gnome_config.nix
-    ./gtk.nix # (hopefully) just dark mode
     ./helix.nix
     ./hyprland.nix
     ./hyprpaper.nix
