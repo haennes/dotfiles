@@ -9,5 +9,6 @@ in
   imports = [
     ./terminal
     ./shells
+    ./shell
   ];
 }
