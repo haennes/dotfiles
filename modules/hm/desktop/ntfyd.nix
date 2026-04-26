@@ -9,7 +9,7 @@ let
 in
 {
   options.my.desktop.ntfyd.enable = mkEnableOption "notification daemon" // {
-    default = config.my.desktop.enable;
+    default = config.my.desktop.hyprland.enable;
   };
   config = mkIf config.my.desktop.ntfyd.enable {
     services.dunst = {

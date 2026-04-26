@@ -22,7 +22,6 @@
     ./git.nix
     ./gnome_config.nix
     ./helix.nix
-    ./hyprland.nix
     ./hyprpaper.nix
     ./idle.nix
     ./kitty.nix

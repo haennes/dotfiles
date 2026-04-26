@@ -7,6 +7,7 @@ in
     ./ntfyd.nix
     ./gnome.nix
     ./gtk.nix
+    ./hyprland.nix
   ];
   options.my.desktop.enable = mkEnableOption "desktop" // {
     default = osConfig.is_client;
