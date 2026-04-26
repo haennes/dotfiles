@@ -13,6 +13,9 @@ in
     default = osConfig.services.desktopManager.gnome.enable;
   };
   config = mkIf config.my.desktop.gnome.enable {
+    home.packages = with pkgs; [
+      dconf-editor
+    ];
 
     dconf.settings = {
       "org/gnome/desktop/interface" = {
