@@ -39,9 +39,6 @@
     alacritty
     blackbox-terminal
 
-    #tools
-    cifs-utils
-
     #programming
     arduino
     arduino-ota

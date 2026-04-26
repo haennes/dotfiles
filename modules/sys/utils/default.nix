@@ -20,7 +20,6 @@ in
     ./tldr.nix
     ./usbutils.nix
     ./git.nix
-    ./sshfs.nix
     ./deploy-rs.nix
     ./system-monitor.nix
     ./nix.nix
@@ -28,6 +27,7 @@ in
     ./adb.nix
     ./dll.nix
     ./tuis
+    ./fs.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
