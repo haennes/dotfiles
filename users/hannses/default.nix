@@ -34,7 +34,6 @@
     ./television.nix
     ./tmux.nix
     ./udiskie.nix
-    ./vicinae.nix
     ./vim.nix
     ./virtualization.nix
     ./waybar.nix

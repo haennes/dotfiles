@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./rofi.nix
+    ./vicinae.nix
   ];
 }
