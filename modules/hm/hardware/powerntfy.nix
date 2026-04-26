@@ -1,5 +1,12 @@
-{ osConfig, pkgs, ... }:
+{
+  osConfig,
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
+  inherit (lib) mkEnableOption mkIf;
   package = pkgs.callPackage (
     {
       lib,
@@ -43,8 +50,12 @@ let
   ) { };
 in
 {
-  services.bato = {
-    enable = osConfig.has_battery;
+  options.my.hardware.powerntfy.enable = mkEnableOption "power notifications" // {
+    default = osConfig.has_battery && osConfig.is_client && config.my.hardware.enable;
+  };
+
+  config.services.bato = mkIf config.my.hardware.powerntfy.enable {
+    enable = true;
     inherit package; # remove on upstream update
     settings = {
       # The tick rate, in second, at which battery info is polled
