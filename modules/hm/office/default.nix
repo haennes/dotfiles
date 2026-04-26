@@ -15,5 +15,6 @@ in
     ./tasks.nix
     ./calc.nix
     ./finances.nix
+    ./music
   ];
 }
