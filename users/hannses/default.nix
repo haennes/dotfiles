@@ -33,7 +33,6 @@
     ./tasks.nix
     ./television.nix
     ./tmux.nix
-    ./udiskie.nix
     ./vim.nix
     ./virtualization.nix
     ./wezterm.nix

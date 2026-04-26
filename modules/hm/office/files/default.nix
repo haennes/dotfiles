@@ -9,5 +9,6 @@ in
   imports = [
     ./bookmarks.nix
     ./yazi.nix
+    ./udiskie.nix
   ];
 }
