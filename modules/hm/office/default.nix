@@ -9,5 +9,6 @@ in
   import = [
     ./files
     ./rss.nix
+    ./fonts.nix
   ];
 }

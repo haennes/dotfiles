@@ -18,7 +18,6 @@
     ./codium.nix
     ./direnv.nix
     ./firefox
-    ./fonts.nix
     ./git.nix
     ./gnome_config.nix
     ./helix.nix
@@ -68,7 +67,6 @@
     inputs.typ2anki.packages.${system}.default
     license-cli # license texts on the command line
     #fritzing
-    fontforge-gtk
     lapce
     #jetbrains.clion # fix debugging c in vim at some point
     musescore
