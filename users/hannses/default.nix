@@ -26,7 +26,6 @@
     ./mail.nix
     ./mime.nix # setup default programs
     ./pqiv.nix # images
-    ./rofi.nix
     ./rss.nix
     ./shell.nix
     ./ssh.nix
