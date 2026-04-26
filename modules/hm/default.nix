@@ -4,5 +4,6 @@
     ./utils
     ./hardware
     ./identity
+    ./virtualization.nix
   ];
 }
