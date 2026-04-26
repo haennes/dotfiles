@@ -8,6 +8,7 @@ in
     ./pdf.nix
     ./ffmpeg.nix
     ./tuis
+    ./nix
   ];
   options.my.utils.enable = mkEnableOption "utils" // {
     default = osConfig.my.utils.enable;

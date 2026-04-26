@@ -32,8 +32,6 @@
     ./lock.nix
     ./mail.nix
     ./mime.nix # setup default programs
-    ./nix-search.nix
-    ./nix.nix
     ./pqiv.nix # images
     ./rofi.nix
     ./rss.nix
