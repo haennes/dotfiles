@@ -11,6 +11,7 @@ in
     ./wallpaper.nix
     ./lock.nix
     ./idle.nix
+    ./nightlight.nix
   ];
   options.my.desktop.enable = mkEnableOption "desktop" // {
     default = osConfig.is_client;
