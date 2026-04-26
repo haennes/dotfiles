@@ -8,6 +8,7 @@ in
     ./gnome.nix
     ./gtk.nix
     ./hyprland.nix
+    ./wallpaper.nix
   ];
   options.my.desktop.enable = mkEnableOption "desktop" // {
     default = osConfig.is_client;

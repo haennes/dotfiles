@@ -22,7 +22,6 @@
     ./git.nix
     ./gnome_config.nix
     ./helix.nix
-    ./hyprpaper.nix
     ./idle.nix
     ./kitty.nix
     ./lock.nix
@@ -101,10 +100,6 @@
     pavucontrol
 
     # DESKTOP ENV PROGRAMS
-    grim
-    grimblast
-    slurp
-    swww
     wlr-randr
     wdisplays # gui display positioning
     #swaynotificationcenter
