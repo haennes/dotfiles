@@ -5,6 +5,7 @@ in
 {
   imports = [
     ./btop.nix
+    ./bluetooth.nix
   ];
   options.my.utils.tuis.enable = mkEnableOption "tuis" // {
     default = config.my.utils.enable;

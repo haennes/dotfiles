@@ -42,9 +42,6 @@
     #tools
     cifs-utils
 
-    #tui
-    bluetuith
-
     #programming
     arduino
     arduino-ota
