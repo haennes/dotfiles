@@ -6,5 +6,6 @@
     ./identity
     ./virtualization.nix
     ./desktop
+    ./office
   ];
 }
