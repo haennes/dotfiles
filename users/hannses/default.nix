@@ -10,7 +10,6 @@
     # keep-sorted start sticky_comments=no block=yes
     #update broke ./vimiv.nix # images
     ../../modules/hm/default.nix
-    ./anki.nix
     ./atuin.nix
     ./bookmarks.nix
     ./carapace.nix
@@ -63,7 +62,6 @@
     scli # signal tui FIXME replace with gurk-rs as soon as upstream fixed
     signal-cli
     shortwave
-    inputs.typ2anki.packages.${system}.default
     license-cli # license texts on the command line
     #fritzing
     lapce

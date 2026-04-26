@@ -11,5 +11,6 @@ in
     ./rss.nix
     ./fonts.nix
     ./cliphist.nix
+    ./flashcards.nix
   ];
 }
