@@ -14,6 +14,7 @@ in
     ./nightlight.nix
     ./launchers
     ./bar.nix
+    ./portal.nix
   ];
   options.my.desktop.enable = mkEnableOption "desktop" // {
     default = osConfig.is_client;

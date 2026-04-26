@@ -89,7 +89,6 @@
     # doesnt work atm
     #sweet
 
-    xdg-desktop-portal-hyprland # maybe replace with home manager (not hyprland)
     playerctl
     libnotify
     pavucontrol

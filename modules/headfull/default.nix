@@ -21,7 +21,6 @@
     ./steam.nix
     ./virtualization.nix
     ./wireshark.nix
-    ./xdg.nix
     ./yubikey.nix
     # keep-sorted end
   ];
