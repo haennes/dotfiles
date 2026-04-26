@@ -84,7 +84,6 @@
     #lemurs # TODO fix
     ripdrag
 
-    fend
     glow
     portfolio
   ];

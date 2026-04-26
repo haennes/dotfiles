@@ -13,5 +13,6 @@ in
     ./cliphist.nix
     ./flashcards.nix
     ./tasks.nix
+    ./calc.nix
   ];
 }
