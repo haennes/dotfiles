@@ -22,7 +22,6 @@
     ./mail.nix
     ./mime.nix # setup default programs
     ./pqiv.nix # images
-    ./ssh.nix
     ./starship.nix
     ./television.nix
     ./tmux.nix

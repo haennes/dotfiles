@@ -1,6 +1,7 @@
 {
   sshkeys,
   osConfig,
+  config,
   lib,
   ...
 }:
@@ -17,6 +18,8 @@ let
     isList
     optionals
     elem
+    mkEnableOption
+    mkIf
     ;
   inherit (lib.my) mapAttrsFlattened;
   forwards = [
@@ -197,102 +200,107 @@ let
 
 in
 {
-  services.ssh-agent.enable = true;
-  programs.ssh = {
-    enable = true;
-    matchBlocks = rec {
-      "*".addKeysToAgent = "1h";
-      "fs_main" = {
-        user = "hoh47200";
-        hostname = "cloud.fsim-ev.de";
-        port = 8081;
-      };
-      "fs_main_jmp" = {
-        user = "hoh47200";
-        hostname = "ole.blue";
-        port = 2222;
-      };
-      "fs_bak_jmp" = {
-        user = "hannes";
-        hostname = "10.24.1.2";
-        proxyJump = "fs_main_jmp";
-      };
-      "fs_apollo_jmp" = {
-        user = "hoh47200";
-        hostname = "apollo";
-        proxyJump = "fs_bak_jmp";
-      };
-      "pons" = {
-        user = "root";
-        port = ports.pons.sshd;
-        hostname = ips.pons.ens6;
-        # hostname = "hannses.de";
-      };
-      "forward_pons" = {
-        user = "forward";
-        hostname = "hannses.de";
-        port = ports.pons.sshd;
-        identitiesOnly = true;
-        identityFile = [ sshkeys.forward_path ];
-      };
-      # can not replace with local_global as different hostnames
-      "l_porta" = porta_local;
-      "porta_local" = {
-        user = "root";
-        hostname = ips.porta.ens3;
-      };
-      "porta" = {
-        user = "root";
-        hostname = ips.porta.wg0;
-        proxyJump = "pons";
-      };
-      "forward_porta" = {
-        user = "forward";
-        hostname = ips.porta.wg0;
-        proxyJump = "forward_pons";
-        identitiesOnly = true;
-        identityFile = [ sshkeys.forward_path ];
-      };
-      "l_thinkpad" = {
-        user = "root";
-        hostname = "thinkpad.fritz.box";
-      };
-    }
-    // listToAttrs (
-      flatten (
-        map
-          (
-            tuple:
-            attrsToList (local_global rec {
-              inherit (tuple) name;
-              hostname = tuple.name;
-              forward_user = (elem name forwards);
-              localForwards = optionals (curr_ports.ssh ? "${name}") (
-                flatten (
-                  collect isList (
-                    mapAttrsRecursive (path: value: [
-                      {
-                        host.address = "127.0.0.1";
-                        host.port = getAttrFromPath path ports.${name};
-                        bind.port = value;
-                      }
-                    ]) curr_ports.ssh.${name}
+  options.my.office.cli.shell.ssh.enable = mkEnableOption "ssh" // {
+    default = config.my.office.cli.shell.enable;
+  };
+  config = mkIf config.my.office.cli.shell.ssh.enable {
+    services.ssh-agent.enable = true;
+    programs.ssh = {
+      enable = true;
+      matchBlocks = rec {
+        "*".addKeysToAgent = "1h";
+        "fs_main" = {
+          user = "hoh47200";
+          hostname = "cloud.fsim-ev.de";
+          port = 8081;
+        };
+        "fs_main_jmp" = {
+          user = "hoh47200";
+          hostname = "ole.blue";
+          port = 2222;
+        };
+        "fs_bak_jmp" = {
+          user = "hannes";
+          hostname = "10.24.1.2";
+          proxyJump = "fs_main_jmp";
+        };
+        "fs_apollo_jmp" = {
+          user = "hoh47200";
+          hostname = "apollo";
+          proxyJump = "fs_bak_jmp";
+        };
+        "pons" = {
+          user = "root";
+          port = ports.pons.sshd;
+          hostname = ips.pons.ens6;
+          # hostname = "hannses.de";
+        };
+        "forward_pons" = {
+          user = "forward";
+          hostname = "hannses.de";
+          port = ports.pons.sshd;
+          identitiesOnly = true;
+          identityFile = [ sshkeys.forward_path ];
+        };
+        # can not replace with local_global as different hostnames
+        "l_porta" = porta_local;
+        "porta_local" = {
+          user = "root";
+          hostname = ips.porta.ens3;
+        };
+        "porta" = {
+          user = "root";
+          hostname = ips.porta.wg0;
+          proxyJump = "pons";
+        };
+        "forward_porta" = {
+          user = "forward";
+          hostname = ips.porta.wg0;
+          proxyJump = "forward_pons";
+          identitiesOnly = true;
+          identityFile = [ sshkeys.forward_path ];
+        };
+        "l_thinkpad" = {
+          user = "root";
+          hostname = "thinkpad.fritz.box";
+        };
+      }
+      // listToAttrs (
+        flatten (
+          map
+            (
+              tuple:
+              attrsToList (local_global rec {
+                inherit (tuple) name;
+                hostname = tuple.name;
+                forward_user = (elem name forwards);
+                localForwards = optionals (curr_ports.ssh ? "${name}") (
+                  flatten (
+                    collect isList (
+                      mapAttrsRecursive (path: value: [
+                        {
+                          host.address = "127.0.0.1";
+                          host.port = getAttrFromPath path ports.${name};
+                          bind.port = value;
+                        }
+                      ]) curr_ports.ssh.${name}
+                    )
                   )
-                )
-              );
-            })
+                );
+              })
 
-          )
-          (
-            attrsToList (
-              removeAttrs ips [
-                "pons"
-                "porta"
-                "handy_hannses"
-              ]
             )
-          )
-      )
-    );
+            (
+              attrsToList (
+                removeAttrs ips [
+                  "pons"
+                  "porta"
+                  "handy_hannses"
+                ]
+              )
+            )
+        )
+      );
+    };
   };
 }

@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./aliases.nix
+    ./ssh.nix
   ];
 }
