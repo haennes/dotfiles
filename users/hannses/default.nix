@@ -76,7 +76,6 @@
     vim
     gdb
     icdiff
-    inputs.nix-inspect.packages.${system}.default
     keepassxc
     signal-desktop
     scli # signal tui FIXME replace with gurk-rs as soon as upstream fixed
