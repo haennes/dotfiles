@@ -37,7 +37,6 @@
     ./vim.nix
     ./virtualization.nix
     ./wezterm.nix
-    ./yazi.nix
     ./zathura.nix
     ./zoxide.nix
     ./zsh.nix
