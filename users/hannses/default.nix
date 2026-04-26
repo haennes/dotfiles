@@ -31,7 +31,6 @@
     ./virtualization.nix
     ./zathura.nix
     ./zoxide.nix
-    ./zsh.nix
     # keep-sorted end
   ];
   # Home Manager needs a bit of information about you and the
