@@ -15,5 +15,6 @@
     ./networks
     ./virtualization
     ./utils
+    ./ssh.nix
   ];
 }

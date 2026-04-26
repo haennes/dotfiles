@@ -13,7 +13,6 @@
     ./nix.nix
     ./pkgs.nix
     ./shell.nix
-    ./ssh.nix
     ./store_optimize.nix
     ./syncthing-wrapper.nix
     ./wireguard-wrapper.nix
