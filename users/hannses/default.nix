@@ -92,8 +92,6 @@
     libnotify
 
     # DESKTOP ENV PROGRAMS
-    wlr-randr
-    wdisplays # gui display positioning
     #swaynotificationcenter
     #lemurs # TODO fix
     ripdrag
