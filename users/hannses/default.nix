@@ -17,7 +17,6 @@
     ./cliphist.nix
     ./codium.nix
     ./direnv.nix
-    ./dunst.nix
     ./firefox
     ./fonts.nix
     ./git.nix

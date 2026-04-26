@@ -5,5 +5,6 @@
     ./hardware
     ./identity
     ./virtualization.nix
+    ./desktop
   ];
 }
