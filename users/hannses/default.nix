@@ -19,7 +19,6 @@
     ./git.nix
     ./gnome_config.nix
     ./helix.nix
-    ./kitty.nix
     ./mail.nix
     ./mime.nix # setup default programs
     ./pqiv.nix # images

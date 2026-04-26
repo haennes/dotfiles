@@ -16,5 +16,6 @@ in
     ./calc.nix
     ./finances.nix
     ./music
+    ./cli
   ];
 }
