@@ -61,7 +61,6 @@
     # signal-whisper-large-v3-q5_0
     vim
     gdb
-    icdiff
     signal-desktop
     scli # signal tui FIXME replace with gurk-rs as soon as upstream fixed
     signal-cli
