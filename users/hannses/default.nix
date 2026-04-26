@@ -24,7 +24,6 @@
     ./helix.nix
     ./idle.nix
     ./kitty.nix
-    ./lock.nix
     ./mail.nix
     ./mime.nix # setup default programs
     ./pqiv.nix # images
