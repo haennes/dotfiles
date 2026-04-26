@@ -9,6 +9,7 @@
   imports = [
     # keep-sorted start sticky_comments=no block=yes
     #update broke ./vimiv.nix # images
+    ../../modules/hm/default.nix
     ./anki.nix
     ./atuin.nix
     ./bookmarks.nix
@@ -111,7 +112,6 @@
     #sweet
 
     xdg-desktop-portal-hyprland # maybe replace with home manager (not hyprland)
-    wl-clipboard
     playerctl
     libnotify
     pavucontrol
