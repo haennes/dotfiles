@@ -85,7 +85,6 @@
     ripdrag
 
     glow
-    portfolio
   ];
 
   # Environment

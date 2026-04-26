@@ -14,5 +14,6 @@ in
     ./flashcards.nix
     ./tasks.nix
     ./calc.nix
+    ./finances.nix
   ];
 }
