@@ -6,7 +6,6 @@
     ./audio.nix
     ./base.nix
     ./chromecast.nix
-    ./dll.nix
     ./fortivpn.nix
     ./hyprland.nix
     ./keyring.nix
