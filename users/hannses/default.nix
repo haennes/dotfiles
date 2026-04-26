@@ -14,7 +14,6 @@
     ./atuin.nix
     ./bookmarks.nix
     ./carapace.nix
-    ./cliphist.nix
     ./codium.nix
     ./direnv.nix
     ./firefox

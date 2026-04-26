@@ -10,5 +10,6 @@ in
     ./files
     ./rss.nix
     ./fonts.nix
+    ./cliphist.nix
   ];
 }
