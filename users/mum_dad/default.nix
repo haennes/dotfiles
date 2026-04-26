@@ -24,6 +24,4 @@
     lorien
   ];
 
-  imports = [ ./gnome_config.nix ];
-
 }

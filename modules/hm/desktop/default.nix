@@ -5,6 +5,7 @@ in
 {
   imports = [
     ./ntfyd.nix
+    ./gnome.nix
   ];
   options.my.desktop.enable = mkEnableOption "desktop" // {
     default = osConfig.is_client;
