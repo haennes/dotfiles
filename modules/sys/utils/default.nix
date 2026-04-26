@@ -25,6 +25,7 @@ in
     ./system-monitor.nix
     ./nix.nix
     ./sudo.nix
+    ./adb.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
