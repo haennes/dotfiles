@@ -88,9 +88,6 @@
     scli # signal tui FIXME replace with gurk-rs as soon as upstream fixed
     signal-cli
     dconf-editor
-    poppler-utils
-    pdftk
-    diff-pdf
     shortwave
     inputs.typ2anki.packages.${system}.default
     license-cli # license texts on the command line
