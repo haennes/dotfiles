@@ -2,6 +2,7 @@
   osConfig,
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -24,5 +25,8 @@ in
   };
   config = mkIf config.my.utils.nix.nh.enable {
     programs.nh = config.my.utils.nix.nh.config;
+    home.packages = with pkgs; [
+      update-apply-cycle
+    ];
   };
 }

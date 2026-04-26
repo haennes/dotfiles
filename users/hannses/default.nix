@@ -61,7 +61,6 @@
   home.packages = with pkgs; [
     comma
     kdePackages.kcachegrind
-    update-apply-cycle
     # signal-whisper-large-v3-q5_0
     vim
     gdb
