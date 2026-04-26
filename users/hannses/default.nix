@@ -36,7 +36,6 @@
     ./udiskie.nix
     ./vim.nix
     ./virtualization.nix
-    ./waybar.nix
     ./wezterm.nix
     ./yazi.nix
     ./zathura.nix

@@ -4,9 +4,12 @@
   globals,
   theme,
   inputs,
+  lib,
+  config,
   ...
 }:
 let
+  inherit (lib) mkEnableOption mkIf;
   batteryScript = pkgs.writeShellScriptBin "batteryScript" ''
     cat /sys/class/power_supply/BAT0/capacity
   '';
@@ -412,15 +415,20 @@ let
   '';
 in
 {
-  programs.waybar = {
-    enable = true;
-    package = pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    });
-    systemd.enable = true;
-    style = css;
-    settings = {
-      mainBar = mainWaybarConfig;
+  options.my.desktop.bar.enable = mkEnableOption "desktop bar" // {
+    default = config.my.desktop.hyprland.enable;
+  };
+  config = mkIf config.my.desktop.bar.enable {
+    programs.waybar = {
+      enable = true;
+      package = pkgs.waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      });
+      systemd.enable = true;
+      style = css;
+      settings = {
+        mainBar = mainWaybarConfig;
+      };
     };
   };
 }

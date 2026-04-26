@@ -13,6 +13,7 @@ in
     ./idle.nix
     ./nightlight.nix
     ./launchers
+    ./bar.nix
   ];
   options.my.desktop.enable = mkEnableOption "desktop" // {
     default = osConfig.is_client;
