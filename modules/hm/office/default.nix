@@ -8,5 +8,6 @@ in
   };
   import = [
     ./files
+    ./rss.nix
   ];
 }
