@@ -99,7 +99,6 @@
     fend
     glow
     portfolio
-    scripts.disable_ext_monitors
   ];
 
   # Environment
