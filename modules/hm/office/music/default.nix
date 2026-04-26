@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./compose.nix
+    ./listen.nix
   ];
 }

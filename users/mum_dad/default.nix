@@ -20,7 +20,6 @@
 
   home.packages = with pkgs; [
     signal-desktop
-    shortwave
     lorien
   ];
 

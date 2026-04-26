@@ -60,7 +60,6 @@
     signal-desktop
     scli # signal tui FIXME replace with gurk-rs as soon as upstream fixed
     signal-cli
-    shortwave
     license-cli # license texts on the command line
     #fritzing
     lapce
