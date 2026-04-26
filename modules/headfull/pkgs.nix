@@ -40,7 +40,6 @@
     blackbox-terminal
 
     #tools
-    btop # process and system monitor
     cifs-utils
 
     #tui
