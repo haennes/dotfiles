@@ -26,7 +26,6 @@
     ./shell.nix
     ./ssh.nix
     ./starship.nix
-    ./tasks.nix
     ./television.nix
     ./tmux.nix
     ./vim.nix

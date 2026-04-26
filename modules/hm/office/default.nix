@@ -12,5 +12,6 @@ in
     ./fonts.nix
     ./cliphist.nix
     ./flashcards.nix
+    ./tasks.nix
   ];
 }
