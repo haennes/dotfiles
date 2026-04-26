@@ -15,7 +15,6 @@
     ./shell.nix
     ./ssh.nix
     ./store_optimize.nix
-    ./sudo.nix
     ./syncthing-wrapper.nix
     ./wireguard-wrapper.nix
     # keep-sorted end

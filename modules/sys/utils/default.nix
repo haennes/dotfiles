@@ -24,6 +24,7 @@ in
     ./deploy-rs.nix
     ./system-monitor.nix
     ./nix.nix
+    ./sudo.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
