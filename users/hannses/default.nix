@@ -89,9 +89,7 @@
     # doesnt work atm
     #sweet
 
-    playerctl
     libnotify
-    pavucontrol
 
     # DESKTOP ENV PROGRAMS
     wlr-randr
