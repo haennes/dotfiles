@@ -12,5 +12,6 @@ in
     ./starship.nix
     ./atuin.nix
     ./completion.nix
+    ./smartcd.nix
   ];
 }
