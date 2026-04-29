@@ -13,5 +13,6 @@ in
     ./atuin.nix
     ./completion.nix
     ./smartcd.nix
+    ./fzftui.nix
   ];
 }

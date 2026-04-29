@@ -20,7 +20,6 @@
     ./mail.nix
     ./mime.nix # setup default programs
     ./pqiv.nix # images
-    ./television.nix
     ./tmux.nix
     ./vim.nix
     ./virtualization.nix
