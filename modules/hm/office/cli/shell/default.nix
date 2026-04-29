@@ -9,5 +9,6 @@ in
   imports = [
     ./aliases.nix
     ./ssh.nix
+    ./starship.nix
   ];
 }
