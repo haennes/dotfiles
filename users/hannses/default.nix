@@ -10,7 +10,6 @@
     # keep-sorted start sticky_comments=no block=yes
     #update broke ./vimiv.nix # images
     ../../modules/hm/default.nix
-    ./atuin.nix
     ./bookmarks.nix
     ./carapace.nix
     ./codium.nix

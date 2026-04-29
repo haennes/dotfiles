@@ -10,5 +10,6 @@ in
     ./aliases.nix
     ./ssh.nix
     ./starship.nix
+    ./atuin.nix
   ];
 }
