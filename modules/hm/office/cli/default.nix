@@ -10,5 +10,6 @@ in
     ./terminal
     ./shells
     ./shell
+    ./mux
   ];
 }
