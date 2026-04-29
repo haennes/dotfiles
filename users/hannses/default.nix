@@ -11,7 +11,6 @@
     #update broke ./vimiv.nix # images
     ../../modules/hm/default.nix
     ./bookmarks.nix
-    ./carapace.nix
     ./codium.nix
     ./direnv.nix
     ./firefox

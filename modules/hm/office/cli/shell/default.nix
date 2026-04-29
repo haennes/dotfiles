@@ -11,5 +11,6 @@ in
     ./ssh.nix
     ./starship.nix
     ./atuin.nix
+    ./completion.nix
   ];
 }
