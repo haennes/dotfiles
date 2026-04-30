@@ -18,5 +18,6 @@ in
     ./music
     ./cli
     ./markup
+    ./editors
   ];
 }
