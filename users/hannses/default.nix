@@ -18,7 +18,6 @@
     ./mail.nix
     ./mime.nix # setup default programs
     ./pqiv.nix # images
-    ./vim.nix
     ./virtualization.nix
     ./zathura.nix
     # keep-sorted end

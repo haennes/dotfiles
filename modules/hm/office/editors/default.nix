@@ -9,5 +9,6 @@ in
   imports = [
     ./codium.nix
     ./helix.nix
+    ./vim.nix
   ];
 }
