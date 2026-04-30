@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./codium.nix
+    ./helix.nix
   ];
 }

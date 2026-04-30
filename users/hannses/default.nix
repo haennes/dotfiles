@@ -15,7 +15,6 @@
     ./firefox
     ./git.nix
     ./gnome_config.nix
-    ./helix.nix
     ./mail.nix
     ./mime.nix # setup default programs
     ./pqiv.nix # images
