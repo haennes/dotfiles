@@ -17,5 +17,6 @@ in
     ./finances.nix
     ./music
     ./cli
+    ./markup
   ];
 }
