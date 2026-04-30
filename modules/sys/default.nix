@@ -16,5 +16,11 @@
     ./virtualization
     ./utils
     ./ssh.nix
+    ./hardware
+    ./nix
+    ./oth
+    ./identity
+    ./desktop
+    ./office
   ];
 }

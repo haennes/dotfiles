@@ -7,6 +7,6 @@ in
     default = config.my.office.enable;
   };
   imports = [
-    # ./typst.nix
+    ./typst.nix
   ];
 }
