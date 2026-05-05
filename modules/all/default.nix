@@ -5,7 +5,6 @@
     #./vms.nix
     ./acme.nix
     ./base.nix
-    ./crosscompile.nix
     ./distributed_builds.nix
     ./minecraft.nix
     ./nix-serve.nix

@@ -10,6 +10,7 @@ in
   imports = [
     ./nix.nix
     ./store-optimize.nix
+    ./crosscompile.nix
   ];
 
 }
