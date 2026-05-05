@@ -24,7 +24,7 @@ rec {
       #TODO this is dumb, import them at a user level or make them user bound and move them here
       theme = import ../../users/hannses/theme.nix;
       globals = import ../../users/hannses/globals.nix inputs_hm_imports;
-      scripts = import ../../users/hannses/scripts (
+      scripts = import ../../modules/hm/scripts (
         inputs_hm_imports
         // {
           inherit globals joint-non_standalone joint-standalone;
