@@ -11,9 +11,7 @@
     #update broke ./vimiv.nix # images
     ../../modules/hm/default.nix
     ./bookmarks.nix
-    ./firefox
     ./gnome_config.nix
-    ./virtualization.nix
     # keep-sorted end
   ];
   # Home Manager needs a bit of information about you and the

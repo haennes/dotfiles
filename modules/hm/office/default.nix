@@ -6,7 +6,7 @@ in
   options.my.office.enable = mkEnableOption "office" // {
     default = osConfig.is_client;
   };
-  import = [
+  imports = [
     ./files
     ./rss.nix
     ./fonts.nix
@@ -22,5 +22,6 @@ in
     ./media
     ./programming
     ./comms
+    ./browsers
   ];
 }
