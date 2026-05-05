@@ -45,7 +45,6 @@
     lapce
     #jetbrains.clion # fix debugging c in vim at some point
     lorien
-    platformio
     rust-analyzer
     element-desktop
     # openai-whisper-cpp

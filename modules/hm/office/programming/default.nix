@@ -11,5 +11,6 @@ in
     ./vcs
     ./dbg
     ./license-cli.nix
+    ./embedded
   ];
 }
