@@ -31,9 +31,5 @@ in
       daemonCPUSchedPolicy = "batch";
 
     };
-    programs.nh = {
-      enable = true;
-      flake = "/home/hannses/.dotfiles?submodules=1";
-    };
   };
 }

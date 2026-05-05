@@ -15,6 +15,7 @@ in
     ./gc.nix
     ./channel.nix
     ./substituters.nix
+    ./nh.nix
   ];
 
 }
