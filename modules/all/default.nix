@@ -11,7 +11,6 @@
     ./nix-serve.nix
     ./pkgs.nix
     ./shell.nix
-    ./store_optimize.nix
     ./syncthing-wrapper.nix
     ./wireguard-wrapper.nix
     # keep-sorted end
