@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./mime.nix
+    ./mpv.nix
   ];
 }

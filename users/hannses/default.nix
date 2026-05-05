@@ -36,6 +36,8 @@
   # changes in each release.
   home.stateVersion = "23.11";
 
+  my.office.media.mpv.enable = false;
+
   home.packages = with pkgs; [
     comma
     kdePackages.kcachegrind
