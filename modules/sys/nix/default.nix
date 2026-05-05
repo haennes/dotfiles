@@ -1,0 +1,14 @@
+{ lib, config, ... }:
+let
+  inherit (lib) mkEnableOption;
+in
+{
+  options.my.nix.enable = mkEnableOption "nix base settings" // {
+    default = true;
+  };
+
+  imports = [
+    ./nix.nix
+  ];
+
+}

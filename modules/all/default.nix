@@ -9,7 +9,6 @@
     ./distributed_builds.nix
     ./minecraft.nix
     ./nix-serve.nix
-    ./nix.nix
     ./pkgs.nix
     ./shell.nix
     ./store_optimize.nix
