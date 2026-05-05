@@ -9,5 +9,6 @@ in
   imports = [
     ./signal.nix
     ./matrix.nix
+    ./mail.nix
   ];
 }

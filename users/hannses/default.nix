@@ -13,7 +13,6 @@
     ./bookmarks.nix
     ./firefox
     ./gnome_config.nix
-    ./mail.nix
     ./virtualization.nix
     # keep-sorted end
   ];
