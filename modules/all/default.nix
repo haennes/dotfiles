@@ -2,7 +2,6 @@
 {
   imports = [
     # keep-sorted start sticky_comments=no block=yes
-    #./fwupd.nix
     #./vms.nix
     ./acme.nix
     ./base.nix
