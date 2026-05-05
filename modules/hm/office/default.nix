@@ -23,5 +23,6 @@ in
     ./programming
     ./comms
     ./browsers
+    ./draw.nix
   ];
 }
