@@ -10,6 +10,7 @@ in
   imports = [
     ./power.nix
     ./fwupd.nix
+    ./secure-boot.nix
   ];
 
 }

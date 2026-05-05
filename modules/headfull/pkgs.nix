@@ -1,8 +1,6 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    sbctl # secure boot
-
     #browser
     firefox
     brave
