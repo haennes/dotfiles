@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./signal.nix
+    ./matrix.nix
   ];
 }
