@@ -62,11 +62,6 @@ in
     programs.nh = {
       enable = true;
       flake = "/home/hannses/.dotfiles?submodules=1";
-      clean = {
-        enable = true;
-        extraArgs = "--keep-since 4d";
-        dates = "daily";
-      };
     };
   };
 }

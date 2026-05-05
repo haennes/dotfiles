@@ -12,6 +12,7 @@ in
     ./store-optimize.nix
     ./crosscompile.nix
     ./distributed-builds.nix
+    ./gc.nix
   ];
 
 }
