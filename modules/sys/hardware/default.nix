@@ -1,0 +1,14 @@
+{ lib, config, ... }:
+let
+  inherit (lib) mkEnableOption;
+in
+{
+  options.my.hardware.enable = mkEnableOption "hardware specific options" // {
+    default = !config.is_microvm;
+  };
+
+  imports = [
+    ./power.nix
+  ];
+
+}

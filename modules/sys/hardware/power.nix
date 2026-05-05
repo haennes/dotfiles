@@ -1,6 +1,12 @@
 { config, lib, ... }:
+let
+  inherit (lib) mkEnableOption mkIf;
+in
 {
-  config = lib.mkIf config.has_battery {
+  options.my.hardware.power.enable = mkEnableOption "power" // {
+    default = config.has_battery;
+  };
+  config = mkIf config.my.hardware.power.enable {
     systemd.services.low-battery-hybrid-sleep = {
       description = "Hybrid sleep on critical battery";
       serviceConfig = {

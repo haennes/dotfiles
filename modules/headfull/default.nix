@@ -16,7 +16,6 @@
     ./pg_dev.nix
     ./pkgs.nix
     ./plantuml.nix
-    ./power.nix
     ./printing.nix
     ./steam.nix
     ./virtualization.nix
