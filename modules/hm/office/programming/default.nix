@@ -12,5 +12,6 @@ in
     ./dbg
     ./license-cli.nix
     ./embedded
+    ./lang
   ];
 }
