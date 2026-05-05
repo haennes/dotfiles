@@ -13,5 +13,6 @@ in
     ./license-cli.nix
     ./embedded
     ./lang
+    ./sqlite.nix
   ];
 }
