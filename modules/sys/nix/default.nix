@@ -13,6 +13,7 @@ in
     ./crosscompile.nix
     ./distributed-builds.nix
     ./gc.nix
+    ./channel.nix
   ];
 
 }

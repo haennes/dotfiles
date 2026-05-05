@@ -6,7 +6,6 @@
   ...
 }:
 let
-  channelPath = "/nix/var/nix/profiles/per-user/root/channels";
   #"/etc/nixpkgs/channel/nixpkgs";
   nix-serve-publicKey_raw = import ../../secrets/nix-serve/dea/pub.nix;
   nix-serve-publicKey = lib.last (lib.splitString ":" nix-serve-publicKey_raw);
@@ -51,14 +50,7 @@ in
       daemonIOSchedClass = "idle";
       daemonCPUSchedPolicy = "batch";
 
-      registry.nixpkgs.flake = inputs.nixpkgs;
-
-      nixPath = [
-        "nixpkgs=${channelPath}"
-        #"/nix/var/nix/profiles/per-user/root/channels"
-      ];
     };
-    systemd.tmpfiles.rules = [ "L+ ${channelPath}     - - - - ${inputs.nixpkgs}" ];
     programs.nh = {
       enable = true;
       flake = "/home/hannses/.dotfiles?submodules=1";
