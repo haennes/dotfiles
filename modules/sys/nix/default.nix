@@ -14,6 +14,7 @@ in
     ./distributed-builds.nix
     ./gc.nix
     ./channel.nix
+    ./substituters.nix
   ];
 
 }

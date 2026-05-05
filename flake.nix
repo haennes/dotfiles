@@ -1,4 +1,4 @@
-{
+rec {
   description = "System Config";
 
   nixConfig = {
@@ -453,6 +453,7 @@
             client_modules
             server_modules
             system
+            nixConfig
             ;
           inherit (self) topology;
         };
