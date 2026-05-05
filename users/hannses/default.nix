@@ -11,7 +11,6 @@
     #update broke ./vimiv.nix # images
     ../../modules/hm/default.nix
     ./bookmarks.nix
-    ./direnv.nix
     ./firefox
     ./git.nix
     ./gnome_config.nix

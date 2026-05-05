@@ -20,5 +20,6 @@ in
     ./markup
     ./editors
     ./media
+    ./programming
   ];
 }
