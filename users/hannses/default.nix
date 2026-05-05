@@ -17,7 +17,6 @@
     ./gnome_config.nix
     ./mail.nix
     ./virtualization.nix
-    ./zathura.nix
     # keep-sorted end
   ];
   # Home Manager needs a bit of information about you and the

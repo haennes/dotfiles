@@ -10,5 +10,6 @@ in
     ./mime.nix
     ./mpv.nix
     ./pqiv.nix
+    ./zathura.nix
   ];
 }
