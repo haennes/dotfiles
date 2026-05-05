@@ -11,6 +11,7 @@ in
     ./power.nix
     ./fwupd.nix
     ./secure-boot.nix
+    ./switches.nix
   ];
 
 }
