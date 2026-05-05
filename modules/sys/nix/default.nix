@@ -11,6 +11,7 @@ in
     ./nix.nix
     ./store-optimize.nix
     ./crosscompile.nix
+    ./distributed-builds.nix
   ];
 
 }
