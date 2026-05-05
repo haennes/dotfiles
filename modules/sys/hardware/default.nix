@@ -12,6 +12,7 @@ in
     ./fwupd.nix
     ./secure-boot.nix
     ./switches.nix
+    ./printing.nix
   ];
 
 }
