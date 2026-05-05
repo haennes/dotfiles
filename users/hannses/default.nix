@@ -16,7 +16,6 @@
     ./git.nix
     ./gnome_config.nix
     ./mail.nix
-    ./pqiv.nix # images
     ./virtualization.nix
     ./zathura.nix
     # keep-sorted end

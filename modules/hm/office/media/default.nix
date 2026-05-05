@@ -9,5 +9,6 @@ in
   imports = [
     ./mime.nix
     ./mpv.nix
+    ./pqiv.nix
   ];
 }
