@@ -21,5 +21,6 @@ in
     ./editors
     ./media
     ./programming
+    ./comms
   ];
 }

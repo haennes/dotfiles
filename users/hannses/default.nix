@@ -38,9 +38,6 @@
     comma
     # signal-whisper-large-v3-q5_0
     vim
-    signal-desktop
-    scli # signal tui FIXME replace with gurk-rs as soon as upstream fixed
-    signal-cli
     #fritzing
     lapce
     #jetbrains.clion # fix debugging c in vim at some point
