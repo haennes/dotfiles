@@ -52,7 +52,6 @@
     lorien
     platformio
     rust-analyzer
-    feh # for dticket cmd
     element-desktop
     # openai-whisper-cpp
     sqlite

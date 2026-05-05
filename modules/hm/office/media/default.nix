@@ -12,5 +12,6 @@ in
     ./pqiv.nix
     ./zathura.nix
     ./vimiv.nix
+    ./feh.nix
   ];
 }
