@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./gdb.nix
+    ./kcachegrind.nix
   ];
 }

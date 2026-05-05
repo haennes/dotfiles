@@ -36,7 +36,6 @@
 
   home.packages = with pkgs; [
     comma
-    kdePackages.kcachegrind
     # signal-whisper-large-v3-q5_0
     vim
     signal-desktop
