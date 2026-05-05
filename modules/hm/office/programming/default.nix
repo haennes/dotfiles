@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./devshell.nix
+    ./vcs
   ];
 }

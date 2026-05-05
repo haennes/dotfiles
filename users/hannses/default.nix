@@ -12,7 +12,6 @@
     ../../modules/hm/default.nix
     ./bookmarks.nix
     ./firefox
-    ./git.nix
     ./gnome_config.nix
     ./mail.nix
     ./virtualization.nix
