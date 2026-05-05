@@ -41,7 +41,6 @@
     signal-desktop
     scli # signal tui FIXME replace with gurk-rs as soon as upstream fixed
     signal-cli
-    license-cli # license texts on the command line
     #fritzing
     lapce
     #jetbrains.clion # fix debugging c in vim at some point

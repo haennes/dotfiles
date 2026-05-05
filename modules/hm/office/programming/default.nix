@@ -10,5 +10,6 @@ in
     ./devshell.nix
     ./vcs
     ./dbg
+    ./license-cli.nix
   ];
 }
