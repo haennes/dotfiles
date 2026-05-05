@@ -11,5 +11,6 @@ in
     ./mpv.nix
     ./pqiv.nix
     ./zathura.nix
+    ./vimiv.nix
   ];
 }
