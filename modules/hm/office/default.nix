@@ -19,5 +19,6 @@ in
     ./cli
     ./markup
     ./editors
+    ./media
   ];
 }

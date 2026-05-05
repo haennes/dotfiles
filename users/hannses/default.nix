@@ -16,7 +16,6 @@
     ./git.nix
     ./gnome_config.nix
     ./mail.nix
-    ./mime.nix # setup default programs
     ./pqiv.nix # images
     ./virtualization.nix
     ./zathura.nix
