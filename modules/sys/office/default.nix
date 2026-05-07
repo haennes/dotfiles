@@ -13,5 +13,11 @@ in
     ./wireshark.nix
     ./editors
     ./notes
+    ./modelling
+    ./gaming
+    ./programming
+    ./cli
+    ./browsers
+    ./media
   ];
 }

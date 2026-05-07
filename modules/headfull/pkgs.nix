@@ -7,7 +7,6 @@
     tor-browser
 
     #media
-    gimp # edit
     vlc # view
 
     #modelling
