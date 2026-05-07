@@ -8,7 +8,6 @@
 
     #modelling
     freecad
-    openscad
     prusa-slicer
     #kicad #cad for pcbs
 
