@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./markup
+    ./dictionaries.nix
   ];
 }

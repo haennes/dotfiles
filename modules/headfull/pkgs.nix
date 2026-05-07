@@ -22,11 +22,6 @@
     obsidian # knowledge management
     helix
 
-    #dicts
-    hunspell
-    hunspellDicts.de_DE
-    hunspellDicts.en_US
-
     #formatting language
     #tectonic # tex compiler
     #texlive.combined.scheme-full # tex
