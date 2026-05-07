@@ -15,8 +15,6 @@
     blackbox-terminal
 
     #programming
-    arduino
-    arduino-ota
     hugo # website
     rust-bin.nightly.latest.default
     # cargo-generate
