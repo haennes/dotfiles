@@ -15,8 +15,6 @@
     blackbox-terminal
 
     #programming
-    python3
-    ruff # python linter
     gcc # c compiler
     gnumake
     cmake
