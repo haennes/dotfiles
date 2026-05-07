@@ -12,5 +12,6 @@ in
     ./shell.nix
     ./wireshark.nix
     ./editors
+    ./notes
   ];
 }
