@@ -9,6 +9,7 @@ in
 
   imports = [
     ./keyring.nix
+    ./hwtoken.nix
   ];
 
 }
