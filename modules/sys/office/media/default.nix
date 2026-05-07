@@ -10,5 +10,6 @@ in
     ./gimp.nix
     ./vlc.nix
     ./audio.nix
+    ./chromecast.nix
   ];
 }

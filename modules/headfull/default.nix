@@ -4,7 +4,6 @@
     # keep-sorted start sticky_comments=no block=yes
     ../tasks.nix
     ./base.nix
-    ./chromecast.nix
     ./hyprland.nix
     ./local_nginx.nix
     ./minecraft.nix
