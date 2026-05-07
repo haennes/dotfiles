@@ -10,5 +10,6 @@ in
     ./markup
     ./dictionaries.nix
     ./shell.nix
+    ./wireshark.nix
   ];
 }

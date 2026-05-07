@@ -15,7 +15,6 @@
     ./plantuml.nix
     ./steam.nix
     ./virtualization.nix
-    ./wireshark.nix
     # keep-sorted end
   ];
 
