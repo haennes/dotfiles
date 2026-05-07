@@ -6,7 +6,6 @@
     ./audio.nix
     ./base.nix
     ./chromecast.nix
-    ./fortivpn.nix
     ./hyprland.nix
     ./keyring.nix
     ./local_nginx.nix

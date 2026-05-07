@@ -9,6 +9,7 @@ in
 
   imports = [
     ./oth-files.nix
+    ./vpn.nix
   ];
 
 }
