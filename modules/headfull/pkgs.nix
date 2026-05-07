@@ -6,8 +6,6 @@
     brave
     tor-browser
 
-    #kicad #cad for pcbs
-
     #formatting language
     #tectonic # tex compiler
     #texlive.combined.scheme-full # tex
