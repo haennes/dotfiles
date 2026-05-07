@@ -5,7 +5,6 @@
     ./all
     ./gnome
     ./headfull
-    ./headless
     ./home_manager
     # keep-sorted end
   ];
