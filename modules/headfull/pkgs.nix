@@ -16,9 +16,6 @@
     prusa-slicer
     #kicad #cad for pcbs
 
-    #office & texteditors
-    obsidian # knowledge management
-
     #formatting language
     #tectonic # tex compiler
     #texlive.combined.scheme-full # tex
