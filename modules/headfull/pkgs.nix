@@ -15,8 +15,6 @@
     blackbox-terminal
 
     #programming
-    rust-bin.nightly.latest.default
-    # cargo-generate
     python3
     ruff # python linter
     gcc # c compiler
