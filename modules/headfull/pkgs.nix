@@ -15,7 +15,6 @@
     blackbox-terminal
 
     #programming
-    gcc # c compiler
     gnumake
     cmake
     valgrind # c heap debugging

@@ -9,5 +9,6 @@ in
   imports = [
     ./rust.nix
     ./python.nix
+    ./c.nix
   ];
 }
