@@ -8,7 +8,6 @@
     ./local_nginx.nix
     ./pg_dev.nix
     ./pkgs.nix
-    ./steam.nix
     ./virtualization.nix
     # keep-sorted end
   ];

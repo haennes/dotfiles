@@ -9,5 +9,6 @@ in
   imports = [
     ./wine.nix
     ./minecraft.nix
+    ./steam.nix
   ];
 }
