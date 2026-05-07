@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./typst.nix
+    ./plantuml.nix
   ];
 }

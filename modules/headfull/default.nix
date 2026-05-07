@@ -11,7 +11,6 @@
     ./minecraft.nix
     ./pg_dev.nix
     ./pkgs.nix
-    ./plantuml.nix
     ./steam.nix
     ./virtualization.nix
     # keep-sorted end
