@@ -9,5 +9,6 @@ in
   imports = [
     ./openscad.nix
     ./freecad.nix
+    ./prusa-slicer.nix
   ];
 }

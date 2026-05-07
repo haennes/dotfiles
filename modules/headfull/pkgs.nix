@@ -6,7 +6,6 @@
     brave
     tor-browser
 
-    prusa-slicer
     #kicad #cad for pcbs
 
     #formatting language
