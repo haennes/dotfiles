@@ -11,5 +11,6 @@ in
     ./lang
     ./hugo.nix
     ./make.nix
+    ./dbg
   ];
 }

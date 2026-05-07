@@ -13,8 +13,5 @@
     #terminals
     alacritty
     blackbox-terminal
-
-    #programming
-    valgrind # c heap debugging
   ];
 }
