@@ -26,9 +26,5 @@
     gnumake
     cmake
     valgrind # c heap debugging
-
-    #Gameing
-    wineWow64Packages.waylandFull
-
   ];
 }
