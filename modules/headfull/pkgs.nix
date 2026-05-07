@@ -1,8 +1,6 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    #browser
-    brave
 
     #formatting language
     #tectonic # tex compiler
