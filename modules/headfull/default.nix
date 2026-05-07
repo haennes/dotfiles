@@ -3,7 +3,6 @@
   imports = [
     # keep-sorted start sticky_comments=no block=yes
     ../tasks.nix
-    ./audio.nix
     ./base.nix
     ./chromecast.nix
     ./hyprland.nix

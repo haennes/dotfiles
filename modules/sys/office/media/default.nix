@@ -9,5 +9,6 @@ in
   imports = [
     ./gimp.nix
     ./vlc.nix
+    ./audio.nix
   ];
 }
