@@ -15,7 +15,6 @@
     blackbox-terminal
 
     #programming
-    hugo # website
     rust-bin.nightly.latest.default
     # cargo-generate
     python3

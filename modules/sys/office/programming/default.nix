@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./embedded
+    ./hugo.nix
   ];
 }
