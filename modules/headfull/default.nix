@@ -8,7 +8,6 @@
     ./chromecast.nix
     ./hyprland.nix
     ./local_nginx.nix
-    ./mail.nix
     ./minecraft.nix
     ./pg_dev.nix
     ./pkgs.nix
