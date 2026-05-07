@@ -12,7 +12,6 @@
     ./local_nginx.nix
     ./mail.nix
     ./minecraft.nix
-    ./oth_files.nix
     ./pg_dev.nix
     ./pkgs.nix
     ./plantuml.nix
