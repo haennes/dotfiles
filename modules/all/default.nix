@@ -3,7 +3,6 @@
   imports = [
     # keep-sorted start sticky_comments=no block=yes
     #./vms.nix
-    ./acme.nix
     ./base.nix
     ./minecraft.nix
     ./nix-serve.nix

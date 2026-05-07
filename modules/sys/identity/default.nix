@@ -10,6 +10,7 @@ in
   imports = [
     ./keyring.nix
     ./hwtoken.nix
+    ./acme.nix
   ];
 
 }
