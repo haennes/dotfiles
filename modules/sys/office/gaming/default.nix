@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./wine.nix
+    ./minecraft.nix
   ];
 }

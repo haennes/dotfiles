@@ -6,7 +6,6 @@
     ./base.nix
     ./hyprland.nix
     ./local_nginx.nix
-    ./minecraft.nix
     ./pg_dev.nix
     ./pkgs.nix
     ./steam.nix
