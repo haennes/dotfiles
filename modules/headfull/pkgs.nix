@@ -17,7 +17,6 @@
     #kicad #cad for pcbs
 
     #office & texteditors
-    xournalpp # note taking
     obsidian # knowledge management
 
     #formatting language

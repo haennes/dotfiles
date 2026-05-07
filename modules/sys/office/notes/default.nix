@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./libreoffice.nix
+    ./xournalpp.nix
   ];
 }
