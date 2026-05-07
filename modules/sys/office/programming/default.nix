@@ -10,5 +10,6 @@ in
     ./embedded
     ./lang
     ./hugo.nix
+    ./make.nix
   ];
 }
