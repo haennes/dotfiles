@@ -9,5 +9,6 @@ in
   imports = [
     ./markup
     ./dictionaries.nix
+    ./shell.nix
   ];
 }

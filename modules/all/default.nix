@@ -7,7 +7,6 @@
     ./minecraft.nix
     ./nix-serve.nix
     ./pkgs.nix
-    ./shell.nix
     ./syncthing-wrapper.nix
     ./wireguard-wrapper.nix
     # keep-sorted end
