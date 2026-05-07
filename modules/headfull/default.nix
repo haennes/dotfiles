@@ -7,7 +7,6 @@
     ./base.nix
     ./chromecast.nix
     ./hyprland.nix
-    ./keyring.nix
     ./local_nginx.nix
     ./mail.nix
     ./minecraft.nix
