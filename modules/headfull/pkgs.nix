@@ -6,9 +6,6 @@
     brave
     tor-browser
 
-    #media
-    vlc # view
-
     #modelling
     freecad
     openscad

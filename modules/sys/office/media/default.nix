@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./gimp.nix
+    ./vlc.nix
   ];
 }
