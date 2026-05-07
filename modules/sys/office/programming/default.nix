@@ -12,5 +12,6 @@ in
     ./hugo.nix
     ./make.nix
     ./dbg
+    ./pg-dev.nix
   ];
 }
