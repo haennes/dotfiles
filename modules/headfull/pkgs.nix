@@ -6,8 +6,6 @@
     brave
     tor-browser
 
-    #modelling
-    freecad
     prusa-slicer
     #kicad #cad for pcbs
 

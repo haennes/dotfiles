@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./openscad.nix
+    ./freecad.nix
   ];
 }
