@@ -20,7 +20,6 @@
     libreoffice
     xournalpp # note taking
     obsidian # knowledge management
-    helix
 
     #formatting language
     #tectonic # tex compiler

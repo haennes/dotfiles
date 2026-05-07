@@ -11,5 +11,6 @@ in
     ./dictionaries.nix
     ./shell.nix
     ./wireshark.nix
+    ./editors
   ];
 }
