@@ -3,7 +3,6 @@
   environment.systemPackages = with pkgs; [
     #browser
     brave
-    tor-browser
 
     #formatting language
     #tectonic # tex compiler
