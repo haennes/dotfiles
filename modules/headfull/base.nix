@@ -9,7 +9,6 @@ let
 
 in
 {
-  hardware.bluetooth.enable = true;
   networking.networkmanager.enable = true;
 
   services.postgresql.settings.port = lib.mkIf (hports ? postresql) hports.postgresql;

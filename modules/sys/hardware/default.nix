@@ -13,6 +13,7 @@ in
     ./secure-boot.nix
     ./switches.nix
     ./printing.nix
+    ./bluetooth.nix
   ];
 
 }
