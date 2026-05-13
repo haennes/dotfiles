@@ -30,6 +30,7 @@ in
     ./fs.nix
     ./pv.nix
     ./fd.nix
+    ./backup.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
