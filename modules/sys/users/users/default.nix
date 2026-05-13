@@ -7,6 +7,7 @@
     ./forward.nix
     ./hannses.nix
     ./mum.nix
+    ./root.nix
     # keep-sorted end
   ];
 }
