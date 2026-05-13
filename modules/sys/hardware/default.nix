@@ -14,6 +14,7 @@ in
     ./switches.nix
     ./printing.nix
     ./bluetooth.nix
+    ./wifi.nix
   ];
 
 }

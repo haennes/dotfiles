@@ -9,8 +9,6 @@ let
 
 in
 {
-  networking.networkmanager.enable = true;
-
   services.postgresql.settings.port = lib.mkIf (hports ? postresql) hports.postgresql;
 
 }
