@@ -16,6 +16,7 @@ in
     ./microvm_host_systemd.nix
     ./virtmanager.nix
     ./virtualbox.nix
+    ./android.nix
     inputs.microvm.nixosModules.microvm
     inputs.microvm.nixosModules.host
   ];

@@ -7,7 +7,6 @@
     ./hyprland.nix
     ./local_nginx.nix
     ./pkgs.nix
-    ./virtualization.nix
     # keep-sorted end
   ];
 
