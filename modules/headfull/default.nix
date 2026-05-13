@@ -5,7 +5,6 @@
     ../tasks.nix
     ./base.nix
     ./local_nginx.nix
-    ./pkgs.nix
     # keep-sorted end
   ];
 
