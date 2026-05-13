@@ -29,6 +29,7 @@ in
     ./tuis
     ./fs.nix
     ./pv.nix
+    ./fd.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
