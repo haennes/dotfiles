@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./terminal
+    ./mux
   ];
 }
