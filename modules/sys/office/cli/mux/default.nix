@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./tmux.nix
+    ./zellij.nix
   ];
 }

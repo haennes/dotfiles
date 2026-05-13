@@ -4,7 +4,6 @@
     restic
     fd # better version of find
 
-    zellij # terminal multiplexer
     pv # util
 
   ];
