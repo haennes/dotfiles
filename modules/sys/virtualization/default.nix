@@ -15,6 +15,7 @@ in
     ./microvm_host_stock.nix
     ./microvm_host_systemd.nix
     ./virtmanager.nix
+    ./virtualbox.nix
     inputs.microvm.nixosModules.microvm
     inputs.microvm.nixosModules.host
   ];
