@@ -333,7 +333,7 @@ rec {
         ./modules/headfull
         # keep-sorted end
       ];
-      server_modules = [ ./modules/headless ];
+      server_modules = [ ];
       # ./modules/microvm_guest.nix is not included as it includes these modules when using declarative configuration
       # inputs.microvm.nixosModules.microvm is not included as it automatically gets when using declarative configuration
 
