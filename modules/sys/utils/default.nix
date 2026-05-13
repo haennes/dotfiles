@@ -28,6 +28,7 @@ in
     ./dll.nix
     ./tuis
     ./fs.nix
+    ./pv.nix
   ];
 
   options.my.utils.enable = mkEnableOption "utils" // {
