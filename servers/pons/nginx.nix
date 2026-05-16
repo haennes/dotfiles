@@ -207,7 +207,7 @@ in
       "mkhh-ev.de"
       "www.mkhh-ev.de"
     ];
-    target = "musikkapelle-holzhausen.de";
+    target = "mk-holzhausen-e-v.jimdosite.com/";
   })
   #only accessible through wg
   #(create_simple_proxy_with_domain {
