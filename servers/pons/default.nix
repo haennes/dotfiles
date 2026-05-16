@@ -23,7 +23,7 @@
   networking.nat.enable = true;
   networking.wireguard.interfaces.wg0 =
     let
-      net = lib.my.subnet_cidr config.ips.ips.ips.default.pons.wg0;
+      net = lib.my.subnetCIDR config.ips.ips.ips.default.pons.wg0;
       ifn = "ens6";
     in
     {
