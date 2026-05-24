@@ -7,5 +7,6 @@
     ./virtualization.nix
     ./desktop
     ./office
+    ./state-version.nix
   ];
 }
