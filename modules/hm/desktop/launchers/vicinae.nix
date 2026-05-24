@@ -6,13 +6,41 @@
   ...
 }:
 let
+  launch_vicinae = cmd: "${lib.getExe config.programs.vicinae.package} vicinae://${cmd}";
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.my.desktop.launchers.vicinae.enable = mkEnableOption "vicinae" // {
-    default = config.my.desktop.launchers.enable;
+  options.my.desktop.launchers.vicinae = {
+    enable = mkEnableOption "vicinae" // {
+      default = config.my.desktop.launchers.enable;
+    };
+    enableHyprlandIntegration = mkEnableOption "vicinae hyprland integration" // {
+      default = config.my.desktop.hyprland.enable;
+    };
   };
   config = mkIf config.my.desktop.launchers.vicinae.enable {
+    wayland.windowManager.hyprland.settings =
+      mkIf config.my.desktop.launchers.vicinae.enableHyprlandIntegration
+        {
+          layerrule = [
+            {
+              name = "vicinae-blur";
+              blur = "on";
+              ignore_alpha = 0;
+              "match:namespace" = "vicinae";
+            }
+            {
+              name = "vicinae-no-animation";
+              no_anim = "on";
+              "match:namespace" = "vicinae";
+            }
+          ];
+          bind = [
+            "$mod, D, exec, ${launch_vicinae "toggle"}"
+
+          ];
+
+        };
     programs.vicinae = {
       enable = true;
       systemd.enable = true;

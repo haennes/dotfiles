@@ -9,7 +9,6 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf;
-  launch_vicinae = cmd: "${lib.getExe config.programs.vicinae.package} vicinae://${cmd}";
   monitors_laptop = {
     builtin = "eDP-1";
     hh = {
@@ -121,20 +120,6 @@ in
           allow_tearing = false;
         };
 
-        layerrule = [
-          {
-            name = "vicinae-blur";
-            blur = "on";
-            ignore_alpha = 0;
-            "match:namespace" = "vicinae";
-          }
-          {
-            name = "vicinae-no-animation";
-            no_anim = "on";
-            "match:namespace" = "vicinae";
-          }
-        ];
-
         decoration = {
           rounding = 10;
 
@@ -189,7 +174,6 @@ in
           # apps
           "$mod, return, exec, $terminal"
           "CTRL, space, exec, $runprompt"
-          "$mod, D, exec, ${launch_vicinae "toggle"}"
           "$mod SHIFT, L, exec, hyprlock"
           "$mod, V, exec, ${scripts.clipboard}"
 
