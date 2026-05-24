@@ -10,7 +10,7 @@ in
     ./aliases.nix
     ./ssh.nix
     ./prompt.nix
-    ./atuin.nix
+    ./history.nix
     ./completion.nix
     ./smartcd.nix
     ./fzftui.nix

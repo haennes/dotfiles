@@ -9,10 +9,10 @@ let
   ips = osConfig.ips.ips.ips.default;
 in
 {
-  options.my.office.cli.shell.atuin.enable = mkEnableOption "atuin shell history sync" // {
+  options.my.office.cli.shell.history.enable = mkEnableOption "atuin shell history sync" // {
     default = config.my.office.cli.shell.enable;
   };
-  config = mkIf config.my.office.cli.shell.atuin.enable {
+  config = mkIf config.my.office.cli.shell.history.enable {
     programs.atuin = {
       enable = true;
       flags = [ "--disable-up-arrow" ];
