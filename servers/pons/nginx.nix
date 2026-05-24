@@ -2,6 +2,7 @@
   lib,
   config,
   inputs,
+  pkgs,
   ...
 }:
 let
@@ -80,6 +81,30 @@ in
       443
       ports.vertumnus.sshd
     ];
+  };
+
+  age.secrets."envffile-mkhh-website".file = ../../secrets/envffile-mkhh-website.age;
+  systemd.services.mkhh-website = {
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig =
+      let
+        mkhh-website = inputs.mkhh-website.packages."x86_64-linux".default;
+      in
+      {
+        # WorkingDirectory = "${mkhh-website}";
+        # WorkingDirectory = "${mkhh-website}/server";
+
+        ExecStart = "${pkgs.nodejs}/bin/node ${mkhh-website}/share/server/server.mjs";
+        EnvironmentFile = "${config.age.secrets."envffile-mkhh-website".path}";
+
+        Restart = "always";
+        Environment = [
+          "PORT=4000"
+          "pm_id=1"
+        ];
+      };
   };
 }
 // lib.my.recursiveMerge [
@@ -204,10 +229,17 @@ in
   # })
   (create_redirect {
     sources = [
-      "mkhh-ev.de"
+      "mkholzhausen.de"
+      "www.mkholzhausen.de"
       "www.mkhh-ev.de"
     ];
-    target = "mk-holzhausen-e-v.jimdosite.com/";
+    target = "mkhh-ev.de";
+  })
+  (create_simple_proxy_with_domain {
+    fqdn = "mkhh-ev.de";
+    target_ip = "localhost";
+    target_port = 4000;
+    set_header = true;
   })
   #only accessible through wg
   #(create_simple_proxy_with_domain {

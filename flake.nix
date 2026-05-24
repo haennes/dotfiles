@@ -6,7 +6,7 @@ rec {
     extra-experimental-features = [
       # keep-sorted start sticky_comments=no block=yes
       "flake-self-attrs"
-      "pipe-operators"
+      # "pipe-operators"
       # keep-sorted end
     ];
     # allow-import-from-derivation = false; #FIXME remove this, these are ifds
@@ -258,6 +258,10 @@ rec {
     };
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
+    mkhh-website = {
+      url = "git+https://git.hannses.de/borbitter/mkhh-website";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

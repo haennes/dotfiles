@@ -1296,6 +1296,26 @@
         "type": "github"
       }
     },
+    "mkhh-website": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779627601,
+        "narHash": "sha256-0GlNaP3TPrKa4hbkZRSedqwGe4gKy2GGrlAZ7o9M6Uc=",
+        "ref": "refs/heads/main",
+        "rev": "948fddc6846cca117a23e065fbe1bdb3dc73f19c",
+        "revCount": 85,
+        "type": "git",
+        "url": "https://git.hannses.de/borbitter/mkhh-website"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.hannses.de/borbitter/mkhh-website"
+      }
+    },
     "nci": {
       "inputs": {
         "crane": "crane_3",
@@ -2320,6 +2340,7 @@
         "lanzaboote": "lanzaboote",
         "menu-calc": "menu-calc",
         "microvm": "microvm",
+        "mkhh-website": "mkhh-website",
         "nh": "nh",
         "nix-alien": "nix-alien",
         "nix-inspect": "nix-inspect",
