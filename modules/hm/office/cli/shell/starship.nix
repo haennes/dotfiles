@@ -1,16 +1,44 @@
 { lib, config, ... }:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    attrByPath
+    mkOption
+    ;
 in
 {
-  options.my.office.cli.shell.starship.enable = mkEnableOption "starhsip shell prompts" // {
-    default = config.my.office.cli.shell.enable;
-  };
+  options.my.office.cli.shell.starship =
+    let
+      shellsCfg = config.my.office.cli.shells;
+      mkIntegrationOption =
+        n:
+        mkOption {
+          default = attrByPath [ n "enable" ] false shellsCfg;
+        };
+    in
+    {
+      enable = mkEnableOption "starhsip shell prompts" // {
+        default = config.my.office.cli.shell.enable;
+      };
+      enableBashIntegration = mkIntegrationOption "bash";
+      enableZshIntegration = mkIntegrationOption "zsh";
+      enableFishIntegration = mkIntegrationOption "fish";
+      enableIonIntegration = mkIntegrationOption "ion";
+      enableNushellIntegration = mkIntegrationOption "nushell";
+
+    };
   config = mkIf config.my.office.cli.shell.starship.enable {
 
     programs.starship = {
       enable = true;
-      enableZshIntegration = true;
+      inherit (config.my.office.cli.shell.starship)
+        enableBashIntegration
+        enableZshIntegration
+        enableFishIntegration
+        enableIonIntegration
+        enableNushellIntegration
+        ;
 
       settings = {
         # add_newline = true;
