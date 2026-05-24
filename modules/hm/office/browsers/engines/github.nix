@@ -80,3 +80,9 @@ gh_search ({
   alias = "nff";
   addSearchParams = [ "path%3A**%2Fflake.nix" ];
 } # <ghnf
+// gh_search {
+  type = "code";
+  title = "GitHub language:nix";
+  alias = "ln";
+  addSearchParams = [ "language%3Anix" ];
+} # ghln
