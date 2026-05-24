@@ -15,6 +15,11 @@
   ];
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
+  services.graphical-desktop.enable = false;
+  my.hardware.fwupd.enable = false;
+  my.utils.backup.enable = false;
+  system.tools.nixos-generate-config.enable = false;
+  is_client = false;
 
   networking.hostName = "pons";
   networking.domain = "hannses.de";
