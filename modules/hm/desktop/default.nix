@@ -18,6 +18,7 @@ in
     ./audio.nix
     ./screenshot.nix
     ./monitors.nix
+    ./autostart.nix
   ];
   options.my.desktop.enable = mkEnableOption "desktop" // {
     default = osConfig.is_client;

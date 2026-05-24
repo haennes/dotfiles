@@ -25,6 +25,3 @@ lib.mapAttrs (name: value: importNixScript name value) (
     inputs = scripts_input;
   }
 )
-// {
-  startup = import ./startup.nix scripts_input; # isnt actually a shell-script
-}

@@ -8,7 +8,12 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    imap0
+    concatLines
+    ;
   monitors_laptop = {
     builtin = "eDP-1";
     hh = {
