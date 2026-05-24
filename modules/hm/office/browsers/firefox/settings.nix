@@ -191,8 +191,4 @@ rec {
     "browser.messaging-system.whatsNewPanel.enabled" = false;
     "browser.urlbar.showSearchTerms.enabled" = true;
   };
-  spotify = all // {
-    "browser.startup.page" = 1;
-    "browser.startup.homepage" = "open.spotify.com";
-  };
 }

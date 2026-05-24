@@ -38,7 +38,6 @@ in
       inherit (lib) mapAttrsToList;
       start = {
         "special:browser" = "${pkgs.firefox}/bin/firefox";
-        "special:music" = "${pkgs.firefox}/bin/firefox -P spotify";
         "special:passwords" = "${pkgs.keepassxc}/bin/keepassxc";
         "9" = "${pkgs.signal-desktop}/bin/signal-desktop";
         "10" = "${pkgs.thunderbird}/bin/thunderbird";

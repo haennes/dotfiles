@@ -39,12 +39,6 @@ in
         isDefault = false;
         id = 1;
       };
-      spotify = {
-        isDefault = false;
-        id = 2;
-        settings = settings.spotify;
-
-      };
     };
   };
 }
