@@ -8,7 +8,7 @@ let
     ;
 in
 {
-  options.my.office.cli.shell.starship =
+  options.my.office.cli.shell.prompt =
     let
       shellsCfg = config.my.office.cli.shells;
       mkIntegrationOption =
@@ -28,11 +28,11 @@ in
       enableNushellIntegration = mkIntegrationOption "nushell";
 
     };
-  config = mkIf config.my.office.cli.shell.starship.enable {
+  config = mkIf config.my.office.cli.shell.prompt.enable {
 
     programs.starship = {
       enable = true;
-      inherit (config.my.office.cli.shell.starship)
+      inherit (config.my.office.cli.shell.prompt)
         enableBashIntegration
         enableZshIntegration
         enableFishIntegration

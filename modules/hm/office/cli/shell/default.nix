@@ -9,7 +9,7 @@ in
   imports = [
     ./aliases.nix
     ./ssh.nix
-    ./starship.nix
+    ./prompt.nix
     ./atuin.nix
     ./completion.nix
     ./smartcd.nix
