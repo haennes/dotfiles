@@ -27,6 +27,7 @@ in
           floccus
           ipfs-companion
           keepassxc-browser
+          no-pdf-download
           passbolt
           tridactyl
           ublock-origin
