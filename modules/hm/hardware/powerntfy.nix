@@ -25,7 +25,7 @@ let
         owner = "doums";
         repo = "bato";
         rev = "master";
-        hash = "sha256-lmrqIka1v71KyE86k2ARk2615JlM1V0LnW50yVGI8NU=";
+        hash = "sha256-1HCU8g1mhCFtWCsybJ1wxK+JihssJiMDq0vZ36oylWQ=";
       };
 
       cargoHash = "sha256-nk5NtUElByy652xX47vK8Fdzzsk29J1aEx7Y3ABk3Rc=";
@@ -33,9 +33,13 @@ let
       nativeBuildInputs = [
         pkg-config
         cmake
+        pkgs.udev
       ];
 
-      buildInputs = [ libnotify ];
+      buildInputs = [
+        libnotify
+        pkgs.udev
+      ];
 
       meta = {
         description = "Small program to send battery notifications";
