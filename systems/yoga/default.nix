@@ -28,6 +28,9 @@
   # for now.
   boot.loader.systemd-boot.enable = lib.mkForce false;
 
+  my.hardware.fwupd.enable = false;
+  my.utils.rg.enable = false;
+
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/var/lib/sbctl";
