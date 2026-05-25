@@ -9,6 +9,7 @@ in
 
   imports = [
     ./hyprland.nix
+    ./portal.nix
   ];
 
 }
