@@ -188,6 +188,7 @@ in
         // servers;
         "hannses__SignalBackup".devices = {
           inherit handyHannes;
+          versioning = null; #disable versioning to not overwhelm server storage
         }
         // servers;
         "hannses__DownloadHandy".devices = {
