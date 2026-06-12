@@ -17,6 +17,13 @@ in
     environment.systemPackages = with pkgs; [
       arduino
       arduino-ota
+      segger-jlink
     ];
+    nixpkgs.config.permittedInsecurePackages = [
+      "segger-jlink-qt4-874"
+    ];
+    nixpkgs.config.segger-jlink.acceptLicense = true;
+
+    users.users.hannses.extraGroups = [ "dialout" "tty" ];
   };
 }

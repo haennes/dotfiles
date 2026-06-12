@@ -418,6 +418,7 @@ rec {
                 "clion"
                 "minecraft-server"
                 "canon-cups-ufr2"
+                "segger-jlink"
               ];
           };
           overlaysBuilder = channels: [ (final: prev: { inherit (channels.nixpkgs-stable) firefox; }) ];
