@@ -20,10 +20,10 @@ in
       enableZshIntegration = true;
       shellWrapperName = "yy";
       settings = {
-        show_hidden = false;
-        sort_dir_first = false;
-        sort_sensitive = false;
-        sort_by = "natural"; # Sort naturally, e.g. 1.md < 2.md < 10.md
+        show-hidden = false;
+        sort-dir-first = false;
+        sort-sensitive = false;
+        sort-by = "natural"; # Sort naturally, e.g. 1.md < 2.md < 10.md
       };
     };
 
