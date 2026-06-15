@@ -31,6 +31,7 @@ in
           passbolt
           tridactyl
           ublock-origin
+          zotero-connector
           # keep-sorted end
         ];
         settings = settings.default;
