@@ -10,7 +10,7 @@
       inherit (lib) range listToAttrs;
       home = config.home.homeDirectory;
       studium = "${home}/Documents/Studium";
-      semester_max = 4;
+      semester_max = 5;
       semester = listToAttrs (
         map (i: {
           name = toString i;
