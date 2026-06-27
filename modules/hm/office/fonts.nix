@@ -17,6 +17,7 @@ in
       # keep-sorted start sticky_comments=no block=yes
       fontforge-gtk
       liberation_ttf
+      lmodern
       nerd-fonts.jetbrains-mono
       noto-fonts
       noto-fonts-cjk-sans
