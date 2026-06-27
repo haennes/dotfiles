@@ -262,6 +262,10 @@ rec {
       url = "git+https://git.hannses.de/borbitter/mkhh-website";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    savepoint = {
+       url = "git+https://github.com/NamtaoProductions/savepoint/";
+       # inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

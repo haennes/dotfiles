@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./git.nix
+    ./autocommit.nix
   ];
 }
