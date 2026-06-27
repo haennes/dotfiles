@@ -24,5 +24,6 @@ in
     ./comms
     ./browsers
     ./draw.nix
+    ./knowledgemgmt
   ];
 }
