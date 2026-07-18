@@ -10,5 +10,6 @@ in
     ./openscad.nix
     ./freecad.nix
     ./prusa-slicer.nix
+    ./kicad.nix
   ];
 }

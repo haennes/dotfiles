@@ -13,7 +13,7 @@ in
   };
   config = mkIf config.my.office.modelling.kicad.enable {
     environment.systemPackages = with pkgs; [
-      kicad # cad for pcbs
+      kicad-small # cad for pcbs
     ];
   };
 }

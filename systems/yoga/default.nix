@@ -65,4 +65,6 @@
     enable = true;
     user = config.services.syncthing.user;
   };
+
+  my.office.modelling.kicad.enable = true;
 }
