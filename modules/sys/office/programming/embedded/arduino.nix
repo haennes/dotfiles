@@ -24,6 +24,14 @@ in
     ];
     nixpkgs.config.segger-jlink.acceptLicense = true;
 
-    users.users.hannses.extraGroups = [ "dialout" "tty" ];
+    users.users.hannses.extraGroups = [
+      "dialout"
+      "tty"
+    ];
+
+    services.udev.extraRules = ''
+      KERNEL=="ttyUSB[0-9]*",MODE="0666"
+      KERNEL=="ttyACM[0-9]*",MODE="0666"
+    '';
   };
 }
