@@ -184,6 +184,7 @@ in
             # };
 
             mouse = false;
+            clipboard-provider = "wayland";
           };
           keys.normal = {
             space.t.Y = ":sh ${typst-watch-script} %{buffer_name} 2>/dev/null &";
