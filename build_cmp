@@ -1,6 +1,7 @@
 set -xeu
-./fmt
+# ./fmt
 git add --intent-to-add .
 # nh os build .\?submodules=1# -j0 --accept-flake-config
-nh os build .\?submodules=1# --accept-flake-config
-nix-diff result /run/current-system
+# nh os build .\?submodules=1# --accept-flake-config
+nix build .\?submodules=1\#nixosConfigurations.yoga.config.system.build.toplevel --builders "" --show-trace
+nix-diff --character-oriented /run/current-system result
