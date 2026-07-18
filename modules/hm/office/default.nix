@@ -25,5 +25,6 @@ in
     ./browsers
     ./draw.nix
     ./knowledgemgmt
+    ./present.nix
   ];
 }
