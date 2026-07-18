@@ -128,8 +128,9 @@ rec {
       # url = "github:lordkekz/nix-yazi-plugins";
       #url = "github:lordkekz/nix-yazi-plugins?ref=pull/29/head";
       #url = "github:haennes/nix-yazi-plugins?ref=use-upstream-pkgs";
-      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=package-whoosh";
+      # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=package-whoosh";
       # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=main";
+      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=fix-new-params";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     git-vbranch = {
@@ -184,13 +185,13 @@ rec {
       url = "github:haennes/esw-machines";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-    simple-nixos-mailserver = {
-      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # simple-nixos-mailserver = {
+    #   url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.2";
+      url = "github:nix-community/lanzaboote";
 
       # Optional but recommended to limit the size of your system closure.
       inputs = {
@@ -250,7 +251,10 @@ rec {
       url = "github:NuschtOS/search";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    vicinae-extensions.url = "github:vicinaehq/extensions";
+    vicinae-extensions = {
+      # url = "github:vicinaehq/extensions";
+      url = "git+file:///home/hannses/programming/vicinae-extensions";
+    };
 
     strichliste-rs = {
       url = "git+https://code.ole.blue/strichliste-rs/strichliste-rs";
@@ -263,8 +267,8 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     savepoint = {
-       url = "git+https://github.com/NamtaoProductions/savepoint/";
-       # inputs.nixpkgs.follows = "nixpkgs";
+      url = "git+https://github.com/NamtaoProductions/savepoint/";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -425,7 +429,9 @@ rec {
                 "segger-jlink"
               ];
           };
-          overlaysBuilder = channels: [ (final: prev: { inherit (channels.nixpkgs-stable) firefox; }) ];
+          overlaysBuilder = channels: [
+            (final: prev: { inherit (channels.nixpkgs-stable) firefox freecad; })
+          ];
         };
         insecure = {
           input = nixpkgs;
@@ -458,7 +464,6 @@ rec {
             inputs
             sshkeys
             lib
-            all_modules
             client_modules
             server_modules
             system
@@ -586,5 +591,6 @@ rec {
           in
           makeConfigurations [ "dea" ];
       };
+      s = self;
     };
 }
