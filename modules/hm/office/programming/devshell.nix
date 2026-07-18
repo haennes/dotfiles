@@ -10,6 +10,7 @@ in
     programs.direnv = {
       enable = true;
       enableZshIntegration = true;
+      enableNushellIntegration = config.programs.nushell.enable;
       nix-direnv = {
         enable = true;
       };

@@ -18,6 +18,7 @@ in
     programs.yazi = {
       enable = true;
       enableZshIntegration = true;
+      enableNushellIntegration = config.programs.nushell.enable;
       shellWrapperName = "yy";
       settings = {
         show-hidden = false;

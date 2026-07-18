@@ -20,6 +20,7 @@ in
     programs.carapace = {
       enable = true;
       enableZshIntegration = true;
+      enableNushellIntegration = config.programs.nushell.enable;
     };
 
     xdg.configFile =

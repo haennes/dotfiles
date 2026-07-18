@@ -23,6 +23,7 @@ in
     programs.television = {
       enable = true;
       enableZshIntegration = true;
+      enableNushellIntegration = config.programs.nushell.enable;
       channels = mapAttrs (n: v: v // { metadata.name = n; }) {
 
         "git-log" = {
