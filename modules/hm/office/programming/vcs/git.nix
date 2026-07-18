@@ -17,10 +17,12 @@ in
       gitui # switch to neogit
       git-crypt # should be obsolete
       inputs.git-vbranch.packages.x86_64-linux.default
+      git-credential-email
     ];
     programs.git = {
       enable = true;
       lfs.enable = true;
+      package = pkgs.gitFull;
       signing = {
         key = null;
         signByDefault = true;
