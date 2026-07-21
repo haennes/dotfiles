@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, all_modules, ... }:
 let
   ips = config.ips.ips.ips.default;
   dataDir = "/var/lib/anki-sync-server";
@@ -16,7 +16,7 @@ in
 
   age.secrets."ankisync/pwhannses.age".file = ../../../secrets/ankisync/pwhannses.age;
 
-  imports = [ ../../../modules/sys ];
+  imports = all_modules;
   is_server = true;
   is_client = false;
   is_microvm = true;

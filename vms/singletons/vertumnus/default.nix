@@ -16,7 +16,7 @@ let
 in
 {
 
-  imports = [ ../../../modules/sys ];
+  imports = all_modules;
 
   is_server = true;
   is_client = false;

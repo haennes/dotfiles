@@ -12,7 +12,7 @@ let
 in
 {
 
-  imports = [ ../../../modules/microvm_guest.nix ];
+  imports = all_modules;
 
   is_server = true;
   is_client = false;

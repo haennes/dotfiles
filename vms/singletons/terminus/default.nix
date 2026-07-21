@@ -24,7 +24,7 @@ in
   microvm.mem = 400;
   microvm.vcpu = 1;
 
-  imports = [ ../../../modules/sys ];
+  imports = all_modules;
 
   is_server = true;
   is_client = false;

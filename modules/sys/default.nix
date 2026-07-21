@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ../../opts
     ./users
     ./watchers
     ./services

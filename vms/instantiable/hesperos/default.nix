@@ -3,10 +3,11 @@ hostname:
   config,
   pkgs,
   lib,
+  all_modules,
   ...
 }:
 {
-  imports = [ ../../../modules/sys ];
+  imports = all_modules;
   is_server = true;
   is_client = false;
   is_microvm = true;

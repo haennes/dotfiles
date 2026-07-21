@@ -16,9 +16,9 @@ in
 {
 
   imports = [
-    ../../../modules/sys
     inputs.nix-minecraft.nixosModules.minecraft-servers
-  ];
+  ]
+  ++ all_modules;
 
   is_server = true;
   is_client = false;

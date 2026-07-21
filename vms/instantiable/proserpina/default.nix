@@ -1,11 +1,17 @@
 hostname:
-{ config, inputs, ... }:
+{
+  config,
+  lib,
+  inputs,
+  all_modules,
+  ...
+}:
 {
   imports = [
-    ../../../modules/sys
     inputs.esw-machines.nixosModules.default
     #inputs.syncthing-wrapper.nixosModules.default
-  ];
+  ]
+  ++ all_modules;
 
   is_server = true;
   is_client = false;

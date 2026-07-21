@@ -464,6 +464,7 @@ rec {
             inputs
             sshkeys
             lib
+            all_modules
             client_modules
             server_modules
             system

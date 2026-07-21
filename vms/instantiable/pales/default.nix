@@ -1,14 +1,14 @@
 hostname:
-{ config, ... }:
+{ config, all_modules, ... }:
 {
   imports = [
     # keep-sorted start sticky_comments=no block=yes
     #../proxmox.nix
-    ../../../modules/sys
     ./gitlab-runner.nix
     ./nginx.nix
     # keep-sorted end
-  ];
+  ]
+  ++ all_modules;
 
   is_server = true;
   is_client = false;

@@ -1,9 +1,15 @@
 hostname:
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  all_modules,
+  ...
+}:
 {
   imports = [
     ./vsftpd.nix
-  ];
+  ]
+  ++ all_modules;
 
   is_server = true;
   is_client = false;
