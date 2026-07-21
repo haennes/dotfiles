@@ -143,6 +143,19 @@ def call_deploy_ssh_stratergy(
     submodules: bool = use_submodules,
     checks: bool = True,
 ):
+    if kind == "build":
+        call_rebuild(
+            hosts,
+            hostname,
+            extra_args_nix,
+            nom,
+            flake_dir,
+            kind,
+            extra_args_deploy_rs,
+            submodules,
+            checks,
+        )
+        return
     fzf = FzfPrompt()
     ssh_endpoints_names = []
     hostnames = hosts[hostname].get("hostnames", [])
