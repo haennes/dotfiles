@@ -16,6 +16,7 @@ in
       nmap
       wget
       dig # dns lookup
+      nettools
       tcpdump
       wireguard-tools
     ];
