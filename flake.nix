@@ -185,10 +185,10 @@ rec {
       url = "github:haennes/esw-machines";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-    # simple-nixos-mailserver = {
-    #   url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    simple-nixos-mailserver = {
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
