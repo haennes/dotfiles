@@ -185,6 +185,10 @@ rec {
       url = "github:haennes/esw-machines";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
+    esw-gemeinschaft = {
+      url = "github:haennes/esw-gemeinschaftsraum/impress";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     simple-nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/main";
       inputs.nixpkgs.follows = "nixpkgs";

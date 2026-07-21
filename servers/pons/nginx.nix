@@ -146,6 +146,17 @@ in
             };
           };
         };
+        gesw = {
+          servers = {
+            "${ips.fabulinus.wg0}:${toString ports.fabulinus.gesw}" = {
+              backup = true;
+            };
+            "${ips.proserpina_1.wg0}:${toString ports.proserpina_1.gesw}" = {
+              fail_timeout = "3s";
+              max_fails = 1;
+            };
+          };
+        };
       };
 
       #virtualHosts."mkhh.hannses.de" = {
@@ -184,6 +195,14 @@ in
     target_ip = "esw";
   })
   (create_simple_proxy_with_domain {
+    fqdn = "gesw.hannses.de";
+    target_ip = "gesw";
+  })
+  (create_simple_proxy_with_domain {
+    fqdn = "gesw.borbitter.eu";
+    target_ip = "gesw";
+  })
+  (create_simple_proxy_with_domain {
     fqdn = "ha1.esw.hannses.de";
     target_ip = ips.proserpina_1.wg0;
     target_port = ports.proserpina_1.esw;
@@ -192,6 +211,16 @@ in
     fqdn = "ha2.esw.hannses.de";
     target_ip = ips.deus.wg0;
     target_port = ports.deus.esw;
+  })
+  (create_simple_proxy_with_domain {
+    fqdn = "ha1.gesw.hannses.de";
+    target_ip = ips.proserpina_1.wg0;
+    target_port = ports.proserpina_1.gesw;
+  })
+  (create_simple_proxy_with_domain {
+    fqdn = "ha2.gesw.hannses.de";
+    target_ip = ips.deus.wg0;
+    target_port = ports.deus.gesw;
   })
 
   (create_simple_proxy_with_domain {
