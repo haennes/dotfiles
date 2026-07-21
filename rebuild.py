@@ -222,13 +222,13 @@ def main():
     hosts = {
         "dea": {
             "lambda": call_deploy_ssh_stratergy,
-            "hostnames": ["m_dea", "l_dea", "w_dea"],
+            "hostnames": ["m_dea", "l_dea", "g_dea"],
             "extra_args_nix": DEFAULT_NIX_ARGS,
             "extra_args_applyer": ["--remote-build"],
         },
         "deus": {
             "lambda": call_deploy_ssh_stratergy,
-            "hostnames": ["m_deus", "l_deus", "w_deus"],
+            "hostnames": ["m_deus", "l_deus", "g_deus"],
             "extra_args_nix": DEFAULT_NIX_ARGS,
             "extra_args_applyer": ["--remote-build"],
         },
@@ -238,7 +238,7 @@ def main():
         },
         "fabulinus": {
             "lambda": call_deploy_ssh_stratergy,
-            "hostnames": ["m_fabulinus", "l_fabulinus", "w_fabulinus"],
+            "hostnames": ["m_fabulinus", "l_fabulinus", "g_fabulinus"],
             "extra_args_applyer": [
                 "--remote-build",
                 "--magic-rollback",
@@ -252,16 +252,16 @@ def main():
             "lambda": call_deploy_ssh_stratergy,
             "extra_args_nix": DEFAULT_NIX_ARGS,
             # "nom": None,
-            # "hostnames": ["m_pons", "l_pons", "w_pons"],
+            # "hostnames": ["m_pons", "l_pons", "g_pons"],
         },
         "thinkpad": {
             "lambda": call_deploy_ssh_stratergy,
-            "hostnames": ["m_thinkpad", "l_thinkpad", "w_thinkpad"],
+            "hostnames": ["m_thinkpad", "l_thinkpad", "g_thinkpad"],
             "extra_args_nix": DEFAULT_NIX_ARGS,
         },
         "thinknew": {
             "lambda": call_deploy_ssh_stratergy,
-            "hostnames": ["m_thinknew", "l_thinknew", "w_thinknew"],
+            "hostnames": ["m_thinknew", "l_thinknew", "g_thinknew"],
             "extra_args_nix": DEFAULT_NIX_ARGS,
         },
     }
