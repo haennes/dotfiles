@@ -26,7 +26,7 @@ in
   # Bootloader.
   boot.loader.grub = {
     enable = true;
-    device = "/dev/sdb";
+    device = "/dev/sdc";
     useOSProber = true;
   };
   services.nix-serve.enable = true; # is configured in modules/all/nix-serve
