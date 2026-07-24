@@ -497,7 +497,8 @@ rec {
             ];
           })
           // (genNodeSimple self "welt")
-          // (genNodeSimple self "pons");
+          // (genNodeSimple self "pons")
+          // (genNodeSimple self "xaver");
       };
       formatter = forAllSystems (
         system:
@@ -574,6 +575,9 @@ rec {
 
         thinkpad = {
           modules = [ (laptop "thinkpad") ];
+        };
+        xaver = {
+          modules = [ (laptop "xaver") ];
         };
         thinknew = {
           modules = [

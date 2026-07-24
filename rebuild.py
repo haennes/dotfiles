@@ -264,6 +264,11 @@ def main():
             "hostnames": ["m_thinknew", "l_thinknew", "g_thinknew"],
             "extra_args_nix": DEFAULT_NIX_ARGS,
         },
+        "xaver": {
+            "lambda": call_deploy_ssh_stratergy,
+            "hostnames": ["m_xaver", "l_xaver", "g_xaver", "root@172.23.3.19"],
+            "extra_args_nix": DEFAULT_NIX_ARGS,
+        },
     }
     fzf = FzfPrompt()
     host_names = []

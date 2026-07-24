@@ -90,6 +90,7 @@ in
         "yoga%wg0-pons%wg0"
         "yoga%wg1-pons%wg1"
         "yoga%wg2-pons%wg2"
+        "xaver%wg0-pons%wg0"
         # keep-sorted end
       ];
       nodes = lib.mkMerge [
@@ -153,6 +154,7 @@ in
           "yoga%wg0"
           "yoga%wg1"
           "yoga%wg2"
+          "xaver%wg0"
           # "mkhh%wg0"
           # keep-sorted end
 
