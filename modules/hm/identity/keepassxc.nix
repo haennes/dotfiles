@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }:
 let
@@ -12,8 +11,8 @@ in
     default = config.my.identity.enable;
   };
   config = mkIf config.my.identity.keepassxc.enable {
-    home.packages = with pkgs; [
-      keepassxc
-    ];
+    programs.keepassxc = {
+      enable = true;
+    };
   };
 }
