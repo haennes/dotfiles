@@ -67,6 +67,16 @@ def call_rebuild(
     submodules: bool = use_submodules,
     checks: bool = True,
 ):
+    if kind == "eval":
+        call_eval(
+            hosts,
+            hostname,
+            lambda x: f"nixosConfigurations.{x}.config.system.build.toplevel",
+            extra_args_nix,
+            flake_dir,
+            submodules,
+        )
+        return
     args = (
         [
             "nixos-rebuild",
@@ -85,6 +95,17 @@ def call_rebuild(
     else:
         args = list(filter(lambda x: x.strip() != "", args))
         subprocess.run(args, text=True)
+
+
+def call_eval(
+    hosts,
+    hostname: str,
+    attrExpr,
+    extra_args_nix: list[str],
+    flake_dir: str,
+    submodules: bool = use_submodules,
+):
+    subprocess.run(["nix", "eval", _build_flake_ref(flake_dir, attrExpr(hostname))])
 
 
 def call_deploy(
@@ -154,6 +175,16 @@ def call_deploy_ssh_stratergy(
             extra_args_deploy_rs,
             submodules,
             checks,
+        )
+        return
+    if kind == "eval":
+        call_eval(
+            hosts,
+            hostname,
+            lambda x: f"deploy.nodes.${hostname}.profiles.system.path",
+            extra_args_nix,
+            flake_dir,
+            submodules,
         )
         return
     fzf = FzfPrompt()
@@ -277,7 +308,7 @@ def main():
     sel = fzf.prompt(host_names)
     if len(sel) == 1:
         sel = sel[0]
-        type = fzf.prompt(["build", "boot", "switch"])
+        type = fzf.prompt(["build", "boot", "switch", "eval"])
         if len(type):
             nom = hosts[sel].get("nom", [])
             rebuild(

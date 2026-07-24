@@ -36,7 +36,7 @@ let
   devices = rec {
     all_pcs = { inherit (ids_attrs) mainpc yoga; };
     all_pcs_minimal = all_pcs // {
-      inherit (ids_attrs) thinknew thinkpad;
+      inherit (ids_attrs) thinknew thinkpad xaver;
     };
     all_handys = {
       inherit (ids_attrs)
