@@ -1475,11 +1475,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779627601,
-        "narHash": "sha256-0GlNaP3TPrKa4hbkZRSedqwGe4gKy2GGrlAZ7o9M6Uc=",
+        "lastModified": 1784998361,
+        "narHash": "sha256-w0hXC5IA19rDzRj55JiNfHZL8eFiqUbfETnRgO5H5KM=",
         "ref": "refs/heads/main",
-        "rev": "948fddc6846cca117a23e065fbe1bdb3dc73f19c",
-        "revCount": 85,
+        "rev": "b2e33fec6e37978edcbc524264e045b3a20faefc",
+        "revCount": 88,
         "type": "git",
         "url": "https://git.hannses.de/borbitter/mkhh-website"
       },
