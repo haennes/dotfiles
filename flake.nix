@@ -150,8 +150,8 @@ rec {
     };
     wg-friendly-peer-names = {
       # url = "git+file:///home/hannses/programming/wg-friendly-peer-names";
-      # url = "github:haennes/wg-friendly-peer-names";
-      url = "git+file:///home/hannses/programming/wg-friendly-peer-names";
+      url = "github:haennes/wg-friendly-peer-names";
+      # url = "git+file:///home/hannses/programming/wg-friendly-peer-names";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     syncthing-wrapper = {
