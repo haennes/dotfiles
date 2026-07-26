@@ -31,6 +31,7 @@
   my.hardware.fwupd.enable = false;
   my.utils.rg.enable = false;
 
+  my.desktop.monitors.builtin = "eDP-1";
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/var/lib/sbctl";

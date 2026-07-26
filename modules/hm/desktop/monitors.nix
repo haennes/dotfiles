@@ -1,5 +1,6 @@
 {
   config,
+  osConfig,
   lib,
   pkgs,
   inputs,
@@ -10,7 +11,7 @@ let
   inherit (lib)
     mkEnableOption
     mkIf
-    mkMerge
+    attrValues
     mapAttrs
     getExe'
     mkOption
@@ -43,20 +44,27 @@ let
       ''
         let randrop = (wlr-randr --json | from json)
         let proname = ($randrop | sort-by name | select make model name | each {|e| $e.make + $e.model + $e.name }| reduce { |it, acc| $it + "_" + $acc })
+        def mkUnkown [a] {
+          if $a == null {
+            "Unknown"
+          } else {
+            $a
+          }
+        }
         let _ = { 
           proname: {
             outputs: ($randrop | flatten modes
               | where modes.current 
-              | insert criteria { |r| $"($r.make) ($r.model) ($r.serial)" }
-              | select adaptive_sync name modes position scale transform criteria
-              | rename --column {adaptive_sync: adaptiveSync, name: alias, modes: mode}
+              | insert criteria { |r| $"(mkUnkown $r.make) (mkUnkown $r.model) (mkUnkown $r.serial)" }
+              | select adaptive_sync modes position scale transform criteria
+              | rename --column {adaptive_sync: adaptiveSync, modes: mode}
               | update position {|p| 
                 let pos = ($p.position)
                 $"($pos.x),($pos.y)"
               }
-              | update mode {|m| $"($m.mode.width),($m.mode.height)"}  
+              | update mode {|m| $"($m.mode.width)x($m.mode.height)"}  
               | to json
-              | each {|e| $"\'\'\\n($e)\'\'"} 
+              | each {|e| $"\'\'\n($e)\'\'"} 
               | save -f $"${globals.dotfiles_path}/modules/hm/desktop/monitor-profiles/$($proname).nix"
             )
           }
@@ -73,8 +81,9 @@ in
       type = types.package;
       default = nushellsave;
     };
-    monitors = mkOption {
-      type = types.freeform;
+    builtin = mkOption{
+      type = types.str;
+      default = osConfig.my.desktop.monitors.builtin;
     };
   };
   config = mkIf config.my.desktop.monitors.enable {
@@ -86,10 +95,10 @@ in
     ];
     services.kanshi = {
       enable = true;
-      profiles = (
+      settings = attrValues (
         mapAttrs
           (_: v: {
-            outputs = builtins.fromJSON v;
+            profile.outputs = builtins.fromJSON v;
           })
           (
             hlib.load {

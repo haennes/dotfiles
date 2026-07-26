@@ -12,28 +12,7 @@ let
     mkEnableOption
     mkIf
     imap0
-    concatLines
     ;
-  monitors_laptop = {
-    builtin = "eDP-1";
-    hh = {
-      buero = {
-        left = "desc:LG Electronics 24MB56 0x01010101";
-        middle = "desc:Samsung Electric Company S24F350 H4ZMA05329";
-      };
-    };
-    fsim = {
-      table-right = {
-        left = "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000844";
-        right = "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000852";
-      };
-
-      table-left = {
-        left = "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000850";
-        right = "desc:Philips Consumer Electronics Company PHL 240B9 AU12220000842";
-      };
-    };
-  };
 in
 {
   imports = [
@@ -75,25 +54,6 @@ in
         ecosystem = {
           no_update_news = true;
         };
-        monitor = [
-          #"${monitors_laptop.builtin}, preferred,auto,1"
-
-          ## fsim
-          "${monitors_laptop.fsim.table-right.left}, preferred, auto-up, 1"
-          "${monitors_laptop.fsim.table-right.right}, preferred, auto-right, 1"
-
-          "${monitors_laptop.builtin}, preferred,auto,1"
-
-          "${monitors_laptop.fsim.table-left.right}, preferred, auto-up, 1"
-          "${monitors_laptop.fsim.table-left.right}, preferred, auto-right, 1"
-          "${monitors_laptop.builtin}, preferred,auto,1"
-
-          #hh
-          "${monitors_laptop.hh.buero.left}, preferred, 0x0, 1, transform, 1"
-          "${monitors_laptop.hh.buero.middle}, preferred, 1080x0, 1"
-          "${monitors_laptop.builtin}, preferred,3000x0,1"
-
-        ];
 
         input = {
           kb_layout = "de,us,eu";
@@ -105,7 +65,7 @@ in
             disable_while_typing = true;
             drag_lock = true;
           };
-          tablet.output = monitors_laptop.builtin;
+          tablet.output = config.my.desktop.monitors.builtin;
         };
 
         env = [

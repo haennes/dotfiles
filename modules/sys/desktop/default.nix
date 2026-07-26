@@ -10,6 +10,7 @@ in
   imports = [
     ./hyprland.nix
     ./portal.nix
+    ./monitors.nix
   ];
 
 }

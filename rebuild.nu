@@ -17,7 +17,7 @@ def call-rebuild [hostname: string, nix_args: list<string>, nom: list<string>, f
         return
     }
     let flake_ref = (build-flake-ref $flake_dir $hostname $submodules)
-    run-piped "nixos-rebuild" ([$kind "--flake" $flake_ref] ++ $args ++ $nix_args) $nom
+    run-piped "sudo" (["nixos-rebuild"] ++ [$kind "--flake" $flake_ref] ++ $args ++ $nix_args) $nom
 }
 
 def call-deploy [hostname: string, nix_args: list<string>, nom: list<string>, flake_dir: string, kind: string, args: list<string>, submodules: bool, checks: bool] {
