@@ -13,15 +13,23 @@ let
     inherit globals theme scripts;
   };
   importNixScript = name: value: pkgs.pkgs.writeShellScript name value;
+  importNixScriptNu = name: value: pkgs.writers.writeNu name value;
   importShellScript = name: {
     "${name}" = pkgs.pkgs.writeShellScript "${name}" "${lib.readFile ./src/${name}.sh}";
   };
   hlib = inputs.haumea.lib;
 in
-lib.mapAttrs (name: value: importNixScript name value) (
+(lib.mapAttrs (name: value: importNixScript name value) (
   hlib.load {
     src = ./src;
     loader = hlib.loaders.default;
     inputs = scripts_input;
   }
-)
+)) // (
+lib.mapAttrs (name: value: importNixScriptNu name value) (
+  hlib.load {
+    src = ./src_nu;
+    loader = hlib.loaders.default;
+    inputs = scripts_input;
+  }
+))

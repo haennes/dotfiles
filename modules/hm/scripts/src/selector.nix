@@ -88,6 +88,7 @@ in
   rescue sh alacritty
   ftb
   waybar
+  wg
   rescue sh kitty\
   "
 
@@ -119,7 +120,9 @@ in
   "signal")
       ${pkgs.signal-desktop}/bin/signal-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland
       ;;
-
+  "wg")
+      ${scripts.wgdmenu}
+      ;;
   "tuta")
       # TODO
       ;;
