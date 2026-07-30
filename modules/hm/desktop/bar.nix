@@ -32,6 +32,7 @@ let
     modules-right = [
       #"hyprland/language"
       "network"
+      "custom/wggs"
       "bluetooth"
       "custom/notification"
       "pulseaudio"
@@ -141,6 +142,11 @@ let
     };
     "custom/taskwarrior" = {
       exec = "${inputs.waybar-taskwarrior.packages.x86_64-linux.default}/bin/waybar-taskwarrior";
+      interval = 10;
+      return-type = "json";
+    };
+    "custom/wgs" = {
+      exec = "${scripts.wgs}";
       interval = 10;
       return-type = "json";
     };
