@@ -7,7 +7,7 @@ def run-piped [cmd: string, args: list<string>, nom: list<string>] {
     if ($nom | is-empty) {
         ^$cmd ...$args
     } else {
-        ^$cmd ...($args ++ ["--log-format" "internal-json" "-v"]) | ^nom --json ...$nom
+        ^$cmd ...($args ++ ["--log-format" "internal-json" "-v"]) err+out>| ^nom --json ...$nom
     }
 }
 
