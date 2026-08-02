@@ -70,7 +70,7 @@ sleep infinity
 
 
     mkfifo $pid_pipe
-    job spawn {^systemd-inhibit --what=sleep --why=$opname --who=$'nix rebuild ($id)' --mode=block ($sleep_script) 0>&- &>/tmp/rebuild-inhibit-($id).out &}
+    job spawn {^systemd-inhibit --what=sleep --why=$"$($opname)" --who=$'nix rebuild ($id)' --mode=block ($sleep_script) 0>&- &>/tmp/rebuild-inhibit-($id).out &}
 
     let pid = cat $pid_pipe | str trim | into int
 
