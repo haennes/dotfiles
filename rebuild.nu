@@ -120,7 +120,7 @@ def main [] {
         "switch" => $"rebuild switch"
         "eval" => $"eval"
     }
-    let inhibit = start-inhibitor $"Nix $($opname) @ $($sel)"
+    let inhibit = start-inhibitor $"Nix ($opname) @ ($sel)"
     try {
         rebuild $hosts $sel [] $nom "/home/hannses/.dotfiles" $kind [] true false
     }
