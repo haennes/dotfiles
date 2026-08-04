@@ -129,8 +129,8 @@ rec {
       #url = "github:lordkekz/nix-yazi-plugins?ref=pull/29/head";
       #url = "github:haennes/nix-yazi-plugins?ref=use-upstream-pkgs";
       # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=package-whoosh";
-      # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=main";
       url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=fix-new-params";
+      # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=main-greyxp1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     git-vbranch = {

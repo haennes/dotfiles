@@ -33,7 +33,10 @@ in
       plugins = {
         bypass.enable = true;
 
-        smart-enter.enable = true;
+        smart-enter = {
+          enable = true;
+          open_multi = true;
+        };
         git.enable = true;
         glow.enable = true;
 

@@ -1475,11 +1475,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784998361,
-        "narHash": "sha256-w0hXC5IA19rDzRj55JiNfHZL8eFiqUbfETnRgO5H5KM=",
+        "lastModified": 1785613019,
+        "narHash": "sha256-GyXbZnATIyws/+3wM4RHpef5n28uihZGXp6Wy2YBv18=",
         "ref": "refs/heads/main",
-        "rev": "b2e33fec6e37978edcbc524264e045b3a20faefc",
-        "revCount": 88,
+        "rev": "d6f9bbf34c0b61d9761cd2dacbd8e3310b26ef10",
+        "revCount": 91,
         "type": "git",
         "url": "https://git.hannses.de/borbitter/mkhh-website"
       },
@@ -1761,11 +1761,11 @@
         "systems": "systems_9"
       },
       "locked": {
-        "lastModified": 1780837864,
-        "narHash": "sha256-LhQ8oIMjC+Nhjv7DAQMFJptzVYm2WodEXLjlEyeb2Lw=",
+        "lastModified": 1785876736,
+        "narHash": "sha256-6bqFM00jyW6cO6wFoOrjEqahPDOiLvh54JQaY1LjGws=",
         "ref": "fix-new-params",
-        "rev": "77b695172b66b0a6809fb939ce22c3c3e01d26ea",
-        "revCount": 78,
+        "rev": "320c32dfadee5f961b2622549328ea368c9f8a27",
+        "revCount": 79,
         "type": "git",
         "url": "file:///home/hannses/programming/nix/nix-yazi-plugins"
       },
