@@ -110,6 +110,10 @@ rec {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    schema-jq = {
+      url = "git+https://gist.github.com/pkoppstein/a5abb4ebef3b0f72a6ed.git";
+      flake = false;
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -297,6 +301,7 @@ rec {
       nuscht-search,
       pinentry-keepassxc,
       rust-overlay,
+      schema-jq,
       signal-whisper,
       syncthing-wrapper,
       tasks_md,
