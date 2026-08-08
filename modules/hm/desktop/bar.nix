@@ -32,7 +32,7 @@ let
     modules-right = [
       #"hyprland/language"
       "network"
-      "custom/wggs"
+      "custom/wgs"
       "bluetooth"
       "custom/notification"
       "pulseaudio"

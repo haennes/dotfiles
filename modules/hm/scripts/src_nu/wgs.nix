@@ -28,6 +28,6 @@ let l = $parse | each {|i|
 {
   text: $"($mi) ($ma)",
   tooltip: $l
-} | to json
+} | to json -r
 
 ''
