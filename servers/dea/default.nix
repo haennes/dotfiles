@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ specialArgs, lib, ... }:
+{ specialArgs, lib, inputs, ... }:
 let
   hostname = "tabula_1";
 in
@@ -13,6 +13,7 @@ in
     # keep-sorted start sticky_comments=no block=yes
     #./kasm.nix
     #./services/backup.nix
+    ./signal-whisper.nix
     ./hydra.nix
     ./ipfs.nix
     ./nextcloud.nix
@@ -20,6 +21,7 @@ in
     ./taskchampion.nix
     ./vms.nix
     ./zfs.nix
+    inputs.signal-whisper.nixosModules.default
     # keep-sorted end
   ];
 
