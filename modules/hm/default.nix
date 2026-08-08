@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./ai
     ./utils
     ./hardware
     ./identity
