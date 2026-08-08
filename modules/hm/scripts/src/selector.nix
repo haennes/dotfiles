@@ -148,7 +148,7 @@ in
       ${joint-non_standalone.last_xournalpp}
       ;;
   "zathura")
-      ${joint-non_standalone.last_zathura}
+      ${joint-non_standalone.last_zathura}/bin/last_zathura
       ;;
   "camera")
       ${pkgs.webcamoid}/bin/webcamoid
