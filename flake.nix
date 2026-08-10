@@ -41,8 +41,8 @@ rec {
       };
     };
     nix-joint-venture = {
-      url = "github:nix-joint-venture/nix-joint-venture?ref=recenct_files_zath_xour";
-      # url = "/home/hannses/programming/nix/nix-joint-venture";
+      # url = "github:nix-joint-venture/nix-joint-venture?ref=recenct_files_zath_xour";
+      url = "/home/hannses/programming/nix/joint-venture";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-alien.url = "github:thiagokokada/nix-alien";
@@ -130,10 +130,11 @@ rec {
     nix-yazi-plugins = {
       #url = "github:Mcrtin/nix-yazi-plugins?ref=open-with-cmd+bookmarks";
       # url = "github:lordkekz/nix-yazi-plugins";
-      #url = "github:lordkekz/nix-yazi-plugins?ref=pull/29/head";
-      #url = "github:haennes/nix-yazi-plugins?ref=use-upstream-pkgs";
+      # url = "github:lordkekz/nix-yazi-plugins?ref=pull/71/head";
+      # url = "github:haennes/nix-yazi-plugins?ref=use-upstream-pkgs";
       # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=package-whoosh";
-      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=fix-new-params";
+      # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=fix-new-params";
+      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=fix-new-params-update";
       # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=main-greyxp1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -180,7 +181,7 @@ rec {
     };
 
     signal-whisper = {
-      url = "github:haennes/signal-whisper";
+      url = "git+file:///home/hannses/programming/nix/signal-whisper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-topology.url = "github:oddlama/nix-topology";

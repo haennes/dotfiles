@@ -1625,18 +1625,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1745913626,
-        "narHash": "sha256-YiY1Dgf39E40OoMAkU7K4S9eR5Xin2JvJXu6oCHO1uA=",
-        "owner": "nix-joint-venture",
-        "repo": "nix-joint-venture",
-        "rev": "31205d7ad25ecec982a42487bc9d924f22c4ee55",
-        "type": "github"
+        "dirtyRev": "a8f17b9cdeeb6e3bfc0d945efc18ada2519e8552-dirty",
+        "dirtyShortRev": "a8f17b9-dirty",
+        "lastModified": 1786122864,
+        "narHash": "sha256-H7Yta86SzD57HQatYtCcj8zZRThsovXViJtJaahbl6A=",
+        "type": "git",
+        "url": "file:///home/hannses/programming/nix/joint-venture"
       },
       "original": {
-        "owner": "nix-joint-venture",
-        "ref": "recenct_files_zath_xour",
-        "repo": "nix-joint-venture",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/hannses/programming/nix/joint-venture"
       }
     },
     "nix-master": {
@@ -1761,16 +1759,16 @@
         "systems": "systems_9"
       },
       "locked": {
-        "lastModified": 1785876736,
-        "narHash": "sha256-6bqFM00jyW6cO6wFoOrjEqahPDOiLvh54JQaY1LjGws=",
-        "ref": "fix-new-params",
-        "rev": "320c32dfadee5f961b2622549328ea368c9f8a27",
-        "revCount": 79,
+        "lastModified": 1785883249,
+        "narHash": "sha256-fZ7AuNy+7TMlY2lHoneiV6krCUl5Ee1ivP710x5UqLE=",
+        "ref": "fix-new-params-update",
+        "rev": "f08792c0af134a44ddad2d52eeeec8dfa87304b7",
+        "revCount": 88,
         "type": "git",
         "url": "file:///home/hannses/programming/nix/nix-yazi-plugins"
       },
       "original": {
-        "ref": "fix-new-params",
+        "ref": "fix-new-params-update",
         "type": "git",
         "url": "file:///home/hannses/programming/nix/nix-yazi-plugins"
       }
@@ -2568,6 +2566,7 @@
         "pinentry-keepassxc": "pinentry-keepassxc",
         "rust-overlay": "rust-overlay_3",
         "savepoint": "savepoint",
+        "schema-jq": "schema-jq",
         "signal-whisper": "signal-whisper",
         "simple-nixos-mailserver": "simple-nixos-mailserver",
         "strichliste-rs": "strichliste-rs",
@@ -2739,6 +2738,22 @@
         "url": "https://github.com/NamtaoProductions/savepoint/"
       }
     },
+    "schema-jq": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1665975700,
+        "narHash": "sha256-Mc2XGJois8SiRVMI3s4jLVK20rj1Vdq1rIJ6mJnqjtU=",
+        "ref": "refs/heads/master",
+        "rev": "6fe8cb20ece01e0a5da71f4e33f08d2ce87e58e5",
+        "revCount": 12,
+        "type": "git",
+        "url": "https://gist.github.com/pkoppstein/a5abb4ebef3b0f72a6ed.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://gist.github.com/pkoppstein/a5abb4ebef3b0f72a6ed.git"
+      }
+    },
     "signal-whisper": {
       "inputs": {
         "nixpkgs": [
@@ -2746,17 +2761,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1733794818,
-        "narHash": "sha256-Q9Lu0KzAF9Z0j4d+ppTfEwNkRphhpf8QbHUShKoEtSA=",
-        "owner": "haennes",
-        "repo": "signal-whisper",
-        "rev": "e6e67e030884d2776f1d29c7f43a4b55c70f8bfe",
-        "type": "github"
+        "dirtyRev": "30cd4a37f548552cab7b7ac0806c813879d666da-dirty",
+        "dirtyShortRev": "30cd4a3-dirty",
+        "lastModified": 1786312135,
+        "narHash": "sha256-WkGSXmae8MD48mODVUtIeUIQV6NtLh3ujtMKK0/An1Y=",
+        "type": "git",
+        "url": "file:///home/hannses/programming/nix/signal-whisper"
       },
       "original": {
-        "owner": "haennes",
-        "repo": "signal-whisper",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/hannses/programming/nix/signal-whisper"
       }
     },
     "simple-nixos-mailserver": {
@@ -3521,11 +3535,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756413499,
-        "narHash": "sha256-lTnYejrts4J8pYDKoyJIlA2e3yLWufOxj7nXoNEgdJA=",
+        "lastModified": 1786130623,
+        "narHash": "sha256-1Q+gxqPqgPFrW5A2WvLytS0PMhiXP8rJzqWECpYjkdM=",
         "owner": "haennes",
         "repo": "wireguard-wrapper.nix",
-        "rev": "2a6f77207152812eb8725dabc552d13aa7af7e3b",
+        "rev": "414dd36e7a0357114e439969ca4355a8b4ecf6ec",
         "type": "github"
       },
       "original": {
