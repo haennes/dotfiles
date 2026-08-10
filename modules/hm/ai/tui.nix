@@ -21,6 +21,8 @@ in
             "*" = "ask";
             "git add *" = "allow";
             "nix build *" = "allow";
+            "nix flake check *" = "allow";
+            "nix log *" = "allow";
             "grep *" = "allow";
           };
           "edit" = "allow";
