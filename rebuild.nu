@@ -63,9 +63,9 @@ def call-deploy-ssh-strategy [hosts: record, hostname: string, nix_args: list<st
 
 # starts a blocking sleep-inhibitor, saves its pid to a unique tmp file, returns the file path
 def start-inhibitor [opname: string] {
-    let id = $nu.pid
-    let pid_pipe = $"($nu.temp-dir)/rebuild-inhibit-($id).pipe"
-    let sleep_script = $"($nu.temp-dir)/rebuild-inhibit-($id)-sleep.sh"
+    let tmp_dir = (mktemp -d)
+    let pid_pipe = $"($tmp_dir)/rebuild-inhibit.pipe"
+    let sleep_script = $"($tmp_dir)/rebuild-inhibit-sleep.sh"
 
     $"#!/usr/bin/env sh
 echo $$ >($pid_pipe)
@@ -75,44 +75,44 @@ sleep infinity
 
 
     mkfifo $pid_pipe
-    job spawn {^systemd-inhibit --what=sleep --why=$"$($opname)" --who=$'nix rebuild ($id)' --mode=block ($sleep_script) 0>&- &>($nu.temp-dir)/rebuild-inhibit-($id).out &}
+    job spawn {^systemd-inhibit --what=sleep --why=$"$($opname)" --who=$'nix rebuild ($nu.pid)' --mode=block ($sleep_script) 0>&- &>($tmp_dir)/rebuild-inhibit.out &}
 
     let pid = cat $pid_pipe | str trim | into int
 
     rm -f $pid_pipe
-    return { pid: $pid, sleep_script: $sleep_script }
+    return { pid: $pid, sleep_script: $sleep_script, tmp_dir: $tmp_dir }
 
 }
 
-def stop-inhibitor [inhibitor: record<pid: int, sleep_script: path>] {
+def stop-inhibitor [inhibitor: record<pid: int, sleep_script: path, tmp_dir: path>] {
     kill $inhibitor.pid
-    rm -f $inhibitor.sleep_script
+    rm -rf $inhibitor.tmp_dir
 }
 
 # starts a blocking sleep-inhibitor on a remote host via ssh, saves its shim to a unique tmp file, returns the shim path
 def ssh-start-inhibitor [hostname: string, opname: string] {
-    let id = $nu.pid
-    let pid_pipe = $"($nu.temp-dir)/rebuild-ssh-inhibit-($id).pipe"
-    let shim = $"($nu.temp-dir)/rebuild-ssh-inhibit-($id)-shim.sh"
+    let tmp_dir = (mktemp -d)
+    let pid_pipe = $"($tmp_dir)/rebuild-ssh-inhibit.pipe"
+    let shim = $"($tmp_dir)/rebuild-ssh-inhibit-shim.sh"
     let why = ($opname | str replace -a " " "-" | str replace -a "'" "")
 
     $"#!/usr/bin/env sh
 echo \$\$ >($pid_pipe)
-exec ssh ($hostname) systemd-inhibit --what=sleep --why=($why) --who=$"nix-rebuild-ssh-($id)" --mode=block sleep infinity" | save -f $shim
+exec ssh ($hostname) systemd-inhibit --what=sleep --why=($why) --who=$"nix-rebuild-ssh-($nu.pid)" --mode=block sleep infinity" | save -f $shim
     chmod +x $shim
 
     mkfifo $pid_pipe
-    job spawn {^$shim 0>&- &>($nu.temp-dir)/rebuild-ssh-inhibit-($id).out &}
+    job spawn {^$shim 0>&- &>($tmp_dir)/rebuild-ssh-inhibit.out &}
 
     let pid = cat $pid_pipe | str trim | into int
 
     rm -f $pid_pipe
-    return { pid: $pid, shim: $shim }
+    return { pid: $pid, shim: $shim, tmp_dir: $tmp_dir }
 }
 
-def ssh-stop-inhibitor [inhibitor: record<pid: int, shim: path>] {
+def ssh-stop-inhibitor [inhibitor: record<pid: int, shim: path, tmp_dir: path>] {
     kill $inhibitor.pid
-    rm -f $inhibitor.shim
+    rm -rf $inhibitor.tmp_dir
 }
 
 def rebuild [hosts: record, hostname: string, nix_args: list<string>, nom: list<string>, flake_dir: string, kind: string, args: list<string>, submodules: bool, checks: bool] {
