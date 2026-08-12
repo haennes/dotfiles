@@ -96,14 +96,14 @@ def stage-local-inputs [stage: string, flake_dir: string, tmp_remote: string] {
 }
 
 # stages the local flake working tree (incl. uncommitted changes, submodules, decrypted secrets,
-# and local path inputs) into a fresh temp dir on the remote host
+# and local path inputs) into a "flake" subdir of a fresh temp dir on the remote host
 def copy-flake-to-remote [host: string, flake_dir: string] {
     let tmp = (^ssh $host "mktemp -d /tmp/nix-flake-XXXXXX" | str trim)
     let stage = (mktemp -d)
     try {
         copy-git-tree $flake_dir $stage
-        stage-local-inputs $stage $flake_dir $tmp
-        tar -C $stage -cf - . | ^ssh $host $"tar -C ($tmp) -xf -"
+        stage-local-inputs $stage $flake_dir $"($tmp)/flake"
+        scp -r -q $stage $"($host):($tmp)/flake"
     } finally {
         rm -rf $stage
     }
@@ -117,7 +117,7 @@ def cleanup-remote-flake [host: string, tmp: string] {
 # evaluates a host's configuration on the remote host, from a copy of the flake
 def call-remote-eval [host: string, hostname: string, nix_args: list<string>, flake_dir: string] {
     let tmp = (copy-flake-to-remote $host $flake_dir)
-    let ref = (build-flake-ref $tmp $"nixosConfigurations.($hostname).config.system.build.toplevel" false)
+    let ref = (build-flake-ref $"($tmp)/flake" $"nixosConfigurations.($hostname).config.system.build.toplevel" false)
     let nix_args = if ($nix_args | any { |x| $x == "--accept-flake-config" }) { $nix_args } else { ["--accept-flake-config"] ++ $nix_args }
     try {
         ^ssh $host ...(["nix" "eval"] ++ $nix_args ++ [$ref])
@@ -129,7 +129,7 @@ def call-remote-eval [host: string, hostname: string, nix_args: list<string>, fl
 # rebuilds the target on the remote host itself (target == eval host)
 def call-remote-rebuild [host: string, hostname: string, nix_args: list<string>, flake_dir: string, kind: string, args: list<string>] {
     let tmp = (copy-flake-to-remote $host $flake_dir)
-    let flake_ref = (build-flake-ref $tmp $hostname false)
+    let flake_ref = (build-flake-ref $"($tmp)/flake" $hostname false)
     try {
         ^ssh $host ...(["sudo" "nixos-rebuild" $kind "--flake" $flake_ref] ++ $args ++ $nix_args)
     } finally {
@@ -140,7 +140,7 @@ def call-remote-rebuild [host: string, hostname: string, nix_args: list<string>,
 # deploys a host via deploy-rs running on the remote host (target != eval host)
 def call-remote-deploy [host: string, node: string, nix_args: list<string>, flake_dir: string, kind: string, args: list<string>, checks: bool] {
     let tmp = (copy-flake-to-remote $host $flake_dir)
-    let flake_ref = (build-flake-ref $tmp $node false)
+    let flake_ref = (build-flake-ref $"($tmp)/flake" $node false)
     mut a = $args
     if $kind == "boot" { $a = ($a ++ ["--boot"]) }
     if not $checks { $a = ($a ++ ["-s"]) }
