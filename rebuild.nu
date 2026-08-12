@@ -57,17 +57,40 @@ def copy-git-tree [dir: string, dest: string] {
     }
 }
 
+# checks whether a flake.nix input url points to a local directory
+def is-local-input-url [u: string] {
+    ($u | str starts-with "/")
+    or ($u | str starts-with "git+file://")
+    or ($u | str starts-with "file:///")
+    or ($u | str starts-with "path:/")
+}
+
+# extracts the local directory from a local input url ("" if not absolute)
+def local-input-dir [u: string] {
+    let rest = if ($u | str starts-with "git+file://") {
+        $u | str substring 11..
+    } else if ($u | str starts-with "file://") {
+        $u | str substring 7..
+    } else if ($u | str starts-with "path:") {
+        $u | str substring 5..
+    } else {
+        $u
+    }
+    let dir = ($rest | split row "?" | first)
+    if ($dir | str starts-with "/") { $dir } else { "" }
+}
+
 # local (git+file / path) inputs of the flake, copied into $stage/inputs/<slug> and their
 # urls in flake.nix rewritten to the corresponding path on the remote host ($tmp_remote)
 def stage-local-inputs [stage: string, flake_dir: string, tmp_remote: string] {
     mut content = (open $"($flake_dir)/flake.nix")
     for u in ($content | parse -r 'url = "([^"]+)"' | get capture0) {
-        let dir = ($u | str replace '^git\+file://' '' | str replace '^path:' '' | str replace '^file://' '' | str replace '\?.*$' '')
-        if ($dir | str starts-with "/") and (not ($dir | str contains "://")) and ($dir | path exists) {
-            let slug = ($dir | str replace '^/' '' | str replace '/' '_')
-            copy-git-tree $dir $"($stage)/inputs/($slug)"
-            $content = ($content | str replace $u $"($tmp_remote)/inputs/($slug)")
-        }
+        if (not (is-local-input-url $u)) { continue }
+        let dir = (local-input-dir $u)
+        if ($dir | is-empty) or (not ($dir | path exists)) { continue }
+        let slug = ($dir | str replace '^/' '' | str replace '/' '_')
+        copy-git-tree $dir $"($stage)/inputs/($slug)"
+        $content = ($content | str replace $u $"($tmp_remote)/inputs/($slug)")
     }
     $content | save -f $"($stage)/flake.nix"
 }
