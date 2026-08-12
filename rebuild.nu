@@ -46,6 +46,99 @@ def select-ssh-host [hosts: record, hostname: string] {
         $names.0
     }
 }
+
+# copy a git tree's tracked files (incl. submodules, working tree state) via git ls-files into $dest
+def copy-git-tree [dir: string, dest: string] {
+    mkdir $dest
+    if ($"($dir)/.git" | path exists) {
+        git -C $dir ls-files --recurse-submodules -z | tar -C $dir --null -T - --ignore-failed-read -cf - | tar -C $dest -xf -
+    } else {
+        tar -C $dir --exclude=.git -cf - . | tar -C $dest -xf -
+    }
+}
+
+# local (git+file / path) inputs of the flake, copied into $stage/inputs/<slug> and their
+# urls in flake.nix rewritten to the corresponding path on the remote host ($tmp_remote)
+def stage-local-inputs [stage: string, flake_dir: string, tmp_remote: string] {
+    mut content = (open $"($flake_dir)/flake.nix")
+    for u in ($content | parse -r 'url = "([^"]+)"' | get capture0) {
+        let dir = ($u | str replace '^git\+file://' '' | str replace '^path:' '' | str replace '^file://' '' | str replace '\?.*$' '')
+        if ($dir | str starts-with "/") and (not ($dir | str contains "://")) and ($dir | path exists) {
+            let slug = ($dir | str replace '^/' '' | str replace '/' '_')
+            copy-git-tree $dir $"($stage)/inputs/($slug)"
+            $content = ($content | str replace $u $"($tmp_remote)/inputs/($slug)")
+        }
+    }
+    $content | save -f $"($stage)/flake.nix"
+}
+
+# stages the local flake working tree (incl. uncommitted changes, submodules, decrypted secrets,
+# and local path inputs) into a fresh temp dir on the remote host
+def copy-flake-to-remote [host: string, flake_dir: string] {
+    let tmp = (^ssh $host "mktemp -d /tmp/nix-flake-XXXXXX" | str trim)
+    let stage = (mktemp -d)
+    try {
+        copy-git-tree $flake_dir $stage
+        stage-local-inputs $stage $flake_dir $tmp
+        tar -C $stage -cf - . | ^ssh $host $"tar -C ($tmp) -xf -"
+    } finally {
+        rm -rf $stage
+    }
+    return $tmp
+}
+
+def cleanup-remote-flake [host: string, tmp: string] {
+    ^ssh $host $"rm -rf ($tmp)"
+}
+
+# evaluates a host's configuration on the remote host, from a copy of the flake
+def call-remote-eval [host: string, hostname: string, nix_args: list<string>, flake_dir: string] {
+    let tmp = (copy-flake-to-remote $host $flake_dir)
+    let ref = (build-flake-ref $tmp $"nixosConfigurations.($hostname).config.system.build.toplevel" false)
+    let nix_args = if ($nix_args | any { |x| $x == "--accept-flake-config" }) { $nix_args } else { ["--accept-flake-config"] ++ $nix_args }
+    try {
+        ^ssh $host ...(["nix" "eval"] ++ $nix_args ++ [$ref])
+    } finally {
+        cleanup-remote-flake $host $tmp
+    }
+}
+
+# rebuilds the target on the remote host itself (target == eval host)
+def call-remote-rebuild [host: string, hostname: string, nix_args: list<string>, flake_dir: string, kind: string, args: list<string>] {
+    let tmp = (copy-flake-to-remote $host $flake_dir)
+    let flake_ref = (build-flake-ref $tmp $hostname false)
+    try {
+        ^ssh $host ...(["sudo" "nixos-rebuild" $kind "--flake" $flake_ref] ++ $args ++ $nix_args)
+    } finally {
+        cleanup-remote-flake $host $tmp
+    }
+}
+
+# deploys a host via deploy-rs running on the remote host (target != eval host)
+def call-remote-deploy [host: string, node: string, nix_args: list<string>, flake_dir: string, kind: string, args: list<string>, checks: bool] {
+    let tmp = (copy-flake-to-remote $host $flake_dir)
+    let flake_ref = (build-flake-ref $tmp $node false)
+    mut a = $args
+    if $kind == "boot" { $a = ($a ++ ["--boot"]) }
+    if not $checks { $a = ($a ++ ["-s"]) }
+    try {
+        ^ssh $host ...(["deploy" $flake_ref] ++ $a ++ ["--"] ++ $nix_args)
+    } finally {
+        cleanup-remote-flake $host $tmp
+    }
+}
+
+# picks the eval host for a host: explicit eval_host (global or per node) wins,
+# otherwise fzf over machines with is_eval_host enabled (encourages this setup)
+def resolve-eval-host [hosts: record, hostname: string] {
+    let defaults = ($hosts | get -o defaults | default {})
+    let explicit = ($hosts | get $hostname | get -o eval_host | default ($defaults | get -o eval_host | default ""))
+    if ($explicit | is-not-empty) { return $explicit }
+    let candidates = ($hosts | columns | where { |n| $n != "defaults" and (($hosts | get $n | get -o is_eval_host) | default ($defaults | get -o is_eval_host | default false)) })
+    if ($candidates | is-empty) { return $hostname }
+    $candidates | str join "\n" | fzf
+}
+
 # only uses ssh-based deploy-rs when target hostname != actual (current) hostname
 def call-deploy-ssh-strategy [hosts: record, hostname: string, nix_args: list<string>, nom: list<string>, flake_dir: string, kind: string, args: list<string>, submodules: bool, checks: bool] {
     if $kind == "build" {
@@ -135,6 +228,30 @@ def rebuild [hosts: record, hostname: string, nix_args: list<string>, nom: list<
     let h = ($hosts | get $hostname)
     let nix_args = if ($nix_args | is-empty) { $h | get -o extra_args_nix | default [] } else { $nix_args }
     let args = if ($args | is-empty) { $h | get -o extra_args_applyer | default [] } else { $args }
+    let defaults = ($hosts | get -o defaults | default {})
+    let remote_eval = ($h | get -o remote_eval | default ($defaults | get -o remote_eval | default false))
+    if $remote_eval {
+        let eval_host = (resolve-eval-host $hosts $hostname)
+        if ($eval_host | is-empty) { return }
+        let sel = (select-ssh-host $hosts $eval_host)
+        if ($sel | is-empty) { return }
+        if $kind == "eval" {
+            call-remote-eval $sel $hostname $nix_args $flake_dir
+            return
+        }
+        if ($hostname == $eval_host) and ($hostname == (sys host | get hostname)) {
+            call-rebuild $hostname $nix_args $nom $flake_dir $kind $args $submodules
+            return
+        }
+        if $hostname == $eval_host {
+            call-remote-rebuild $sel $hostname $nix_args $flake_dir $kind $args
+            return
+        }
+        let node = (select-ssh-host $hosts $hostname)
+        if ($node | is-empty) { return }
+        call-remote-deploy $sel $node $nix_args $flake_dir $kind $args $checks
+        return
+    }
     match ($h | get lambda) {
         "deploy_ssh" => { call-deploy-ssh-strategy $hosts $hostname $nix_args $nom $flake_dir $kind $args $submodules $checks }
         "rebuild" => { call-rebuild $hostname $nix_args $nom $flake_dir $kind $args $submodules }
@@ -142,8 +259,18 @@ def rebuild [hosts: record, hostname: string, nix_args: list<string>, nom: list<
 }
 
 def main [] {
-    let default_nix_args = ["--accept-flake-config" $"-j(sys cpu | length) --builders \"\""]
+    let default_nix_args = ["--accept-flake-config" $"-j(sys cpu | length)"]
+    # remote_eval: host is evaluated and built on an eval host instead of locally (recommended).
+    #   the local flake tree (incl. uncommitted changes) is copied to a temp dir on the eval host first
+    #   target == eval host -> nixos-rebuild on the eval host
+    #   target != eval host -> deploy-rs running on the eval host
+    # is_eval_host: machine can act as eval host for other hosts.
+    # eval_host: explicit eval host for a host; if unset one is picked from the eval hosts.
     let hosts = {
+        defaults: {
+            remote_eval: false,
+            is_eval_host: false,
+        },
         dea:       { lambda: "deploy_ssh", hostnames: [m_dea l_dea g_dea], extra_args_nix: $default_nix_args, extra_args_applyer: ["--remote-build"] },
         deus:      { lambda: "deploy_ssh", hostnames: [m_deus l_deus g_deus], extra_args_nix: $default_nix_args, extra_args_applyer: ["--remote-build"] },
         yoga:      { lambda: "rebuild", extra_args_nix: $default_nix_args },
@@ -154,7 +281,7 @@ def main [] {
         xaver:     { lambda: "deploy_ssh", hostnames: [m_xaver l_xaver g_xaver "root@172.23.3.19"], extra_args_nix: $default_nix_args },
     }
 
-    let sel = ($hosts | columns | str join "\n" | fzf)
+    let sel = ($hosts | columns | where { |h| $h != "defaults" } | str join "\n" | fzf)
     if ($sel | is-empty) { return }
     let kind = (["build" "boot" "switch" "eval"] | str join "\n" | fzf)
     if ($kind | is-empty) { return }
