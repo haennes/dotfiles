@@ -37,6 +37,15 @@ def call-deploy [hostname: string, nix_args: list<string>, nom: list<string>, fl
     }
 }
 
+# pick the ssh target for a host, letting the user choose when there are multiple hostnames
+def select-ssh-host [hosts: record, hostname: string] {
+    let names = ($hosts | get $hostname | get -o hostnames | default [$hostname])
+    if ($names | length) > 1 {
+        $names | str join "\n" | fzf
+    } else {
+        $names.0
+    }
+}
 # only uses ssh-based deploy-rs when target hostname != actual (current) hostname
 def call-deploy-ssh-strategy [hosts: record, hostname: string, nix_args: list<string>, nom: list<string>, flake_dir: string, kind: string, args: list<string>, submodules: bool, checks: bool] {
     if $kind == "build" {
@@ -54,8 +63,7 @@ def call-deploy-ssh-strategy [hosts: record, hostname: string, nix_args: list<st
         return
     }
 
-    let names = ($hosts | get $hostname | get -o hostnames | default [$hostname])
-    let sel = if ($names | length) > 1 { $names | str join "\n" | fzf } else { $names.0 }
+    let sel = (select-ssh-host $hosts $hostname)
     if ($sel | is-not-empty) {
         call-deploy $sel $nix_args $nom $flake_dir $kind $args $submodules $checks
     }
