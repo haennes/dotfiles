@@ -31,7 +31,7 @@ def call-deploy [hostname: string, nix_args: list<string>, nom: list<string>, fl
     let flake_ref = (build-flake-ref $flake_dir $hostname $submodules)
     let inhibit = (ssh-start-inhibitor $hostname $"ssh keep alive nix rebuild ($kind)")
     let result = (try { run-piped "deploy" ([$flake_ref] ++ $a ++ ["--"] ++ $nix_args) $nom; "ok" } catch { |e| $e.msg })
-    ssh-stop-inhibitor $inhibit
+    ssh-stop-inhibitor $hostname $inhibit
     if $result != "ok" {
         error make { msg: $result }
     }
@@ -89,30 +89,38 @@ def stop-inhibitor [inhibitor: record<pid: int, sleep_script: path, tmp_dir: pat
     rm -rf $inhibitor.tmp_dir
 }
 
-# starts a blocking sleep-inhibitor on a remote host via ssh, saves its shim to a unique tmp file, returns the shim path
+# starts a blocking sleep-inhibitor entirely on a remote host via ssh,
+# returns the remote tmp dir and pid needed to stop it
 def ssh-start-inhibitor [hostname: string, opname: string] {
-    let tmp_dir = (mktemp -d)
-    let pid_pipe = $"($tmp_dir)/rebuild-ssh-inhibit.pipe"
-    let shim = $"($tmp_dir)/rebuild-ssh-inhibit-shim.sh"
     let why = ($opname | str replace -a " " "-" | str replace -a "'" "")
-
-    $"#!/usr/bin/env sh
-echo \$\$ >($pid_pipe)
-exec ssh ($hostname) systemd-inhibit --what=sleep --why=($why) --who=$"nix-rebuild-ssh-($nu.pid)" --mode=block sleep infinity" | save -f $shim
-    chmod +x $shim
-
-    mkfifo $pid_pipe
-    job spawn {^$shim 0>&- &>($tmp_dir)/rebuild-ssh-inhibit.out &}
-
-    let pid = cat $pid_pipe | str trim | into int
-
-    rm -f $pid_pipe
-    return { pid: $pid, shim: $shim, tmp_dir: $tmp_dir }
+    let who = $"nix-rebuild-ssh-($nu.pid)"
+    let script = '
+set -euo pipefail
+TMPDIR=$(mktemp -d)
+PIPE=$TMPDIR/rebuild-inhibit.pipe
+SCRIPT=$TMPDIR/rebuild-inhibit-sleep.sh
+printf "%s\n" "#!/usr/bin/env sh" "echo \$\$ > $PIPE" "sleep infinity" > "$SCRIPT"
+chmod +x "$SCRIPT"
+mkfifo "$PIPE"
+setsid systemd-inhibit --what=sleep --why="$1" --who="$2" --mode=block "$SCRIPT" </dev/null >"$TMPDIR/out.log" 2>&1 &
+PID=$(timeout 30 cat "$PIPE")
+if [ -z "$PID" ]; then
+    rm -rf "$TMPDIR"
+    exit 1
+fi
+printf "%s\n" "$TMPDIR" "$PID"
+'
+    let out = ($script | ^ssh $hostname bash -s -- $why $who)
+    let lines = ($out | str trim | lines)
+    return { pid: ($lines.1 | into int), tmp_dir: $lines.0 }
 }
 
-def ssh-stop-inhibitor [inhibitor: record<pid: int, shim: path, tmp_dir: path>] {
-    kill $inhibitor.pid
-    rm -rf $inhibitor.tmp_dir
+def ssh-stop-inhibitor [hostname: string, inhibitor: record<tmp_dir: string, pid: int>] {
+    $"
+set -euo pipefail
+kill ($inhibitor.pid) 2>/dev/null || true
+rm -rf ($inhibitor.tmp_dir)
+" | ^ssh $hostname bash -s
 }
 
 def rebuild [hosts: record, hostname: string, nix_args: list<string>, nom: list<string>, flake_dir: string, kind: string, args: list<string>, submodules: bool, checks: bool] {
