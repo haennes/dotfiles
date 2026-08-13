@@ -1625,10 +1625,11 @@
         ]
       },
       "locked": {
-        "dirtyRev": "a8f17b9cdeeb6e3bfc0d945efc18ada2519e8552-dirty",
-        "dirtyShortRev": "a8f17b9-dirty",
-        "lastModified": 1786122864,
-        "narHash": "sha256-H7Yta86SzD57HQatYtCcj8zZRThsovXViJtJaahbl6A=",
+        "lastModified": 1786561242,
+        "narHash": "sha256-Tg5fBRmV+LVMPS6UkLZ2d0FiisFKPnb7WtQgCpfazDA=",
+        "ref": "refs/heads/recenct_files_zath_xour",
+        "rev": "c90da18bc80111beb96ef12b0fed6e7380b854bb",
+        "revCount": 10,
         "type": "git",
         "url": "file:///home/hannses/programming/nix/joint-venture"
       },
@@ -2761,10 +2762,11 @@
         ]
       },
       "locked": {
-        "dirtyRev": "30cd4a37f548552cab7b7ac0806c813879d666da-dirty",
-        "dirtyShortRev": "30cd4a3-dirty",
-        "lastModified": 1786312135,
+        "lastModified": 1786318945,
         "narHash": "sha256-WkGSXmae8MD48mODVUtIeUIQV6NtLh3ujtMKK0/An1Y=",
+        "ref": "refs/heads/main",
+        "rev": "e7ba42174fa0f019c31912dda216d3399f883408",
+        "revCount": 11,
         "type": "git",
         "url": "file:///home/hannses/programming/nix/signal-whisper"
       },
@@ -3535,17 +3537,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1786130623,
-        "narHash": "sha256-1Q+gxqPqgPFrW5A2WvLytS0PMhiXP8rJzqWECpYjkdM=",
-        "owner": "haennes",
-        "repo": "wireguard-wrapper.nix",
-        "rev": "414dd36e7a0357114e439969ca4355a8b4ecf6ec",
-        "type": "github"
+        "lastModified": 1786489750,
+        "narHash": "sha256-IQ8Js0lzr86CnZvm+5qe7eXo+tIFTlp6g9mYvqhrNQI=",
+        "ref": "refs/heads/main",
+        "rev": "8be75bbfa442c88a5eb877dd2f5f2b4abd852f8d",
+        "revCount": 21,
+        "type": "git",
+        "url": "file:///home/hannses/programming/nix/wireguard-wrapper"
       },
       "original": {
-        "owner": "haennes",
-        "repo": "wireguard-wrapper.nix",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/hannses/programming/nix/wireguard-wrapper"
       }
     }
   },

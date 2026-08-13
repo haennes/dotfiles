@@ -279,6 +279,12 @@ rec {
       url = "git+https://github.com/NamtaoProductions/savepoint/";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
+    rot = {
+      url = "git+file:///home/hannses/programming/nix/rot.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.deploy-rs.follows = "deploy-rs";
+    };
   };
 
   outputs =
@@ -310,6 +316,7 @@ rec {
       watcher,
       wg-friendly-peer-names,
       wireguard-wrapper,
+      rot,
       # keep-sorted end
       ...
     }:
@@ -343,6 +350,7 @@ rec {
         watcher.nixosModules.default
         wg-friendly-peer-names.nixosModules.default
         wireguard-wrapper.nixosModules.wireguard-wrapper
+        rot.nixosModules.default
         # keep-sorted end
       ];
       client_modules = [
