@@ -1,6 +1,11 @@
 #!/usr/bin/env nu
+# flake ref without an output selector: the flake source (with ?submodules=1 when required)
+def flake-source-ref [flake_dir: string, submodules: bool] {
+    if $submodules { $flake_dir + "?submodules=1" } else { $flake_dir }
+}
+
 def build-flake-ref [flake_dir: string, target: string, submodules: bool] {
-    (if $submodules { $flake_dir + "?submodules=1" } else { $flake_dir }) + $"#($target)"
+    (flake-source-ref $flake_dir $submodules) + $"#($target)"
 }
 
 def run-piped [cmd: string, args: list<string>, nom: list<string>] {
@@ -47,108 +52,36 @@ def select-ssh-host [hosts: record, hostname: string] {
     }
 }
 
-# copy a git tree's tracked files (incl. submodules, working tree state) via git ls-files into $dest
-def copy-git-tree [dir: string, dest: string] {
-    mkdir $dest
-    if ($"($dir)/.git" | path exists) {
-        git -C $dir ls-files --recurse-submodules -z | tar -C $dir --null -T - --ignore-failed-read -cf - | tar -C $dest -xf -
-    } else {
-        tar -C $dir --exclude=.git -cf - . | tar -C $dest -xf -
-    }
+# copies the flake source and all its inputs (full input schema, incl. local path inputs)
+# to the remote store via nix flake archive and returns the flake source's store path,
+# which can be evaluated on the remote even when local input paths don't exist there
+def copy-flake-to-remote [host: string, flake_ref: string] {
+    let meta = (^nix flake archive --json --to $"ssh-ng://($host)" $flake_ref | from json)
+    return $meta.path
 }
 
-# checks whether a flake.nix input url points to a local directory
-def is-local-input-url [u: string] {
-    ($u | str starts-with "/")
-    or ($u | str starts-with "git+file://")
-    or ($u | str starts-with "file:///")
-    or ($u | str starts-with "path:/")
-}
-
-# extracts the local directory from a local input url ("" if not absolute)
-def local-input-dir [u: string] {
-    let rest = if ($u | str starts-with "git+file://") {
-        $u | str substring 11..
-    } else if ($u | str starts-with "file://") {
-        $u | str substring 7..
-    } else if ($u | str starts-with "path:") {
-        $u | str substring 5..
-    } else {
-        $u
-    }
-    let dir = ($rest | split row "?" | first)
-    if ($dir | str starts-with "/") { $dir } else { "" }
-}
-
-# local (git+file / path) inputs of the flake, copied into $stage/inputs/<slug> and their
-# urls in flake.nix rewritten to the corresponding path on the remote host ($tmp_remote)
-def stage-local-inputs [stage: string, flake_dir: string, tmp_remote: string] {
-    mut content = (open $"($flake_dir)/flake.nix")
-    for u in ($content | parse -r 'url = "([^"]+)"' | get capture0) {
-        if (not (is-local-input-url $u)) { continue }
-        let dir = (local-input-dir $u)
-        if ($dir | is-empty) or (not ($dir | path exists)) { continue }
-        let slug = ($dir | str replace '^/' '' | str replace '/' '_')
-        copy-git-tree $dir $"($stage)/inputs/($slug)"
-        $content = ($content | str replace $u $"($tmp_remote)/inputs/($slug)")
-    }
-    $content | save -f $"($stage)/flake.nix"
-}
-
-# stages the local flake working tree (incl. uncommitted changes, submodules, decrypted secrets,
-# and local path inputs) into a "flake" subdir of a fresh temp dir on the remote host
-def copy-flake-to-remote [host: string, flake_dir: string] {
-    let tmp = (^ssh $host "mktemp -d /tmp/nix-flake-XXXXXX" | str trim)
-    let stage = (mktemp -d)
-    try {
-        copy-git-tree $flake_dir $stage
-        stage-local-inputs $stage $flake_dir $"($tmp)/flake"
-        scp -r -q $stage $"($host):($tmp)/flake"
-    } finally {
-        rm -rf $stage
-    }
-    return $tmp
-}
-
-def cleanup-remote-flake [host: string, tmp: string] {
-    ^ssh $host $"rm -rf ($tmp)"
-}
-
-# evaluates a host's configuration on the remote host, from a copy of the flake
-def call-remote-eval [host: string, hostname: string, nix_args: list<string>, flake_dir: string] {
-    let tmp = (copy-flake-to-remote $host $flake_dir)
-    let ref = (build-flake-ref $"($tmp)/flake" $"nixosConfigurations.($hostname).config.system.build.toplevel" false)
-    let nix_args = if ($nix_args | any { |x| $x == "--accept-flake-config" }) { $nix_args } else { ["--accept-flake-config"] ++ $nix_args }
-    try {
-        ^ssh $host ...(["nix" "eval"] ++ $nix_args ++ [$ref])
-    } finally {
-        cleanup-remote-flake $host $tmp
-    }
+# evaluates a host's configuration on the remote host, from the archived flake source
+def call-remote-eval [host: string, hostname: string, nix_args: list<string>, flake_dir: string, submodules: bool] {
+    let store_ref = (copy-flake-to-remote $host (flake-source-ref $flake_dir $submodules))
+    let ref = (build-flake-ref $store_ref $"nixosConfigurations.($hostname).config.system.build.toplevel" false)
+    ^ssh $host ...(["nix" "eval"] ++ $nix_args ++ [$ref])
 }
 
 # rebuilds the target on the remote host itself (target == eval host)
-def call-remote-rebuild [host: string, hostname: string, nix_args: list<string>, flake_dir: string, kind: string, args: list<string>] {
-    let tmp = (copy-flake-to-remote $host $flake_dir)
-    let flake_ref = (build-flake-ref $"($tmp)/flake" $hostname false)
-    try {
-        ^ssh $host ...(["sudo" "nixos-rebuild" $kind "--flake" $flake_ref] ++ $args ++ $nix_args)
-    } finally {
-        cleanup-remote-flake $host $tmp
-    }
+def call-remote-rebuild [host: string, hostname: string, nix_args: list<string>, flake_dir: string, kind: string, args: list<string>, submodules: bool] {
+    let store_ref = (copy-flake-to-remote $host (flake-source-ref $flake_dir $submodules))
+    let flake_ref = (build-flake-ref $store_ref $hostname false)
+    ^ssh $host ...(["sudo" "nixos-rebuild" $kind "--flake" $flake_ref] ++ $args ++ $nix_args)
 }
 
 # deploys a host via deploy-rs running on the remote host (target != eval host)
-def call-remote-deploy [host: string, node: string, nix_args: list<string>, flake_dir: string, kind: string, args: list<string>, checks: bool] {
-    let tmp = (copy-flake-to-remote $host $flake_dir)
-    let flake_ref = (build-flake-ref $"($tmp)/flake" $node false)
+def call-remote-deploy [host: string, node: string, nix_args: list<string>, flake_dir: string, kind: string, args: list<string>, checks: bool, submodules: bool] {
+    let store_ref = (copy-flake-to-remote $host (flake-source-ref $flake_dir $submodules))
+    let flake_ref = (build-flake-ref $store_ref $node false)
     mut a = $args
     if $kind == "boot" { $a = ($a ++ ["--boot"]) }
     if not $checks { $a = ($a ++ ["-s"]) }
-    try {
-        ^ssh $host ...(["deploy" $flake_ref] ++ $a ++ ["--"] ++ $nix_args)
-    } finally {
-        cleanup-remote-flake $host $tmp
-    }
+    ^ssh $host ...(["deploy" $flake_ref] ++ $a ++ ["--"] ++ $nix_args)
 }
 
 # picks the eval host for a host: explicit eval_host (global or per node) wins,
@@ -259,7 +192,7 @@ def rebuild [hosts: record, hostname: string, nix_args: list<string>, nom: list<
         let sel = (select-ssh-host $hosts $eval_host)
         if ($sel | is-empty) { return }
         if $kind == "eval" {
-            call-remote-eval $sel $hostname $nix_args $flake_dir
+            call-remote-eval $sel $hostname $nix_args $flake_dir $submodules
             return
         }
         if ($hostname == $eval_host) and ($hostname == (sys host | get hostname)) {
@@ -267,12 +200,12 @@ def rebuild [hosts: record, hostname: string, nix_args: list<string>, nom: list<
             return
         }
         if $hostname == $eval_host {
-            call-remote-rebuild $sel $hostname $nix_args $flake_dir $kind $args
+            call-remote-rebuild $sel $hostname $nix_args $flake_dir $kind $args $submodules
             return
         }
         let node = (select-ssh-host $hosts $hostname)
         if ($node | is-empty) { return }
-        call-remote-deploy $sel $node $nix_args $flake_dir $kind $args $checks
+        call-remote-deploy $sel $node $nix_args $flake_dir $kind $args $checks $submodules
         return
     }
     match ($h | get lambda) {
@@ -284,7 +217,7 @@ def rebuild [hosts: record, hostname: string, nix_args: list<string>, nom: list<
 def main [] {
     let default_nix_args = ["--accept-flake-config" $"-j(sys cpu | length)"]
     # remote_eval: host is evaluated and built on an eval host instead of locally (recommended).
-    #   the local flake tree (incl. uncommitted changes) is copied to a temp dir on the eval host first
+    #   the flake source and all its inputs are archived to the eval host's store (nix flake archive) first
     #   target == eval host -> nixos-rebuild on the eval host
     #   target != eval host -> deploy-rs running on the eval host
     # is_eval_host: machine can act as eval host for other hosts.
