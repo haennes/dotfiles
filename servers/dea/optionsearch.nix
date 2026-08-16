@@ -73,6 +73,30 @@ in
         (build-scope inputs.strichliste-rs.nixosModules.${config.nixpkgs.system}.default "strichliste-rs"
           "https://github.com/DestinyofYeet/strichliste/tree/master/"
         )
+        (build-scope inputs.syncthing-wrapper.nixosModules.default "syncthing-wrapper"
+          "https://github.com/haennes/syncthing-wrapper.nix/tree/master/"
+        )
+        (build-scope inputs.wireguard-wrapper.nixosModules.default "wireguard-wrapper"
+          "https://github.com/haennes/wireguard-wrapper.nix/tree/master/"
+        )
+        (build-scope inputs.signal-whisper.nixosModules.default "signal-whisper"
+          "https://github.com/haennes/signal-whisper/tree/master/"
+        )
+        (build-scope inputs.nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default "nix-yazi-plugins"
+          "https://github.com/lordkekz/nix-yazi-plugins/tree/master/"
+        )
+        (build-scope inputs.fs-bookmarks.nixosModules.default "fs-bookmarks.nix"
+          "https://github.com/haennes/fs-bookmarks.nix/tree/master/"
+        )
+        (build-scope inputs.watcher.nixosModules.default "watcher.nix"
+          "https://github.com/haennes/watcher.nix/tree/master/"
+        )
+        (build-scope inputs.bindfs.nixosModules.default "bindfs.nix"
+          "https://github.com/haennes/bindfs.nix/tree/master/"
+        )
+        (build-scope inputs.IPorts.nixosModules.default "IPorts.nix"
+          "https://github.com/haennes/IPorts.nix/tree/master/"
+        )
       ];
     };
   };

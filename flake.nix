@@ -45,12 +45,13 @@ rec {
       url = "/home/hannses/programming/nix/joint-venture";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    bindfs.url = "github:haennes/bindfs.nix";
     nix-alien.url = "github:thiagokokada/nix-alien";
     #nixpkgs.url = "git+file:///home/hannses/programming/nix/nixpkgs?ref=master_dotfiles";
     futils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     watcher = {
-      url = "github:haennes/watcher.nix";
-      # url = "git+file:///home/hannses/programming/nix/watcher.nix";
+      # url = "github:haennes/watcher.nix";
+      url = "git+file:///home/hannses/programming/nix/watcher.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dns = {
@@ -134,7 +135,8 @@ rec {
       # url = "github:haennes/nix-yazi-plugins?ref=use-upstream-pkgs";
       # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=package-whoosh";
       # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=fix-new-params";
-      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=fix-new-params-update";
+      # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=fix-new-params-update";
+      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins";
       # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=main-greyxp1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -149,8 +151,8 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     wireguard-wrapper = {
-      # url = "git+file:///home/hannses/programming/nix/wireguard-wrapper";
-      url = "github:haennes/wireguard-wrapper.nix";
+      url = "git+file:///home/hannses/programming/nix/wireguard-wrapper";
+      # url = "github:haennes/wireguard-wrapper.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     wg-friendly-peer-names = {
@@ -160,8 +162,8 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     syncthing-wrapper = {
-      url = "github:haennes/syncthing-wrapper.nix";
-      #url = "git+file:///home/hannses/programming/nix/syncthing-wrapper";
+      # url = "github:haennes/syncthing-wrapper.nix";
+      url = "git+file:///home/hannses/programming/nix/syncthing-wrapper.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     IPorts = {
@@ -282,7 +284,7 @@ rec {
     rot = {
       url = "git+file:///home/hannses/programming/nix/rot.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
+      # inputs.flake-utils.follows = "flake-utils";
       inputs.deploy-rs.follows = "deploy-rs";
     };
   };
