@@ -22,6 +22,7 @@ in
             "git add *" = "allow";
             "nix build *" = "allow";
             "nix flake check *" = "allow";
+            "nix flake metadata *" = "allow";
             "nix log *" = "allow";
             "grep *" = "allow";
           };
