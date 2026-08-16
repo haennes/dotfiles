@@ -13,7 +13,7 @@ in
   };
   config = mkIf config.my.office.modelling.openscad.enable {
     environment.systemPackages = with pkgs; [
-      openscad
+      openscad-unstable
     ];
   };
 }
