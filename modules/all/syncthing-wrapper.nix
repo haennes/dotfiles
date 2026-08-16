@@ -157,7 +157,7 @@ in
             // {
               inherit thinkpad;
             };
-          versioning.type.simple.params.keep = 100;
+          versioning.simple.params.keep = 100;
           pseudoGroups = [ "family" ];
         };
 
