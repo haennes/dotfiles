@@ -270,30 +270,4 @@ in
     target_port = 4000;
     set_header = true;
   })
-  #only accessible through wg
-  #(create_simple_proxy_with_domain {
-  #  fqdn = "kasmweb.hannses.de";
-  #  https = true;
-  #  target_ip = ips.deus.wg0;
-  #  target_port = config.ports.ports.ports.deus.kasmweb.gui;
-  #})
-  #(create_simple_proxy_with_domain {
-  #  fqdn = "mkhh.hannses.de";
-  #  target_ip = ips.tabula_mkhh.wg0;
-  #})
-  # (create_simple_proxy_with_domain {
-  #   fqdn = "cloud.mkhh.hannses.de";
-  #   target_ip = ips.mkhh.wg0;
-  # })
-  # (create_simple_proxy_with_domain rec {
-  #   fqdn = "pad.mkhh.hannses.de";
-  #   target_ip = ips.mkhh.wg0;
-  #   target_port = ports.mkhh.hedgedoc;
-  #   #custom_locations = { "/socket.io" = {
-  #   #    proxyPass = "http://${target_ip}";
-  #   #    proxyWebsockets = true;
-  #   #    extraConfig = "proxy_ssl_server_name on;";
-  #   #  };
-  #   #};
-  # })
 ]
