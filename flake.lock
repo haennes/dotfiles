@@ -2646,10 +2646,11 @@
         ]
       },
       "locked": {
-        "dirtyRev": "2ca8607cbab4d67803190fb50a8e59e26ce5ace0-dirty",
-        "dirtyShortRev": "2ca8607-dirty",
-        "lastModified": 1786579178,
-        "narHash": "sha256-PxBwPsUAqbHNaxJe+uky3bLiL9nJWWTnJaiO0p0jMUc=",
+        "lastModified": 1786910416,
+        "narHash": "sha256-VohWTvqS7eIceJKAVwbB8OtVFmbmCo11+HreEcpXdRE=",
+        "ref": "refs/heads/main",
+        "rev": "63dde8d09bab94351534e908e7df37003beea283",
+        "revCount": 13,
         "type": "git",
         "url": "file:///home/hannses/programming/nix/rot.nix"
       },
@@ -2962,10 +2963,11 @@
         ]
       },
       "locked": {
-        "dirtyRev": "085c5f67569fc7db956cb9f25ba997bb2426e2c0-dirty",
-        "dirtyShortRev": "085c5f6-dirty",
-        "lastModified": 1786829411,
-        "narHash": "sha256-gNAC8WCltpB0q+FJbrxvuJ5LWHg2WvJ3M1HJgqYicYU=",
+        "lastModified": 1786911653,
+        "narHash": "sha256-OgUfnGu3CNU+qzrxQnUH1Op+NLEuJFAQgKwFX/w09L0=",
+        "ref": "refs/heads/main",
+        "rev": "09758f42e9def98df40c2a6fb083799d60349794",
+        "revCount": 47,
         "type": "git",
         "url": "file:///home/hannses/programming/nix/syncthing-wrapper.nix"
       },
@@ -3539,10 +3541,11 @@
         ]
       },
       "locked": {
-        "dirtyRev": "23890c8c37bc4301f3eb4739f5f708c5e7682ba3-dirty",
-        "dirtyShortRev": "23890c8-dirty",
-        "lastModified": 1754852139,
-        "narHash": "sha256-qYTWoi6CgiBfkkCGF7e15qrHf6lTcxr34Xx+NGdAcHQ=",
+        "lastModified": 1786920623,
+        "narHash": "sha256-BuPPQMFrQ1hNYZXKEauQXCecz1IqkeN7XxSdR2m3mN0=",
+        "ref": "refs/heads/main",
+        "rev": "3cd7ab8f58dd01a71385dae1c5d184a75f7864e8",
+        "revCount": 33,
         "type": "git",
         "url": "file:///home/hannses/programming/nix/watcher.nix"
       },
@@ -3625,10 +3628,11 @@
         ]
       },
       "locked": {
-        "dirtyRev": "c0d2e8885bd6ba6aa5c721cea3f131fd85c14d06-dirty",
-        "dirtyShortRev": "c0d2e88-dirty",
-        "lastModified": 1786830808,
-        "narHash": "sha256-9sPHCvBpgJthXwwhS8Hd64tIjkwoBGi6YHfFnvPiEvY=",
+        "lastModified": 1787431746,
+        "narHash": "sha256-nKtm0jxUP76iibJ1nYreKi8ukzA5hwc7ark3GU82Nwc=",
+        "ref": "refs/heads/main",
+        "rev": "1ccfeadf683098fe4fae26bac6fc73a604bd2b39",
+        "revCount": 29,
         "type": "git",
         "url": "file:///home/hannses/programming/nix/wireguard-wrapper"
       },
