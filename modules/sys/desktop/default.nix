@@ -9,6 +9,7 @@ in
 
   imports = [
     ./hyprland.nix
+    ./sway.nix
     ./portal.nix
     ./monitors.nix
   ];

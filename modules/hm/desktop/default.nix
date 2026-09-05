@@ -8,6 +8,8 @@ in
     ./gnome.nix
     ./gtk.nix
     ./hyprland.nix
+    ./sway.nix
+    ./wm/common.nix
     ./wallpaper.nix
     ./lock.nix
     ./idle.nix
