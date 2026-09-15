@@ -67,8 +67,8 @@ rec {
     };
 
     home-manager = {
-      # url = "github:nix-community/home-manager";
-      url = "git+file:///home/hannses/programming/nix/home-manager?ref=module-bato";
+      url = "github:nix-community/home-manager?ref=module-bato";
+      # url = "git+file:///home/hannses/programming/nix/home-manager?ref=module-bato";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprcursor-phinger = {
@@ -133,13 +133,13 @@ rec {
 
     nix-yazi-plugins = {
       #url = "github:Mcrtin/nix-yazi-plugins?ref=open-with-cmd+bookmarks";
-      # url = "github:lordkekz/nix-yazi-plugins";
+      url = "github:lordkekz/nix-yazi-plugins";
       # url = "github:lordkekz/nix-yazi-plugins?ref=pull/71/head";
       # url = "github:haennes/nix-yazi-plugins?ref=use-upstream-pkgs";
       # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=package-whoosh";
       # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=fix-new-params";
       # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=fix-new-params-update";
-      url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins";
+      # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins";
       # url = "git+file:///home/hannses/programming/nix/nix-yazi-plugins?ref=main-greyxp1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -154,8 +154,8 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     wireguard-wrapper = {
-      url = "git+file:///home/hannses/programming/nix/wireguard-wrapper";
-      # url = "github:haennes/wireguard-wrapper.nix";
+      # url = "git+file:///home/hannses/programming/nix/wireguard-wrapper";
+      url = "github:haennes/wireguard-wrapper.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     wg-friendly-peer-names = {
@@ -165,8 +165,8 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     syncthing-wrapper = {
-      # url = "github:haennes/syncthing-wrapper.nix";
-      url = "git+file:///home/hannses/programming/nix/syncthing-wrapper.nix";
+      url = "github:haennes/syncthing-wrapper.nix";
+      # url = "git+file:///home/hannses/programming/nix/syncthing-wrapper.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     IPorts = {
@@ -186,7 +186,8 @@ rec {
     };
 
     signal-whisper = {
-      url = "git+file:///home/hannses/programming/nix/signal-whisper";
+      # url = "git+file:///home/hannses/programming/nix/signal-whisper";
+      url = "github:haennes/signal-whisper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-topology.url = "github:oddlama/nix-topology";
@@ -247,8 +248,8 @@ rec {
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     fs-bookmarks = {
-      # url = "github:haennes/fs-bookmarks.nix";
-      url = "git+file:///home/hannses/programming/nix/fs-bookmars.nix";
+      url = "github:haennes/fs-bookmarks.nix";
+      # url = "git+file:///home/hannses/programming/nix/fs-bookmars.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     typ2anki = {
@@ -266,8 +267,8 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vicinae-extensions = {
-      # url = "github:vicinaehq/extensions";
-      url = "git+file:///home/hannses/programming/vicinae-extensions";
+      url = "github:vicinaehq/extensions?rev=40d4729";
+      # url = "git+file:///home/hannses/programming/vicinae-extensions";
     };
 
     strichliste-rs = {
@@ -285,7 +286,8 @@ rec {
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     rot = {
-      url = "git+file:///home/hannses/programming/nix/rot.nix";
+      url = "git+https://git.hannses.de/borbitter/rot.nix.git";
+      # url = "git+file:///home/hannses/programming/nix/rot.nix";
       inputs.nixpkgs.follows = "nixpkgs";
       # inputs.flake-utils.follows = "flake-utils";
       inputs.deploy-rs.follows = "deploy-rs";
