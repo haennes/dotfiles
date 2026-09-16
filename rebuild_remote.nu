@@ -6,3 +6,4 @@ let remote_cmd = $"bash -c \"nix-shell -p git --run '($cmd)'\""
 ssh m_deus_noports -o $"RemoteCommand=($remote_cmd)"
 let remote_cmd = $"bash -c \"nixos-rebuild switch --flake ($op)\\#yoga --target-host yoga.fritz.box\""
 ssh m_deus_noports -o $"RemoteCommand=($remote_cmd)"
+systemctl restart --user kanshi waybar
