@@ -41,8 +41,8 @@ rec {
       };
     };
     nix-joint-venture = {
-      # url = "github:nix-joint-venture/nix-joint-venture?ref=recenct_files_zath_xour";
-      url = "/home/hannses/programming/nix/joint-venture";
+      url = "github:nix-joint-venture/nix-joint-venture?ref=recenct_files_zath_xour";
+      # url = "/home/hannses/programming/nix/joint-venture";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     bindfs.url = "github:haennes/bindfs.nix";
@@ -67,7 +67,8 @@ rec {
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager?ref=module-bato";
+      # url = "github:nix-community/home-manager?ref=module-bato";
+      url = "github:haennes/home-manager?ref=module-bato";
       # url = "git+file:///home/hannses/programming/nix/home-manager?ref=module-bato";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -267,7 +268,7 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vicinae-extensions = {
-      url = "github:vicinaehq/extensions?rev=40d4729";
+      url = "github:vicinaehq/extensions?rev=40d4729e4a831c8ecca369377815e9ca2c866872";
       # url = "git+file:///home/hannses/programming/vicinae-extensions";
     };
 
