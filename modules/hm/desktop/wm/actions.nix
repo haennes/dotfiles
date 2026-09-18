@@ -138,11 +138,12 @@ let
     }
   '';
 in
-{
+rec {
   # misc keybindings
   exec = cmd: mk "exec ${cmd}" "exec ${cmd}";
   kill = mk "killactive" "kill";
   quit = mk "exit" "exit";
+  lock = exec config.my.desktop.lock.lock_cmd;
 
   # focus/window
   focus = dir: mk "movefocus ${dir}" "focus ${dirName.${dir}}";

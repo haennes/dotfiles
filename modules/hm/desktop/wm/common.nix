@@ -127,6 +127,9 @@ in
       "mod+Q" = actions.kill;
       "mod+Shift+Ctrl+Q" = actions.quit;
 
+      # lock
+      "mod+Shift+L" = actions.lock;
+
       # focus movement (hjkl) + workspace cycling (arrows skip specials)
       "mod+arrow_l" = actions.workspaceRel (-1);
       "mod+h" = actions.focus "l";
