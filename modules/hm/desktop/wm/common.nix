@@ -171,6 +171,8 @@ in
       # monitors
       "mod+period" = actions.switchMonitor 1;
       "mod+comma" = actions.switchMonitor (-1);
+      "mod+Shift+period" = actions.workspaceToOutputRel 1;
+      "mod+Shift+comma" = actions.workspaceToOutputRel (-1);
       "mod+Shift+P" = actions.workspaceToOutputRel 1;
 
       # scroll through workspaces
