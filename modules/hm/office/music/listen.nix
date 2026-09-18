@@ -22,12 +22,11 @@ in
     home.packages = with pkgs; [
       shortwave
     ];
-    my.desktop.autostart.autostart = mkIf config.my.office.music.listen.spotify.enable [
-      {
-        desktop = "special:music";
-        cmd = "${pkgs.firefox}/bin/firefox -P spotify";
-      }
-    ];
+    my.desktop.autostart.autostart = mkIf config.my.office.music.listen.spotify.enable {
+      "special:music" = {
+        tabbed = [ "${pkgs.firefox}/bin/firefox -P spotify" ];
+      };
+    };
     programs.firefox.profiles.spotify = mkIf config.my.office.music.listen.spotify.enable {
       isDefault = false;
       id = 2;

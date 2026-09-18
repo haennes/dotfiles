@@ -46,9 +46,18 @@ in
         # TODO implement screenshot dmenu script
 
         exec-once = (
+          let
+            staged = lib.flatten (
+              lib.mapAttrsToList (desktop: layouts:
+                lib.mapAttrsToList (_layout: cmds: map (cmd: {
+                  inherit desktop cmd;
+                }) cmds) layouts
+              ) config.my.desktop.autostart.autostart
+            );
+          in
           imap0 (
             i: nv: "[workspace ${nv.desktop} silent] sleep ${lib.toString (1 + 2 * i)}s && ${nv.cmd}"
-          ) config.my.desktop.autostart.autostart
+          ) staged
         );
 
         ecosystem = {

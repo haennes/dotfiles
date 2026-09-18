@@ -6,47 +6,42 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf mkOption;
-  inherit (lib.types)
-    listOf
-    submodule
-    str
-    nullOr
-    ;
+  inherit (lib.types) attrsOf listOf str;
 in
 {
   options.my.desktop.autostart = {
-    enable = mkEnableOption "gnome" // {
+    enable = mkEnableOption "autostart" // {
       default = config.my.desktop.enable;
     };
     autostart = mkOption {
-      type = listOf (submodule {
-        options = {
-          desktop = mkOption {
-            type = nullOr str;
-          };
-          cmd = mkOption {
-            type = str;
-          };
-        };
-      });
-      default = [ ];
+      type = attrsOf (attrsOf (listOf str));
+      description = ''
+        Programs to launch at startup, grouped by workspace and layout.
+
+        Each key is a workspace (e.g. "1" or "special:browser"), each value a
+        layout ("tabbed", "splitv", "splith", ...) mapping to the list of
+        commands to run in that layout. Layouts are honored by WMs that support
+        per-workspace layouts (sway); hyprland uses the workspace placement
+        only.
+      '';
+      default = { };
     };
 
   };
-  config =
-    let
-      inherit (lib) mapAttrsToList;
-      start = {
-        "special:browser" = "${pkgs.firefox}/bin/firefox";
-        "special:passwords" = "${pkgs.keepassxc}/bin/keepassxc";
-        "9" = "${pkgs.signal-desktop}/bin/signal-desktop";
-        "10" = "${pkgs.thunderbird}/bin/thunderbird";
+  config = mkIf config.my.desktop.autostart.enable {
+    my.desktop.autostart.autostart = {
+      "special:browser" = {
+        tabbed = [ "${pkgs.firefox}/bin/firefox" ];
       };
-    in
-    mkIf config.my.desktop.autostart.enable {
-      my.desktop.autostart.autostart = mapAttrsToList (desktop: cmd: {
-        inherit desktop cmd;
-      }) start;
-
+      "special:passwords" = {
+        tabbed = [ "${pkgs.keepassxc}/bin/keepassxc" ];
+      };
+      "9" = {
+        tabbed = [ "${pkgs.signal-desktop}/bin/signal-desktop" ];
+      };
+      "10" = {
+        tabbed = [ "${pkgs.thunderbird}/bin/thunderbird" ];
+      };
     };
+  };
 }
