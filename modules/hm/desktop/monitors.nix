@@ -18,17 +18,28 @@ let
     types
     ;
   hyprctl = getExe' config.wayland.windowManager.hyprland.package "hyprctl";
+  swaymsg = getExe' config.wayland.windowManager.sway.package "swaymsg";
   disable_ext_monitors = pkgs.writers.writeNuBin "disable_ext_monitors" /* nu */ ''
     def disable_ext_monitors [] {
-      let monitors = (${hyprctl} monitors -j)
-      print $monitors
-      let ext_monitors =  $monitors | from json | where { |e| $e.name != "eDP-1"}
-      for m in $ext_monitors {
-        print "disabling monitor" $m.name
-        run-external "${hyprctl}" "keyword" "monitor" $"($m.name),disable"
+      let builtin = "${config.my.desktop.monitors.builtin}"
+
+      if ($env.HYPRLAND_INSTANCE_SIGNATURE? == null) {
+        # sway
+        let outputs = (${swaymsg} -t get_outputs | from json | where active == true | where name != $builtin)
+        for o in $outputs {
+          print "disabling output" $o.name
+          ${swaymsg} output $o.name disable
+        }
+      } else {
+        # hyprland
+        let monitors = (${hyprctl} monitors -j | from json | where name != $builtin)
+        for m in $monitors {
+          print "disabling monitor" $m.name
+          ${hyprctl} keyword monitor $"($m.name),disable"
+        }
       }
     }
-    disable_ext_monitors 
+    disable_ext_monitors
   '';
   hlib = inputs.haumea.lib;
   nushellsave =
@@ -74,7 +85,7 @@ in
 {
   options.my.desktop.monitors = {
     enable = mkEnableOption "monitors" // {
-      default = config.my.desktop.hyprland.enable;
+      default = config.my.desktop.enable;
     };
     save-config = mkOption {
       description = "save config package";
