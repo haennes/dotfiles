@@ -160,6 +160,10 @@ in
   moveToWorkspace = n: mk "movetoworkspacesilent ${toString n}" "move container to workspace number ${toString n}";
   workspaceToOutputRel = rel: mk "movecurrentworkspacetomonitor ${relMonitorHyprland rel}" "move workspace to output ${relSway rel}";
 
+  # focus the next/previous monitor (hyprland: `focusmonitor +1`; sway: `focus
+  # output next`, which cycles through outputs in configuration order)
+  switchMonitor = rel: mk "focusmonitor ${relMonitorHyprland rel}" "focus output ${relSway rel}";
+
   # named special workspaces. hyprland: `togglespecialworkspace`; sway: the
   # workspace-toggle script (remembers/returns to the last normal workspace).
   specialToggle = name:

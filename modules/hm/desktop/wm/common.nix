@@ -169,8 +169,8 @@ in
       "mod+F" = actions.toggleFloat;
 
       # monitors
-      "mod+period" = actions.exec "${scripts.switchmonitor} -n";
-      "mod+comma" = actions.exec "${scripts.switchmonitor} -p";
+      "mod+period" = actions.switchMonitor 1;
+      "mod+comma" = actions.switchMonitor (-1);
       "mod+Shift+P" = actions.workspaceToOutputRel 1;
 
       # scroll through workspaces
