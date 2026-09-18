@@ -71,7 +71,9 @@ let
   # sway-only: special workspaces (web/tasks/chat) behave like hyprland's
   # `togglespecialworkspace`: from a normal workspace you go to the special
   # one, from the special you return to the remembered last normal workspace,
-  # and switching between specials preserves that remembered workspace.
+  # and switching between specials preserves that remembered workspace. The
+  # special always opens on the currently focused monitor: if it is already
+  # shown on another output, it is moved to the focused one.
   specialsList = lib.concatStringsSep " " (map (n: "\"${n}\"") specialNames);
   specialToggleScript = pkgs.writers.writeNu "workspace-toggle" {
     makeWrapperArgs = [ "--prefix" "PATH" ":" swaymsgPath ];
@@ -79,6 +81,13 @@ let
     def main [special: string] {
       let specials = [ ${specialsList} ]
       let state_file = $env.XDG_RUNTIME_DIR + "/sway-last-normal"
+
+      let focused_output = (
+        swaymsg -t get_outputs
+        | from json
+        | where focused == true
+        | get 0?.name
+      )
 
       let current = (
         swaymsg -t get_workspaces
@@ -97,6 +106,19 @@ let
 
         if not ($specials | any {|x| $x == $current }) {
           $current | save -f $state_file
+        }
+
+        let target = (
+          swaymsg -t get_workspaces
+          | from json
+          | where name == $special
+          | get 0?
+        )
+
+        # always show the special workspace on the currently focused monitor
+        if ($target != null) and ($target.output? != null) and ($focused_output != null) and ($target.output != $focused_output) {
+          swaymsg workspace $special
+          swaymsg move workspace to output $focused_output
         }
 
         swaymsg workspace $special
