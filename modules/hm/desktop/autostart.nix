@@ -4,6 +4,7 @@
   pkgs,
   lib,
   inputs,
+  globals,
   ...
 }:
 let
@@ -131,12 +132,13 @@ in
         "special:passwords" = {
           tabbed = [ "${pkgs.keepassxc}/bin/keepassxc" ];
         };
-        "9" = {
-          tabbed = [ "${pkgs.signal-desktop}/bin/signal-desktop" ];
+        "special:chat" = {
+          tabbed = [
+            "${pkgs.signal-desktop}/bin/signal-desktop"
+            "${pkgs.thunderbird}/bin/thunderbird"
+          ];
         };
-        "10" = {
-          tabbed = [ "${pkgs.thunderbird}/bin/thunderbird" ];
-        };
+        "special:tasks" = "${globals.execute_term} --class tasks";
       };
 
       my.desktop.autostart.apps = apps;

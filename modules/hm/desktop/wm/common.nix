@@ -47,13 +47,7 @@ in
     specialWorkspaces = mkOption {
       type = types.attrsOf types.str;
       description = ''
-        Special workspaces. Each key is a workspace name, each value the
-        shell command that hosts that workspace's app. Hyprland toggles them
-        with `togglespecialworkspace`; sway toggles them via the
-        workspace-toggle script (see modules/hm/desktop/sway.nix) and
-        workspace-next/prev skip them.
-      '';
-      readOnly = true;
+        Special workspaces. Each key is a workspace name, each value the key to make it active'';
     };
 
     bindings = mkOption {
@@ -111,17 +105,30 @@ in
     };
 
     my.desktop.wm.common.specialWorkspaces = {
-      keepassxc = "keepassxc";
-      web = globals.browser;
-      tasks = "${globals.execute_term} --class tasks";
-      chat = "element-desktop";
+      browser = "b";
+      passwords = "z";
+      chat = "c";
+      tasks = "t";
     };
+    assertions = let
+      autostartSpecials = map (lib.removePrefix "special:") (
+        builtins.filter (lib.hasPrefix "special:") (builtins.attrNames config.my.desktop.autostart.autostart)
+      );
+      bound = builtins.attrNames config.my.desktop.wm.common.specialWorkspaces;
+      missing = builtins.filter (n: !(builtins.elem n bound)) autostartSpecials;
+    in [
+      {
+        assertion = builtins.length missing == 0;
+        message = ''
+          Every special workspace configured in my.desktop.autostart.autostart
+          (walking the "special:"-prefixed workspaces) must have a key binding
+          assigned via my.desktop.wm.common.specialWorkspaces. Missing:
+          ${lib.concatStringsSep ", " missing}
+        '';
+      }
+    ];
 
     my.desktop.wm.common.bindings = {
-      # special workspaces (hyprland: togglespecialworkspace; sway: toggle script)
-      "mod+b" = actions.specialToggle "web";
-      "mod+t" = actions.specialToggle "tasks";
-      "mod+m" = actions.specialToggle "chat";
 
       # apps
       "mod+Return" = actions.exec globals.term;
@@ -256,12 +263,16 @@ in
         # workspace switching: home row a..ö maps to workspaces 1..10,
         # Shift+key also moves the workspace to the current monitor
         entry = "mod+g";
-        binds = lib.listToAttrs (
-          lib.concatLists (
-            lib.imap1 (i: key: [
-              (lib.nameValuePair key (actions.workspace i))
-              (lib.nameValuePair "Shift+${key}" (actions.workspaceToCurrentMonitor i))
-            ]) [
+        binds =
+          let
+            bind = key: name: [
+              (lib.nameValuePair key (actions.workspace name))
+              (lib.nameValuePair "Shift+${key}" (actions.workspaceToCurrentMonitor name))
+            ];
+          in 
+          lib.listToAttrs (
+          lib.concatLists ((
+            lib.imap1 (name: key: bind key name ) [
               "a"
               "s"
               "d"
@@ -273,8 +284,9 @@ in
               "l"
               "ö"
             ]
-          )
-        ) // {
+          ) ++ (lib.mapAttrsToList (n: key: bind key n) config.my.desktop.wm.common.specialWorkspaces))
+        ) 
+          // {
           escape = actions.reset;
           return = actions.reset;
         };
