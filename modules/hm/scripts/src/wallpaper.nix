@@ -83,7 +83,7 @@
 
   function updateMonitor {
     # different options to get current monitors
-    monitors=($(swww query | awk '{print substr($1, 1, length($1) - 1)}'))
+    monitors=($(awww query | awk '{print substr($1, 1, length($1) - 1)}'))
     # monitors=($(hyprctl monitors | grep "Monitor" | awk '{print $2}'))
     # for X11
     # monitors=($(xrandr --listactivemonitors | tail -n +2 | awk '{print $4}'))
@@ -121,10 +121,10 @@
       # $2: monitor [optional]
       if [ -n "$2" ]; then
           # single monitor
-          swww img --outputs "$2" --transition-type "fade" "$1"
+          awww img --outputs "$2" --transition-type "fade" "$1"
       else
           # all monitors
-          swww img --transition-type "fade" "$1"
+          awww img --transition-type "fade" "$1"
       fi
   }
 
