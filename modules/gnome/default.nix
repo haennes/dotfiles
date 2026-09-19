@@ -16,7 +16,6 @@ with lib;
     };
     services.displayManager.gdm.enable = true;
     environment.gnome.excludePackages = with pkgs; [
-      gnome-photos
       gnome-tour
       gnome-console
       cheese # webcam tool
