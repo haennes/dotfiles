@@ -16,12 +16,10 @@ in
       enable = true;
       settings = {
         keys = {
-          navigate_workspace_up = "prefix+k";
-          navigate_workspace_down = "prefix+j";
-          next_workspace = "prefix+h";
-          previous_workspace = "prefix+l";
-          next_agent = "prefix+H";
-          previous_agent = "prefix+L";
+          next_workspace = "prefix+j";
+          previous_workspace = "prefix+k";
+          next_agent = "prefix+J";
+          previous_agent = "prefix+K";
         };
         onboarding = false;
         ui.prompt_new_workspace_name = true;
