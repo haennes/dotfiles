@@ -17,6 +17,15 @@ let
   render = import ./wm/render.nix {
     inherit lib keys;
   };
+
+  # sway binds keysyms by their ASCII keysym name, so unicode keys from the
+  # shared spec (e.g. "ö") must be normalized to their keysym here.
+  swayKeysym = {
+    "ö" = "odiaeresis";
+  };
+  normalizeCombo = combo:
+    lib.replaceStrings (lib.attrNames swayKeysym) (lib.attrValues swayKeysym) combo;
+  normalizeKeysyms = lib.mapAttrs' (name: value: lib.nameValuePair (normalizeCombo name) value);
 in
 {
   options.my.desktop.sway.enable = mkEnableOption "sway" // {
@@ -59,10 +68,10 @@ in
         {
           modifier = "Mod4";
 
-          keybindings = noSwayDefault // render.sway.keybindings common.bindings common.submaps // {
+          keybindings = noSwayDefault // normalizeKeysyms (render.sway.keybindings common.bindings common.submaps) // {
             "Mod4+p" = "mode layout";
           };
-          modes = render.sway.modes common.submaps // {
+          modes = lib.mapAttrs (_: normalizeKeysyms) (render.sway.modes common.submaps) // {
             "layout" = {
               "Escape" = "mode default";
               "Return" = "mode default";
