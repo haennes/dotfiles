@@ -252,6 +252,27 @@ in
           "return" = actions.reset;
         };
       };
+      switch = {
+        # workspace switching: home row a..ö maps to workspaces 1..10
+        entry = "mod+g";
+        binds = lib.listToAttrs (
+          lib.imap1 (i: key: lib.nameValuePair key (actions.workspace i)) [
+            "a"
+            "s"
+            "d"
+            "f"
+            "g"
+            "h"
+            "j"
+            "k"
+            "l"
+            "ö"
+          ]
+        ) // {
+          escape = actions.reset;
+          return = actions.reset;
+        };
+      };
     };
   };
 }
