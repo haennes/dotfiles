@@ -1822,11 +1822,11 @@
         "systems": "systems_9"
       },
       "locked": {
-        "lastModified": 1789413679,
-        "narHash": "sha256-fZ7AuNy+7TMlY2lHoneiV6krCUl5Ee1ivP710x5UqLE=",
+        "lastModified": 1789821655,
+        "narHash": "sha256-1YNH9Na5saOTRRpC24uZ5XpKO0Gffw1NBM1iH2Whssc=",
         "owner": "lordkekz",
         "repo": "nix-yazi-plugins",
-        "rev": "562b5bd7d9ac32e0f13aea3b2445f987420c38d9",
+        "rev": "b9f83db66df98fbd13dc6a82e89662ee830d908d",
         "type": "github"
       },
       "original": {
