@@ -3554,17 +3554,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1786920623,
+        "lastModified": 1789829755,
         "narHash": "sha256-BuPPQMFrQ1hNYZXKEauQXCecz1IqkeN7XxSdR2m3mN0=",
-        "ref": "refs/heads/main",
-        "rev": "3cd7ab8f58dd01a71385dae1c5d184a75f7864e8",
-        "revCount": 33,
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/watcher.nix"
+        "owner": "haennes",
+        "repo": "watcher.nix",
+        "rev": "5d8ce507a8a5b6142c37c503ef41391939ef1e3a",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/hannses/programming/nix/watcher.nix"
+        "owner": "haennes",
+        "repo": "watcher.nix",
+        "type": "github"
       }
     },
     "waybar-taskwarrior": {

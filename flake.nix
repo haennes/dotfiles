@@ -50,8 +50,8 @@ rec {
     #nixpkgs.url = "git+file:///home/hannses/programming/nix/nixpkgs?ref=master_dotfiles";
     futils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     watcher = {
-      # url = "github:haennes/watcher.nix";
-      url = "git+file:///home/hannses/programming/nix/watcher.nix";
+      url = "github:haennes/watcher.nix";
+      # url = "git+file:///home/hannses/programming/nix/watcher.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dns = {
