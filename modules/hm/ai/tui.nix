@@ -37,6 +37,7 @@ in
           "todowrite" = "allow";
           "question" = "allow";
           "webfetch" = "deny";
+          "websearch" = "deny";
         };
       };
     };
