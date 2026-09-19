@@ -21,6 +21,7 @@ let
   mk = hyprland: sway: { inherit hyprland sway; };
   relHyprland = rel: if rel > 0 then "e+${toString rel}" else "e-${toString (abs rel)}";
   relSway = rel: if rel > 0 then "next" else "prev";
+  relSwaylr = rel: if rel > 0 then "right" else "left";
   relMonitorHyprland = rel: if rel > 0 then "+${toString rel}" else "-${toString (abs rel)}";
 
   normalWorkspaces = config.my.desktop.wm.common.normalWorkspaces;
@@ -216,11 +217,11 @@ rec {
   workspaceToCurrentMonitor = n: mk
     "workspace ${toString n}; movecurrentworkspacetomonitor active"
     "exec ${workspaceSwitchScript} ${toString n}";
-  workspaceToOutputRel = rel: mk "movecurrentworkspacetomonitor ${relMonitorHyprland rel}" "move workspace to output ${relSway rel}";
+  workspaceToOutputRel = rel: mk "movecurrentworkspacetomonitor ${relMonitorHyprland rel}" "move workspace to output ${relSwaylr rel}";
 
   # focus the next/previous monitor (hyprland: `focusmonitor +1`; sway: `focus
   # output next`, which cycles through outputs in configuration order)
-  switchMonitor = rel: mk "focusmonitor ${relMonitorHyprland rel}" "focus output ${relSway rel}";
+  switchMonitor = rel: mk "focusmonitor ${relMonitorHyprland rel}" "focus output ${relSwaylr rel}";
 
   # named special workspaces. hyprland: `togglespecialworkspace`; sway: the
   # workspace-toggle script (remembers/returns to the last normal workspace).
