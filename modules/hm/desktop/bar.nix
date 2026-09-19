@@ -29,20 +29,22 @@ let
 
     modules-center = [ "clock" ];
 
-    modules-right = [
-      #"hyprland/language"
-      "network"
-      "custom/wgs"
-      "bluetooth"
-      "custom/notification"
-      "pulseaudio"
-      "pulseaudio#microphone"
-      "cpu"
-      "memory"
-      "disk"
-      "battery"
-      "tray"
-    ];
+    modules-right =
+      lib.optional config.my.desktop.sway.enable "sway/mode"
+      ++ [
+        #"hyprland/language"
+        "network"
+        "custom/wgs"
+        "bluetooth"
+        "custom/notification"
+        "pulseaudio"
+        "pulseaudio#microphone"
+        "cpu"
+        "memory"
+        "disk"
+        "battery"
+        "tray"
+      ];
 
     bluetooth = {
       format = "{icon}";
@@ -245,6 +247,10 @@ let
       icon-size = 10;
       spacing = 1;
     };
+  } // lib.optionalAttrs config.my.desktop.sway.enable {
+    "sway/mode" = {
+      format = "[{}]";
+    };
   };
 
   css = ''
@@ -305,6 +311,7 @@ let
     #pulseaudio,
     #custom-wallchange,
     #custom-mode,
+    #mode,
     #tray {
       color: #${theme.foreground};
       background: black;
@@ -401,6 +408,13 @@ let
 
     /* system tray block */
     #custom-mode {
+      border-radius: 10px 0px 0px 10px;
+      margin-left: 6px;
+      padding-left: 12px;
+      padding-right: 4px;
+    }
+
+    #mode {
       border-radius: 10px 0px 0px 10px;
       margin-left: 6px;
       padding-left: 12px;
