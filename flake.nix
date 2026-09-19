@@ -465,7 +465,10 @@ rec {
         };
         insecure = {
           input = nixpkgs;
-          config.permittedInsecurePackages = [ "electron-25.9.0" ];
+          config.permittedInsecurePackages = [
+            "electron-25.9.0"
+            "segger-jlink-qt4-952"
+          ];
         };
         deployrs = {
           input = nixpkgs;
