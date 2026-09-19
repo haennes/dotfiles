@@ -36,6 +36,7 @@ in
           "skill" = "allow";
           "todowrite" = "allow";
           "question" = "allow";
+          "webfetch" = "deny";
         };
       };
     };
