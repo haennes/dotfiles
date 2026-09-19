@@ -253,21 +253,27 @@ in
         };
       };
       switch = {
-        # workspace switching: home row a..ö maps to workspaces 1..10
+        # workspace switching: home row a..ö maps to workspaces 1..10,
+        # Shift+key also moves the workspace to the current monitor
         entry = "mod+g";
         binds = lib.listToAttrs (
-          lib.imap1 (i: key: lib.nameValuePair key (actions.workspace i)) [
-            "a"
-            "s"
-            "d"
-            "f"
-            "g"
-            "h"
-            "j"
-            "k"
-            "l"
-            "ö"
-          ]
+          lib.concatLists (
+            lib.imap1 (i: key: [
+              (lib.nameValuePair key (actions.workspace i))
+              (lib.nameValuePair "Shift+${key}" (actions.workspaceToCurrentMonitor i))
+            ]) [
+              "a"
+              "s"
+              "d"
+              "f"
+              "g"
+              "h"
+              "j"
+              "k"
+              "l"
+              "ö"
+            ]
+          )
         ) // {
           escape = actions.reset;
           return = actions.reset;

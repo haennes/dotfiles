@@ -128,6 +128,37 @@ let
 
   # sway-only: toggle the focused window between tiled and a floating 95%
   # square centered on the monitor (hyprland: `togglefloating`).
+  # sway-only: switch to a workspace and bring it to the currently focused
+  # output (hyprland: chained `workspace N; movecurrentworkspacetomonitor
+  # active`).
+  workspaceSwitchScript = pkgs.writers.writeNu "workspace-switch" {
+    makeWrapperArgs = [ "--prefix" "PATH" ":" swaymsgPath ];
+  } /* nu */ ''
+    def main [ws: string] {
+      let target = (
+        swaymsg -t get_outputs
+        | from json
+        | where focused == true
+        | get 0?.name
+      )
+
+      swaymsg workspace $ws
+
+      if $target != null {
+        let current = (
+          swaymsg -t get_workspaces
+          | from json
+          | where name == $ws
+          | get 0?.output
+        )
+
+        if $current != null and $current != $target {
+          swaymsg move workspace to output $target
+        }
+      }
+    }
+  '';
+
   floatToggleScript = pkgs.writers.writeNu "float-toggle" {
     makeWrapperArgs = [ "--prefix" "PATH" ":" swaymsgPath ];
   } /* nu */ ''
@@ -181,6 +212,10 @@ rec {
   # `special:` workspace with `workspace e+1`, sway runs a cycle script.
   workspaceRel = rel: mk "workspace ${relHyprland rel}" "exec ${if rel > 0 then workspaceNext else workspacePrev}";
   moveToWorkspace = n: mk "movetoworkspacesilent ${toString n}" "move container to workspace number ${toString n}";
+  # switch to a workspace on the currently focused monitor
+  workspaceToCurrentMonitor = n: mk
+    "workspace ${toString n}; movecurrentworkspacetomonitor active"
+    "exec ${workspaceSwitchScript} ${toString n}";
   workspaceToOutputRel = rel: mk "movecurrentworkspacetomonitor ${relMonitorHyprland rel}" "move workspace to output ${relSway rel}";
 
   # focus the next/previous monitor (hyprland: `focusmonitor +1`; sway: `focus
