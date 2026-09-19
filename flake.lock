@@ -1186,6 +1186,29 @@
         "type": "github"
       }
     },
+    "git-opencode-plugin": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789838395,
+        "narHash": "sha256-PFpUJelQ5Vc6QPE33TO9MTbZaLACU9Pq6FDqhXceD/M=",
+        "owner": "haennes",
+        "repo": "git-opencode-plugin",
+        "rev": "bd7822edff469284d4029cc03b2f8ad1b46ec716",
+        "type": "github"
+      },
+      "original": {
+        "owner": "haennes",
+        "repo": "git-opencode-plugin",
+        "type": "github"
+      }
+    },
     "git-vbranch": {
       "inputs": {
         "nixpkgs": [
@@ -2575,6 +2598,7 @@
         "esw-machines": "esw-machines",
         "fs-bookmarks": "fs-bookmarks",
         "futils": "futils",
+        "git-opencode-plugin": "git-opencode-plugin",
         "git-vbranch": "git-vbranch",
         "haumea": "haumea",
         "helix": "helix",

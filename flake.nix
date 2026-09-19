@@ -148,6 +148,12 @@ rec {
       url = "github:haennes/git-vbranch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    git-opencode-plugin = {
+      url = "github:haennes/git-opencode-plugin";
+      # url = "git+file:///home/hannses/programming/git-opencode-plugin";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
 
     agenix = {
       url = "github:ryantm/agenix";
@@ -308,6 +314,7 @@ rec {
       IPorts,
       deploy-rs,
       futils,
+      git-opencode-plugin,
       home-manager,
       home-manager-option-search,
       menu-calc,
@@ -428,6 +435,7 @@ rec {
 
       sharedOverlays = [
         # keep-sorted start sticky_comments=no block=yes
+        git-opencode-plugin.overlays.default
         inputs.nix-alien.overlays.default
         nh.overlays.default
         nix-update-inputs.overlays.default
