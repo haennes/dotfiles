@@ -276,6 +276,11 @@ rec {
       url = "git+https://code.ole.blue/strichliste-rs/strichliste-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sway-layout = {
+      url = "github:haennes/sway-layout";
+      # url = "git+file:///home/hannses/programming/sway/sway-layout";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
     mkhh-website = {
@@ -318,6 +323,7 @@ rec {
       rust-overlay,
       schema-jq,
       signal-whisper,
+      sway-layout,
       syncthing-wrapper,
       tasks_md,
       treefmt-nix,
@@ -429,6 +435,7 @@ rec {
         nur.overlays.default
         rust-overlay.overlays.default
         signal-whisper.overlays.default
+        sway-layout.overlays.default
         # keep-sorted end
 
       ];

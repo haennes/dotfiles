@@ -2611,6 +2611,7 @@
         "signal-whisper": "signal-whisper",
         "simple-nixos-mailserver": "simple-nixos-mailserver",
         "strichliste-rs": "strichliste-rs",
+        "sway-layout": "sway-layout",
         "syncthing-nixpkgs": "syncthing-nixpkgs",
         "syncthing-wrapper": "syncthing-wrapper",
         "tasks_md": "tasks_md",
@@ -2925,6 +2926,26 @@
       "original": {
         "type": "git",
         "url": "https://code.ole.blue/strichliste-rs/strichliste-rs"
+      }
+    },
+    "sway-layout": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789831352,
+        "narHash": "sha256-sEgb1RkqLg3wFPxfU64PI+GVmOAPuIh+MXTjUGpYNZk=",
+        "owner": "haennes",
+        "repo": "sway-layout",
+        "rev": "c58369c0d15d474ce523ac518374c2902ef9f1aa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "haennes",
+        "repo": "sway-layout",
+        "type": "github"
       }
     },
     "syncthing-nixpkgs": {
