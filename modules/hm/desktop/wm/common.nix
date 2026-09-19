@@ -103,6 +103,11 @@ in
         inactive = 0.75;
         fullscreen = 1.0;
       };
+      blur = {
+        enable = true;
+        radius = 5;
+        passes = 3;
+      };
     };
 
     my.desktop.wm.common.specialWorkspaces = {

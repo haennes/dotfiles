@@ -161,6 +161,13 @@ in
 
       extraConfig = ''
         corner_radius ${toString common.visuals.rounding}
+
+        ${lib.optionalString common.visuals.blur.enable ''
+          blur enable
+          blur_radius ${toString common.visuals.blur.radius}
+          blur_passes ${toString common.visuals.blur.passes}
+        ''}
+
         default_orientation auto
       '';
     };
