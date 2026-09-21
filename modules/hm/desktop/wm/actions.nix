@@ -208,11 +208,11 @@ rec {
   pin = mk "pin" null;
 
   # workspaces
-  workspace = n: mk "workspace ${toString n}" "workspace number ${toString n}";
+  workspace = n: mk "workspace ${toString n}" "workspace ${toString n}";
   # relative cycling skips the special workspaces: hyprland never enters a
   # `special:` workspace with `workspace e+1`, sway runs a cycle script.
   workspaceRel = rel: mk "workspace ${relHyprland rel}" "exec ${if rel > 0 then workspaceNext else workspacePrev}";
-  moveToWorkspace = n: mk "movetoworkspacesilent ${toString n}" "move container to workspace number ${toString n}";
+  moveToWorkspace = n: mk "movetoworkspacesilent ${toString n}" "move container to workspace ${toString n}";
   # switch to a workspace on the currently focused monitor
   workspaceToCurrentMonitor = n: mk
     "workspace ${toString n}; movecurrentworkspacetomonitor active"
