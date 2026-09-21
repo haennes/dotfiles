@@ -57,8 +57,8 @@ in
   };
 
   age.secrets."user-printer".file = ../../../secrets/user_passwords/printer.age;
-  networking.firewall.allowedTCPPortRanges = [ pasv_port_range ];
-  networking.firewall.allowedTCPPorts = [ 21 ];
+  networking.firewall.interfaces.wgscan.allowedTCPPortRanges = [ pasv_port_range ];
+  networking.firewall.interfaces.wgscan.allowedTCPPorts = [ 21 ];
 
   environment.systemPackages = with pkgs; [inetutils];
 
