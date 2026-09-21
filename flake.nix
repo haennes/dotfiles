@@ -549,6 +549,10 @@ rec {
           // (genNodeSimple self "pons")
           // (genNodeSimple self "xaver");
       };
+
+      rot = {
+        nodes = lib.mapAttrs' (n: v: lib.nameValuePair n {hostname = n;}) self.nixosConfigurations;
+      };
       formatter = forAllSystems (
         system:
         let
