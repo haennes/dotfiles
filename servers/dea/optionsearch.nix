@@ -3,11 +3,12 @@
   pkgs,
   lib,
   config,
+  options,
   ...
 }:
 let
   build-scope = modules: name: prefix: {
-    modules = [ { _module.args = { inherit pkgs lib; }; } ] ++ (lib.lists.toList modules);
+    modules = [ { _module.args = { inherit pkgs lib options; }; } ] ++ (lib.lists.toList modules);
     name = name;
     urlPrefix = prefix;
   };
@@ -76,9 +77,9 @@ in
         (build-scope inputs.syncthing-wrapper.nixosModules.default "syncthing-wrapper"
           "https://github.com/haennes/syncthing-wrapper.nix/tree/master/"
         )
-        (build-scope inputs.wireguard-wrapper.nixosModules.default "wireguard-wrapper"
-          "https://github.com/haennes/wireguard-wrapper.nix/tree/master/"
-        )
+        # (build-scope inputs.wireguard-wrapper.nixosModules.default "wireguard-wrapper"
+        #   "https://github.com/haennes/wireguard-wrapper.nix/tree/master/"
+        # )
         (build-scope inputs.signal-whisper.nixosModules.default "signal-whisper"
           "https://github.com/haennes/signal-whisper/tree/master/"
         )
