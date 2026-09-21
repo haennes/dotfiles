@@ -54,6 +54,7 @@ in
           "when running a command always save the *entire* stderr + stdout logs to the local dir ./.logs, reference them for future use, do not read them with bash tools (see below)"
           "make sure ./.logs is git excluded -> not .gitignore but in the exclude file: .git/info/exclude"
           "whishes: if you have any whishes like: i whish i had a tool to do xyz use taskwarrior command to create a task for that"
+          "lessons learned: if you have a lesson learned (i.e. by me making adjustments) check if ~/.dotfiles/modules/hm/ai/tui.nix already has that and otherwise do the edit"
           ""
           "- Do not use the bash tool unless strictly necessary."
           "- Commands that always pass (no confirmation needed):"
