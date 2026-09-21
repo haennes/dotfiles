@@ -53,6 +53,7 @@ in
           "never access nix store paths directly or search through the nix store. either use piping or use nix build"
           "when running a command always save the *entire* stderr + stdout logs to the local dir ./.logs, reference them for future use, do not read them with bash tools (see below)"
           "make sure ./.logs is git excluded -> not .gitignore but in the exclude file: .git/info/exclude"
+          "whishes: if you have any whishes like: i whish i had a tool to do xyz use taskwarrior command to create a task for that"
           ""
           "- Do not use the bash tool unless strictly necessary."
           "- Commands that always pass (no confirmation needed):"
