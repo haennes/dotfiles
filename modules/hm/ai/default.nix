@@ -4,6 +4,7 @@ let
 in
 {
   imports = [
+    ./mcp.nix
     ./mux.nix
     ./tui.nix
   ];

@@ -37,6 +37,10 @@ rec {
         rust-overlay.follows = "rust-overlay";
       };
     };
+    mcp-servers-nix = {
+      url = "github:natsukium/mcp-servers-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-joint-venture = {
       url = "github:nix-joint-venture/nix-joint-venture?ref=recenct_files_zath_xour";
       # url = "/home/hannses/programming/nix/joint-venture";

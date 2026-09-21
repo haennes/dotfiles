@@ -21,6 +21,7 @@ in
     programs.opencode-git-tools.enable = true;
     programs.opencode = {
       enable = true;
+      enableMcpIntegration = true;
       settings = {
         permission = {
           "*" = "ask";
