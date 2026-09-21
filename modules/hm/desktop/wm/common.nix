@@ -269,6 +269,9 @@ in
               (lib.nameValuePair key (actions.workspace name))
               (lib.nameValuePair "Shift+${key}" (actions.workspaceToCurrentMonitor name))
             ];
+            bindspec = key: name: [
+              (lib.nameValuePair key (actions.specialToggle name))
+            ];
           in 
           lib.listToAttrs (
           lib.concatLists ((
@@ -284,7 +287,7 @@ in
               "l"
               "ö"
             ]
-          ) ++ (lib.mapAttrsToList (n: key: bind key n) config.my.desktop.wm.common.specialWorkspaces))
+          ) ++ (lib.mapAttrsToList (n: key: bindspec key n) config.my.desktop.wm.common.specialWorkspaces))
         ) 
           // {
           escape = actions.reset;
