@@ -4,6 +4,6 @@ print $"($op)"
 let cmd = $"nix build ($op)\\?submodules=1\\#nixosConfigurations.yoga.config.system.build.toplevel --show-trace"
 let remote_cmd = $"bash -c \"nix-shell -p git --run '($cmd)'\""
 ssh m_deus_noports -o $"RemoteCommand=($remote_cmd)"
-let remote_cmd = $"bash -c \"nixos-rebuild switch --flake ($op)\\#yoga --target-host yoga.fritz.box\""
+let remote_cmd = $"bash -c \"nixos-rebuild switch --flake ($op)\\#yoga --target-host 192.168.1.17\""
 ssh m_deus_noports -o $"RemoteCommand=($remote_cmd)"
 systemctl restart --user kanshi waybar
