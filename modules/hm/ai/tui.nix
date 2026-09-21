@@ -48,6 +48,17 @@ in
           "websearch" = "deny";
         };
       };
+      context = builtins.concatStringsSep "\n" (
+        lib.flatten [
+          "never access nix store paths directly or search through the nix store. either use piping or use nix build"
+          ""
+          "- Do not use the bash tool unless strictly necessary."
+          "- Commands that always pass (no confirmation needed):"
+          (lib.mapAttrsToList (n: _: "  - ${n}")
+            (lib.filterAttrs(_: v: v == "allow")
+            config.programs.opencode.settings.permission.bash))
+        ]
+      );
     };
   };
 }
