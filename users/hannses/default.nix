@@ -20,6 +20,7 @@
   home.homeDirectory = lib.mkDefault "/home/hannses";
 
   my.office.media.mpv.enable = false;
+  my.utils.nix.nix-search.enable = false;
 
   home.packages = with pkgs; [
     comma
