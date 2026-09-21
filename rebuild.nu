@@ -134,7 +134,7 @@ def rebuild [hosts: record, hostname: string, nix_args: list<string>, nom: list<
 }
 
 def main [] {
-    let default_nix_args = ["--accept-flake-config" $"-j(sys cpu | length)"]
+    let default_nix_args = ["--accept-flake-config" $"-j(sys cpu | length) --builders \"\""]
     let hosts = {
         dea:       { lambda: "deploy_ssh", hostnames: [m_dea l_dea g_dea], extra_args_nix: $default_nix_args, extra_args_applyer: ["--remote-build"] },
         deus:      { lambda: "deploy_ssh", hostnames: [m_deus l_deus g_deus], extra_args_nix: $default_nix_args, extra_args_applyer: ["--remote-build"] },
