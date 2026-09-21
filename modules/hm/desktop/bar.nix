@@ -14,6 +14,41 @@ let
     cat /sys/class/power_supply/BAT0/capacity
   '';
 
+workspaceName =
+  let
+    swaymsg =lib.getExe' config.wayland.windowManager.sway.package "swaymsg"; 
+    hyprctl = lib.getExe' config.wayland.windowManager.hyprland.package "hyprctl";
+  in
+  pkgs.writers.writeNu "workspace-name" ''
+    def has-env [name: string] {
+      ($env | get -i $name) != null
+    }
+
+    def is-hyprland [] {
+      (has-env HYPRLAND_INSTANCE_SIGNATURE) or (ps | where name == Hyprland | is-not-empty)
+    }
+
+    def is-sway [] {
+      (has-env SWAYSOCK) or (ps | where name == sway | is-not-empty)
+    }
+
+    def current [] {
+      if (is-sway) {
+        ${swaymsg} -t get_workspaces -r | from json | where focused == true | get name | first
+      } else {
+        ${hyprctl} activeworkspace -j | from json | get name | str replace -r '^special:' ""
+      }
+    }
+
+    current | print
+
+    if (is-sway) {
+      ${swaymsg} -t SUBSCRIBE -m '[ "workspace" ]' | lines | each { |line| current | print } | ignore
+    } else {
+      ${hyprctl} subscribe workspace | lines | each { |line| current | print } | ignore
+    }
+  '';
+
   mainWaybarConfig = {
     mod = "dock";
     layer = "top";
@@ -23,6 +58,7 @@ let
 
     modules-left = [
       "custom/logo"
+      "custom/workspace-name"
       "hyprland/workspaces"
       "custom/taskwarrior"
     ];
@@ -112,6 +148,12 @@ let
       format-window-separator = "";
       on-click = "activate";
       #persistent_workspaces = { "*" = 10; };
+    };
+
+    "custom/workspace-name" = {
+      format = " {}";
+      exec = "${workspaceName}";
+      tooltip = false;
     };
 
     battery = {
@@ -311,6 +353,7 @@ let
     #pulseaudio,
     #custom-wallchange,
     #custom-mode,
+    #custom-workspace-name,
     #mode,
     #tray {
       color: #${theme.foreground};
@@ -364,6 +407,11 @@ let
     #window {
       /* border-radius: 0px 10px 10px 0px; */
       /* padding-right: 12px; */
+    }
+
+    #custom-workspace-name {
+      padding-left: 6px;
+      padding-right: 6px;
     }
 
 
