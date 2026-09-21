@@ -1,6 +1,6 @@
 { specialArgs, ... }:
 let
-  hostnames = [ "ludus" ];
+  hostnames = [ "ludus" "proserpina_2"];
 in
 {
   imports = (
@@ -27,6 +27,11 @@ in
     ) hostnames
   );
   microvm.vms = {
+    proserpina_2 = {
+      inherit specialArgs;
+      config = ../../vms/instances/proserpina_2.nix;
+      pkgs = null;
+    };
     # ludus = {
     #   inherit specialArgs;
     #   config = ../../vms/singletons/ludus;
