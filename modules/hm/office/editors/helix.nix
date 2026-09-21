@@ -58,10 +58,10 @@ in
         package = inputs.helix.packages.x86_64-linux.helix;
         extraPackages = with pkgs; [
           # keep-sorted start sticky_comments=no block=yes
+          # config.programs.nix-search-tv-script.outputPackage
           bash-language-server
           black
           clang-tools
-          config.programs.nix-search-tv-script.outputPackage
           dhall
           dhall-lsp-server
           gcc
@@ -206,12 +206,12 @@ in
               ":buffer-close!"
               ":redraw"
             ];
-            space.n.s = [
-              ":new"
-              ":insert-output ${lib.getExe config.programs.nix-search-tv-script.outputPackage}"
-              ":buffer-close!"
-              ":redraw"
-            ];
+            # space.n.s = [
+            #   ":new"
+            #   ":insert-output ${lib.getExe config.programs.nix-search-tv-script.outputPackage}"
+            #   ":buffer-close!"
+            #   ":redraw"
+            # ];
             space.t.w = [
               ":new"
               ":insert-output ${lib.getExe pkgs.taskwarrior-tui}"
