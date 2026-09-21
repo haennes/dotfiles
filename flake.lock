@@ -2636,7 +2636,6 @@
         "simple-nixos-mailserver": "simple-nixos-mailserver",
         "strichliste-rs": "strichliste-rs",
         "sway-layout": "sway-layout",
-        "syncthing-nixpkgs": "syncthing-nixpkgs",
         "syncthing-wrapper": "syncthing-wrapper",
         "tasks_md": "tasks_md",
         "treefmt-nix": "treefmt-nix_4",
@@ -2969,22 +2968,6 @@
       "original": {
         "owner": "haennes",
         "repo": "sway-layout",
-        "type": "github"
-      }
-    },
-    "syncthing-nixpkgs": {
-      "locked": {
-        "lastModified": 1773821835,
-        "narHash": "sha256-TJ3lSQtW0E2JrznGVm8hOQGVpXjJyXY2guAxku2O9A4=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "b40629efe5d6ec48dd1efba650c797ddbd39ace0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "b40629efe5d6ec48dd1efba650c797ddbd39ace0",
         "type": "github"
       }
     },
