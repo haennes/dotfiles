@@ -1196,11 +1196,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789838395,
-        "narHash": "sha256-PFpUJelQ5Vc6QPE33TO9MTbZaLACU9Pq6FDqhXceD/M=",
+        "lastModified": 1789944271,
+        "narHash": "sha256-ePTfHhmUJAve1s526nWjVFvuBEuyNPqhdD+DHM+w5VI=",
         "owner": "haennes",
         "repo": "git-opencode-plugin",
-        "rev": "bd7822edff469284d4029cc03b2f8ad1b46ec716",
+        "rev": "d817a2a560279258245ba083af7f8952f30f01c3",
         "type": "github"
       },
       "original": {
@@ -2028,16 +2028,15 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1767313136,
-        "narHash": "sha256-16KkgfdYqjaeRGBaYsNrhPRRENs0qzkQVUooNHtoy2w=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "ac62194c3917d5f474c1a844b6fd6da2db95077d",
-        "type": "github"
+        "lastModified": 1789749394,
+        "narHash": "sha256-egdV7mLwirrhbokzBuZ4j1XCjoD5ujwMO371/9z+PM4=",
+        "rev": "cf9d2fb3e50fa1cd5114c47505ea9177f7ff5f49",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.10057.cf9d2fb3e50f/nixexprs.tar.zst"
       },
       "original": {
         "id": "nixpkgs",
-        "ref": "nixos-25.05",
+        "ref": "nixos-26.05",
         "type": "indirect"
       }
     },
@@ -2400,7 +2399,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nixpkgs-master": "nixpkgs-master",
+        "nixpkgs-master": "nixpkgs-master_2",
         "noogle": "noogle",
         "rust-overlay": [
           "rust-overlay"
@@ -2658,6 +2657,7 @@
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_8",
+        "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",
         "noogle-cli": "noogle-cli",

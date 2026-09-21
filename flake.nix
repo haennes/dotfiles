@@ -28,7 +28,8 @@ rec {
   };
   # inputs.self.submodules = true; #FIXME this is an upstream bug
   inputs = {
-    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "nixpkgs/nixos-26.05";
+    nixpkgs-master.url = "github:nixos/nixpkgs";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     noogle-cli = {
       url = "github:juliamertz/noogle-cli";
