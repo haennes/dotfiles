@@ -57,6 +57,7 @@ in
           "lessons learned: if you have a lesson learned (i.e. by me making adjustments) check if ~/.dotfiles/modules/hm/ai/tui.nix already has that and otherwise do the edit"
           ""
           "- Do not use the bash tool unless strictly necessary."
+          "- do not use ls use glob tool instead"
           "- Commands that always pass (no confirmation needed):"
           (lib.mapAttrsToList (n: _: "  - ${n}")
             (lib.filterAttrs(_: v: v == "allow")
