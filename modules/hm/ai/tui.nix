@@ -58,6 +58,7 @@ in
           ""
           "- Do not use the bash tool unless strictly necessary."
           "- do not use ls use glob tool instead"
+          "- do not use rg or grep or sed or find use your file tools instead, when piping commands read from .logs (see above)"
           "- Commands that always pass (no confirmation needed):"
           (lib.mapAttrsToList (n: _: "  - ${n}")
             (lib.filterAttrs(_: v: v == "allow")
