@@ -42,6 +42,12 @@ rec {
       url = "github:natsukium/mcp-servers-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mcp-nixos = {
+      # url = "git+file:///home/hannses/programming/mcp-nixos";
+      url = "github:haennes/mcp-nixos?ref=feat-custom-flakes";
+      # url = "github:utensils/mcp-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-joint-venture = {
       url = "github:nix-joint-venture/nix-joint-venture?ref=recenct_files_zath_xour";
       # url = "/home/hannses/programming/nix/joint-venture";
@@ -319,6 +325,7 @@ rec {
       git-opencode-plugin,
       home-manager,
       home-manager-option-search,
+      mcp-nixos,
       menu-calc,
       nh,
       nix-minecraft,
@@ -439,6 +446,7 @@ rec {
         # keep-sorted start sticky_comments=no block=yes
         git-opencode-plugin.overlays.default
         inputs.nix-alien.overlays.default
+        mcp-nixos.overlays.default
         nh.overlays.default
         nix-update-inputs.overlays.default
         nix-yazi-plugins.overlays.default
