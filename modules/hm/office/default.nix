@@ -26,5 +26,6 @@ in
     ./draw.nix
     ./knowledgemgmt
     ./present.nix
+    ./diff.nix
   ];
 }
