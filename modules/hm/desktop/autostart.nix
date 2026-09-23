@@ -129,9 +129,6 @@ in
         "special:browser" = {
           tabbed = [ "${pkgs.firefox}/bin/firefox" ];
         };
-        "special:passwords" = {
-          tabbed = [ "${pkgs.keepassxc}/bin/keepassxc" ];
-        };
         "special:chat" = {
           tabbed = [
             "${pkgs.signal-desktop}/bin/signal-desktop"
