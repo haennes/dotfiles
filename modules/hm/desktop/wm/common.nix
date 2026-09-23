@@ -106,7 +106,6 @@ in
 
     my.desktop.wm.common.specialWorkspaces = {
       browser = "b";
-      passwords = "z";
       chat = "c";
       tasks = "t";
     };
