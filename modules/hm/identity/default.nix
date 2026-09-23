@@ -5,7 +5,7 @@ in
 {
   imports = [
     ./gpg.nix
-    ./keepassxc.nix
+    ./passwords.nix
   ];
   options.my.identity.enable = mkEnableOption "identity" // {
     default = osConfig.is_client;
