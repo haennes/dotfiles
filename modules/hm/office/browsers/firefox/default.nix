@@ -26,7 +26,6 @@ in
           darkreader
           floccus
           ipfs-companion
-          keepassxc-browser
           no-pdf-download
           passbolt
           tridactyl
