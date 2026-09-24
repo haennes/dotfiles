@@ -5,7 +5,7 @@ rec {
     # abort-on-warn = true;
     extra-experimental-features = [
       # keep-sorted start sticky_comments=no block=yes
-      "flake-self-attrs"
+      # "flake-self-attrs"
       # "pipe-operators"
       # keep-sorted end
     ];
@@ -253,13 +253,13 @@ rec {
     };
     typ2anki = {
       type = "git";
-      url = "https://code.ole.blue/typ2anki/typ2anki.git?submodules=1";
+      url = "https://code.ole.blue/typ2anki/typ2anki.git";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
       # inputs.flake-utils.follows = "flake-utils";
       # inputs.crane.follows = "crane";
       # inputs.treefmt-nix.follows = "treefmt-nix";
-      # submodules = true;
+      submodules = true;
     };
     nuscht-search = {
       url = "github:NuschtOS/search";
