@@ -15,7 +15,8 @@ in
   };
   config = mkIf config.my.nix.nix.enable {
     nix = {
-      package = if (pkgs.stdenv.hostPlatform.system != "aarch64-linux") then pkgs.lix else pkgs.nix;
+      # package = if (pkgs.stdenv.hostPlatform.system != "aarch64-linux") then pkgs.lix else pkgs.nix;
+      package = pkgs.nix;
       settings = {
         # Make ready for nix flakes
         experimental-features = [
