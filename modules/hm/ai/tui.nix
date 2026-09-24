@@ -21,6 +21,7 @@ in
     programs.opencode-git-tools.enable = true; # broken
     programs.opencode = {
       enable = true;
+      package = inputs.nixpkgs-master.legacyPackages.x86_64-linux.opencode;
       enableMcpIntegration = true;
       settings = {
         permission = {
