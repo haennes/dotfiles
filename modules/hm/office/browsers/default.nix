@@ -6,13 +6,15 @@
   ...
 }@hm_inputs:
 let
-  inherit (lib) mkEnableOption mkOption;
+  inherit (lib) mkEnableOption mkOption mkIf;
   inherit (lib.types)
     str
     lazyAttrsOf
     submodule
     listOf
     int
+    oneOf
+    package
     ;
   updateInterval = 24 * 60 * 60 * 1000; # every day
   favicon = domain: "https://${domain}/favicon.ico"; # TODO use this instead
@@ -25,6 +27,24 @@ in
   options.my.office.browsers = {
     enable = mkEnableOption "web browsers" // {
       default = config.my.office.enable;
+    };
+    specialWorkspace = {
+      name = mkOption {
+        type = str;
+        default = "browser";
+      };
+      enable = mkEnableOption "specialWorkspace" // {
+        default = true;
+      };
+      autostart = {
+        autostart = mkOption {
+          type = listOf (oneOf [ str package ]);
+          default = [];
+        };
+        enable = mkEnableOption "autostartup" // {
+          default = true;
+        };
+      };
     };
     search = {
       engines = mkOption {
@@ -94,6 +114,18 @@ in
       }
     )
   );
+  config.my.desktop =
+  let
+    wname = config.my.office.browsers.specialWorkspace.name;
+  in 
+  mkIf config.my.office.browsers.specialWorkspace.enable {
+    wm.common.specialWorkspaces = {
+      ${wname} = "b";
+    };
+    autostart.autostart = mkIf config.my.office.browsers.specialWorkspace.autostart.enable {
+      "special:${wname}".tabbed = config.my.office.browsers.specialWorkspace.autostart.autostart;
+    };
+  };
   imports = [
     ./firefox
   ];
