@@ -18,7 +18,7 @@ in
     default = config.my.ai.enable;
   };
   config = mkIf config.my.ai.tui.enable {
-    programs.opencode-git-tools.enable = true;
+    programs.opencode-git-tools.enable = true; # broken
     programs.opencode = {
       enable = true;
       enableMcpIntegration = true;
