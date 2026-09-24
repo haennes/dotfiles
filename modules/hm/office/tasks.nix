@@ -3,6 +3,7 @@
   config,
   pkgs,
   lib,
+  globals,
   ...
 }:
 let
@@ -12,11 +13,29 @@ let
     mapAttrs
     mkEnableOption
     mkIf
+    mkOption
+    ;
+  inherit (lib.types)
+    str
     ;
 in
 {
-  options.my.office.tasks.enable = mkEnableOption "tasks" // {
-    default = config.my.office.enable;
+  options.my.office.tasks = {
+    enable = mkEnableOption "tasks" // {
+      default = config.my.office.enable;
+    };
+    specialWorkspace = {
+      name = mkOption {
+        type = str;
+        default = "tasks";
+      };
+      enable = mkEnableOption "specialWorkspace" // {
+        default = true;
+      };
+      autostart.enable = mkEnableOption "specialWorkspace" // {
+        default = true;
+      };
+    };
   };
   config = mkIf config.my.office.tasks.enable {
     #https://www.reddit.com/r/taskwarrior/comments/1bt1ixi/sync_setup_for_taskwarrior_30/
@@ -79,6 +98,19 @@ in
     services.taskwarrior-sync = {
       enable = true;
       package = pkgs.taskwarrior3;
+    };
+
+    my.desktop =
+    let
+      wname = config.my.office.tasks.specialWorkspace.name;
+    in 
+    mkIf config.my.office.tasks.specialWorkspace.enable {
+      wm.common.specialWorkspaces = {
+        ${wname} = "t";
+      };
+      autostart.autostart = mkIf config.my.office.tasks.specialWorkspace.autostart.enable {
+        "special:${wname}".tabbed = ["${globals.execute_term} ${pkgs.taskwarrior-tui}"];
+      };
     };
   };
 }

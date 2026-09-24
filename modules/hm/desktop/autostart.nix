@@ -125,10 +125,6 @@ in
 
   config = mkMerge [
     (mkIf config.my.desktop.autostart.enable {
-      my.desktop.autostart.autostart = {
-        "special:tasks" = "${globals.execute_term} --class tasks";
-      };
-
       my.desktop.autostart.apps = apps;
     })
 
