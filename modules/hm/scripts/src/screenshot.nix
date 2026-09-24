@@ -49,8 +49,16 @@
   ''}
   sleep $timer
 
-  hyprctl dispatch setprop active opaque true
-  grimblast --notify $outputCMD $targetCMD "$screenshot_dir/$(get_timestamp).png"
+  if [ -n "$SWAYSOCK" ]; then
+    if [ "$outputCMD" = "copy" ]; then
+      grimshot --notify $outputCMD $targetCMD
+    else
+      grimshot --notify $outputCMD $targetCMD "$screenshot_dir/$(get_timestamp).png"
+    fi
+  else
+    hyprctl dispatch setprop active opaque true
+    grimblast --notify $outputCMD $targetCMD "$screenshot_dir/$(get_timestamp).png"
+  fi
 
   ${lib.optionalString hm-config.services.wlsunset.enable ''
     if [[ "$running" == 1 ]]; then

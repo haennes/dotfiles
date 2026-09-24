@@ -14,8 +14,8 @@ in
   config = mkIf config.my.desktop.screenshot.enable {
     home.packages = with pkgs; [
       grim
-      grimblast
       slurp
-    ];
+    ] ++ lib.optionals config.my.desktop.hyprland.enable [ grimblast ]
+      ++ lib.optionals config.my.desktop.sway.enable [ sway-contrib.grimshot ];
   };
 }

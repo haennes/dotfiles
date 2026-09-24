@@ -22,8 +22,12 @@
     fi
     systemctl --user stop wlsunset.service
   ''}
-  hyprctl dispatch setprop active opaque true
-  grimblast --notify $outputCMD $targetCMD "$screenshot_dir/$(get_timestamp).png"
+  if [ -n "$SWAYSOCK" ]; then
+    grimshot --notify $outputCMD $targetCMD
+  else
+    hyprctl dispatch setprop active opaque true
+    grimblast --notify $outputCMD $targetCMD "$screenshot_dir/$(get_timestamp).png"
+  fi
   ${lib.optionalString hm-config.services.wlsunset.enable ''
     if [[ "$running" == 1 ]]; then
     systemctl --user start wlsunset.service
