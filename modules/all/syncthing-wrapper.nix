@@ -36,7 +36,7 @@ let
   devices = rec {
     all_pcs = { inherit (ids_attrs) mainpc yoga; };
     all_pcs_minimal = all_pcs // {
-      inherit (ids_attrs) thinknew thinkpad xaver;
+      inherit (ids_attrs) thinkpad xaver;
     };
     all_handys = {
       inherit (ids_attrs)
@@ -146,7 +146,7 @@ in
         }
         // servers;
         "Family" = {
-          devices = all_pcs // servers // { inherit thinkpad; };
+          devices = all_pcs // servers // { inherit thinkpad thinknew; };
           pseudoGroups = [ "family" ];
         };
         "Passwords" = {
@@ -155,7 +155,7 @@ in
             // all_handys
             // servers
             // {
-              inherit thinkpad;
+              inherit thinkpad thinknew;
             };
           versioning.simple.params.keep = 100;
           pseudoGroups = [ "family" ];
@@ -207,19 +207,25 @@ in
         // all_pcs
         // servers;
         "mum__WA".devices = {
-          inherit handyMum yoga;
+          inherit handyMum yoga thinknew;
         }
         // servers;
         "mum__Kamera".devices = {
-          inherit handyMum;
+          inherit handyMum thinknew;
         }
         // servers;
         "mum__Galerie".devices = {
-          inherit handyMum;
+          inherit handyMum thinknew;
         }
         // servers;
-        "dad__Kamera".devices = servers;
-        "dad__Galerie".devices = servers;
+        "dad__Kamera".devices = {
+          inherit thinknew;
+        }
+        // servers;
+        "dad__Galerie".devices = {
+          inherit thinknew;
+        }
+        // servers;
         "hannses__website".devices = {
           inherit tabula tabula_1 tabula_3;
         }
@@ -231,7 +237,7 @@ in
         "scan" = {
           pseudoGroups = [ "family" ];
           devices = {
-            inherit janus_1;
+            inherit janus_1 thinknew;
           }
           // all_pcs_minimal
           // servers;
