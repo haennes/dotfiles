@@ -11,20 +11,23 @@ let
     let
       name_if_l = split "%" name_if;
       name = lib.head name_if_l;
-      interface = lib.last name_if_l;
+      interface_l = lib.last name_if_l;
+      autostart = (builtins.match ".*&" interface_l) == null;
+      interface = lib.head (split "&" interface_l);
     in
     {
-      inherit name interface;
+      inherit name interface autostart;
     };
   simple_ip =
     name_if:
     let
       name_if_a = name_if_from_str name_if;
-      inherit (name_if_a) name interface;
+      inherit (name_if_a) name interface autostart;
     in
     {
       ${name}.ifs.${interface} = {
         ip = ipCIDR ips.${name}.${interface};
+        inherit autostart;
       };
     };
   simple_ips = names: lib.mkMerge (map (v: simple_ip v) names);
@@ -55,6 +58,8 @@ in
       wg0
       wg1
       wg2
+      wgvpn
+      wgscan
       # keep-sorted end
     ];
     services.wireguard-wrapper = {
@@ -91,6 +96,13 @@ in
         "yoga%wg1-pons%wg1"
         "yoga%wg2-pons%wg2"
         "xaver%wg0-pons%wg0"
+        "yoga%wgvpn&-pons%wgvpn"
+        "yoga%wgscan-pons%wgscan"
+        "thinknew%wgscan-pons%wgscan"
+        "thinkpad%wgscan-pons%wgscan"
+        "xaver%wgscan-pons%wgscan"
+        "janus_1%wgscan-pons%wgscan"
+        "router%wgscan-pons%wgscan"
         # keep-sorted end
       ];
       nodes = lib.mkMerge [
@@ -112,6 +124,16 @@ in
                 allowedIPs = [ (subnetCIDR ips.pons.wg2) ];
                 endpoint = "${ips.pons.ens6}:${builtins.toString config.ports.ports.ports.pons.wg2}";
               };
+              wgvpn = {
+                ip = ips.pons.wgvpn;
+                allowedIPs = [ (subnetCIDR ips.pons.wgvpn) "all"];
+                endpoint = "${ips.pons.ens6}:${builtins.toString config.ports.ports.ports.pons.wgvpn}";
+              };
+              wgscan = {
+                ip = ips.pons.wgscan;
+                allowedIPs = [ (subnetCIDR ips.pons.wgscan)];
+                endpoint = "${ips.pons.ens6}:${builtins.toString config.ports.ports.ports.pons.wgscan}";
+              };
             };
           };
         }
@@ -131,6 +153,7 @@ in
           "historia%wg2"
           "janus_1%wg0"
           "janus_1%wg2"
+          "janus_1%wgscan"
           "joni%wg1"
           "ludus%wg0"
           "ludus%wg1"
@@ -149,12 +172,18 @@ in
           "terminus%wg0"
           "terminus%wg2"
           "thinknew%wg0"
+          "thinknew%wgscan"
           "thinkpad%wg0"
+          "thinkpad%wgscan"
           "vertumnus%wg0"
           "yoga%wg0"
           "yoga%wg1"
           "yoga%wg2"
+          "yoga%wgvpn&"
+          "yoga%wgscan"
           "xaver%wg0"
+          "xaver%wgscan"
+          "router%wgscan"
           # "mkhh%wg0"
           # keep-sorted end
 
