@@ -1519,11 +1519,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790025346,
-        "narHash": "sha256-uG97uNgFZasOyTlFmoIrNE85bH1M00Kl58ycIyh7W+A=",
+        "lastModified": 1790070926,
+        "narHash": "sha256-yJNVF5N14HV65Wsmx6DN6y91vpQX4fpUCHtoZsw//Rs=",
         "owner": "haennes",
         "repo": "mcp-nixos",
-        "rev": "1006e6d7d76b5cc6cf3b1ab2a9129fc81cbf11a9",
+        "rev": "1589f944de2308a9915489422c0fc52cff55c3c0",
         "type": "github"
       },
       "original": {
