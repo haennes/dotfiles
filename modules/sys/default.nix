@@ -23,5 +23,6 @@
     ./identity
     ./desktop
     ./office
+    ./monitoring
   ];
 }

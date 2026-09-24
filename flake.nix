@@ -106,7 +106,10 @@ rec {
       url = "github:Janik-Haag/nixos-dns";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    deploy-rs.url = "github:serokell/deploy-rs";
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -353,6 +356,7 @@ rec {
         wg-friendly-peer-names.nixosModules.default
         wireguard-wrapper.nixosModules.wireguard-wrapper
         rot.nixosModules.default
+        rot.nixosModules.rotcheckClient
         # keep-sorted end
       ];
       client_modules = [
@@ -406,6 +410,12 @@ rec {
         "x86_64-linux"
         # keep-sorted end
       ];
+
+      # TODO
+      # packages = system: {
+      #   wgfile-router = nixpkgs.legacyPackages.${system}.writers.writeText ''
+      #   '';
+      # };
 
       sharedOverlays = [
         # keep-sorted start sticky_comments=no block=yes
