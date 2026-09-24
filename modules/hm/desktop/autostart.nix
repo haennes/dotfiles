@@ -129,12 +129,6 @@ in
         "special:browser" = {
           tabbed = [ "${pkgs.firefox}/bin/firefox" ];
         };
-        "special:chat" = {
-          tabbed = [
-            "${pkgs.signal-desktop}/bin/signal-desktop"
-            "${pkgs.thunderbird}/bin/thunderbird"
-          ];
-        };
         "special:tasks" = "${globals.execute_term} --class tasks";
       };
 
