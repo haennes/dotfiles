@@ -126,9 +126,6 @@ in
   config = mkMerge [
     (mkIf config.my.desktop.autostart.enable {
       my.desktop.autostart.autostart = {
-        "special:browser" = {
-          tabbed = [ "${pkgs.firefox}/bin/firefox" ];
-        };
         "special:tasks" = "${globals.execute_term} --class tasks";
       };
 
