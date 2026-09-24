@@ -73,7 +73,6 @@ in
 
       udmount = "udiskctl mount -b";
       udumount = "udiskctl umount -b";
-      mount_phone = "${pkgs.jmtpfs}/bin/jmtpfs";
 
       cat_tests = "${joint-standalone.c_cat_tests}";
       edit_tests = "${joint-standalone.c_edit_tests}";
