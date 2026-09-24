@@ -14,9 +14,7 @@ in
   config = mkIf config.my.desktop.sway.enable {
     programs.sway = {
       enable = true;
-      package = pkgs.swayfx.override {
-        isNixOS = true;
-      };
+      package = pkgs.swayfx;
     };
   };
 }
