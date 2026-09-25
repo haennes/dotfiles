@@ -104,11 +104,6 @@ in
       };
     };
 
-    my.desktop.wm.common.specialWorkspaces = {
-      browser = "b";
-      chat = "c";
-      tasks = "t";
-    };
     assertions = let
       autostartSpecials = map (lib.removePrefix "special:") (
         builtins.filter (lib.hasPrefix "special:") (builtins.attrNames config.my.desktop.autostart.autostart)
