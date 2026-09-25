@@ -109,7 +109,7 @@ in
         ${wname} = "t";
       };
       autostart.autostart = mkIf config.my.office.tasks.specialWorkspace.autostart.enable {
-        "special:${wname}".tabbed = ["${globals.execute_term} ${pkgs.taskwarrior-tui}"];
+        "special:${wname}".tabbed = ["${globals.execute_term} ${lib.getExe pkgs.taskwarrior-tui}"];
       };
     };
   };
