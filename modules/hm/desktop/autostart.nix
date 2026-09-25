@@ -24,11 +24,11 @@ let
   # the workspace they belong to. Workspace names keep their hyprland form
   # (e.g. "special:browser").
   flattenApps = workspace: node:
-    if builtins.isString node then
+    if builtins.isString node || lib.isDerivation node then
       [
         {
           inherit workspace;
-          cmd = node;
+          cmd = toString node;
         }
       ]
     else
