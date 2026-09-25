@@ -7,7 +7,7 @@
 }:
 let
   #"/etc/nixpkgs/channel/nixpkgs";
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkDefault;
 in
 {
   options.my.nix.nix.enable = mkEnableOption "core config for nix" // {
@@ -16,7 +16,7 @@ in
   config = mkIf config.my.nix.nix.enable {
     nix = {
       # package = if (pkgs.stdenv.hostPlatform.system != "aarch64-linux") then pkgs.lix else pkgs.nix;
-      package = pkgs.nix;
+      package = mkDefault pkgs.nix; #might get overwritten by monitored
       settings = {
         # Make ready for nix flakes
         experimental-features = [

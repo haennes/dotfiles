@@ -31,6 +31,10 @@ rec {
     nixpkgs-stable.url = "nixpkgs/nixos-26.05";
     nixpkgs-master.url = "github:nixos/nixpkgs";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nix-monitored = {
+      url = "github:ners/nix-monitored";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     noogle-cli = {
       url = "github:juliamertz/noogle-cli";
       inputs = {

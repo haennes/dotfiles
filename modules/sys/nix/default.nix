@@ -16,6 +16,7 @@ in
     ./channel.nix
     ./substituters.nix
     ./nh.nix
+    ./monitored.nix
   ];
 
 }
