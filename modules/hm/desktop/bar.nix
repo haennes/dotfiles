@@ -6,10 +6,11 @@
   inputs,
   lib,
   config,
+  osConfig,
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkMerge;
   batteryScript = pkgs.writeShellScriptBin "batteryScript" ''
     cat /sys/class/power_supply/BAT0/capacity
   '';
@@ -67,6 +68,7 @@ workspaceName =
 
     modules-right =
       lib.optional config.my.desktop.sway.enable "sway/mode"
+      ++ lib.optional config.my.desktop.bar.rot.enable "custom/rot"
       ++ [
         #"hyprland/language"
         "network"
@@ -414,6 +416,22 @@ workspaceName =
       padding-right: 6px;
     }
 
+    /* rot.nix host-update widget */
+
+    #custom-rot {
+      color: #${theme.foreground};
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+
+    #custom-rot.old {
+      color: #${theme.color_second};
+    }
+
+    #custom-rot.err {
+      color: #ff6699;
+    }
+
 
     /* control center block */
     #custom-updates {
@@ -483,20 +501,47 @@ workspaceName =
   '';
 in
 {
-  options.my.desktop.bar.enable = mkEnableOption "desktop bar" // {
-    default = config.my.desktop.hyprland.enable;
-  };
-  config = mkIf config.my.desktop.bar.enable {
-    programs.waybar = {
-      enable = true;
-      package = pkgs.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      });
-      systemd.enable = true;
-      style = css;
-      settings = {
-        mainBar = mainWaybarConfig;
-      };
+  options.my.desktop.bar = {
+    enable = mkEnableOption "desktop bar" // {
+      default = config.my.desktop.hyprland.enable;
+    };
+    rot.enable = mkEnableOption "rot.nix waybar update widget" // {
+      default = config.my.desktop.bar.enable && osConfig.my.monitoring.rot.enableClient;
     };
   };
+
+  imports = [ inputs.rot.homeModules.waybar ];
+  config = mkMerge [
+    (mkIf config.my.desktop.bar.enable {
+      programs.waybar = {
+        enable = true;
+        package = pkgs.waybar.overrideAttrs (oldAttrs: {
+          mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+        });
+        systemd.enable = true;
+        style = css;
+        settings = {
+          mainBar = mainWaybarConfig;
+        };
+      };
+    })
+    (mkIf config.my.desktop.bar.rot.enable {
+      programs.rotcheckWaybar = {
+        enable = true;
+        # source of rot.nodes
+        flake = "~/.dotfiles";
+        user = "rotcheck";
+        # key is left null on purpose: check-updates then falls back to its own
+        # default (/var/lib/rotcheck-client/key), which services.rotcheckClient
+        # installs owned by the desktop user, so waybar can read it.
+        interval = 3600;
+        barName = "mainBar";
+      };
+
+      # # rot.nix registers custom/rot on the waybar root config, but this config
+      # # drives the named `mainBar` output, so mirror it over there.
+      # programs.waybar.settings.mainBar.modules."custom/rot" =
+      #   config.programs.waybar.settings.modules."custom/rot";
+    })
+  ];
 }

@@ -2793,11 +2793,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786910416,
-        "narHash": "sha256-VohWTvqS7eIceJKAVwbB8OtVFmbmCo11+HreEcpXdRE=",
+        "lastModified": 1790693865,
+        "narHash": "sha256-QFq/HS6ax7uyjw1XaYJTRC3W5mnySPVfmJVPlbOvV5o=",
         "ref": "refs/heads/main",
-        "rev": "63dde8d09bab94351534e908e7df37003beea283",
-        "revCount": 13,
+        "rev": "cfa42c03cee447919718ffcce9ce672cf2afde14",
+        "revCount": 17,
         "type": "git",
         "url": "https://git.hannses.de/borbitter/rot.nix.git"
       },
