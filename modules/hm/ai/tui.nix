@@ -57,9 +57,9 @@ in
           "whishes: if you have any whishes like: i whish i had a tool to do xyz use taskwarrior command to create a task for that"
           "lessons learned: if you have a lesson learned (i.e. by me making adjustments) check if ~/.dotfiles/modules/hm/ai/tui.nix already has that and otherwise do the edit"
           ""
-          "- Do not use the bash tool unless strictly necessary."
-          "- do not use ls use glob tool instead"
-          "- do not use rg or grep or sed or find use your file tools instead, when piping commands read from .logs (see above)"
+          "- never use the bash tool unless strictly necessary."
+          "- never use ls or find use glob tool instead"
+          "- never use rg or grep or sed or find, use your file tools or the glob instead, when piping commands read from .logs (see above)"
           "- Commands that always pass (no confirmation needed):"
           (lib.mapAttrsToList (n: _: "  - ${n}")
             (lib.filterAttrs(_: v: v == "allow")
