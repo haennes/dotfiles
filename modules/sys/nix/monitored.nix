@@ -10,7 +10,7 @@ in
   config = mkIf config.my.nix.monitored.enable {
     nix.monitored = {
       enable = true;
-      notify = true;
+      notify = false;
     };
   };
 }
