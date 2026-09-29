@@ -12,6 +12,9 @@ in
   options.my.office.programming.vcs.git.enable = mkEnableOption "git vcs" // {
     default = config.my.office.programming.vcs.enable;
   };
+  imports = [
+    inputs.lazygit-nix.homeManagerModules.lazygitPlugins
+  ];
   config = mkIf config.my.office.programming.vcs.git.enable {
     home.packages = with pkgs; [
       gitui # switch to neogit
@@ -41,6 +44,9 @@ in
       enable = true;
       settings = {
         git.overrideGpg = true;
+      };
+      plugins = {
+        coAuthor.enable = true;
       };
     };
     programs.zsh.shellAliases = {

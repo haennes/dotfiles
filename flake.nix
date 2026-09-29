@@ -92,6 +92,17 @@ rec {
       url = "github:gj1118/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lazygit = {
+      url = "github:haennes/lazygit?ref=custom-coauthor";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+    };
+    lazygit-nix = {
+      url = "git+https://git.hannses.de/borbitter/lazygit.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+      inputs.haumea.follows = "haumea";
+    };
 
     nix-update-inputs = {
       url = "github:haennes/nix-update-input/cycle";
@@ -458,6 +469,7 @@ rec {
         rust-overlay.overlays.default
         signal-whisper.overlays.default
         sway-layout.overlays.default
+        inputs.lazygit.overlays.default
         # keep-sorted end
 
       ];
