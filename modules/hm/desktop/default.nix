@@ -21,6 +21,7 @@ in
     ./screenshot.nix
     ./monitors.nix
     ./autostart.nix
+    ./goToContainer.nix
   ];
   options.my.desktop.enable = mkEnableOption "desktop" // {
     default = osConfig.is_client;
