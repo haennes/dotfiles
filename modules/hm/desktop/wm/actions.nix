@@ -193,6 +193,7 @@ let
   '';
 in
 rec {
+  inherit mk;
   # misc keybindings
   exec = cmd: mk "exec ${cmd}" "exec ${cmd}";
   kill = mk "killactive" "kill";

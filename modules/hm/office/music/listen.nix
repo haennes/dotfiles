@@ -6,6 +6,10 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf mkMerge;
+  actions = import ../../desktop/wm/actions.nix {
+    inherit config lib pkgs;
+  };
+  bindle = actions.lockedRepeat;
 in
 {
   options.my.office.music.listen = {
@@ -22,13 +26,34 @@ in
     home.packages = with pkgs; [
       shortwave
     ];
-    my.desktop = mkIf config.my.office.music.listen.spotify.enable {
+    my.desktop = let
+        key = "i";
+      in mkIf config.my.office.music.listen.spotify.enable {
       autostart.autostart."special:music" = {
         tabbed = [ "${pkgs.firefox}/bin/firefox -P spotify" ];
       };
       wm.common.specialWorkspaces = {
-        music = "i";
+        music = key;
       };
+      wm.common.submaps.music = {
+        entry = "mod+${key}";
+        binds = let
+          plrctla = a: bindle (actions.exec "playerctl ${a}");
+          next = plrctla "next";
+          prev = plrctla "previous";
+          pause = plrctla "play-pause";
+        in {
+          "o" = next;
+          "n" = next;
+          "u" = prev;
+          "p" = prev;
+          "space" = pause;
+          "g" = actions.workspace "music";
+          "escape" = actions.reset;
+          "return" = actions.reset;
+        };
+      };
+
     };
     programs.firefox.profiles.spotify = mkIf config.my.office.music.listen.spotify.enable {
       isDefault = false;
