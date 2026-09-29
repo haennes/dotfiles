@@ -36,12 +36,10 @@ in
 
     variables = mkOption {
       type = types.attrsOf types.str;
-      readOnly = true;
     };
 
     visuals = mkOption {
       type = types.attrs;
-      readOnly = true;
     };
 
     specialWorkspaces = mkOption {
@@ -52,7 +50,6 @@ in
 
     bindings = mkOption {
       type = types.attrsOf types.attrs;
-      readOnly = true;
     };
 
     submaps = mkOption {
@@ -66,7 +63,6 @@ in
           };
         };
       });
-      readOnly = true;
     };
   };
 
