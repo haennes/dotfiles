@@ -18,6 +18,7 @@ lib.makeExtensible (
     userHelpers = callLibs ./user-helpers.nix;
 
     inherit (self.attrsHelpers)
+      mapListToAttrs
       mapAttrsToPathValueList
       flattenAttrsToList
       flattenAttrs

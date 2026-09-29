@@ -34,7 +34,7 @@ in
     services.nginx.virtualHosts =
       let
         inherit (lib) map listToAttrs;
-        mapListToAttrs = f: list: listToAttrs (map f list);
+        inherit (lib.my) mapListToAttrs;
       in
       lib.mkIf config.services.nginx.enable (
         mapListToAttrs (d: {

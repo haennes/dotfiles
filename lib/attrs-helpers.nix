@@ -23,4 +23,6 @@ rec {
     in
     listOfAttrsets: foldr (attrset: acc: recursiveUpdate attrset acc) { } listOfAttrsets;
 
+  mapListToAttrs = f: list: lib.listToAttrs (map f list);
+
 }
