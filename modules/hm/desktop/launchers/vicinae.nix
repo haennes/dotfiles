@@ -8,6 +8,9 @@
 let
   launch_vicinae = cmd: "${lib.getExe config.programs.vicinae.package} vicinae://${cmd}";
   inherit (lib) mkEnableOption mkIf;
+  actions = import ../wm/actions.nix {
+    inherit config lib pkgs;
+  };
 in
 {
   options.my.desktop.launchers.vicinae = {
@@ -16,6 +19,9 @@ in
     };
     enableHyprlandIntegration = mkEnableOption "vicinae hyprland integration" // {
       default = config.my.desktop.hyprland.enable;
+    };
+    enableSwayIntegration = mkEnableOption "vicinae sway integration" // {
+      default = config.my.desktop.sway.enable;
     };
   };
   config = mkIf config.my.desktop.launchers.vicinae.enable {
@@ -41,6 +47,12 @@ in
           ];
 
         };
+
+    my.desktop.wm.common.bindings =
+      mkIf config.my.desktop.launchers.vicinae.enableSwayIntegration {
+        "mod+D" = actions.exec (launch_vicinae "toggle");
+      };
+
     programs.vicinae = {
       enable = true;
       systemd.enable = true;
