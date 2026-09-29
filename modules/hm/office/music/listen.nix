@@ -48,7 +48,7 @@ in
           "u" = prev;
           "p" = prev;
           "space" = pause;
-          "g" = actions.workspace "music";
+          "g" = actions.specialToggle "music";
           "escape" = actions.reset;
           "return" = actions.reset;
         };
