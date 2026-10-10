@@ -31,6 +31,7 @@ in
       #package = hyprland.packages.${pkgs.system}.hyprland;
       systemd.enable = true;
       xwayland.enable = true;
+      configType = "hyprlang";
 
       plugins = [
         #split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
