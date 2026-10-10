@@ -14,5 +14,6 @@ in
     ./embedded
     ./lang
     ./sqlite.nix
+    ./compilerconstr.nix
   ];
 }
