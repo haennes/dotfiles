@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1727380718,
-        "narHash": "sha256-pIk1LtkMi1zo78z0CP4Q4pQ+0MLMkpz8XUVjoHuJGHM=",
+        "lastModified": 1791810498,
+        "narHash": "sha256-P8IHXs/Rgeb9chUsl9Fn1h8QqXUk7yGybmgQNkmOeMc=",
         "owner": "haennes",
         "repo": "IPorts.nix",
-        "rev": "4af73baf78ab38297578f0dd0a84a17555d386bd",
+        "rev": "fe23f9ec286e2ff5d46a1f50e769a81a6ca3854e",
         "type": "github"
       },
       "original": {
