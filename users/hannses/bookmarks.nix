@@ -10,13 +10,14 @@
       inherit (lib) range listToAttrs;
       home = config.home.homeDirectory;
       studium = "${home}/Documents/Studium";
-      semester_max = 5;
+      semester_max = 7;
       semester = listToAttrs (
         map (i: {
           name = toString i;
           value = "${studium}/Semester${toString i}";
         }) (range 1 semester_max)
       );
+      semdir = s: n: { dir = "${semester."${toString s}"}/${n}"; };
     in
     rec {
       "down" = {
@@ -109,5 +110,17 @@
       natu = {
         dir = "${semester."4"}/NATU";
       };
+
+      praxisbericht = semdir 5 "praxisbericht";
+      seminararbeit = semdir 5 "seminararbeit";
+
+      dcmd = semdir 6 "DCMC";
+      fem = semdir 6 "FEM";
+      is = semdir 6 "is";
+      pti = semdir 6 "PTI";
+      tgi = semdir 6 "TGI";
+
+      ba = semdir 7 "BA";
+      sv = semdir 7 "SV";
     };
 }
