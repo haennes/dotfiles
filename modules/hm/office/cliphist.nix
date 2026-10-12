@@ -9,8 +9,6 @@ in
   config = mkIf config.my.office.cliphist.enable {
     services.cliphist = {
       enable = true;
-
-      systemdTargets = [ "graphical-session.target" ];
     };
   };
 }
