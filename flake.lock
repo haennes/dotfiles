@@ -428,16 +428,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1787034704,
-        "narHash": "sha256-NTB+P6rAzht2ZoPS2q1clwIhUW90J7VN2ndD73/WsIc=",
+        "lastModified": 1790707303,
+        "narHash": "sha256-hdmAeiW02OThyTjW7c/gx7GXFRY0/QXp1OTPCaG11GE=",
         "owner": "haennes",
         "repo": "esw-gemeinschaftsraum",
-        "rev": "06cb41c76774aebf91a3f48d302d20435173cdf7",
+        "rev": "ead3e805892eb39ea1161dbd58cd0ac34270f624",
         "type": "github"
       },
       "original": {
         "owner": "haennes",
-        "ref": "impress",
+        "ref": "update",
         "repo": "esw-gemeinschaftsraum",
         "type": "github"
       }
@@ -2895,11 +2895,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790698866,
-        "narHash": "sha256-+BK4I7ES0qVCCxZUNTLOgvbBRq3H3i73unjVKRXmXe8=",
+        "lastModified": 1791665579,
+        "narHash": "sha256-BaHaGH4AiKT/AcJ5oGi3tEIFs7GvQfAzKrbNlREwtkI=",
         "ref": "refs/heads/main",
-        "rev": "1217d75e2291e9782f426ed15bb9131d50f4a35a",
-        "revCount": 18,
+        "rev": "d6a6b80856b96d06d0a41053decdabbc449e122d",
+        "revCount": 23,
         "type": "git",
         "url": "https://git.hannses.de/borbitter/rot.nix.git"
       },

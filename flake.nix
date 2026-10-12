@@ -227,7 +227,7 @@ rec {
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     esw-gemeinschaft = {
-      url = "github:haennes/esw-gemeinschaftsraum/impress";
+      url = "github:haennes/esw-gemeinschaftsraum/update";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     simple-nixos-mailserver = {
