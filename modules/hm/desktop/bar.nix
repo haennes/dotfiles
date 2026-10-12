@@ -534,7 +534,7 @@ in
         # key is left null on purpose: check-updates then falls back to its own
         # default (/var/lib/rotcheck-client/key), which services.rotcheckClient
         # installs owned by the desktop user, so waybar can read it.
-        interval = 3600;
+        interval = 600;
         barName = "mainBar";
       };
 
