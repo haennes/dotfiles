@@ -113,7 +113,6 @@ in
       "hannses__freshrss" = "freshrss";
       "hannses__game_servers" = "game_servers";
       "hannses__programming" = "programming";
-      "hannses__tasks" = "tasks";
       "hannses__website" = "website";
       "mum__Galerie" = "AlexandraGalerie";
       "mum__Kamera" = "AlexandraKamera";
@@ -165,7 +164,6 @@ in
         "hannses__3d_printing".devices = all_pcs_minimal // servers;
         "hannses__Documents".devices = all_pcs_minimal // servers;
         "hannses__Notes".devices = all_pcs_minimal // servers;
-        "hannses__tasks".devices = all_pcs_minimal // servers;
         "hannses__Downloads".devices = all_pcs_minimal // servers;
         "hannses__Music".devices = all_pcs // servers;
         "Pictures" = {

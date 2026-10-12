@@ -204,10 +204,6 @@ rec {
       #url = "git+file:///home/hannses/programming/nix/IPorts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    tasks_md = {
-      #url = "git+file:///home/hannses/programming/nix/tasks?ref=four_working";
-      url = "github:haennes/tasks_md.nix/four_working";
-    };
     waybar-taskwarrior = {
       #url = "git+https://code.ole.blue/ole/waybar-taskwarrior.rs";
       # url = "github:haennes/waybar-taskwarrior.rs";
@@ -356,7 +352,6 @@ rec {
       signal-whisper,
       sway-layout,
       syncthing-wrapper,
-      tasks_md,
       treefmt-nix,
       watcher,
       wg-friendly-peer-names,
@@ -391,7 +386,6 @@ rec {
         IPorts.nixosModules.default # adds ips, macs and ports
         nix-topology.nixosModules.default
         syncthing-wrapper.nixosModules.syncthing-wrapper
-        tasks_md.nixosModules.default
         watcher.nixosModules.default
         wg-friendly-peer-names.nixosModules.default
         wireguard-wrapper.nixosModules.wireguard-wrapper

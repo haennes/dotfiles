@@ -36,10 +36,6 @@ in
         target = "_blank"; # open in new tab
         statusStyle = "dot";
         layout = {
-          Tasks = {
-            style = "row";
-            columns = lib.length config.services.tasks_md.conf;
-          };
           Syncthing = {
             icon = "si-syncthing-#0891D1";
             style = "row";
@@ -75,21 +71,7 @@ in
           };
         };
       };
-      services =
-        let
-          tasks_md = config.services.tasks_md;
-        in
-        (lib.optional tasks_md.enable {
-          "Tasks" = map (item: {
-            "${item.title}" = rec {
-              icon = "mdi-check-#1CDC18";
-              href = "http://${item.domain}/${item.base_path}";
-              siteMonitor = href;
-            };
-          }) tasks_md.conf;
-        })
-        ++ [
-
+      services = [
           {
             "Syncthing" = [
               #TODO consider adding more here / waiting for upstream syncthing support
