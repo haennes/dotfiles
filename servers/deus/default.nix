@@ -18,6 +18,7 @@
     #./services/backup.nix
     ./vms.nix
     ./zfs.nix
+    ./hang.nix
     inputs.esw-machines.nixosModules.default
     # keep-sorted end
   ];
