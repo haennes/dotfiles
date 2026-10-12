@@ -215,7 +215,7 @@ def rebuild [hosts: record, hostname: string, nix_args: list<string>, nom: list<
 }
 
 def main [] {
-    let default_nix_args = ["--accept-flake-config" $"-j(sys cpu | length)"]
+    let default_nix_args = ["--accept-flake-config" $"-j(sys cpu | length)" "--show-trace" "--extra-experimental-features" "flakes"]
     # remote_eval: host is evaluated and built on an eval host instead of locally (recommended).
     #   the flake source and all its inputs are archived to the eval host's store (nix flake archive) first
     #   target == eval host -> nixos-rebuild on the eval host
