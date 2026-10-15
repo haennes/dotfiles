@@ -89,11 +89,10 @@ in
       };
 
   my.desktop.wm.common = let
-      todo = null;
       swayr = getExe config.programs.swayr.package;
     in {
       bindings = {
-        "mod+space" = actions.mk todo "${swayr} switch-window";
+        "mod+space" = actions.exec "${swayr} switch-window";
       };
     };
   };
