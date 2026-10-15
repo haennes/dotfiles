@@ -74,7 +74,7 @@
 
       dcmd = semdir 6 "DCMC";
       fem = semdir 6 "FEM";
-      is = semdir 6 "is";
+      is = semdir 6 "IS";
       pti = semdir 6 "PTI";
       tgi = semdir 6 "TGI";
 
