@@ -29,6 +29,7 @@ in
     in
     mkIf cfg.enable {
       programs.swayr = mkIf cfg.sway.enable {
+        enable = true;
         systemd.enable = true;
         settings = {
           menu = {
