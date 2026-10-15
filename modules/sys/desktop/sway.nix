@@ -12,6 +12,10 @@ in
     default = config.is_client;
   };
   config = mkIf config.my.desktop.sway.enable {
+    programs.sway = {
+      enable = true;
+      package = pkgs.swayfx;
+    };
     security.polkit.enable = true;
   };
 }
