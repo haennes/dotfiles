@@ -70,6 +70,7 @@ in
   mount
   umount
   eject usb
+  monitor disable all ext
   monitor setup
   monitor setup gui
   nightlight
@@ -195,6 +196,9 @@ in
       ;;
   "monitor setup")
       ${scripts.monitorsetup}
+      ;;
+  "monitor disable all ext")
+      ${hm-config.my.desktop.monitors.disable_ext_monitors}
       ;;
   "monitor setup gui")
       ${pkgs.wdisplays}/bin/wdisplays

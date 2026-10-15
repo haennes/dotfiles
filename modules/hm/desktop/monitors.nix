@@ -96,6 +96,11 @@ in
       type = types.str;
       default = osConfig.my.desktop.monitors.builtin;
     };
+    disable_ext_monitors = mkOption {
+      readOnly = true;
+      type = types.package;
+      default = disable_ext_monitors;
+    };
   };
   config = mkIf config.my.desktop.monitors.enable {
     home.packages = with pkgs; [
