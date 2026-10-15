@@ -10,12 +10,12 @@
       inherit (lib) range listToAttrs;
       home = config.home.homeDirectory;
       studium = "${home}/Documents/Studium";
-      semester_max = 7;
+      semester_curr = 6;
       semester = listToAttrs (
         map (i: {
           name = toString i;
           value = "${studium}/Semester${toString i}";
-        }) (range 1 semester_max)
+        }) (range 1 7)
       );
       semdir = s: n: { dir = "${semester."${toString s}"}/${n}"; };
     in
@@ -31,7 +31,7 @@
       };
 
       oth = {
-        dir = semester.${toString semester_max};
+        dir = semester.${toString semester_curr};
       };
 
       pro = {
