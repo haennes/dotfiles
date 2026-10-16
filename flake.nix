@@ -323,6 +323,11 @@ rec {
       # inputs.flake-utils.follows = "flake-utils";
       inputs.deploy-rs.follows = "deploy-rs";
     };
+
+    sasm = {
+      url = "github:Dman95/SASM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
