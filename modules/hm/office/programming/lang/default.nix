@@ -8,5 +8,6 @@ in
   };
   imports = [
     ./rust.nix
+    ./sasm.nix
   ];
 }
