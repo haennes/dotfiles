@@ -92,7 +92,7 @@ in
       swayr = getExe config.programs.swayr.package;
     in {
       bindings = {
-        "mod+space" = actions.exec "${swayr} switch-window";
+        "mod+space" = actions.exec "${swayr} switch-workspace-or-window";
       };
     };
   };
