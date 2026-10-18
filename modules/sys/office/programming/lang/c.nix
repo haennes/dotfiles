@@ -14,6 +14,8 @@ in
   config = mkIf config.my.office.programming.lang.c.enable {
     environment.systemPackages = with pkgs; [
       gcc # c compiler
+      pkgs.man-pages
+      pkgs.man-pages-posix
     ];
   };
 }
